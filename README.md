@@ -1,0 +1,1 @@
+# clas12-config
