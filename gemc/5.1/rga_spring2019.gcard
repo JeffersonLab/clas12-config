@@ -1,0 +1,138 @@
+<gcard>
+
+	<!-- band detector upstream of the target -->
+	<detector name="experiments/clas12/band/band" factory="TEXT" variation="main"/>
+
+	<!-- target. Notice variation give the target type. Can be: lH2, lD2, ND3 -->
+	<detector name="experiments/clas12/targets/cad/"   factory="CAD"/>
+	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="lH2"/>
+
+	<!-- central detectors 	-->
+	<detector name="experiments/clas12/bst/bst"               factory="TEXT" variation="default"/>
+	<detector name="experiments/clas12/bstShield/bstShield"   factory="TEXT" variation="w51"/>
+	<detector name="experiments/clas12/micromegas/micromegas" factory="TEXT" variation="michel"/>
+
+	<!--ctof, cad  -->
+	<detector name="experiments/clas12/ctof/ctof"                     factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/ctof/javacad_rga_fall2018/"    factory="CAD"/>
+	<detector name="experiments/clas12/cnd/cnd"                       factory="TEXT" variation="original"/>
+
+	<!--high threshold cherenkov -->
+	<detector name="experiments/clas12/htcc/htcc"           factory="TEXT" variation="original"/>
+	<detector name="experiments/clas12/htcc/cad_fall18/"    factory="CAD"/>
+
+	<!-- magnets -->
+	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT" variation="original"/>
+	<detector name="experiments/clas12/magnets/cad/"     factory="CAD" />
+
+
+	<!-- Beamline configuration: FTOn is used -->
+	<detector name="experiments/clas12/ft/ft"                      factory="TEXT" variation="FTOn"/>
+	<detector name="experiments/clas12/beamline/cadBeamline/"      factory="CAD"/>
+	<detector name="experiments/clas12/beamline/vacuumLine/"       factory="CAD"/>
+	<detector name="experiments/clas12/beamline/beamline"          factory="TEXT" variation="FTOn"/>
+
+	
+	
+	<!-- forward carriage -->
+	<detector name="experiments/clas12/fc/forwardCarriage" factory="TEXT" variation="TorusSymmetric"/>
+
+	<detector name="experiments/clas12/dc/dc"              factory="TEXT" variation="default"/>
+	<detector name="experiments/clas12/ftof/ftof"          factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/ec/ec"              factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/pcal/pcal"          factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/ltcc/ltcc"          factory="TEXT" variation="rgb_spring2019"/>
+	<detector name="experiments/clas12/ltcc/cad_cone/"     factory="CAD"/>
+	<detector name="experiments/clas12/ltcc/cad/"          factory="CAD"/>
+	<detector name="experiments/clas12/rich_sector4/rich"     factory="TEXT" variation="java"/>
+	<detector name="experiments/clas12/rich_sector4/javacad/" factory="CAD"/>
+
+
+	<!-- you can scale the fields here. Remember torus -1 means e- INBENDING  -->
+	<option name="SCALE_FIELD" value="TorusSymmetric, -1"/>
+	<option name="SCALE_FIELD" value="clas12-newSolenoid, -1"/>
+
+	<!-- hall field  -->
+	<option name="HALL_FIELD"  value="clas12-newSolenoid"/>
+
+	<!-- fields, precise mode -->
+	<option name="FIELD_PROPERTIES" value="TorusSymmetric,     2*mm, G4ClassicalRK4, linear"/>
+	<option name="FIELD_PROPERTIES" value="clas12-newSolenoid, 1*mm, G4ClassicalRK4, linear"/>
+
+
+	<!-- beam conditions -->
+	<option name="BEAM_P"   value="e-, 10.6*GeV, 0.0*deg, 0*deg"/>
+	<option name="BEAM_V"    value="(0, 0, -3)cm"/>
+	<option name="SPREAD_V"  value="(0.0, 2.5)cm"/>
+
+	<option name="SAVE_ALL_MOTHERS" value="0"/>
+	<option name="RECORD_OPTICALPHOTONS"   value="1"/>
+
+	<option name="PHYSICS" value="FTFP_BERT + STD + Optical"/>
+
+	<option name="OUTPUT"   value="hipo, out.hipo"/>
+
+	<!--  Will print message every 10 events -->
+	<option name="PRINT_EVENT"    value="10" />
+
+
+	<!--  Run Number 11, picked up by digitization routines -->
+	<option name="RUNNO"    value="11" />
+	<option name="DIGITIZATION_VARIATION"  value="rga_fall2018_bg" />
+
+	<!--  Do not track staff after the apex -->
+	<option name="MAX_Z_POS" value="9000"/>
+
+	<!--  Time window defined by LUMI_EVENT -->
+	<option name="LUMI_EVENT"  value="0, 248.5*ns, 4*ns" />
+	<!--  Uncomment this (and replace the LUMI_EVENT Above) to simulate 10^35 luminosity beam on a 5cm liquid hydrogen target, use 124K e- / event   -->
+	<!--  Scale accordingly for different target / luminosity  -->
+	<!--
+	<option name="LUMI_EVENT"     value="124000, 248.5*ns, 4*ns" />
+	<option name="LUMI_P"         value="e-, 10.6*GeV, 0*deg, 0*deg" />
+	<option name="LUMI_V"         value="(0.0, 0.0, -10)cm" />
+	<option name="LUMI_SPREAD_V"  value="(0.03, 0.03)cm" />
+	<option name="RFSETUP"        value="0.499, 40, 20" />
+	-->
+
+	<!--  RF Signal needs event time window defined by LUMI_EVENT -->
+	<!--  Reference position set as target shift below -->
+	<option name="RFSETUP"     value="0.499, 40, 20" />
+	<option name="RFSTART"     value="eventVertex, 0, 0, -30.0" />
+
+	<!-- production threshold for passive volumes -->
+	<!-- beamline shielding: 2cm-->
+	<option name="PRODUCTIONCUTFORVOLUMES" value="innerShieldAndFlange, outerFlange, outerMount, nut1, nut2, nut3, nut4, nut5, nut6, nut7, nut8, nut9, taggerInnerShield,  main-cone, main-cone, adjuster1, adjuster2, adjuster3, DSShieldFrontLead, DSShieldBackLead, DSShieldInnerAss, DSShieldBackAss, DSShieldFrontAss, DSShieldBackCover, DSShieldFrontCover, DSShieldFlangeAttachment, DSShieldFlange,  20" />
+
+	<!-- vacuum line: 2cm-->
+	<option name="PRODUCTIONCUTFORVOLUMES" value="connectUpstreamToTorusPipe, connectTorusToDownstreamPipe, downstreamPipeFlange,  20" />
+
+	<!-- torus magnet: 2cm-->
+	<option name="PRODUCTIONCUTFORVOLUMES" value="BoreShield, CenterTube, DownstreamShieldingPlate, DownstreamVacuumJacket, WarmBoreTube, apex, Shield1, Shield2, Shield3, Shield4, Shield5, Shield6, Shield7, shell1a, shell1b, shell2a, shell2b, shell3a, shell3b, shell4a, shell4b, shell5a, shell5b, shell6a, shell6b, 20" />
+
+	<!--  Target and central detectors are all shifted upstream by 30 mm -->
+	<detector name="target">    <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
+	<detector name="svt">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
+	<detector name="bstShield"> <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
+	<detector name="BMT">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
+	<detector name="FMT">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
+	<detector name="ctof">      <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
+	<detector name="cnd">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
+
+	<!-- solenoid volume and field map shifted upstream by 30 mm -->
+	<detector name="solenoid">  <position x="0*cm"  y="0*cm"  z="-3.00*cm"  />  </detector>
+	<option name="DISPLACE_FIELDMAP"     value="clas12-newSolenoid, 0*cm, 0*cm, -3.00*cm" />
+
+	<!--  HTCC shifted upstream by 19.4 mm -->
+	<detector name="htcc">                 <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
+	<detector name="htccEntryWindow">      <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
+	<detector name="htccExitWindow">       <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
+
+	<!-- band moved with solenoid by 30 mm -->
+	<detector name="band">                 <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
+
+	
+	<detector name="FMT">
+		<existence exist="no" />
+	</detector>
+</gcard>
