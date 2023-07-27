@@ -1,3 +1,4 @@
+# coatjava 10.0.2
 io-services:
   reader:
     class: org.jlab.io.clara.HipoToHipoReader
