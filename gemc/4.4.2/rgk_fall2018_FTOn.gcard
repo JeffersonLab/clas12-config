@@ -1,8 +1,5 @@
 <gcard>
 
-
-
-
 	<!-- target. Notice variation give the target type. Can be: lH2, lD2, ND3 -->
 	<detector name="experiments/clas12/targets/cad/"   factory="CAD"/>
 	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="lH2"/>
@@ -25,7 +22,6 @@
 	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT" variation="original"/>
 	<detector name="experiments/clas12/magnets/cad/"     factory="CAD" />
 
-
 	<!-- Beamline configuration: FT is used -->
 	<detector name="experiments/clas12/ft/ft"                 factory="TEXT" variation="FTOn"/>
 	<detector name="experiments/clas12/beamline/cadBeamline/" factory="CAD"/>
@@ -45,7 +41,6 @@
 	<detector name="experiments/clas12/rich_sector4/rich"     factory="TEXT" variation="java"/>
 	<detector name="experiments/clas12/rich_sector4/javacad/" factory="CAD"/>
 
-
 	<!-- you can scale the fields here. Remember torus -1 means e- INBENDING  -->
 	<option name="SCALE_FIELD" value="TorusSymmetric, 1"/>
 	<option name="SCALE_FIELD" value="clas12-newSolenoid, -1"/>
@@ -56,7 +51,6 @@
 	<!-- fields, precise mode -->
 	<option name="FIELD_PROPERTIES" value="TorusSymmetric,     2*mm, G4ClassicalRK4, linear"/>
 	<option name="FIELD_PROPERTIES" value="clas12-newSolenoid, 1*mm, G4ClassicalRK4, linear"/>
-
 
 	<!-- beam conditions -->
 	<option name="BEAM_P"   value="e-, 10.6*GeV, 0.0*deg, 0*deg"/>
@@ -72,7 +66,6 @@
 
 	<!--  Will print message every 10 events -->
 	<option name="PRINT_EVENT"    value="10" />
-
 
 	<!--  Run Number 11, picked up by digitization routines -->
 	<option name="RUNNO"    value="11" />
@@ -125,7 +118,6 @@
 	<detector name="htcc">                 <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
 	<detector name="htccEntryWindow">      <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
 	<detector name="htccExitWindow">       <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
-
 
 	<detector name="FMT">
 		<existence exist="no" />

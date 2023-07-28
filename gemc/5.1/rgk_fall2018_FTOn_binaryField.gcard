@@ -1,8 +1,5 @@
 <gcard>
 
-
-
-
 	<!-- target. Notice variation give the target type. Can be: lH2, lD2, ND3 -->
 	<detector name="experiments/clas12/targets/cad/"   factory="CAD"/>
 	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="lH2"/>
@@ -25,14 +22,11 @@
 	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT" variation="original"/>
 	<detector name="experiments/clas12/magnets/cad/"     factory="CAD" />
 
-
 	<!-- Beamline configuration: FTOn is used -->
 	<detector name="experiments/clas12/ft/ft"                      factory="TEXT" variation="FTOn"/>
 	<detector name="experiments/clas12/beamline/cadBeamline/"      factory="CAD"/>
 	<detector name="experiments/clas12/beamline/vacuumLine/"       factory="CAD"/>
 	<detector name="experiments/clas12/beamline/beamline"          factory="TEXT" variation="FTOn"/>
-
-
 
 	<!-- forward carriage -->
 	<detector name="experiments/clas12/fc/forwardCarriage" factory="TEXT" variation="default"/>
@@ -46,7 +40,6 @@
 	<detector name="experiments/clas12/ltcc/cad/"          factory="CAD"/>
 	<detector name="experiments/clas12/rich_sector4/rich"     factory="TEXT" variation="java"/>
 	<detector name="experiments/clas12/rich_sector4/javacad/" factory="CAD"/>
-
 
 	<!-- CLAS12 Binary Fields from David Heddle cMag  -->
 	<option name="HALL_FIELD"  value="c12BinaryTorusSymmSolenoid2018"/>
@@ -65,7 +58,6 @@
 
 	<!--  Will print message every 10 events -->
 	<option name="PRINT_EVENT"    value="10" />
-
 
 	<!--  Run Number 11, picked up by digitization routines -->
 	<option name="RUNNO"    value="11" />
@@ -118,7 +110,6 @@
 	<detector name="htcc">                 <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
 	<detector name="htccEntryWindow">      <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
 	<detector name="htccExitWindow">       <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
-
 
 	<detector name="FMT">
 		<existence exist="no" />
