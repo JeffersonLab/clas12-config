@@ -1,3 +1,4 @@
+<!-- GEMC 4.4.2 -->
 <gcard>
 	<!-- band detector upstream of the target -->
 	<detector name="experiments/clas12/band/band" factory="TEXT" variation="main"/>
