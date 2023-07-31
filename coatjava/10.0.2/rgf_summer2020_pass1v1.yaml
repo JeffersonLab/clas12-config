@@ -1,7 +1,7 @@
-# YAML file for RG-M Spring2019 Pass1 simulations 
-# Uses AI-assisted tracking but no denoising
+# YAML file for RG-F Summer2020 pass1v1 simulations
+# Uses AI-assisted tracking and no denoising
 # Compatible with:
-# - coatjava 10.0.1, 10.0.2
+# - coatjava 9.0.2, 10.0.0, 10.0.1, 10.0.2
 # - gemc 5.0.2 or later
 io-services:
   reader:
@@ -63,7 +63,7 @@ services:
     name: RTPC
 configuration:
   global:
-    variation: rgm_fall2021_mc
+    variation: rgf_summer2020_mc
     timestamp: 07/27/2023-12:00:00
 # uncomment to use bank filtering based on schema, schema path should be updated 
 # to point to the correct coatjava folder
@@ -78,7 +78,7 @@ configuration:
     DCCR:
       rawBankGroup: "NODENOISE"
     MLTD:
-      run: "15778"
+      run: "12922"
     DCHAI:
       outputBankPrefix: "HB"
     RTPC:
