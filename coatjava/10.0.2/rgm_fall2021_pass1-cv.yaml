@@ -2,7 +2,7 @@
 # Uses no AI-assisted tracking and no denoising
 # Compatible with:
 # - coatjava 10.0.1, 10.0.2
-# - gemc 5.0.2 or later
+# - gemc 5.2 or later
 io-services:
   reader:
     class: org.jlab.io.clara.HipoToHipoReader
