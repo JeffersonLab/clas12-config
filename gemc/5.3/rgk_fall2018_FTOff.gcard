@@ -23,14 +23,14 @@
 	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT" variation="original"/>
 	<detector name="experiments/clas12/magnets/cad/"     factory="CAD" />
 
-	<!-- Beamline configuration: FTOFF is used -->
+	<!-- Beamline configuration: FTOff is used -->
 	<detector name="experiments/clas12/ft/ft"                      factory="TEXT" variation="FTOff"/>
 	<detector name="experiments/clas12/beamline/cadBeamlineFTOFF/" factory="CAD"/>
 	<detector name="experiments/clas12/beamline/vacuumLine/"       factory="CAD"/>
 	<detector name="experiments/clas12/beamline/beamline"          factory="TEXT" variation="FTOff"/>
 
 	<!-- forward carriage -->
-	<detector name="experiments/clas12/fc/forwardCarriage" factory="TEXT" variation="TorusSymmetric"/>
+	<detector name="experiments/clas12/fc/forwardCarriage" factory="TEXT" variation="default"/>
 
 	<detector name="experiments/clas12/dc/dc"              factory="TEXT" variation="default"/>
 	<detector name="experiments/clas12/ftof/ftof"          factory="TEXT" variation="rga_fall2018"/>
@@ -43,15 +43,11 @@
 	<detector name="experiments/clas12/rich_sector4/javacad/" factory="CAD"/>
 
 	<!-- you can scale the fields here. Remember torus -1 means e- INBENDING  -->
-	<option name="SCALE_FIELD" value="TorusSymmetric, 1"/>
-	<option name="SCALE_FIELD" value="clas12-newSolenoid, -1"/>
+	<option name="SCALE_FIELD" value="binary_torus, -1"/>
+	<option name="SCALE_FIELD" value="binary_solenoid, -1"/>
 
 	<!-- hall field  -->
-	<option name="HALL_FIELD"  value="clas12-newSolenoid"/>
-
-	<!-- fields, precise mode -->
-	<option name="FIELD_PROPERTIES" value="TorusSymmetric,     2*mm, G4ClassicalRK4, linear"/>
-	<option name="FIELD_PROPERTIES" value="clas12-newSolenoid, 1*mm, G4ClassicalRK4, linear"/>
+	<option name="HALL_FIELD"  value="Symm_solenoid_r601_phi1_z1201_13June2018:Full_torus_r251_phi181_z251_25Jan2021"/>
 
 	<!-- beam conditions -->
 	<option name="BEAM_P"   value="e-, 10.6*GeV, 0.0*deg, 0*deg"/>
@@ -113,7 +109,7 @@
 
 	<!-- solenoid volume and field map shifted upstream by 30 mm -->
 	<detector name="solenoid">  <position x="0*cm"  y="0*cm"  z="-3.00*cm"  />  </detector>
-	<option name="DISPLACE_FIELDMAP"     value="clas12-newSolenoid, 0*cm, 0*cm, -3.00*cm" />
+	<option name="DISPLACE_FIELDMAP"     value="binary_solenoid, 0*cm, 0*cm, -3.00*cm" />
 
 	<!--  HTCC shifted upstream by 19.4 mm -->
 	<detector name="htcc">                 <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
