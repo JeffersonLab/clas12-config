@@ -17,5 +17,7 @@ RG-C      | | | |
 RG-D      | N/A | | |
 RG-E      | N/A | | |
 RG-F      | | | |
+RG-K      | | Pass-1 | |
+RG-K      | | Pass-2 | |
 RG-L      | N/A | | |
 RG-M      | | | |
