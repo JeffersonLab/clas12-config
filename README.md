@@ -7,9 +7,15 @@ Note, GEMC version prior to 5.3 do not (fully) support binary magnetic field map
 
 ## Standard Combinations
 
-Run Period       | Set     | Coatjava Version | GEMC Version(s)
----------------- | ------- | ---------------- | ---------------
-RG-A Fall '19    | Pass-1  | 6.5.9            | 4.4.2
-RG-A Spring '19  | Pass-1  | 6.5.9            | 4.4.2
-finish me        | | | 
-
+Run Group | Period     | Set     | Coatjava Version | GEMC Version(s)
+----------| ---------- | --------| ---------------- | ----------------
+RG-A      | Fall '19   | Pass-1  | 6.5.9            | 4.4.2
+RG-A      | Spring '19 | Pass-1  | 6.5.9            | 4.4.2
+RG-B      | Spring '19 | Pass-1  | x                |
+RG-B      | | | |
+RG-C      | | | |
+RG-D      | N/A | | |
+RG-E      | N/A | | |
+RG-F      | | | |
+RG-L      | N/A | | |
+RG-M      | | | |
