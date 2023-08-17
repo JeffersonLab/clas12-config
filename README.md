@@ -23,5 +23,4 @@ RG-K      | Fall '18   | Pass-2  | 10.0.2           | 5.3
 RG-L      | N/A | | |
 RG-M      | Fall '21   | Pass-1  | 10.0.2           | 5.3
 
-
-Note, GEMC version prior to 5.3 do not (fully) support binary magnetic field maps, only ASCII, and COATJAVA versions prior to X.Y.Z do not support AI- denoising or track-finding.
+_Note, GEMC version prior to 5.3 do not (fully) support binary magnetic field maps, only ASCII, and COATJAVA versions prior to X.Y.Z do not support AI- denoising or track-finding._
