@@ -82,12 +82,12 @@
 	<option name="LUMI_P"         value="e-, 10.6*GeV, 0*deg, 0*deg" />
 	<option name="LUMI_V"         value="(0.0, 0.0, -10)cm" />
 	<option name="LUMI_SPREAD_V"  value="(0.03, 0.03)cm" />
-	<option name="RFSETUP"        value="0.499, 40, 20" />
+	<option name="RFSETUP"        value="0.2495, 40, 20" />
 	-->
 
 	<!--  RF Signal needs event time window defined by LUMI_EVENT -->
 	<!--  Reference position set as target shift below -->
-	<option name="RFSETUP"     value="0.499, 40, 20" />
+	<option name="RFSETUP"     value="0.2495, 40, 20" />
 	<option name="RFSTART"     value="eventVertex, 0, 0, -30.0" />
 
 	<!-- production threshold for passive volumes -->
