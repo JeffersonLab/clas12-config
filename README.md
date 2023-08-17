@@ -9,15 +9,19 @@ Note, GEMC version prior to 5.3 do not (fully) support binary magnetic field map
 
 Run Group | Period     | Set     | Coatjava Version | GEMC Version(s)
 ----------| ---------- | --------| ---------------- | ----------------
-RG-A      | Fall '19   | Pass-1  | 6.5.9            | 4.4.2
-RG-A      | Spring '19 | Pass-1  | 6.5.9            | 4.4.2
-RG-B      | Spring '19 | Pass-1  | x                |
-RG-B      | | | |
-RG-C      | | | |
+RG-A      | Fall '18   | Pass-1  | 6.5.6.1          | 4.4.2
+RG-A      | Fall '18   | Pass-2  | 10.0.2           | 5.3
+RG-A      | Spring '19 | Pass-1  | 6.5.6.1          | 4.4.2
+RG-A      | Spring '19 | Pass-2  | 10.0.2           | 5.3
+RG-B      | Spring '19 | Pass-1  | 6.5.9            | 4.4.2
+RG-B      | Spring '19 | Pass-2  | 10.0.2           | 5.3
+RG-B      | Fall '19   | Pass-1  | 6.5.9            | 4.4.2
+RG-B      | Fall '19   | Pass-2  | 10.0.2           | 5.3
+RG-C      | Summer '22 | Pass-1  | 10.0.2           | 5.3
 RG-D      | N/A | | |
 RG-E      | N/A | | |
-RG-F      | | | |
-RG-K      | | Pass-1 | |
-RG-K      | | Pass-2 | |
+RG-F      | TBC | | |
+RG-K      | Fall '18   | Pass-1  | 6.5.6.1          | 4.4.2
+RG-K      | Fall '18   | Pass-2  | 10.0.2           | 5.3
 RG-L      | N/A | | |
-RG-M      | | | |
+RG-M      | Fall '21   | Pass-1  | 10.0.2           | 5.3
