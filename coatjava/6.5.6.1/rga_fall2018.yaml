@@ -48,8 +48,8 @@ services:
     name: RICH
 configuration:
 configuration:
-  global:
-    timestamp: 07/27/2023-12:00:00
+#  global:
+#    timestamp: 07/27/2023-12:00:00
   io-services:
     writer:
       compression: 2

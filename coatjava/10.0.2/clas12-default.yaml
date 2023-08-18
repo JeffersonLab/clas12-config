@@ -62,8 +62,8 @@ services:
   - class: org.jlab.service.rtpc.RTPCEngine
     name: RTPC
 configuration:
-  global:
-    timestamp: 07/27/2023-12:00:00
+#  global:
+#    timestamp: 07/27/2023-12:00:00
 # uncomment to use bank filtering based on schema, schema path should be updated 
 # to point to the correct coatjava folder
 #  io-services:

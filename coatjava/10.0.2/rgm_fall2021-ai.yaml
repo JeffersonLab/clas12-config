@@ -64,7 +64,7 @@ services:
 configuration:
   global:
     variation: rgm_fall2021_mc
-    timestamp: 07/27/2023-12:00:00
+#    timestamp: 07/27/2023-12:00:00
 # uncomment to use bank filtering based on schema, schema path should be updated 
 # to point to the correct coatjava folder
 #  io-services:
