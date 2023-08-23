@@ -31,8 +31,8 @@ RG-L      |  | | |
 
 ## Notes
 
-* _Regardless of your GEMC/COATJAVA versions, as of MM/DD/YYYY, running simulations can require configuration changes._
-  * This is for simulations to retrieve the RF frequency from CCDB and ultimately use real run numbers.
+* _Regardless your GEMC/COATJAVA versions, as of MM/DD/YYYY, running simulations can require configuration changes._
+  * This is to support simulations retrieving the RF frequency from CCDB and ultimately using real run numbers.
   * The preferred method is to just start with configuration files from this repository.
   * Other options include:
     * Adding the appropriate RF settings to your current GEMC configuration.
