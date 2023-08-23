@@ -29,4 +29,7 @@ RG-E      |  | | |
 RG-F      |  | | |
 RG-L      |  | | |
 
-_Note, GEMC version prior to 5.3 do not (fully) support binary magnetic field maps, only ASCII, and COATJAVA versions prior to X.Y.Z do not support AI- denoising or track-finding._
+## Notes
+_GEMC versions prior to 5.3 do not (fully) support binary magnetic field maps, only ASCII._
+
+_COATJAVA versions prior to X.Y.Z do not support AI- denoising or track-finding._
