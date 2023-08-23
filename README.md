@@ -37,6 +37,6 @@ RG-L      |  | | |
   * Other options include:
     * Adding the appropriate RF settings to your current GEMC configuration.
     * Using a CCDB timestamp in GEMC and/or COATJAVA.
-  * For details, go [here](rf).
+  * For details, go [here](rf.md).
 * _GEMC versions prior to 5.3 do not (fully) support binary magnetic field maps, only ASCII._
 * _COATJAVA versions prior to #.#.# do not support AI- denoising or track-finding._
