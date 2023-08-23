@@ -1,6 +1,6 @@
 # clas12-config
 
-For preserving, organizing, and documenting standard GEMC gcards, COATJAVA yamls, chef workflow configurations, etc, for data processing, OSG simulations.
+The standard run-group configuration files for GEMC, COATJAVA, chef workflow configurations, etc.
 
 ## Standard Combinations
 
