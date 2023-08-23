@@ -1,4 +1,6 @@
-Using CCDB for RF configuration parameters in GEMC is supported as of version X.Y.Z.   This is necessary for moving to using real run numbers for simulations, rather than CCDB variations, and meanwhile minimize the need for more CCDB variations.  However, it involves a modification to CCDB on MM/DD/YYYY-HH:MM:SS that can require a change to any previously existing GEMC and/or COATJAVA configuration files, regardless their versions.
+Using CCDB for RF configuration parameters in GEMC is supported as of version X.Y.Z.   This is necessary for moving to using real run numbers for simulations, rather than CCDB variations, and meanwhile minimize the need for more CCDB variations.
+
+However, it involves a modification to CCDB on MM/DD/YYYY-HH:MM:SS that can necessitate a change to any previously existing GEMC and/or COATJAVA configuration files, regardless their versions.
 
 The preferred approach is to just start with configuration files from this repository, which is what jobs submitted from our OSG web portal will do.
 
