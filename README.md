@@ -32,8 +32,8 @@ RG-L      |  | | |
 ## Notes
 
 * _As of MM/DD/YYYY, running simulations can require GEMC and/or COATJAVA configuration changes._
-  * This is to accommodate retreiving the RF frequency from CCDB and ultimately using real run numbers for simulations.
-  * The preferred method is to just start with the configuration files from this repository.
+  * This is for simulations to retrieve the RF frequency from CCDB and ultimately using real run numbers.
+  * The preferred method is to just start with configuration files from this repository.
   * Other options include:
     * Adding the appropriate RF settings to your current GEMC configuration.
     * Using a CCDB timestamp in GEMC and/or COATJAVA.
