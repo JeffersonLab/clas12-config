@@ -2,7 +2,7 @@ Using CCDB for RF configuration parameters in GEMC is supported as of version X.
 
 _However, it involves a modification to CCDB on MM/DD/YYYY-HH:MM:SS that can necessitate a change to any previously existing GEMC and/or COATJAVA configuration files, regardless the software versions used._
 
-That CCDB change is [here]() and just sets the RF frequency in `/runcontrol/rf` to 250 MHz in the default variation, and RG-M's CCDB variation now has their 500 MHz.
+That CCDB change is [here]() and just sets the RF frequency in `/calibration/eb/rf/config` to 250 MHz in the default variation, and RG-M's CCDB variation now has their 500 MHz.
 
 The preferred approach is to just start with configuration files from this repository, which is what jobs submitted from our OSG web portal will do.
 
