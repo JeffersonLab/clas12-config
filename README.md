@@ -31,7 +31,7 @@ RG-L      |  | | |
 
 ## Notes
 
-* _Regardless your GEMC/COATJAVA versions, as of MM/DD/YYYY, running simulations can require configuration changes._
+* _Regardless of your GEMC/COATJAVA versions, as of MM/DD/YYYY, running simulations can require configuration changes._
   * This is to support simulations retrieving the RF frequency from CCDB and ultimately using real run numbers.
   * The preferred approach is to just start with configuration files from this repository.
   * Other options include:
@@ -39,5 +39,5 @@ RG-L      |  | | |
     * Using a CCDB timestamp in GEMC and/or COATJAVA.
   * For details, go [here](rf.md).
 * _GEMC versions prior to 5.3 do not fully support binary magnetic field maps, only ASCII._
-* _GEMC versions prior to #.#.# do not support CCDB for RF configuration._
-* _COATJAVA versions prior to #.#.# do not support AI- denoising or track-finding._
+* _GEMC versions prior to 5.4 do not support CCDB for RF configuration._
+* _COATJAVA versions prior to 9.0.1 do not support AI- denoising or track-finding._
