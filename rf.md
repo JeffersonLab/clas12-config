@@ -3,9 +3,9 @@ Using CCDB for RF configuration parameters in GEMC is supported as of version 5.
 _However, simulations run later than MM/DD/YYYY-HH:MM:SS can require a change to any previously existing GEMC and/or COATJAVA configuration files, regardless the software versions used._
 
 The preferred approach:
-* __Just start with configuration files from this repository!__
+* ***Just start with configuration files from this repository!***
 
 Other options include:
 * Setting the appropriate RF configuration in your current GEMC configuration.
-* Using a CCDB timestamp in GEMC and/or COATJAVA
+* Using a CCDB timestamp (or older SQLite file) in GEMC and/or COATJAVA
 
