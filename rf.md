@@ -4,7 +4,8 @@ _However, it involves a modification to CCDB on MM/DD/YYYY-HH:MM:SS that can nec
 
 That CCDB change is [here]() and just sets the RF frequency in `/calibration/eb/rf/config` to 250 MHz in the default variation, and RG-M's CCDB variation now has their 500 MHz.
 
-The preferred approach is to just start with configuration files from this repository, which is what jobs submitted from our OSG web portal will do.
+The preferred approach:
+* Just start with configuration files from this repository, which is what jobs submitted from our OSG web portal will do.
 
 Other options include:
 * Setting the appropriate RF configuration in your current GEMC configuration.
