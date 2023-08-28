@@ -8,9 +8,5 @@ The preferred approach is to just start with configuration files from this repos
 
 Other options include:
 * Setting the appropriate RF configuration in your current GEMC configuration.
-  * setting the correct RF frequency in the first field of the `RFSETUP` gcard, e.g. 0.2495 for 4.008 ns period or 0.499 for 2.004 ns period (units are GHz) 
-* Using a CCDB timestamp in GEMC and/or COATJAVA, which can be achieved by
-  * using an SQLite snapshot of CCDB that was created before MM/DD/YYYY-HH:MM:SS
-  * specifying a CCDB timestamp in your GEMC/COATJAVA configuration
-  * how?
+* Using a CCDB timestamp in GEMC and/or COATJAVA
 
