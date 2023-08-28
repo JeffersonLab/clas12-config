@@ -31,9 +31,9 @@ RG-L      |  | | |
 
 ## Notes
 
-* _Regardless of your GEMC/COATJAVA versions, as of MM/DD/YYYY, running simulations can require configuration changes._
-  * The preferred approach is to just start with configuration files from this repository.
-  * For details, [see this](rf.md).
+* _Regardless of your GEMC/COATJAVA versions, as of MM/DD/YYYY, running simulations can require changes to GEMC and/or COATJAVA configuration files._
+  * ***The preferred approach is to just start with configuration files from this repository!***
+  * For details and other options, [see this](rf.md).
 * _GEMC versions prior to 5.3 do not fully support binary magnetic field maps, only ASCII._
 * _GEMC versions prior to 5.4 do not support CCDB for RF configuration._
 * _COATJAVA versions prior to 9.0.1 do not support AI- denoising or track-finding._
