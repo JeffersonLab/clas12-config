@@ -56,6 +56,10 @@
 
 	<option name="SAVE_ALL_MOTHERS" value="0"/>
 	<option name="RECORD_OPTICALPHOTONS"   value="1"/>
+ 	<option name="SKIPREJECTEDHITS"    value="1" />
+
+ 	<!-- Uncomment this line to save the true information (necessary for Truth Matching -->
+ 	<!--  <option name="INTEGRATEDRAW"    value="*" /> -->
 
 	<option name="PHYSICS" value="FTFP_BERT + STD + Optical"/>
 
