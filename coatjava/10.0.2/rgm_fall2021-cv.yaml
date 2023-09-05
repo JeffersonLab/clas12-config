@@ -45,6 +45,8 @@ services:
     name: EBTB
   - class: org.jlab.rec.rich.RICHEBEngine
     name: RICH
+  - class: org.jlab.service.mc.TruthMatch
+    name: MC
 configuration:
   global:
     variation: rgm_fall2021_mc

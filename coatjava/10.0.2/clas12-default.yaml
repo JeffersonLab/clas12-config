@@ -61,6 +61,8 @@ services:
     name: RICH
   - class: org.jlab.service.rtpc.RTPCEngine
     name: RTPC
+  - class: org.jlab.service.mc.TruthMatch
+    name: MC
 configuration:
 #  global:
 #    timestamp: 07/27/2023-12:00:00
