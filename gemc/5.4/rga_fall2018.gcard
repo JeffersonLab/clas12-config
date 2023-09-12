@@ -74,7 +74,7 @@
 	<option name="OUTPUT"   value="hipo, out.hipo"/>
 
 	<!--  Will print message every 10 events -->
-	<option name="PRINT_EVENT"    value="10" />
+	<option name="PRINT_EVENT"    value="100" />
 
 
 	<!--  Run Number 11, picked up by digitization routines -->
