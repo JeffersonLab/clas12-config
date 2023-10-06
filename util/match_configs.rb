@@ -29,4 +29,4 @@ unless files.length==2
 end
 
 filesMatched = files[0].select{ |f| files[1].include? f }
-puts JSON.generate({ 'run_period' => filesMatched })
+puts JSON.generate({ 'config' => filesMatched })

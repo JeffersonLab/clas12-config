@@ -33,5 +33,5 @@ jobs:
           echo '' >> $GITHUB_STEP_SUMMARY
           echo '### Common Configurations:' >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
-          util/match_configs.rb | jq .run_period | xargs -0 -I{} echo {} >> $GITHUB_STEP_SUMMARY
+          util/match_configs.rb | jq .config | xargs -0 -I{} echo {} >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
