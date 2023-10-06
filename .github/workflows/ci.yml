@@ -1,0 +1,37 @@
+name: Check Config Files
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  summarize_latest:
+    name: Latest versions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: latest versions
+        run: |
+          echo '### Versions:' >> $GITHUB_STEP_SUMMARY
+          echo '| Subdirectory | Version |' >> $GITHUB_STEP_SUMMARY
+          echo '| --- | --- |' >> $GITHUB_STEP_SUMMARY
+          for subdir in coatjava gemc ; do
+            latest=$(util/latest.rb $subdir)
+            echo "| \`$subdir\` | $latest |" >> $GITHUB_STEP_SUMMARY
+          done
+      - name: common config files
+        run: |
+          echo '' >> $GITHUB_STEP_SUMMARY
+          echo '### Common Configurations:' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          util/match_configs.rb | jq .run_period | xargs -0 -I{} echo {} >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
