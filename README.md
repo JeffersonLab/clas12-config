@@ -31,6 +31,6 @@ The standard run-group configuration files for GEMC, COATJAVA, chef workflow con
 
 ## Notes
 
-* _GEMC versions prior to 5.3 do not fully support binary magnetic field maps, only ASCII._
+* _GEMC versions prior to 5.3 do not fully support binary magnetic field maps._
 * _GEMC versions prior to 5.4 do not support CCDB for RF configuration._
 * _COATJAVA versions prior to 9.0.1 do not support AI- denoising or track-finding._
