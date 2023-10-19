@@ -46,7 +46,7 @@
 	<detector name="experiments/clas12/rich_sector4/javacad/" factory="CAD"/>
 
 	<!-- you can scale the fields here. Remember torus -1 means e- INBENDING  -->
-	<option name="SCALE_FIELD" value="binary_torus, -1"/>
+	<option name="SCALE_FIELD" value="binary_torus, +1"/>
 	<option name="SCALE_FIELD" value="binary_solenoid, -1"/>
 
 	<!-- hall field  -->
