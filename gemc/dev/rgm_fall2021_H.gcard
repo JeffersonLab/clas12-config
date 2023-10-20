@@ -76,7 +76,7 @@
 
 	<!--  Run Number 11, picked up by digitization routines -->
 	<option name="RUNNO"    value="11" />
-	<option name="DIGITIZATION_VARIATION"  value="rga_fall2018_bg" />
+	<option name="DIGITIZATION_VARIATION"  value="rgm_fall2021_mc" />
 
 	<!--  Do not track staff after the apex -->
 	<option name="MAX_Z_POS" value="9000"/>
