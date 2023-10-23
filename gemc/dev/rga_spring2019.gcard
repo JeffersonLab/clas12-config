@@ -1,45 +1,48 @@
+<!-- GEMC dev -->
 <gcard>
 
 	<!-- band detector upstream of the target -->
 	<detector name="experiments/clas12/band/band" factory="TEXT" variation="main"/>
 
 	<!-- target. Notice variation give the target type. Can be: lH2, lD2, ND3 -->
-	<detector name="experiments/clas12/targets/cadrgm/"   factory="CAD"/>
-	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="RGM_8_C_L"/>
+	<detector name="experiments/clas12/targets/cad/"   factory="CAD"/>
+	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="lH2"/>
 
 	<!-- central detectors 	-->
 	<detector name="experiments/clas12/bst/bst"               factory="TEXT" variation="default"/>
 	<detector name="experiments/clas12/bstShield/bstShield"   factory="TEXT" variation="w51"/>
-	<detector name="experiments/clas12/micromegas/micromegas" factory="TEXT" variation="slim"/>
+	<detector name="experiments/clas12/micromegas/micromegas" factory="TEXT" variation="michel"/>
 
 	<!--ctof, cad  -->
-	<detector name="experiments/clas12/ctof/ctof"                   factory="TEXT" variation="rga_fall2018"/>
-	<detector name="experiments/clas12/ctof/javacad_rga_fall2018/"  factory="CAD"/>
-	<detector name="experiments/clas12/cnd/cnd"                     factory="TEXT" variation="original"/>
+	<detector name="experiments/clas12/ctof/ctof"                     factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/ctof/javacad_rga_fall2018/"    factory="CAD"/>
+	<detector name="experiments/clas12/cnd/cnd"                       factory="TEXT" variation="original"/>
 
 	<!--high threshold cherenkov -->
-	<detector name="experiments/clas12/htcc/htcc"         factory="TEXT" variation="original"/>
-	<detector name="experiments/clas12/htcc/cad_fall18/"  factory="CAD"/>
+	<detector name="experiments/clas12/htcc/htcc"           factory="TEXT" variation="original"/>
+	<detector name="experiments/clas12/htcc/cad_fall18/"    factory="CAD"/>
 
 	<!-- magnets -->
 	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT" variation="original"/>
 	<detector name="experiments/clas12/magnets/cad/"     factory="CAD" />
 
 
-	<!-- Beamline configuration: FT is used -->
-	<detector name="experiments/clas12/ft/ft"                 factory="TEXT" variation="FTOff"/>
-	<detector name="experiments/clas12/beamline/cadBeamlineFTOFF/" factory="CAD"/>
-	<detector name="experiments/clas12/beamline/vacuumLine/"  factory="CAD"/>
-	<detector name="experiments/clas12/beamline/beamline"     factory="TEXT" variation="FTOff"/>
+	<!-- Beamline configuration: FTOn is used -->
+	<detector name="experiments/clas12/ft/ft"                      factory="TEXT" variation="FTOn"/>
+	<detector name="experiments/clas12/beamline/cadBeamline/"      factory="CAD"/>
+	<detector name="experiments/clas12/beamline/vacuumLine/"       factory="CAD"/>
+	<detector name="experiments/clas12/beamline/beamline"          factory="TEXT" variation="FTOn"/>
+
+
 
 	<!-- forward carriage -->
-	<detector name="experiments/clas12/fc/forwardCarriage" factory="TEXT" variation="TorusSymmetric"/>
+	<detector name="experiments/clas12/fc/forwardCarriage" factory="TEXT" variation="default"/>
 
 	<detector name="experiments/clas12/dc/dc"              factory="TEXT" variation="default"/>
 	<detector name="experiments/clas12/ftof/ftof"          factory="TEXT" variation="rga_fall2018"/>
 	<detector name="experiments/clas12/ec/ec"              factory="TEXT" variation="rga_fall2018"/>
 	<detector name="experiments/clas12/pcal/pcal"          factory="TEXT" variation="rga_fall2018"/>
-	<detector name="experiments/clas12/ltcc/ltcc"          factory="TEXT" variation="rgm"/>
+	<detector name="experiments/clas12/ltcc/ltcc"          factory="TEXT" variation="rgb_spring2019"/>
 	<detector name="experiments/clas12/ltcc/cad_cone/"     factory="CAD"/>
 	<detector name="experiments/clas12/ltcc/cad/"          factory="CAD"/>
 	<detector name="experiments/clas12/rich_sector4/rich"     factory="TEXT" variation="java"/>
@@ -47,15 +50,11 @@
 
 
 	<!-- you can scale the fields here. Remember torus -1 means e- INBENDING  -->
-	<option name="SCALE_FIELD" value="TorusSymmetric, 1"/>
-	<option name="SCALE_FIELD" value="clas12-newSolenoid, -1"/>
+	<option name="SCALE_FIELD" value="binary_torus, -1"/>
+	<option name="SCALE_FIELD" value="binary_solenoid, -1"/>
 
 	<!-- hall field  -->
-	<option name="HALL_FIELD"  value="clas12-newSolenoid"/>
-
-	<!-- fields, precise mode -->
-	<option name="FIELD_PROPERTIES" value="TorusSymmetric,     2*mm, G4ClassicalRK4, linear"/>
-	<option name="FIELD_PROPERTIES" value="clas12-newSolenoid, 1*mm, G4ClassicalRK4, linear"/>
+	<option name="HALL_FIELD"  value="Symm_solenoid_r601_phi1_z1201_13June2018:Symm_torus_r2501_phi16_z251_24Apr2018"/>
 
 
 	<!-- beam conditions -->
@@ -63,8 +62,13 @@
 	<option name="BEAM_V"    value="(0, 0, -3)cm"/>
 	<option name="SPREAD_V"  value="(0.0, 2.5)cm"/>
 
-	<option name="SAVE_ALL_MOTHERS" value="0"/>
+	<option name="SAVE_ALL_MOTHERS" value="1"/>
 	<option name="RECORD_OPTICALPHOTONS"   value="1"/>
+ 	<option name="SKIPREJECTEDHITS"    value="1" />
+
+ 	<!-- Uncomment this line to save the true information (necessary for Truth Matching -->
+ 	<!--  <option name="INTEGRATEDRAW"    value="*" /> -->
+
 
 	<option name="PHYSICS" value="FTFP_BERT + STD + Optical"/>
 
@@ -76,7 +80,7 @@
 
 	<!--  Run Number 11, picked up by digitization routines -->
 	<option name="RUNNO"    value="11" />
-	<option name="DIGITIZATION_VARIATION"  value="rgm_fall2021_mc" />
+	<option name="DIGITIZATION_VARIATION"  value="rga_spring2019_mc" />
 
 	<!--  Do not track staff after the apex -->
 	<option name="MAX_Z_POS" value="9000"/>
@@ -90,12 +94,11 @@
 	<option name="LUMI_P"         value="e-, 10.6*GeV, 0*deg, 0*deg" />
 	<option name="LUMI_V"         value="(0.0, 0.0, -10)cm" />
 	<option name="LUMI_SPREAD_V"  value="(0.03, 0.03)cm" />
-	<option name="RFSETUP"        value="0.499, 40, 20" />
 	-->
 
 	<!--  RF Signal needs event time window defined by LUMI_EVENT -->
 	<!--  Reference position set as target shift below -->
-	<option name="RFSETUP"     value="0.499, 40, 20" />
+	<option name="RFSETUP"     value="clas12_ccdb" />
 	<option name="RFSTART"     value="eventVertex, 0, 0, -30.0" />
 
 	<!-- production threshold for passive volumes -->
@@ -119,7 +122,7 @@
 
 	<!-- solenoid volume and field map shifted upstream by 30 mm -->
 	<detector name="solenoid">  <position x="0*cm"  y="0*cm"  z="-3.00*cm"  />  </detector>
-	<option name="DISPLACE_FIELDMAP"     value="clas12-newSolenoid, 0*cm, 0*cm, -3.00*cm" />
+	<option name="DISPLACE_FIELDMAP"     value="binary_solenoid, 0*cm, 0*cm, -3.00*cm" />
 
 	<!--  HTCC shifted upstream by 19.4 mm -->
 	<detector name="htcc">                 <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
@@ -128,4 +131,8 @@
 
 	<!-- band moved with solenoid by 30 mm -->
 	<detector name="band">                 <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
+
+	<detector name="FMT">
+		<existence exist="no" />
+	</detector>
 </gcard>

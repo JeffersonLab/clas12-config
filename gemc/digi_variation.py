@@ -4,18 +4,14 @@
 
 import glob
 
-files = glob.glob('*_binaryField.gcard')
-
-
-
-
+files = glob.glob('*.gcard')
 
 def python_code():
 	# loop over all the files in the array "files"
 	# select the line containing the string DIGITIZATION_VARIATION
 	for file in files:
 		with open(file, 'r') as f:
-			root_filename = file.split('_binaryField.gcard')[0]
+			root_filename = file.split('.gcard')[0]
 			lines = f.readlines()
 			for line in lines:
 				if 'DIGITIZATION_VARIATION' in line:
@@ -29,7 +25,7 @@ def md_write_html_table():
 	print("<ul>")
 	for file in files:
 		with open(file, 'r') as f:
-			root_filename = file.split('_binaryField.gcard')[0]
+			root_filename = file.split('.gcard')[0]
 			lines = f.readlines()
 			for line in lines:
 				if 'DIGITIZATION_VARIATION' in line:
