@@ -1,0 +1,16 @@
+name: Validation-latest
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+    tags: [ '*' ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  validation:
+    uses: JeffersonLab/clas12-validation/.github/workflows/ci.yml@main
