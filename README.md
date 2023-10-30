@@ -34,3 +34,7 @@ The standard run-group configuration files for GEMC, COATJAVA, chef workflow con
 * _GEMC versions prior to 5.3 do not fully support binary magnetic field maps._
 * _GEMC versions prior to 5.4 do not support CCDB for RF configuration._
 * _COATJAVA versions prior to 9.0.1 do not support AI- denoising or track-finding._
+
+## Validation
+
+The default set of configuration files that is tested by [`clas12-validation`](https://www.github.com/JeffersonLab/clas12-validation) is [found here](.github/ci_config_files.json). The latest version of each configuration file is used, unless overridden by the caller workflow.
