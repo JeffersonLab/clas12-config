@@ -45,8 +45,8 @@
 	<detector name="experiments/clas12/ltcc/ltcc"          factory="TEXT" variation="rgb_spring2019"/>
 	<detector name="experiments/clas12/ltcc/cad_cone/"     factory="CAD"/>
 	<detector name="experiments/clas12/ltcc/cad/"          factory="CAD"/>
-	<detector name="experiments/clas12/rich_sector4/rich"     factory="TEXT" variation="java"/>
-	<detector name="experiments/clas12/rich_sector4/javacad/" factory="CAD"/>
+        <detector name="experiments/clas12/rich/rich"     factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/rich/cad_rga_fall2018/" factory="CAD"/>
 
 
 	<!-- you can scale the fields here. Remember torus -1 means e- INBENDING  -->
