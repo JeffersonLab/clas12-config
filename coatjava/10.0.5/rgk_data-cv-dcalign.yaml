@@ -62,7 +62,7 @@ configuration:
 #      timestamp: 12/31/2020-00:00:00
   io-services:
     writer:
-      schema_dir: "/group/clas12/packages/clara/5.0.2_10.0.4/plugins/clas12/etc/bankdefs/hipo4/singles/calib"
+      schema_dir: "/group/clas12/packages/clara/5.0.2_10.0.5/plugins/clas12/etc/bankdefs/hipo4/singles/dcalign"
   services:
     MAGFIELDS:
       magfieldSolenoidMap: Symm_solenoid_r601_phi1_z1201_13June2018.dat
