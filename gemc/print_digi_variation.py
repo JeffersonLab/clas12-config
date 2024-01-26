@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 
-# write python code to extract the digitization variation from the gcard files
+# to be run within the gcard directory
+# purpose:
+# 1. (-p)  display the python code to extract the digitization variation from the gcard files
+# 2. (-w)  display an html table with the digitization variation from the gcard files
 
 import glob
 
