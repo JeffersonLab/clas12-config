@@ -1,13 +1,12 @@
-<!-- GEMC dev -->
+<!-- GEMC 5.6 -->
 <gcard>
 
 
 
-	
+
 	<!-- target. Notice variation give the target type. Can be: lH2, lD2, ND3 -->
-	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="APOLLOnh3"/>
-
-
+	<detector name="experiments/clas12/targets/cad/"   factory="CAD"/>
+	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="lH2"/>
 
 	<!-- central detectors 	-->
 	<detector name="experiments/clas12/bst/bst"               factory="TEXT" variation="default"/>
@@ -28,14 +27,14 @@
 	<detector name="experiments/clas12/magnets/cad/"     factory="CAD" />
 
 
-	<!-- Beamline configuration: FT is used -->
-	<detector name="experiments/clas12/ft/ft"                 factory="TEXT" variation="FTOn"/>
-	<detector name="experiments/clas12/beamline/cadBeamline/" factory="CAD"/>
-	<detector name="experiments/clas12/beamline/vacuumLine/"  factory="CAD"/>
-	<detector name="experiments/clas12/beamline/beamline"     factory="TEXT" variation="FTOn"/>
+	<!-- Beamline configuration: FTOn is used -->
+	<detector name="experiments/clas12/ft/ft"                      factory="TEXT" variation="FTOn"/>
+	<detector name="experiments/clas12/beamline/cadBeamline/"      factory="CAD"/>
+	<detector name="experiments/clas12/beamline/vacuumLine/"       factory="CAD"/>
+	<detector name="experiments/clas12/beamline/beamline"          factory="TEXT" variation="FTOn"/>
 
 
-	
+
 	<!-- forward carriage -->
 	<detector name="experiments/clas12/fc/forwardCarriage" factory="TEXT" variation="default"/>
 
@@ -46,8 +45,8 @@
 	<detector name="experiments/clas12/ltcc/ltcc"                factory="TEXT" variation="rga_fall2018"/>
 	<detector name="experiments/clas12/ltcc/cad_cone/"           factory="CAD"/>
 	<detector name="experiments/clas12/ltcc/cad/"                factory="CAD"/>
-	<detector name="experiments/clas12/rich/rich"                factory="TEXT" variation="rgc_summer2022"/>
-	<detector name="experiments/clas12/rich/cad_rgc_summer2022/" factory="CAD"/>
+	<detector name="experiments/clas12/rich/rich"                factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/rich/cad_rga_fall2018/"   factory="CAD"/>
 
 
 	<!-- you can scale the fields here. Remember torus -1 means e- INBENDING  -->
@@ -81,7 +80,7 @@
 
 	<!--  Run Number 11, picked up by digitization routines -->
 	<option name="RUNNO"    value="11" />
-	<option name="DIGITIZATION_VARIATION"  value="rgc_summer2022_mc" />
+	<option name="DIGITIZATION_VARIATION"  value="rga_fall2018_mc" />
 
 	<!--  Do not track staff after the apex -->
 	<option name="MAX_Z_POS" value="9000"/>
@@ -104,16 +103,16 @@
 
 	<!-- production threshold for passive volumes -->
 	<!-- beamline shielding: 2cm-->
-	<option name="PRODUCTIONCUTFORVOLUMES" value="innerShieldAndFlange, outerFlange, outerMount, nut1, nut2, nut3, nut4, nut5, nut6, nut7, nut8, nut9, DSShieldFrontLead, DSShieldBackLead, DSShieldInnerAss, DSShieldBackAss, DSShieldFrontAss, DSShieldBackCover, DSShieldFrontCover, DSShieldFlangeAttachment, DSShieldFlange,  20" />
+	<option name="PRODUCTIONCUTFORVOLUMES" value="innerShieldAndFlange, outerFlange, outerMount, nut1, nut2, nut3, nut4, nut5, nut6, nut7, nut8, nut9, taggerInnerShield,  main-cone, main-cone, adjuster1, adjuster2, adjuster3, DSShieldFrontLead, DSShieldBackLead, DSShieldInnerAss, DSShieldBackAss, DSShieldFrontAss, DSShieldBackCover, DSShieldFrontCover, DSShieldFlangeAttachment, DSShieldFlange,  20" />
 
 	<!-- vacuum line: 2cm-->
-	<option name="PRODUCTIONCUTFORVOLUMES" value="connectTorusToDownstreamPipe, downstreamPipeFlange,  20" />
+	<option name="PRODUCTIONCUTFORVOLUMES" value="connectUpstreamToTorusPipe, connectTorusToDownstreamPipe, downstreamPipeFlange,  20" />
 
 	<!-- torus magnet: 2cm-->
 	<option name="PRODUCTIONCUTFORVOLUMES" value="BoreShield, CenterTube, DownstreamShieldingPlate, DownstreamVacuumJacket, WarmBoreTube, apex, Shield1, Shield2, Shield3, Shield4, Shield5, Shield6, Shield7, shell1a, shell1b, shell2a, shell2b, shell3a, shell3b, shell4a, shell4b, shell5a, shell5b, shell6a, shell6b, 20" />
 
 	<!--  Target and central detectors are all shifted upstream by 30 mm -->
-	<detector name="PolTarg">   <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
+	<detector name="target">    <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 	<detector name="svt">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 	<detector name="bstShield"> <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 	<detector name="BMT">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
@@ -129,8 +128,6 @@
 	<detector name="htcc">                 <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
 	<detector name="htccEntryWindow">      <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
 	<detector name="htccExitWindow">       <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
-
-
 
 
 	<detector name="FMT">
