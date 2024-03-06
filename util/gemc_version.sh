@@ -6,7 +6,7 @@ if [ ! -d "gemc" ]; then
 	exit 1
 fi
 
-# the string <!-- GEMC dev --> is replaced with the current version for all new tags
+# the string <!-- GEMC * is replaced with the current version for all new tags
 for x in $(find gemc -type f -name '*.gcard')
 do
     v=$(basename $(dirname "$x"))
