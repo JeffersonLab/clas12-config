@@ -1,4 +1,4 @@
-<!-- GEMC dev -->
+<!-- GEMC 5.7 -->
 <gcard>
 
 
@@ -27,13 +27,13 @@
 	<detector name="experiments/clas12/magnets/cad/"     factory="CAD" />
 
 
-	<!-- Beamline configuration: FT is used -->
-	<detector name="experiments/clas12/ft/ft"                 factory="TEXT" variation="FTOn"/>
-	<detector name="experiments/clas12/beamline/cadBeamline/" factory="CAD"/>
-	<detector name="experiments/clas12/beamline/vacuumLine/"  factory="CAD"/>
-	<detector name="experiments/clas12/beamline/beamline"     factory="TEXT" variation="FTOn"/>
-
-
+	<!-- Beamline configuration: ELMO is used -->
+	<detector name="experiments/clas12/beamline/cadBeamlineELMO/" factory="CAD"/>
+	<detector name="experiments/clas12/beamline/vacuumLine/"      factory="CAD"/>
+	<detector name="experiments/clas12/beamline/beamline"         factory="TEXT" variation="ELMO"/>
+	<detector name="connectUpstreamToTorusPipe">
+	 	<existence exist="no" />
+	</detector>
 	
 	<!-- forward carriage -->
 	<detector name="experiments/clas12/fc/forwardCarriage" factory="TEXT" variation="default"/>
@@ -47,7 +47,7 @@
 	<detector name="experiments/clas12/ltcc/cad/"                factory="CAD"/>
 	<detector name="experiments/clas12/rich/rich"                factory="TEXT" variation="rgc_summer2022"/>
 	<detector name="experiments/clas12/rich/cad_rgc_summer2022/" factory="CAD"/>
-
+	
 
 	<!-- you can scale the fields here. Remember torus -1 means e- INBENDING  -->
 	<option name="SCALE_FIELD" value="binary_torus, -1"/>
