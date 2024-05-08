@@ -1,9 +1,9 @@
 #%Module1.0
 
-set pwd [file dirname $ModulesCurrentModulefile]
+source [file dirname $ModulesCurrentModulefile]/../../.utilities.tcl
 
-setenv CLAS12_HOME [file normalize $pwd/../..]
-setenv OSRELEASE [exec $pwd/../../.osrelease]
+setenv CLAS12_HOME [home]
+setenv OSRELEASE [osrelease]
 
 prepend-path PATH $env(CLAS12_HOME)/$env(OSRELEASE)/bin
 prepend-path LD_LIBRARY_PATH $env(CLAS12_HOME)/$env(OSRELEASE)/lib
