@@ -1,0 +1,9 @@
+#%Module1.0
+
+set clara 5.0.2
+
+source [file dirname $ModulesCurrentModulefile]/../../.utilities.tcl
+
+setenv CLARA_HOME [home]/noarch/clara/${clara}
+prepend-path PATH $env(CLARA_HOME)/bin
+

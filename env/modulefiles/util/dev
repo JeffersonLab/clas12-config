@@ -1,0 +1,3 @@
+#%Module1.0
+
+prepend-path PATH $env(CLAS12_HOME)/noarch/clas12-utilities/dev/bin

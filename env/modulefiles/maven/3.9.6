@@ -1,0 +1,11 @@
+#%Module1.0
+conflict maven
+
+set version 3.9.6
+
+setenv MAVEN_HOME $env(CLAS12_HOME)/noarch/maven/$version
+prepend-path PATH $env(CLAS12_HOME)/noarch/maven/$version/bin
+
+# This seems to workaround a permissions issue on /tmp on el9:
+append-path --delim " " MAVEN_OPTS -Djansi.tmpdir=/scratch/$env(USER)
+

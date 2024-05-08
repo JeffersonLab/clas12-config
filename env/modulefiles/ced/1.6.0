@@ -1,0 +1,6 @@
+#%Module1.0
+
+source [file dirname $ModulesCurrentModulefile]/../../.utilities.tcl
+
+prepend-path PATH [home]/noarch/ced/1.6.0
+

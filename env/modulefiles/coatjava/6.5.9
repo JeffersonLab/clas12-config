@@ -1,0 +1,12 @@
+#%Module1.0
+
+set coatjava 6.5.9
+set clara 5.0.2
+
+setenv COATJAVA $env(CLAS12_HOME)/noarch/coatjava/${coatjava}
+setenv CLAS12DIR $env(CLAS12_HOME)/noarch/coatjava/${coatjava}
+setenv CLARA_HOME $env(CLAS12_HOME)/noarch/clara/${clara}_${coatjava}
+
+prepend-path PATH $env(COATJAVA)/bin
+prepend-path PATH $env(CLARA_HOME)/bin
+

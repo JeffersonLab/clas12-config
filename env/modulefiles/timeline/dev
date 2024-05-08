@@ -1,0 +1,10 @@
+#%Module1.0
+
+prereq rcdb
+prereq groovy/4.0.3
+prereq coatjava
+
+set d $env(CLAS12_HOME)/noarch/clas12-timeline/dev
+
+prepend-path PATH $d/bin
+

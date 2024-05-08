@@ -1,0 +1,10 @@
+#%Module1.0
+
+source [file dirname $ModulesCurrentModulefile]/../.utilities.tcl
+
+setenv SIM_HOME /cvmfs/oasis.opensciencegrid.org/jlab/geant4
+module use -a $env(SIM_HOME)/ceInstall/modulefiles
+
+setenv SIM_VERSION 1.0
+setenv SIM_INSTALLATION_DIR $env(SIM_HOME)/$env(SIM_VERSION)/[osrelease 1]
+

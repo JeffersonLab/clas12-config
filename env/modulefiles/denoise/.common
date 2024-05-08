@@ -1,0 +1,11 @@
+#%Module1.0
+
+prereq .system
+prereq hipo
+
+source [file dirname $ModulesCurrentModulefile]/../../.utilities.tcl
+set d [home]/[osrelease]/local/driftchambers/$version/[getvenv HIPO]
+
+prepend-path PATH $d/bin
+setenv DENOISING_NETWORKS $d/share/denoising/network
+

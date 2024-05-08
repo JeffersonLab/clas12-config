@@ -1,0 +1,18 @@
+#%Module1.0
+
+prereq .system
+
+prereq ccdb
+prereq qadb
+prereq hipo
+prereq root
+
+source [file dirname $ModulesCurrentModulefile]/../../.utilities.tcl
+
+setenv CLAS12ROOT [home]/[osrelease]/local/clas12root/$version/[getvenv HIPO]
+
+prepend-path PATH $env(CLAS12ROOT)/bin
+prepend-path LD_LIBRARY_PATH $env(CLAS12ROOT)/lib
+prepend-path ROOT_INCLUDE_PATH $env(CLAS12ROOT)/Clas12Root
+prepend-path ROOT_INCLUDE_PATH $env(CLAS12ROOT)/Clas12Banks
+

@@ -1,0 +1,10 @@
+#%Module1.0
+
+source [file dirname $ModulesCurrentModulefile]/../../.utilities.tcl
+setenv COATJAVA [home]/noarch/coatjava/${coatjava}
+setenv CLAS12DIR [home]/noarch/coatjava/${coatjava}
+setenv CLARA_HOME [home]/noarch/clara/${clara}_${coatjava}
+#setenv CLARA_PLUGINS $env(CLAS12_HOME)/noarch/clara/plugins/c$env(COATJAVA)_g${grapes}
+prepend-path PATH $env(COATJAVA)/bin
+prepend-path PATH $env(CLARA_HOME)/bin
+

@@ -1,0 +1,32 @@
+#%Module1.0
+
+prereq .system
+prereq root
+
+conflict mcgen
+
+set version 2.42
+
+set d $env(CLAS12_HOME)/$env(OSRELEASE)/local/clas12-mcgen/$version
+
+prepend-path PATH $d/bin
+prepend-path LD_LIBRARY_PATH $d/lib
+
+setenv TCSGEN_DIR $d/TCSGen
+setenv CLASDIS_PDF $d/clasdis/pdf/
+setenv CLASPYTHIA_DECLIST $d/claspyth/
+setenv CLASDVCS_PDF $d/dvcsgen
+setenv DataKYandOnePion $d/genKYandOnePion/data
+setenv DISRAD_PDF $d/inclusive-dis-rad/xgrid
+setenv TWOPEG_DATA_DIR $d/twopeg
+setenv C12ELSPECTRO $d/clas12-elSpectro
+setenv ELSPECTRO $d/clas12-elSpectro/elSpectro
+setenv MCEGENpiN_radcorr_path $d/MCEGENpiN_radcorr
+setenv CLAS_PARMS $d/onepigen
+setenv GENEPI $d/genepi
+setenv GENIE $d/genie/genie
+
+prepend-path ROOT_INCLUDE_PATH $d/clas12-elSpectro/elSpectro/core 
+prepend-path ROOT_INCLUDE_PATH $d/clas12-elSpectro/elSpectro/jpacPhoto/include
+prepend-path ROOT_INCLUDE_PATH $d/clas12-elSpectro/elSpectro/jpacPhoto/include/amplitudes
+

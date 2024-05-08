@@ -1,0 +1,9 @@
+#%Module1.0
+
+prereq .system
+
+set v 3.9
+
+prepend-path PYTHONPATH $env(CLAS12_HOME)/$env(OSRELEASE)/lib/python$v/site-packages
+prepend-path PYTHONPATH $env(CLAS12_HOME)/$env(OSRELEASE)/lib64/python$v/site-packages
+

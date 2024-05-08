@@ -1,0 +1,8 @@
+#%Module1.0
+conflict jdk
+
+set v 17.0.2
+
+setenv JAVA_HOME $env(CLAS12_HOME)/$env(OSRELEASE)/jdk/$v
+prepend-path PATH $env(CLAS12_HOME)/$env(OSRELEASE)/jdk/$v/bin
+

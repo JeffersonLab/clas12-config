@@ -1,0 +1,7 @@
+#%Module1.0
+
+set version 1.3.0
+
+setenv QADB $env(CLAS12_HOME)/noarch/clas12-qadb/$version
+prepend-path JYPATH $env(QADB)/src
+

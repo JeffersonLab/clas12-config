@@ -1,0 +1,14 @@
+#%Module1.0
+
+prereq .system
+
+conflict root
+
+set top $env(CLAS12_HOME)/$env(OSRELEASE)/local/root/6.30.04
+
+setenv ROOTSYS $top
+
+prepend-path PATH $top/bin
+prepend-path LD_LIBRARY_PATH $top/lib
+prepend-path PYTHONPATH $top/lib
+

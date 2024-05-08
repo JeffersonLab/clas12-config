@@ -1,0 +1,14 @@
+#%Module1.0
+
+prereq .system
+
+conflict hipo
+
+source [file dirname $ModulesCurrentModulefile]/../../.utilities.tcl
+
+setenv HIPO [home]/[osrelease]/local/hipo/$version
+prepend-path PATH $env(HIPO)/bin
+prepend-path LD_LIBRARY_PATH $env(HIPO)/lib
+prepend-path PKG_CONFIG_PATH $env(HIPO)/lib/pkgconfig
+prepend-path ROOT_INCLUDE_PATH $env(HIPO)/include
+

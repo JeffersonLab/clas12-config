@@ -1,0 +1,21 @@
+#%Module1.0
+
+prereq ccdb
+prereq rcdb
+prereq root
+prereq coatjava
+prereq jdk
+prereq pymods
+
+set d $env(CLAS12_HOME)/noarch/clas12-workflow/dev
+
+setenv CLAS12WFLOW $d
+
+prepend-path PYTHONPATH $d/lib/util
+prepend-path PYTHONPATH $d/lib/swif
+prepend-path PYTHONPATH $d/lib/clas12
+prepend-path PYTHONPATH $d/lib/hps
+prepend-path PYTHONPATH $d/lib/ccdb
+
+prepend-path PATH $d/scripts
+

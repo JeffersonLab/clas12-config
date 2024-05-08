@@ -1,0 +1,8 @@
+#%Module1.0
+
+set version 3.29.0
+
+source [file dirname $ModulesCurrentModulefile]/../../.utilities.tcl
+
+prepend-path PATH [home]/[osrelease]/local/cmake/$version/bin
+

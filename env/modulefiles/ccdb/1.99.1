@@ -1,0 +1,17 @@
+#%Module1.0
+
+prereq .system
+prereq pymods
+
+conflict ccdb
+
+set v 1.99.1
+
+setenv CCDB_USER $env(USER)
+setenv CCDB_HOME $env(CLAS12_HOME)/$env(OSRELEASE)/local/ccdb/$v
+setenv CCDB_CONNECTION mysql://clas12reader@clasdb-farm.jlab.org/clas12
+
+prepend-path PATH $env(CCDB_HOME)/bin
+prepend-path LD_LIBRARY_PATH $env(CCDB_HOME)/lib
+prepend-path PYTHONPATH $env(CCDB_HOME)/python
+

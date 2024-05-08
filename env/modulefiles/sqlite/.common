@@ -1,0 +1,5 @@
+#%Module1.0
+
+setenv CCDB_CONNECTION sqlite:///$env(CLAS12_HOME)/noarch/data/ccdb/ccdb_$version.sqlite
+setenv RCDB_CONNECTION sqlite:///$env(CLAS12_HOME)/noarch/data/rcdb/rcdb_$version.sqlite
+

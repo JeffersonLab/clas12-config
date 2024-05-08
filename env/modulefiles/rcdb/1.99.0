@@ -1,0 +1,12 @@
+#%Module1.0
+
+prereq pymods
+
+set v 1.99.0
+
+setenv RCDB_HOME $env(CLAS12_HOME)/noarch/rcdb/$v
+
+setenv RCDB_CONNECTION mysql://rcdb@clasdb.jlab.org/rcdb 
+
+prepend-path PYTHONPATH $env(RCDB_HOME)/python
+
