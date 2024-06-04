@@ -1,7 +1,7 @@
 # YAML file for RG-F Summer2020 pass1v1 simulations
 # Uses AI-assisted tracking and no denoising
 # Compatible with:
-# - coatjava 9.0.2, 10.0.0, 10.0.1, 10.0.2
+# - coatjava 10.0.3 or later
 # - gemc 5.2 or later
 io-services:
   reader:

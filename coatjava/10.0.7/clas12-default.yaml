@@ -1,7 +1,7 @@
 # YAML file for simulations with nominal/default geometry
 # Uses conventional tracking and no denoising
 # Compatible with:
-# - coatjava 9.0.2, 10.0.0, 10.0.1, 10.0.2
+# - coatjava 9.0.2 or later
 # - gemc 5.2 or later
 io-services:
   reader:
@@ -82,10 +82,6 @@ configuration:
       run: "6302"
     DCHAI:
       outputBankPrefix: "HB"
-    CVTFP:
-      targetMat: "LD2"
-    CVTSP:
-      targetMat: "LD2"
     RTPC:
       rtpcSimulation: "true"
       

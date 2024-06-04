@@ -1,7 +1,7 @@
 # YAML file for RG-B Fall2019 Pass2 simulations
 # Uses AI-assisted tracking and denoising
 # Compatible with:
-# - coatjava 9.0.2, 10.0.0, 10.0.1, 10.0.2
+# - coatjava 9.0.2 or later              
 # - gemc 5.2 or later
 # THIS IS A PLACEHOLDER UNTIL THE PASS2 DATA PROCESSING CONDITIONS (AI NETWORKS...) WILL BE FINALIZED
 io-services:

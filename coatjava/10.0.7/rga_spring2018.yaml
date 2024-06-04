@@ -1,7 +1,7 @@
 # YAML file for RG-A Spring2018 Pass2 simulations
 # Uses AI-assisted tracking and denoising
 # Compatible with:
-# - coatjava 9.0.2, 10.0.0, 10.0.1, 10.0.2
+# - coatjava 10.0.3 or later              
 # - gemc 5.2 or later
 # THIS IS A PLACEHOLDER UNTIL THE PASS2 DATA PROCESSING CONDITIONS WILL BE FINALIZED
 io-services:
@@ -81,7 +81,7 @@ configuration:
     DCCR:
       rawBankGroup: "NOISE1"
     MLTD:
-      run: "6302"
+      run: "5197"
     DCHAI:
       outputBankPrefix: "HB"
     RTPC:

@@ -1,7 +1,7 @@
 # YAML file for RG-M Spring2019 Pass1 simulations 
 # Uses AI-assisted tracking but no denoising
 # Compatible with:
-# - coatjava 10.0.1, 10.0.2
+# - coatjava 10.0.1 or later
 # - gemc 5.2 or later
 io-services:
   reader:
