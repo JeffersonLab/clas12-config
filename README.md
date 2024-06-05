@@ -6,12 +6,13 @@ The standard run-group configuration files for GEMC, COATJAVA, chef workflow con
 
 | Run Group | Run Period     | Pass | Coatjava | GEMC(s) |
 |-----------|------------|------|----------|---------|
-| RG-A      | Fall '18   | 2    | 10.0.2   | 5.4     |
-| RG-A      | Spring '19 | 2    | 10.0.2   | 5.4  |
-| RG-B      | Spring '19 | 2    | 10.0.2   | 5.4  |
-| RG-B      | Fall '19   | 2    | 10.0.2   | 5.4  |
-| RG-K      | Fall '18   | 2    | 10.0.2   | 5.4  |
-| RG-M      | Fall '21   | 1    | 10.0.2   | 5.4  |
+| RG-A      | Fall '18   | 2    | 10.0.7   | 5.4     |
+| RG-A      | Spring '19 | 2    | 10.0.7   | 5.4  |
+| RG-B      | Spring '19 | 2    | 10.0.7   | 5.4  |
+| RG-B      | Fall '19   | 2    | 10.0.7   | 5.4  |
+| RG-C      | Summer '22 | 1    | 10.0.9   | 5.9  |
+| RG-K      | Fall '18   | 2    | 10.0.7   | 5.4  |
+| RG-M      | Fall '21   | 1    | 10.0.7   | 5.4  |
 
 | Run Group | Run Period     | Pass | Coatjava | GEMC(s) |
 |-----------|------------|------|------------------|-----------------|
@@ -23,10 +24,12 @@ The standard run-group configuration files for GEMC, COATJAVA, chef workflow con
 
 | Run Group | Run Period | Pass | Coatjava | GEMC(s) |
 |-----------|--------|------|------------------|-----------------|
-| RG-C      |        |      | 10.0.2           | 5.4             |
-| RG-D      | Spring '24  |      |                  |                 |
-| RG-E      |        |      |                  |                 |
-| RG-F      |        |      |                  |                 |
+| RG-C      | Fall '22   | 1    | 10.1.0       | 5.9             |
+| RG-C      | Spring '23 | 1    |              |                 |
+| RG-D      | Fall '23   | 1    |              |                 |
+| RG-E      | Spring '24 | 1    |              |                 |
+| RG-F      | Spring '20 | 1    |              |                 |
+| RG-k      | Spring '24 | 1    |              |                 |
 | RG-L      |        |      |                  |                 |
 
 ## Notes
