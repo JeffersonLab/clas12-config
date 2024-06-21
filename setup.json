@@ -15,8 +15,7 @@
 	],
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.6.1",
-	  "gemc/5.10 coatjava/10.0.2",
-	  "gemc/dev coatjava/10.0.2"
+	  "gemc/5.10 coatjava/10.0.7"
 	]
   },
   "rga_fall2018": {
@@ -43,8 +42,8 @@
 	],
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.6.1",
-	  "gemc/5.10 coatjava/10.0.2",
-	  "gemc/dev coatjava/10.0.2"
+	  "gemc/5.10 coatjava/10.0.7",
+	  "gemc/5.10 coatjava/latest"
 	]
   },
   "rga_fall2018_target_at_m3.5": {
@@ -71,8 +70,7 @@
 	],
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.6.1",
-	  "gemc/5.10 coatjava/10.0.2",
-	  "gemc/dev coatjava/10.0.2"
+	  "gemc/5.10 coatjava/10.0.7"
 	]
   },
   "rga_spring2019": {
@@ -90,8 +88,7 @@
 	],
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.9",
-	  "gemc/5.10 coatjava/10.0.2",
-	  "gemc/dev coatjava/10.0.2"
+	  "gemc/5.10 coatjava/10.0.7"
 	]
   },
   "rgb_spring2019": {
@@ -111,8 +108,7 @@
 	],
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.9",
-	  "gemc/5.10 coatjava/10.0.2",
-	  "gemc/dev coatjava/10.0.2"
+	  "gemc/5.10 coatjava/10.0.7"
 	]
   },
   "rgb_fall2019": {
@@ -132,11 +128,10 @@
 	],
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.9",
-	  "gemc/5.10 coatjava/10.0.2",
-	  "gemc/dev coatjava/10.0.2"
+	  "gemc/5.10 coatjava/10.0.7"
 	]
   },
-  "rgc_summer2022_Elmo": {
+  "rgc_fall2022": {
 	"tor-1.00_sol-1.00": [
 	],
 	"raster": [
@@ -149,11 +144,10 @@
 	  "-3.0*cm, 2.5*cm"
 	],
 	"software_versions": [
-	  "gemc/5.10 coatjava/10.0.2",
-	  "gemc/dev coatjava/10.0.2"
-	]
+	  "gemc/5.10 coatjava/10.0.9"
+        ]
   },
-  "rgc_summer2022_FTOn": {
+  "rgc_summer2022": {
 	"tor-1.00_sol-1.00": [
 	],
 	"raster": [
@@ -166,8 +160,7 @@
 	  "-3.0*cm, 2.5*cm"
 	],
 	"software_versions": [
-	  "gemc/5.10 coatjava/10.0.2",
-	  "gemc/dev coatjava/10.0.2"
+	  "gemc/5.10 coatjava/10.0.9"
 	]
   },
   "rgk_fall2018_FTOff": {
@@ -187,8 +180,8 @@
 	  "-3.0*cm, 2.5*cm"
 	],
 	"software_versions": [
-	  "gemc/5.10 coatjava/10.0.2",
-	  "gemc/dev coatjava/10.0.2"
+	  "gemc/4.4.2 coatjava/6.5.6.1",
+	  "gemc/5.10 coatjava/10.0.9"
 	]
   },
   "rgk_fall2018_FTOn": {
@@ -208,8 +201,24 @@
 	  "-3.0*cm, 2.5*cm"
 	],
 	"software_versions": [
-	  "gemc/5.10 coatjava/10.0.2",
-	  "gemc/dev coatjava/10.0.2"
+	  "gemc/4.4.2 coatjava/6.5.6.1",
+	  "gemc/5.10 coatjava/10.0.7"
 	]
+  },
+  "ddvcs": {
+	"tor-1.00_sol-1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "0.0*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/5.10 coatjava/10.0.9"
+        ]
   }
 }
