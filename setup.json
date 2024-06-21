@@ -1,0 +1,215 @@
+{
+  "rga_spring2018": {
+	"tor-1.00_sol-1.00": [
+	],
+	"tor+1.00_sol-1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-1.94*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/4.4.2 coatjava/6.5.6.1",
+	  "gemc/5.10 coatjava/10.0.2",
+	  "gemc/dev coatjava/10.0.2"
+	]
+  },
+  "rga_fall2018": {
+	"tor-1.00_sol-1.00": [
+	  "45nA_10604MeV",
+	  "50nA_10604MeV",
+	  "55nA_10604MeV"
+	],
+	"tor+1.00_sol-1.00": [
+	  "40nA_10604MeV",
+	  "50nA_10604MeV"
+	],
+	"tor+1.01_sol-1.00": [
+	  "40nA_10604MeV"
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-3.0*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/4.4.2 coatjava/6.5.6.1",
+	  "gemc/5.10 coatjava/10.0.2",
+	  "gemc/dev coatjava/10.0.2"
+	]
+  },
+  "rga_fall2018_target_at_m3.5": {
+	"tor-1.00_sol-1.00": [
+	  "45nA_10604MeV",
+	  "50nA_10604MeV",
+	  "55nA_10604MeV"
+	],
+	"tor+1.00_sol-1.00": [
+	  "40nA_10604MeV",
+	  "50nA_10604MeV"
+	],
+	"tor+1.01_sol-1.00": [
+	  "40nA_10604MeV"
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-3.5*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/4.4.2 coatjava/6.5.6.1",
+	  "gemc/5.10 coatjava/10.0.2",
+	  "gemc/dev coatjava/10.0.2"
+	]
+  },
+  "rga_spring2019": {
+	"tor-1.00_sol-1.00": [
+	  "50nA_10200MeV"
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-3.0*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/4.4.2 coatjava/6.5.9",
+	  "gemc/5.10 coatjava/10.0.2",
+	  "gemc/dev coatjava/10.0.2"
+	]
+  },
+  "rgb_spring2019": {
+	"tor-1.00_sol-1.00": [
+	  "35nA_10599MeV",
+	  "50nA_10200MeV",
+	  "50nA_10599MeV"
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-3.0*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/4.4.2 coatjava/6.5.9",
+	  "gemc/5.10 coatjava/10.0.2",
+	  "gemc/dev coatjava/10.0.2"
+	]
+  },
+  "rgb_fall2019": {
+	"tor+1.00_sol-1.00": [
+	  "40nA_10410MeV"
+	],
+	"tor-1.00_sol-1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-3.0*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/4.4.2 coatjava/6.5.9",
+	  "gemc/5.10 coatjava/10.0.2",
+	  "gemc/dev coatjava/10.0.2"
+	]
+  },
+  "rgc_summer2022_Elmo": {
+	"tor-1.00_sol-1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-3.0*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/5.10 coatjava/10.0.2",
+	  "gemc/dev coatjava/10.0.2"
+	]
+  },
+  "rgc_summer2022_FTOn": {
+	"tor-1.00_sol-1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-3.0*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/5.10 coatjava/10.0.2",
+	  "gemc/dev coatjava/10.0.2"
+	]
+  },
+  "rgk_fall2018_FTOff": {
+	"tor+1.00_sol-1.00": [
+	  "35nA_6535MeV",
+	  "60nA_6535MeV"
+	],
+	"tor+1.00_sol+1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-3.0*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/5.10 coatjava/10.0.2",
+	  "gemc/dev coatjava/10.0.2"
+	]
+  },
+  "rgk_fall2018_FTOn": {
+	"tor+1.00_sol-1.00": [
+	  "35nA_7546MeV",
+	  "45nA_7546MeV"
+	],
+	"tor+1.00_sol+1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-3.0*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/5.10 coatjava/10.0.2",
+	  "gemc/dev coatjava/10.0.2"
+	]
+  }
+}
