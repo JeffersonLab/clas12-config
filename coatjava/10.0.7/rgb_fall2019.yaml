@@ -1,3 +1,9 @@
+# YAML file for RG-B Fall2019 Pass2 simulations
+# Uses AI-assisted tracking and denoising
+# Compatible with:
+# - coatjava 9.0.2 or later              
+# - gemc 5.2 or later
+# THIS IS A PLACEHOLDER UNTIL THE PASS2 DATA PROCESSING CONDITIONS (AI NETWORKS...) WILL BE FINALIZED
 io-services:
   reader:
     class: org.jlab.io.clara.HipoToHipoReader
@@ -18,16 +24,10 @@ services:
     name: FTEB
   - class: org.jlab.service.raster.RasterEngine
     name: RASTER
-# DC clustering: nominal algoritm, filled the cluster bank for ai and conventional tracking
   - class: org.jlab.service.dc.DCHBClustering
     name: DCCR
-# This is where the AI plugin would go.  THe AI code reads the HB clusters.  
   - class: org.jlab.service.mltn.MLTDEngine
     name: MLTD
-# DC using clustering: regular HB tracking
-  - class: org.jlab.service.dc.DCHBPostClusterConv
-    name: DCHB
-# DC using clustering on AI hits: NN assisted HB tracking
   - class: org.jlab.service.dc.DCHBPostClusterAI
     name: DCHAI
   - class: org.jlab.service.ftof.FTOFHBEngine
@@ -48,14 +48,8 @@ services:
     name: LTCC
   - class: org.jlab.service.eb.EBHBEngine
     name: EBHB
-  - class: org.jlab.service.eb.EBHBAIEngine
-    name: EBHAI
-# DC regular TB tracking    
   - class: org.jlab.service.dc.DCTBEngine
     name: DCTB
-# DC AI assisted TB tracking    
-  - class: org.jlab.service.dc.DCTBEngineAI
-    name: DCTAI  
   - class: org.jlab.service.fmt.FMTEngine
     name: FMT
   - class: org.jlab.rec.cvt.services.CVTSecondPassEngine
@@ -64,35 +58,38 @@ services:
     name: FTOFTB
   - class: org.jlab.service.eb.EBTBEngine
     name: EBTB
-  - class: org.jlab.service.eb.EBTBAIEngine
-    name: EBTAI
   - class: org.jlab.rec.rich.RICHEBEngine
     name: RICH
   - class: org.jlab.service.rtpc.RTPCEngine
     name: RTPC
+  - class: org.jlab.service.mc.TruthMatch
+    name: MC
 configuration:
   global:
-    dcrbJitter: "true"
-    variation: rgc_summer2022
-# uncomment the line below and set the date and time appropriately to use a CCDB timestamp
-#      timestamp: 12/31/2020-00:00:00
-  io-services:
-    writer:
-      schema_dir: "/group/clas12/packages/clara/5.0.2_10.0.4/plugins/clas12/etc/bankdefs/hipo4/singles/dcalign"
+    variation: rgb_fall2019_mc
+#    timestamp: 07/27/2023-12:00:00
+# uncomment to use bank filtering based on schema, schema path should be updated 
+# to point to the correct coatjava folder
+#  io-services:
+#    writer:
+#      schema_dir: /group/clas12/packages/clara/5.0.2_10.0.2/plugins/clas12/etc/bankdefs/hipo4/singles/dst
   services:
+# should match the field maps used in the gemc simulation
     MAGFIELDS:
       magfieldSolenoidMap: Symm_solenoid_r601_phi1_z1201_13June2018.dat
-      magfieldTorusMap: Full_torus_r251_phi181_z251_25Jan2021.dat
+      magfieldTorusMap: Symm_torus_r2501_phi16_z251_24Apr2018.dat
     DCCR:
       rawBankGroup: "NOISE1"
-    DCHAI:
-      outputBankPrefix: "AI"
-    DCTAI:
-      outputBankPrefix: "AI"
     MLTD:
       run: "6302"
-    EBTAI:
-      outputBankPrefix: "RECAI"
+    DCHAI:
+      outputBankPrefix: "HB"
+    CVTFP:
+      targetMat: "LD2"
+    CVTSP:
+      targetMat: "LD2"
+    RTPC:
+      rtpcSimulation: "true"
       
 mime-types:
   - binary/data-hipo

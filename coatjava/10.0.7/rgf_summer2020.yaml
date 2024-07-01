@@ -1,7 +1,7 @@
-# YAML file for RG-M Spring2019 Pass1 simulations 
-# Uses AI-assisted tracking but no denoising
+# YAML file for RG-F Summer2020 pass1v1 simulations
+# Uses AI-assisted tracking and no denoising
 # Compatible with:
-# - coatjava 10.0.1, 10.0.2
+# - coatjava 10.0.3 or later
 # - gemc 5.2 or later
 io-services:
   reader:
@@ -13,6 +13,16 @@ io-services:
 services:
   - class: org.jlab.clas.swimtools.MagFieldsEngine
     name: MAGFIELDS
+  - class: org.jlab.rec.ft.cal.FTCALEngine
+    name: FTCAL
+  - class: org.jlab.rec.ft.hodo.FTHODOEngine
+    name: FTHODO
+  - class: org.jlab.rec.ft.trk.FTTRKEngine
+    name: FTTRK
+  - class: org.jlab.rec.ft.FTEBEngine
+    name: FTEB
+  - class: org.jlab.service.raster.RasterEngine
+    name: RASTER
   - class: org.jlab.service.dc.DCHBClustering
     name: DCCR
   - class: org.jlab.service.mltn.MLTDEngine
@@ -33,6 +43,8 @@ services:
     name: BAND
   - class: org.jlab.service.htcc.HTCCReconstructionService
     name: HTCC
+  - class: org.jlab.service.ltcc.LTCCEngine
+    name: LTCC
   - class: org.jlab.service.eb.EBHBEngine
     name: EBHB
   - class: org.jlab.service.dc.DCTBEngine
@@ -47,11 +59,13 @@ services:
     name: EBTB
   - class: org.jlab.rec.rich.RICHEBEngine
     name: RICH
+  - class: org.jlab.service.rtpc.RTPCEngine
+    name: RTPC
   - class: org.jlab.service.mc.TruthMatch
     name: MC
 configuration:
   global:
-    variation: rgm_fall2021_mc
+    variation: rgf_summer2020_mc
 #    timestamp: 07/27/2023-12:00:00
 # uncomment to use bank filtering based on schema, schema path should be updated 
 # to point to the correct coatjava folder
@@ -66,9 +80,11 @@ configuration:
     DCCR:
       rawBankGroup: "NODENOISE"
     MLTD:
-      run: "15778"
+      run: "12922"
     DCHAI:
       outputBankPrefix: "HB"
+    RTPC:
+      rtpcSimulation: "true"
       
 mime-types:
   - binary/data-hipo

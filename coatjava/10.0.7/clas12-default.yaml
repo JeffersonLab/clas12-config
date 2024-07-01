@@ -1,9 +1,8 @@
-# YAML file for RG-A Spring2018 Pass2 simulations
-# Uses AI-assisted tracking and denoising
+# YAML file for simulations with nominal/default geometry
+# Uses conventional tracking and no denoising
 # Compatible with:
-# - coatjava 9.0.2, 10.0.0, 10.0.1, 10.0.2
+# - coatjava 9.0.2 or later
 # - gemc 5.2 or later
-# THIS IS A PLACEHOLDER UNTIL THE PASS2 DATA PROCESSING CONDITIONS WILL BE FINALIZED
 io-services:
   reader:
     class: org.jlab.io.clara.HipoToHipoReader
@@ -28,8 +27,8 @@ services:
     name: DCCR
   - class: org.jlab.service.mltn.MLTDEngine
     name: MLTD
-  - class: org.jlab.service.dc.DCHBPostClusterAI
-    name: DCHAI
+  - class: org.jlab.service.dc.DCHBPostClusterConv
+    name: DCHB
   - class: org.jlab.service.ftof.FTOFHBEngine
     name: FTOFHB
   - class: org.jlab.service.ec.ECEngine
@@ -65,8 +64,7 @@ services:
   - class: org.jlab.service.mc.TruthMatch
     name: MC
 configuration:
-  global:
-    variation: rga_fall2018_mc
+#  global:
 #    timestamp: 07/27/2023-12:00:00
 # uncomment to use bank filtering based on schema, schema path should be updated 
 # to point to the correct coatjava folder

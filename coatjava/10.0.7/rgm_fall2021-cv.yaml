@@ -1,3 +1,8 @@
+# YAML file for RG-M Spring2019 Pass1 simulations 
+# Uses no AI-assisted tracking and no denoising
+# Compatible with:
+# - coatjava 10.0.1 or later
+# - gemc 5.2 or later
 io-services:
   reader:
     class: org.jlab.io.clara.HipoToHipoReader
@@ -8,22 +13,10 @@ io-services:
 services:
   - class: org.jlab.clas.swimtools.MagFieldsEngine
     name: MAGFIELDS
-  - class: org.jlab.rec.ft.cal.FTCALEngine
-    name: FTCAL
-  - class: org.jlab.rec.ft.hodo.FTHODOEngine
-    name: FTHODO
-  - class: org.jlab.rec.ft.trk.FTTRKEngine
-    name: FTTRK
-  - class: org.jlab.rec.ft.FTEBEngine
-    name: FTEB
-  - class: org.jlab.service.raster.RasterEngine
-    name: RASTER
   - class: org.jlab.service.dc.DCHBClustering
     name: DCCR
-  - class: org.jlab.service.mltn.MLTDEngine
-    name: MLTD
-  - class: org.jlab.service.dc.DCHBPostClusterAI
-    name: DCHAI
+  - class: org.jlab.service.dc.DCHBPostClusterConv
+    name: DCHB
   - class: org.jlab.service.ftof.FTOFHBEngine
     name: FTOFHB
   - class: org.jlab.service.ec.ECEngine
@@ -38,8 +31,6 @@ services:
     name: BAND
   - class: org.jlab.service.htcc.HTCCReconstructionService
     name: HTCC
-  - class: org.jlab.service.ltcc.LTCCEngine
-    name: LTCC
   - class: org.jlab.service.eb.EBHBEngine
     name: EBHB
   - class: org.jlab.service.dc.DCTBEngine
@@ -54,30 +45,24 @@ services:
     name: EBTB
   - class: org.jlab.rec.rich.RICHEBEngine
     name: RICH
-  - class: org.jlab.service.rtpc.RTPCEngine
-    name: RTPC
+  - class: org.jlab.service.mc.TruthMatch
+    name: MC
 configuration:
   global:
-    dcrbJitter: "true"
-    variation: rgc_summer2022
-# uncomment the line below and set the date and time appropriately to use a CCDB timestamp
-#      timestamp: 12/31/2020-00:00:00
-  io-services:
-    writer:
-# schema below is set for dst output, change it to calib or mon for aclibration or monitoring    
-      schema_dir: "/group/clas12/packages/clara/5.0.2_10.0.4/plugins/clas12/etc/bankdefs/hipo4/singles/dst"
+    variation: rgm_fall2021_mc
+#    timestamp: 07/27/2023-12:00:00
+# uncomment to use bank filtering based on schema, schema path should be updated 
+# to point to the correct coatjava folder
+#  io-services:
+#    writer:
+#      schema_dir: /group/clas12/packages/clara/5.0.2_10.0.2/plugins/clas12/etc/bankdefs/hipo4/singles/dst
   services:
+# should match the field maps used in the gemc simulation
     MAGFIELDS:
       magfieldSolenoidMap: Symm_solenoid_r601_phi1_z1201_13June2018.dat
-      magfieldTorusMap: Full_torus_r251_phi181_z251_25Jan2021.dat
+      magfieldTorusMap: Symm_torus_r2501_phi16_z251_24Apr2018.dat
     DCCR:
       rawBankGroup: "NODENOISE"
-# comment the line above and uncomment the one below to use denoising (note that it has to be activated in the workflow too)
-#      rawBankGroup: "NOISE1"
-    MLTD:
-      run: "6302"
-    DCHAI:
-      outputBankPrefix: "HB"
       
 mime-types:
   - binary/data-hipo
