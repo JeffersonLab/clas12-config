@@ -1,4 +1,22 @@
 {
+  "clas12-default": {
+	"tor-1.00_sol-1.00": [
+	],
+	"tor+1.00_sol-1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "0*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/5.10 coatjava/10.1.1"
+	]
+  },
   "rga_spring2018": {
 	"tor-1.00_sol-1.00": [
 	],
@@ -43,7 +61,7 @@
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.6.1",
 	  "gemc/5.10 coatjava/10.0.7",
-	  "gemc/5.10 coatjava/latest"
+	  "gemc/5.10 coatjava/10.1.1"
 	]
   },
   "rga_fall2018_target_at_m3.5": {
@@ -181,7 +199,7 @@
 	],
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.6.1",
-	  "gemc/5.10 coatjava/10.0.9"
+	  "gemc/5.10 coatjava/10.0.7"
 	]
   },
   "rgk_fall2018_FTOn": {
@@ -218,7 +236,7 @@
 	  "0.0*cm, 2.5*cm"
 	],
 	"software_versions": [
-	  "gemc/5.10 coatjava/10.0.9"
+	  "gemc/5.10 coatjava/10.1.1"
         ]
   }
 }

@@ -2,42 +2,106 @@
 
 The standard run-group configuration files for GEMC, COATJAVA, chef workflow configurations, etc.
 
-## Standard Combinations
-
-| Run Group | Run Period     | Pass | Coatjava | GEMC(s) |
-|-----------|------------|------|----------|---------|
-| RG-A      | Fall '18   | 2    | 10.0.7   | 5.4     |
-| RG-A      | Spring '19 | 2    | 10.0.7   | 5.4  |
-| RG-B      | Spring '19 | 2    | 10.0.7   | 5.4  |
-| RG-B      | Fall '19   | 2    | 10.0.7   | 5.4  |
-| RG-C      | Summer '22 | 1    | 10.0.9   | 5.9  |
-| RG-K      | Fall '18   | 2    | 10.0.7   | 5.4  |
-| RG-M      | Fall '21   | 1    | 10.0.7   | 5.4  |
-
-| Run Group | Run Period     | Pass | Coatjava | GEMC(s) |
-|-----------|------------|------|------------------|-----------------|
-| RG-A      | Fall '18   | 1    | 6.5.6.1          | 4.4.2           |
-| RG-A      | Spring '19 | 1    | 6.5.6.1          | 4.4.2           |
-| RG-B      | Spring '19 | 1    | 6.5.9            | 4.4.2           |
-| RG-B      | Fall '19   | 1    | 6.5.9            | 4.4.2           |
-| RG-K      | Fall '18   | 1    | 6.5.6.1          | 4.4.2           |
-
-| Run Group | Run Period | Pass | Coatjava | GEMC(s) |
-|-----------|--------|------|------------------|-----------------|
-| RG-C      | Fall '22   | 1    | 10.1.0       | 5.9             |
-| RG-C      | Spring '23 | 1    |              |                 |
-| RG-D      | Fall '23   | 1    |              |                 |
-| RG-E      | Spring '24 | 1    |              |                 |
-| RG-F      | Spring '20 | 1    |              |                 |
-| RG-k      | Spring '24 | 1    |              |                 |
-| RG-L      |        |      |                  |                 |
+Standard gcard/yaml combinations for the different data sets and data-processing passes are listed in [setup.json](./setup.json).
 
 ## Notes
 
-* _GEMC versions prior to 5.3 do not fully support binary magnetic field maps._
-* _GEMC versions prior to 5.4 do not support CCDB for RF configuration._
-* _COATJAVA versions prior to 9.0.1 do not support AI- denoising or track-finding._
+* _GEMC versions prior to 5.4 do not fully support binary magnetic field maps and CCDB for RF configuration._
+* _COATJAVA versions prior to 10.0.7 do not support AI- denoising or track-finding._
 
 ## Validation
 
 The default set of configuration files that is tested by [`clas12-validation`](https://www.github.com/JeffersonLab/clas12-validation) is [found here](.github/ci_config_files.json). The latest version of each configuration file is used, unless overridden by the caller workflow.
+
+
+
+
+## Run Configurations
+
+The **clas12-default** gcard/yaml files provide the configuration with the detectors are at the nominal positions. 
+
+- Run group A Spring 2018. gcard / yaml: **rga-spring2018**
+
+  - Central detector shifted 19.4 mm upstream
+  - target (LH2) at (0, 0, -19.4) mm  
+  - HTCC shifted 10 mm upstream
+  - FT On configuration
+  - FMT present
+  - LTCC sectors: 2 (N2), 3 (N2), 5 (old C4F10), 6
+  - Torus polarity: -1, 1, -0.75, 0.75
+  - Solenoid polarity: -1
+  - Beam Current: from 5 to 75 nA
+  - Beam energies: 10594.0 and 6423.13 MeV
+  - RF period: 4.008 ns
+
+- Run group A Fall 2018. gcard / yaml: **rga-fall2018**
+
+  - Central detector shifted 30 mm upstream
+  - target (LH2) at (0.0, 0.0, -30) mm
+  - HTCC shifted 20 mm upstream
+  - FT On configuration
+  - FMT not present
+  - LTCC sectors: 3 (50% C4F10), 5 (N2)
+  - Torus polarity: -1, 1,
+  - Solenoid polarity: -1
+  - Beam Current: from 5 to 75 nA
+  - Beam energies: 10604.1, 10600.0, and 7546.26 MeV
+  - RF period: 4.008 ns
+
+- Run group K low energy Fall 2018. gcard / yaml: **rgk-fall2018**
+
+  - Central detector shifted 30 mm upstream
+  - target (LH2) at (0.0, 0.0, -30) mm
+  - HTCC shfted 20 mm upstream
+  - FT Off configuration
+  - FMT not present
+  - LTCC sectors: 3 (50% C4F10), 5 (N2)
+  - Torus polarity: 1,
+  - Solenoid polarity: -1
+  - Beam Current: from 5 to 75 nA
+  - Beam energies: 6535.36 MeV
+  - RF period: 4.008 ns
+
+- Run group B Spring 2019. gcard / yaml: **rgb-spring2019**
+
+  - Central detector shifted 30 mm upstream
+  - target (LD2) at (0.0, 0.0, -30) mm
+  - HTCC shfted 20 mm upstream
+  - FT On configuration
+  - FMT not present
+  - LTCC sectors: 3 (C4F10), 5 (C4F10)
+  - Torus polarity: -1,
+  - Solenoid polarity: -1
+  - Beam Current: from 5 to 75 nA
+  - Beam energies: 10199.8 MeV
+  - RF period: 4.008 ns
+
+- Run group A Spring 2019. gcard / yaml: **rga-spring2019**
+
+  - Central detector shifted 30 mm upstream
+  - bonus (LH2) at (0, 0, 0) mm
+  - HTCC shfted 20 mm upstream
+  - FT On configuration
+  - FMT is present
+  - LTCC sectors: 3 (C4F10), 5 (C4F10)
+  - Torus polarity: -1,
+  - Solenoid polarity: -1
+  - Beam Current: from 5 to 75 nA
+  - Beam energies: 10199.8 MeV
+  - RF period: 4.008 ns
+
+- Run group B Fall 2019. gcard / yaml: **rgb-fall2018**
+
+  - Central detector shifted 30 mm upstream
+  - target (LD2) at (0.0, 0.0, -30) mm
+  - HTCC shfted 20 mm upstream
+  - FT On configuration
+  - FMT not present
+  - LTCC sectors: 3 (C4F10), 5 (C4F10)
+  - Torus polarity: -1,
+  - Solenoid polarity: -1
+  - Beam Current: from 5 to 75 nA
+  - Beam energies: 10598.6, 10409.6, and 10199.8 MeV
+  - RF period: 4.008 ns
+
+![Alt engineering survey](surveyCyril.png?raw=true "engineering survey")
