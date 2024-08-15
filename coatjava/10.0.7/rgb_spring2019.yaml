@@ -1,7 +1,7 @@
-# YAML file for RG-M Spring2019 Pass1 simulations 
-# Uses no AI-assisted tracking and no denoising
+# YAML file for RG-B Spring2019 Pass2 simulations
+# Uses AI-assisted tracking and denoising
 # Compatible with:
-# - coatjava 10.0.1, 10.0.2
+# - coatjava 9.0.2 or later
 # - gemc 5.2 or later
 io-services:
   reader:
@@ -13,10 +13,22 @@ io-services:
 services:
   - class: org.jlab.clas.swimtools.MagFieldsEngine
     name: MAGFIELDS
+  - class: org.jlab.rec.ft.cal.FTCALEngine
+    name: FTCAL
+  - class: org.jlab.rec.ft.hodo.FTHODOEngine
+    name: FTHODO
+  - class: org.jlab.rec.ft.trk.FTTRKEngine
+    name: FTTRK
+  - class: org.jlab.rec.ft.FTEBEngine
+    name: FTEB
+  - class: org.jlab.service.raster.RasterEngine
+    name: RASTER
   - class: org.jlab.service.dc.DCHBClustering
     name: DCCR
-  - class: org.jlab.service.dc.DCHBPostClusterConv
-    name: DCHB
+  - class: org.jlab.service.mltn.MLTDEngine
+    name: MLTD
+  - class: org.jlab.service.dc.DCHBPostClusterAI
+    name: DCHAI
   - class: org.jlab.service.ftof.FTOFHBEngine
     name: FTOFHB
   - class: org.jlab.service.ec.ECEngine
@@ -31,6 +43,8 @@ services:
     name: BAND
   - class: org.jlab.service.htcc.HTCCReconstructionService
     name: HTCC
+  - class: org.jlab.service.ltcc.LTCCEngine
+    name: LTCC
   - class: org.jlab.service.eb.EBHBEngine
     name: EBHB
   - class: org.jlab.service.dc.DCTBEngine
@@ -45,11 +59,13 @@ services:
     name: EBTB
   - class: org.jlab.rec.rich.RICHEBEngine
     name: RICH
+  - class: org.jlab.service.rtpc.RTPCEngine
+    name: RTPC
   - class: org.jlab.service.mc.TruthMatch
     name: MC
 configuration:
   global:
-    variation: rgm_fall2021_mc
+    variation: rgb_spring2019_mc
 #    timestamp: 07/27/2023-12:00:00
 # uncomment to use bank filtering based on schema, schema path should be updated 
 # to point to the correct coatjava folder
@@ -62,7 +78,17 @@ configuration:
       magfieldSolenoidMap: Symm_solenoid_r601_phi1_z1201_13June2018.dat
       magfieldTorusMap: Symm_torus_r2501_phi16_z251_24Apr2018.dat
     DCCR:
-      rawBankGroup: "NODENOISE"
+      rawBankGroup: "NOISE1"
+    MLTD:
+      run: "6302"
+    DCHAI:
+      outputBankPrefix: "HB"
+    CVTFP:
+      targetMat: "LD2"
+    CVTSP:
+      targetMat: "LD2"
+    RTPC:
+      rtpcSimulation: "true"
       
 mime-types:
   - binary/data-hipo

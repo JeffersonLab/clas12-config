@@ -1,3 +1,8 @@
+# YAML file for RG-A Spring2019 Pass2 simulations
+# Uses AI-assisted tracking and denoising
+# Compatible with:
+# - coatjava 9.0.2 or later              
+# - gemc 5.2 or later
 io-services:
   reader:
     class: org.jlab.io.clara.HipoToHipoReader
@@ -20,8 +25,10 @@ services:
     name: RASTER
   - class: org.jlab.service.dc.DCHBClustering
     name: DCCR
-  - class: org.jlab.service.dc.DCHBPostClusterConv
-    name: DCHB
+  - class: org.jlab.service.mltn.MLTDEngine
+    name: MLTD
+  - class: org.jlab.service.dc.DCHBPostClusterAI
+    name: DCHAI
   - class: org.jlab.service.ftof.FTOFHBEngine
     name: FTOFHB
   - class: org.jlab.service.ec.ECEngine
@@ -54,21 +61,30 @@ services:
     name: RICH
   - class: org.jlab.service.rtpc.RTPCEngine
     name: RTPC
+  - class: org.jlab.service.mc.TruthMatch
+    name: MC
 configuration:
   global:
-    dcrbJitter: "true"
-    variation: rgd_fall2023
-# uncomment the line below and set the date and time appropriately to use a CCDB timestamp
-#      timestamp: 12/31/2020-00:00:00
-  io-services:
-    writer:
-      schema_dir: "/group/clas12/packages/clara/5.0.2_10.0.5/plugins/clas12/etc/bankdefs/hipo4/singles/calib"
+    variation: rga_spring2019_mc
+#    timestamp: 07/27/2023-12:00:00
+# uncomment to use bank filtering based on schema, schema path should be updated 
+# to point to the correct coatjava folder
+#  io-services:
+#    writer:
+#      schema_dir: /group/clas12/packages/clara/5.0.2_10.0.2/plugins/clas12/etc/bankdefs/hipo4/singles/dst
   services:
+# should match the field maps used in the gemc simulation
     MAGFIELDS:
       magfieldSolenoidMap: Symm_solenoid_r601_phi1_z1201_13June2018.dat
-      magfieldTorusMap: Full_torus_r251_phi181_z251_25Jan2021.dat
+      magfieldTorusMap: Symm_torus_r2501_phi16_z251_24Apr2018.dat
     DCCR:
-      rawBankGroup: "NODENOISE"
+      rawBankGroup: "NOISE1"
+    MLTD:
+      run: "6302"
+    DCHAI:
+      outputBankPrefix: "HB"
+    RTPC:
+      rtpcSimulation: "true"
       
 mime-types:
   - binary/data-hipo
