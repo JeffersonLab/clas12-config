@@ -1,4 +1,4 @@
- YAML file for simulations with nominal/default geometry
+# YAML file for simulations with nominal/default geometry
 # Uses conventional tracking and no denoising
 # Compatible with:
 # - coatjava 9.0.2 or later
