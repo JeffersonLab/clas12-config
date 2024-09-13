@@ -29,11 +29,11 @@
 
 	<!-- Beamline configuration: ELMO is used -->
 	<detector name="experiments/clas12/beamline/cadBeamlineELMO/" factory="CAD"/>
-	<detector name="experiments/clas12/beamline/vacuumLine/"      factory="CAD"/>
 	<detector name="experiments/clas12/beamline/beamline"         factory="TEXT" variation="ELMO"/>
-	<detector name="connectUpstreamToTorusPipe">
-	 	<existence exist="no" />
-	</detector>
+
+	<!-- Downstream beamline configuration -->
+	<detector name="experiments/clas12/beamline/cad_downstream_beamline/" factory="CAD"/>
+
 	
 	<!-- forward carriage -->
 	<detector name="experiments/clas12/fc/forwardCarriage" factory="TEXT" variation="default"/>

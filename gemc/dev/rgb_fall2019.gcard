@@ -30,9 +30,10 @@
 	<!-- Beamline configuration: FTOn is used -->
 	<detector name="experiments/clas12/ft/ft"                      factory="TEXT" variation="FTOn"/>
 	<detector name="experiments/clas12/beamline/cadBeamline/"      factory="CAD"/>
-	<detector name="experiments/clas12/beamline/vacuumLine/"       factory="CAD"/>
 	<detector name="experiments/clas12/beamline/beamline"          factory="TEXT" variation="FTOn"/>
 
+	<!-- Downstream beamline configuration -->
+	<detector name="experiments/clas12/beamline/cad_downstream_beamline/" factory="CAD"/>
 
 
 	<!-- forward carriage -->
