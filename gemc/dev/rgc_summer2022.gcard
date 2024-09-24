@@ -104,7 +104,7 @@
 
 	<!-- production threshold for passive volumes -->
 	<!-- beamline shielding: 2cm-->
-	<option name="PRODUCTIONCUTFORVOLUMES" value="innerShieldAndFlange, outerFlange, outerMount, nut1, nut2, nut3, nut4, nut5, nut6, nut7, nut8, nut9, DSShieldFrontLead, DSShieldBackLead, DSShieldInnerAss, DSShieldBackAss, DSShieldFrontAss, DSShieldBackCover, DSShieldFrontCover, DSShieldFlangeAttachment, DSShieldFlange,  20" />
+	<option name="PRODUCTIONCUTFORVOLUMES" value="innerShieldAndFlange, outerFlange, outerMount, nut1, nut2, nut3, nut4, nut5, nut6, nut7, nut8, nut9,   20" />
 
 	<!-- vacuum line: 2cm-->
 	<option name="PRODUCTIONCUTFORVOLUMES" value="connectTorusToDownstreamPipe, downstreamPipeFlange,  20" />
