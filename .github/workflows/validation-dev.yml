@@ -16,3 +16,7 @@ jobs:
           "coatjava": "latest",
           "gemc":     "dev"
         }
+      git_upstream: >-
+        {
+          "clas12Tags": { "fork": "gemc/clas12Tags", "ref": "dev" }
+        }
