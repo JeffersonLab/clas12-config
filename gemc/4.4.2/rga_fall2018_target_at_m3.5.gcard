@@ -10,7 +10,7 @@
 	<detector name="experiments/clas12/bstShield/bstShield"   factory="TEXT" variation="w51"/>
 	<detector name="experiments/clas12/micromegas/micromegas" factory="TEXT" variation="michel"/>
 
-	<!--ctof, cad  -->
+	<!--ctof, cnd  -->
 	<detector name="experiments/clas12/ctof/ctof"                     factory="TEXT" variation="rga_fall2018"/>
 	<detector name="experiments/clas12/ctof/javacad_rga_fall2018/"    factory="CAD"/>
 	<detector name="experiments/clas12/cnd/cnd"                       factory="TEXT" variation="original"/>
