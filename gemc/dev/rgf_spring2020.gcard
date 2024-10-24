@@ -4,8 +4,8 @@
 
 
 
-	<!-- target. Notice variation give the target type. Can be: lH2, lD2, ND3 -->
-	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="bonus"/>
+	<!-- target. Bonus variations: bonusD2, bonusH2, bonusHe -->
+	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="bonusD2"/>
 
 
 
