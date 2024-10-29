@@ -9,8 +9,10 @@
 
 
 
-	<!-- central detectors 	-->
+	<!-- central detectors
+	RTPC is temporarily disabled as it seg fault - probably due to the digitization
 	<detector name="experiments/clas12/rtpc/rtpc"             factory="TEXT" variation="original"/>
+	-->
 	<detector name="experiments/clas12/micromegas/micromegas" factory="TEXT" variation="rgf_spring2020"/>
 
 	<!--ctof, cnd  -->
