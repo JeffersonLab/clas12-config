@@ -3,14 +3,16 @@
 # Compatible with:
 # - coatjava 10.0.3 or later              
 # - gemc 5.2 or later
-io-services:
+io-services
   reader:
     class: org.jlab.io.clara.HipoToHipoReader
     name: HipoToHipoReader
+    - fail
   writer:
     class: org.jlab.io.clara.HipoToHipoWriter
     name: HipoToHipoWriter
 services:
+  fail
   - class: org.jlab.clas.swimtools.MagFieldsEngine
     name: MAGFIELDS
   - class: org.jlab.rec.ft.cal.FTCALEngine
