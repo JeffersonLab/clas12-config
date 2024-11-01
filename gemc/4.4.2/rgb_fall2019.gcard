@@ -1,10 +1,10 @@
 <!-- GEMC 4.4.2 -->
-<gcard>
+gcard>
 	<!-- band detector upstream of the target -->
-	<detector name="experiments/clas12/band/band" factory="TEXT" variation="main"/>
+	<detector name=experiments/clas12/band/band" factory="TEXT" variation="main"/>
 
 	<!-- target. Notice variation give the target type. Can be: lH2, lD2, ND3 -->
-	<detector name="experiments/clas12/targets/cad/"   factory="CAD"/>
+	<detector name="experiments/clas12/targets/cad/"   factory="CAD"/
 	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="lD2"/>
 
 	<!-- central detectors 	-->
