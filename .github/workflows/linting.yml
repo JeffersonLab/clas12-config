@@ -1,4 +1,4 @@
-name: Validation-latest
+name: Linting
 
 on:
   pull_request:
