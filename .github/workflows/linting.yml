@@ -13,9 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
+      - uses: actions/setup-xmllint@v5
+      - uses: Bpolitycki/setup-xmllint-action@1.0.1
       - name: json
         run: python3 -c 'import json ; print(json.load(open("setup.json")))'
       - name: yaml
-        run: python3 -c 'import yaml ; yaml.unsafe_load("\n".join(open("coatjava/10.1.1/clas12-default.yaml").readlines()))'
-#      - name: xml
-#        run: xmllint 
+        run: python3 -c 'import yaml ; print(yaml.unsafe_load("\n".join(open("coatjava/10.1.1/clas12-default.yaml").readlines())))'
+      - name: xml
+        run: xmllint 
