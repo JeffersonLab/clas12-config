@@ -19,4 +19,4 @@ jobs:
       - name: yaml
         run: find . -name '*.yaml' -exec python3 -c 'import yaml ; print(yaml.unsafe_load("\n".join(open("{}").readlines())))' \;
       - name: xml
-        run: find . -name '*.xml' -exec xmllint {} \;
+        run: find . -name '*.gcard' -exec xmllint {} \;
