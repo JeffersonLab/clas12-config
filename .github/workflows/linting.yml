@@ -1,0 +1,21 @@
+name: Validation-latest
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+    tags: [ '*' ]
+  workflow_dispatch:
+
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+      - name: json
+        run: python3 -c 'import json ; print(json.load(open("setup.json")))'
+      - name: yaml
+        run: python3 -c 'import yaml ; yaml.unsafe_load("\n".join(open("coatjava/10.1.1/clas12-default.yaml").readlines()))'
+#      - name: xml
+#        run: xmllint 
