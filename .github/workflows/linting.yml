@@ -15,8 +15,8 @@ jobs:
       - uses: actions/setup-python@v5
       - uses: Bpolitycki/setup-xmllint-action@1.0.1
       - name: json
-        run: find . -name '*.json' -exec python3 -c 'import json ; print(json.load(open("{}")))' \;
+        run: find . -name '*.json' -printf 'import json ; print(json.load(open("%p")))\n' | xargs -0 python3 -c
       - name: yaml
-        run: find . -name '*.yaml' -exec python3 -c 'import yaml ; print(yaml.unsafe_load("\n".join(open("{}").readlines())))' \;
+        run: find . -name '*.yaml' -printf 'import yaml ; print(yaml.unsafe_load("\n".join(open("%p").readlines())))' | xargs -0 python3 -c
       - name: xml
-        run: find . -name '*.gcard' -exec xmllint {} \;
+        run: find . -name '*.gcard' | xargs xmllint
