@@ -3,7 +3,7 @@ name: Validation-latest
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches: [ main, dev ]
     tags: [ '*' ]
   workflow_dispatch:
 
