@@ -3,7 +3,7 @@ name: Linting
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches: [ '*' ]
     tags: [ '*' ]
   workflow_dispatch:
 
