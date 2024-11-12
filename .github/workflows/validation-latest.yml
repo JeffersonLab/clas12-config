@@ -2,11 +2,14 @@ name: Validation-latest
 
 on:
   pull_request:
+    branches-ignore: [ dev ] # PRs which do not target `dev` (cf. `validation-dev.yml`)
   push:
-    branches: [ main ]
-    tags: [ '*' ]
-  workflow_dispatch:
+    branches: [ main ] # pushes on `main` (viz., merging PRs to `main`)
+    tags: [ '*' ] # any tags
+  workflow_dispatch: # manual trigger
 
 jobs:
   validation:
     uses: JeffersonLab/clas12-validation/.github/workflows/ci.yml@main
+    with:
+      gemc_version: match_gcard
