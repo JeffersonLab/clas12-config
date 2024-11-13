@@ -40,26 +40,28 @@ if tagdirs.empty?
 end
 
 # find the config files with the requested basename
-configFiles = tagdirs.map{ |v|
-  Dir.glob("#{subdir}/#{v}/*").find{ |f|
+results = Array.new
+tagdirs.each do |v|
+  configFile = Dir.glob("#{subdir}/#{v}/*").find{ |f|
     File.basename(f).match? /^#{config}\./
   }
-}
-  .compact
+  results << { :version=>v, :file=>configFile } unless configFile.nil?
+end
 
-if configFiles.empty?
+if results.empty?
   $stderr.puts "ERROR: cannot find config file with basename '#{config}' in any versioned subdirectory of '#{subdir}'"
   exit 1
 end
 
 # return the latest version of that config file
+result = results.first
 case output
 when 'file'
-  puts configFiles.first
+  puts result[:file]
 when 'version'
-  puts tagdirs.first
+  puts result[:version]
 when 'both'
-  puts configFiles.first + ' ' + tagdirs.first
+  puts result[:file] + ' ' + result[:version]
 else
   $stderr.puts "ERROR: unknown [OUTPUT] '#{output}'"
   exit 1
