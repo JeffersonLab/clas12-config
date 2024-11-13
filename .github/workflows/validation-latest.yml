@@ -10,7 +10,7 @@ on:
 
 jobs:
   validation:
-    uses: JeffersonLab/clas12-validation/.github/workflows/ci.yml@main
+    uses: JeffersonLab/clas12-validation/.github/workflows/ci.yml@gemc-matrix
     with:
       gemc_version: match_gcard
       git_upstream: >-
