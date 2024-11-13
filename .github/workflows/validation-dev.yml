@@ -19,5 +19,6 @@ jobs:
         }
       git_upstream: >-
         {
+          "clas12Tags":        { "fork": "gemc/clas12Tags",                "ref": "dev"         },
           "clas12-validation": { "fork": "JeffersonLab/clas12-validation", "ref": "gemc-matrix" }
         }
