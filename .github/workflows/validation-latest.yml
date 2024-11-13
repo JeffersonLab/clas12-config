@@ -13,3 +13,7 @@ jobs:
     uses: JeffersonLab/clas12-validation/.github/workflows/ci.yml@main
     with:
       gemc_version: match_gcard
+      git_upstream: >-
+        {
+          "clas12-validation": { "fork": "JeffersonLab/clas12-validation", "ref": "gemc-matrix" }
+        }

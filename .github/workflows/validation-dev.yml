@@ -17,3 +17,7 @@ jobs:
           "coatjava": "latest",
           "gemc":     "dev"
         }
+      git_upstream: >-
+        {
+          "clas12-validation": { "fork": "JeffersonLab/clas12-validation", "ref": "gemc-matrix" }
+        }
