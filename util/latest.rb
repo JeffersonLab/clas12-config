@@ -8,6 +8,7 @@ if ARGV.length < 2
   - [OUTPUT] may be either:
     'file':     return the file name (default behavior)
     'version':  return just the version number
+    'both':     return both file name and version number
   """
   exit 2
 end
@@ -57,6 +58,8 @@ when 'file'
   puts configFiles.first
 when 'version'
   puts tagdirs.first
+when 'both'
+  puts configFiles.first + ' ' + tagdirs.first
 else
   $stderr.puts "ERROR: unknown [OUTPUT] '#{output}'"
   exit 1
