@@ -1,15 +1,20 @@
 #!/usr/bin/env ruby
 
-unless ARGV.length == 2
-  $stderr.puts """USAGE: #{$0} [SUBDIRECTORY] [CONFIG_BASENAME]
-  - obtain the latest version of the config file with basename [CONFIG] from 
+if ARGV.length < 2
+  $stderr.puts """USAGE: #{$0} [SUBDIRECTORY] [CONFIG_BASENAME] [OUTPUT]
+  - obtain the latest version of the config file with basename [CONFIG] from
     [SUBDIRECTORY], assuming [SUBDIRECTORY] contains subdirectories of tag names
   - tag names that are not semantic version numbers, such as `dev`, are ignored
+  - [OUTPUT] may be either:
+    'file':     return the file name (default behavior)
+    'version':  return just the version number
+    'both':     return both file name and version number
   """
   exit 2
 end
 
-subdir, config = ARGV
+subdir, config = ARGV[0..1]
+output = ARGV.length >= 3 ? ARGV[2] : 'file'
 unless Dir.exist? subdir
   $stderr.puts "ERROR: subdirectory '#{subdir}' does not exist"
   exit 1
@@ -35,17 +40,29 @@ if tagdirs.empty?
 end
 
 # find the config files with the requested basename
-configFiles = tagdirs.map{ |v|
-  Dir.glob("#{subdir}/#{v}/*").find{ |f|
+results = Array.new
+tagdirs.each do |v|
+  configFile = Dir.glob("#{subdir}/#{v}/*").find{ |f|
     File.basename(f).match? /^#{config}\./
   }
-}
-  .compact
+  results << { :version=>v, :file=>configFile } unless configFile.nil?
+end
 
-if configFiles.empty?
+if results.empty?
   $stderr.puts "ERROR: cannot find config file with basename '#{config}' in any versioned subdirectory of '#{subdir}'"
   exit 1
 end
 
 # return the latest version of that config file
-puts configFiles.first
+result = results.first
+case output
+when 'file'
+  puts result[:file]
+when 'version'
+  puts result[:version]
+when 'both'
+  puts result[:file] + ' ' + result[:version]
+else
+  $stderr.puts "ERROR: unknown [OUTPUT] '#{output}'"
+  exit 1
+end
