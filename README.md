@@ -9,12 +9,6 @@ Standard gcard/yaml combinations for the different data sets and data-processing
 * _GEMC versions prior to 5.4 do not fully support binary magnetic field maps and CCDB for RF configuration._
 * _COATJAVA versions prior to 10.0.7 do not support AI- denoising or track-finding._
 
-## Validation
-
-The default set of configuration files that is tested by [`clas12-validation`](https://www.github.com/JeffersonLab/clas12-validation) is [found here](.github/ci_config_files.json). The latest version of each configuration file is used, unless overridden by the caller workflow.
-
-
-
 
 ## Run Configurations
 
