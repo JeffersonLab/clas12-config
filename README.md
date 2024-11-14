@@ -1,4 +1,4 @@
-# clas12-config
+# clas12-config 
 
 The standard run-group configuration files for GEMC, COATJAVA, chef workflow configurations, etc.
 
