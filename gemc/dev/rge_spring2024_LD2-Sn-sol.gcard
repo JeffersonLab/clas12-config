@@ -21,8 +21,8 @@
 	<detector name="experiments/clas12/cnd/cnd"                       factory="TEXT" variation="original"/>
 
 	<!--high threshold cherenkov -->
-	<detector name="experiments/clas12/htcc/htcc"           factory="TEXT" variation="original"/>
-	<detector name="experiments/clas12/htcc/cad_fall18/"           factory="CAD"/>
+	<detector name="experiments/clas12/htcc/htcc"  factory="TEXT" variation="fall18"/>
+	<detector name="experiments/clas12/htcc/cad/"  factory="CAD"  variation="fall18"/>
 
 	<!-- magnets -->
 	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT" variation="original"/>
@@ -125,9 +125,5 @@
 	<detector name="solenoid">  <position x="0*cm"  y="0*cm"  z="-3.00*cm"  />  </detector>
 	<option name="DISPLACE_FIELDMAP"     value="binary_solenoid, 0*cm, 0*cm, -3.00*cm" />
 
-	<!--  HTCC shifted upstream by 19.4 mm -->
-	<detector name="htcc">                 <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
-	<detector name="htccEntryWindow">      <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
-	<detector name="htccExitWindow">       <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
 
 </gcard>
