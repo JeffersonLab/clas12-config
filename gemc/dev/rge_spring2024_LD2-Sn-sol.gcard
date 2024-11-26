@@ -21,8 +21,8 @@
 	<detector name="experiments/clas12/cnd/cnd"                       factory="TEXT" variation="original"/>
 
 	<!--high threshold cherenkov -->
-	<detector name="experiments/clas12/htcc/htcc"  factory="TEXT" variation="rga_fall18"/>
-	<detector name="experiments/clas12/htcc/cad/"  factory="CAD"  variation="rga_fall18"/>
+	<detector name="experiments/clas12/htcc/htcc"  factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/htcc/cad/"  factory="CAD"  variation="rga_fall2018"/>
 
 	<!-- magnets -->
 	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT" variation="original"/>
