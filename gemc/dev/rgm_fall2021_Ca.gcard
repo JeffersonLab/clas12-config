@@ -6,7 +6,7 @@
 
 
 	<!-- target. Notice variation give the target type. Can be: lH2, lD2, ND3 -->
-	<detector name="experiments/clas12/targets/cadrgm/"   factory="CAD"/>
+	<detector name="experiments/clas12/targets/cad_rgm/"   factory="CAD"/>
 	<detector name="experiments/clas12/targets/target"    factory="TEXT" variation="RGM_Ca"/>
 
 	<!-- central detectors 	-->
