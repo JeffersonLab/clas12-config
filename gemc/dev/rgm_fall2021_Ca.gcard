@@ -10,7 +10,7 @@
 	<detector name="experiments/clas12/targets/target"    factory="TEXT" variation="RGM_Ca"/>
 
 	<!-- central detectors 	-->
-	<detector name="experiments/clas12/bst/bst"               factory="TEXT" variation="default"/>
+	<detector name="experiments/clas12/bst/bst"               factory="TEXT""/>
 	<detector name="experiments/clas12/bstShield/bstShield"   factory="TEXT" variation="w51"/>
 	<detector name="experiments/clas12/micromegas/micromegas" factory="TEXT" variation="slim"/>
 
@@ -35,7 +35,7 @@
 	<detector name="experiments/clas12/beamline/cad_downstream_beamline/" factory="CAD"/>
 
 	<!-- Detectors in the forward carriage -->
-	<detector name="experiments/clas12/dc/dc"                    factory="TEXT" variation="default"/>
+	<detector name="experiments/clas12/dc/dc"                    factory="TEXT""/>
 	<detector name="experiments/clas12/ftof/ftof"                factory="TEXT" variation="rga_fall2018"/>
 	<detector name="experiments/clas12/ec/ec"                    factory="TEXT" variation="rga_fall2018"/>
 	<detector name="experiments/clas12/pcal/pcal"                factory="TEXT" variation="rga_fall2018"/>
