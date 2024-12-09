@@ -33,12 +33,12 @@
 	<detector name="experiments/clas12/beamline/cad_downstream_beamline/" factory="CAD"/>
 
 	<!-- Detectors in the forward carriage -->
-	<detector name="experiments/clas12/dc/dc"                    factory="TEXT""/>
+	<detector name="experiments/clas12/dc/dc"       factory="TEXT"/>
 	<detector name="experiments/clas12/ftof/ftof"                factory="TEXT""/>
 	<detector name="experiments/clas12/ec/ec"                    factory="TEXT""/>
 	<detector name="experiments/clas12/pcal/pcal"                factory="TEXT""/>
 	<detector name="experiments/clas12/ltcc/ltcc"                factory="TEXT""/>
-	<detector name="experiments/clas12/ltcc/cad/"                factory="CAD"/>
+	<detector name="experiments/clas12/ltcc/cad/"   factory="CAD"/>
 	<detector name="experiments/clas12/rich/rich"                factory="TEXT""/>
 	<detector name="experiments/clas12/rich/cad/"        factory="CAD"/>
 
