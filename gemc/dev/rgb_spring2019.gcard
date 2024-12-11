@@ -9,7 +9,7 @@
 	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="lD2"/>
 
 	<!-- central detectors 	-->
-	<detector name="experiments/clas12/bst/bst"               factory="TEXT""/>
+	<detector name="experiments/clas12/bst/bst"               factory="TEXT"/>
 	<detector name="experiments/clas12/bstShield/bstShield"   factory="TEXT" variation="w51"/>
 	<detector name="experiments/clas12/micromegas/micromegas" factory="TEXT" variation="michel"/>
 
@@ -28,7 +28,7 @@
 
 	<!-- Beamline configuration: FTOn is used -->
 	<detector name="experiments/clas12/ft/ft"                      factory="TEXT" variation="FTOn"/>
-	<detector name="experiments/clas12/beamline/cadBeamline/"      factory="CAD"/>
+	<detector name="experiments/clas12/beamline/cad/"              factory="CAD"  variation="FTOn"/>
 	<detector name="experiments/clas12/beamline/beamline"          factory="TEXT" variation="FTOn"/>
 	<detector name="experiments/clas12/beamline/cad_downstream_beamline/" factory="CAD"/>
 
