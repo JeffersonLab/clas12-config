@@ -5,7 +5,6 @@
 <!--	<detector name="experiments/clas12/ddvcs/cad/"    factory="CAD"/>-->
 
 	<detector name="experiments/clas12/beamline/beamline"          factory="TEXT" variation="FTOff"/>
-	<detector name="experiments/clas12/beamline/cad_downstream_beamline/" factory="CAD"/>
 
 
 	<!-- magnets -->

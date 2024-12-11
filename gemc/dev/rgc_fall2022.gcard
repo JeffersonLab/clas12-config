@@ -29,7 +29,6 @@
 	<!-- Beamline configuration: ELMO is used -->
 	<detector name="experiments/clas12/beamline/cadBeamlineELMO/" factory="CAD"/>
 	<detector name="experiments/clas12/beamline/beamline"         factory="TEXT" variation="ELMO"/>
-	<detector name="experiments/clas12/beamline/cad_downstream_beamline/" factory="CAD"/>
 
 	<!-- Detectors in the forward carriage -->
 	<detector name="experiments/clas12/dc/dc"       factory="TEXT"/>
