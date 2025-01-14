@@ -16,7 +16,7 @@
 	<!--ctof, cnd  -->
 	<detector name="experiments/clas12/ctof/ctof"    factory="TEXT" variation="rga_fall2018"/>
 	<detector name="experiments/clas12/ctof/cad/"    factory="CAD"  variation="rga_fall2018"/>
-	<detector name="experiments/clas12/cnd/cnd"      factory="TEXT" variation="original"/>
+	<detector name="experiments/clas12/cnd/cnd"      factory="TEXT" variation="rga_fall2018"/>
 
 	<!--high threshold cherenkov -->
 	<detector name="experiments/clas12/htcc/htcc"  factory="TEXT" variation="rga_fall2018"/>
@@ -112,7 +112,6 @@
 	<detector name="BMT">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 	<detector name="FMT">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 	<detector name="ctof">      <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
-	<detector name="cnd">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 
 	<!-- solenoid volume and field map shifted upstream by 30 mm -->
 	<detector name="solenoid">  <position x="0*cm"  y="0*cm"  z="-3.00*cm"  />  </detector>
