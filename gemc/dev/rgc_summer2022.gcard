@@ -77,7 +77,7 @@
 	<option name="RUNNO"    value="11" />
 	<option name="DIGITIZATION_VARIATION"  value="rgc_summer2022_mc" />
 
-	<!--  Do not track staff after the apex -->
+	<!--  Do not track staff after the downstream shielding -->
 	<option name="MAX_Z_POS" value="9000"/>
 
 	<!--  Time window defined by LUMI_EVENT -->

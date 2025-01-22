@@ -77,7 +77,7 @@
 	<option name="RUNNO"    value="11" />
 	<option name="DIGITIZATION_VARIATION"  value="default" />
 
-	<!--  Do not track staff after the apex -->
+	<!--  Do not track staff after the downstream shielding -->
 	<option name="MAX_Z_POS" value="9000"/>
 
 	<!--  Time window defined by LUMI_EVENT -->
@@ -98,7 +98,8 @@
 
 	<!-- production threshold for passive volumes -->
 	<!-- beamline shielding: 2cm-->
-	<option name="PRODUCTIONCUTFORVOLUMES" value="innerShieldAndFlange, outerFlange, outerMount, nut1, nut2, nut3, nut4, nut5, nut6, nut7, nut8, nut9, taggerInnerShield,  main-cone, main-cone, adjuster1, adjuster2, adjuster3,   20" />
+	<option name="PRODUCTIONCUTFORVOLUMES" value="innerShieldAndFlange, outerFlange, outerMount, nut1, nut2, nut3, nut4, nut5, nut6, nut7, nut8, nut9, taggerInnerShield,  main-cone,  adjuster1, adjuster2, adjuster3, Apex_Shield_Lead_Fill, Apex_Shield_PCAL_Hub, Downstream_Beam_tube_Segment_1, Downstream_Beam_tube_Segment_2, Torus_Beam_Tube_Reducer_2, Torus_Exit_Shield_Casing, Torus_Exit_Shield_Lead_Fill, 20"/>
+
 
 
 
