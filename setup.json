@@ -14,7 +14,7 @@
 	  "0*cm, 2.5*cm"
 	],
 	"software_versions": [
-	  "gemc/5.10 coatjava/10.1.1"
+	  "gemc/5.11 coatjava/11.1.0"
 	]
   },
   "rga_spring2018": {
@@ -36,8 +36,7 @@
 	],
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.6.1",
-	  "gemc/5.11 coatjava/11.1.0",
-	  "gemc/dev coatjava/11.1.0"
+	  "gemc/5.11 coatjava/11.1.0"
 	]
   },
   "rga_fall2018": {
@@ -65,9 +64,7 @@
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.6.1",
 	  "gemc/5.10 coatjava/10.0.7",
-	  "gemc/5.10 coatjava/10.1.1",
- 	  "gemc/dev coatjava/10.1.1"
-
+	  "gemc/5.11 coatjava/11.1.0"
 	]
   },
   "rga_fall2018_target_at_m3.5": {
@@ -112,7 +109,8 @@
 	],
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.9",
-	  "gemc/5.10 coatjava/10.0.7"
+	  "gemc/5.10 coatjava/10.0.7",
+	  "gemc/5.11 coatjava/11.1.0"
 	]
   },
   "rgb_spring2019": {
@@ -132,7 +130,8 @@
 	],
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.9",
-	  "gemc/5.10 coatjava/10.0.7"
+	  "gemc/5.10 coatjava/10.0.7",
+	  "gemc/5.11 coatjava/11.1.0"
 	]
   },
   "rgb_fall2019": {
@@ -152,7 +151,8 @@
 	],
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.9",
-	  "gemc/5.10 coatjava/10.0.7"
+	  "gemc/5.10 coatjava/10.0.7",
+	  "gemc/5.11 coatjava/11.1.0"
 	]
   },
   "rgc_fall2022": {
@@ -168,7 +168,8 @@
 	  "-3.0*cm, 2.5*cm"
 	],
 	"software_versions": [
-	  "gemc/5.10 coatjava/10.0.9"
+	  "gemc/5.10 coatjava/10.0.9",
+	  "gemc/5.11 coatjava/11.1.0"
         ]
   },
   "rgc_summer2022": {
@@ -185,7 +186,8 @@
 	  "-3.0*cm, 2.5*cm"
 	],
 	"software_versions": [
-	  "gemc/5.10 coatjava/10.0.9"
+	  "gemc/5.10 coatjava/10.0.9",
+	  "gemc/5.11 coatjava/11.1.0"
 	]
   },
   "rgk_fall2018_FTOff": {
@@ -206,7 +208,8 @@
 	],
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.6.1",
-	  "gemc/5.10 coatjava/10.0.7"
+	  "gemc/5.10 coatjava/10.0.7",
+	  "gemc/5.11 coatjava/11.1.0"
 	]
   },
   "rgk_fall2018_FTOn": {
@@ -227,7 +230,8 @@
 	],
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.6.1",
-	  "gemc/5.10 coatjava/10.0.7"
+	  "gemc/5.10 coatjava/10.0.7",
+	  "gemc/5.11 coatjava/11.1.0"
 	]
   },
   "ddvcs": {
@@ -243,7 +247,8 @@
 	  "0.0*cm, 2.5*cm"
 	],
 	"software_versions": [
-	  "gemc/5.10 coatjava/10.1.1"
+	  "gemc/5.10 coatjava/10.1.1",
+	  "gemc/5.11 coatjava/11.1.0"
         ]
   },
   "rge_spring2024_LD2-Al-sol": {
@@ -259,7 +264,7 @@
 	  "-1.0*cm, 0.6*mm"
 	],
 	"software_versions": [
-	  "gemc/dev coatjava/10.1.1"
+	  "gemc/5.11 coatjava/11.1.0"
         ]
   },
   "rge_spring2024_LD2-C-sol": {
@@ -275,7 +280,7 @@
 	  "-1.0*cm, 0.74*mm"
 	],
 	"software_versions": [
-	  "gemc/dev coatjava/10.1.1"
+	  "gemc/5.11 coatjava/11.1.0"
         ]
   },
   "rge_spring2024_LD2-Cu-sol": {
@@ -291,7 +296,7 @@
 	  "-1.0*cm, 0.18*mm"
 	],
 	"software_versions": [
-	  "gemc/dev coatjava/10.1.1"
+	  "gemc/5.11 coatjava/11.1.0"
         ]
   },
   "rge_spring2024_LD2-Sn-sol": {
@@ -307,7 +312,7 @@
 	  "-1.0*cm, 0.15*mm"
 	],
 	"software_versions": [
-	  "gemc/dev coatjava/10.1.1"
+	  "gemc/5.11 coatjava/11.1.0"
         ]
   },
   "rge_spring2024_LD2-Pb-sol": {
@@ -323,7 +328,7 @@
 	  "-1.0*cm, 0.07*mm"
 	],
 	"software_versions": [
-	  "gemc/dev coatjava/10.1.1"
+	  "gemc/5.11 coatjava/11.1.0"
         ]
   },
   "rge_spring2024_LD2-Al-liq": {
@@ -339,7 +344,7 @@
 	  "-6.0*cm, 1.0*cm"
 	],
 	"software_versions": [
-	  "gemc/dev coatjava/10.1.1"
+	  "gemc/5.11 coatjava/11.1.0"
         ]
   },
   "rge_spring2024_LD2-C-liq": {
@@ -355,7 +360,7 @@
 	  "-6.0*cm, 1.0*cm"
 	],
 	"software_versions": [
-	  "gemc/dev coatjava/10.1.1"
+	  "gemc/5.11 coatjava/11.1.0"
         ]
   },
   "rge_spring2024_LD2-Cu-liq": {
@@ -371,7 +376,7 @@
 	  "-6.0*cm, 1.0*cm"
 	],
 	"software_versions": [
-	  "gemc/dev coatjava/10.1.1"
+	  "gemc/5.11 coatjava/11.1.0"
         ]
   },
   "rge_spring2024_LD2-Sn-liq": {
@@ -387,7 +392,7 @@
 	  "-6.0*cm, 1.0*cm"
 	],
 	"software_versions": [
-	  "gemc/dev coatjava/10.1.1"
+	  "gemc/5.11 coatjava/11.1.0"
         ]
   },
   "rge_spring2024_LD2-Pb-liq": {
@@ -403,7 +408,7 @@
 	  "-6.0*cm, 1.0*cm"
 	],
 	"software_versions": [
-	  "gemc/dev coatjava/10.1.1"
+	  "gemc/5.11 coatjava/11.1.0"
         ]
   }
 }
