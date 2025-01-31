@@ -15,7 +15,7 @@
 
 	<!--ctof, cnd  -->
 	<detector name="experiments/clas12/ctof/ctof"    factory="TEXT"/>
-	<detector name="experiments/clas12/ctof/cad/"    factory="CAD" "/>
+	<detector name="experiments/clas12/ctof/cad/"    factory="CAD"/>
 	<detector name="experiments/clas12/cnd/cnd"      factory="TEXT" variation="default"/>
 
 	<!--high threshold cherenkov -->
