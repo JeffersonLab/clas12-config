@@ -16,13 +16,13 @@
 	<detector name="experiments/clas12/micromegas/micromegas" factory="TEXT" variation="rgf_spring2020"/>
 
 	<!--ctof, cnd  -->
-	<detector name="experiments/clas12/ctof/ctof"                     factory="TEXT" variation="rga_fall2018"/>
-	<detector name="experiments/clas12/ctof/javacad_rga_fall2018/"    factory="CAD"/>
-	<detector name="experiments/clas12/cnd/cnd"                       factory="TEXT" variation="original"/>
+	<detector name="experiments/clas12/ctof/ctof"    factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/ctof/cad/"    factory="CAD"  variation="rga_fall2018"/>
+	<detector name="experiments/clas12/cnd/cnd"      factory="TEXT" variation="rga_fall2018"/>
 
 	<!--high threshold cherenkov -->
-	<detector name="experiments/clas12/htcc/htcc"           factory="TEXT" variation="original"/>
-	<detector name="experiments/clas12/htcc/cad_fall18/"    factory="CAD"/>
+	<detector name="experiments/clas12/htcc/htcc"  factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/htcc/cad/"  factory="CAD"  variation="rga_fall2018"/>
 
 	<!-- magnets -->
 	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT" variation="original"/>
@@ -30,20 +30,18 @@
 
 	<!-- Beamline configuration: FTOff is used -->
 	<detector name="experiments/clas12/ft/ft"                      factory="TEXT" variation="FTOff"/>
-	<detector name="experiments/clas12/beamline/cadBeamlineFTOFF/" factory="CAD"/>
+	<detector name="experiments/clas12/beamline/cad/"              factory="CAD"  variation="FTOff"/>
 	<detector name="experiments/clas12/beamline/beamline"          factory="TEXT" variation="FTOff"/>
-	<detector name="experiments/clas12/beamline/cad_downstream_beamline/" factory="CAD"/>
 
 	<!-- Detectors in the forward carriage -->
-	<detector name="experiments/clas12/dc/dc"                    factory="TEXT" variation="default"/>
-	<detector name="experiments/clas12/ftof/ftof"                factory="TEXT" variation="rga_fall2018"/>
-	<detector name="experiments/clas12/ec/ec"                    factory="TEXT" variation="rga_fall2018"/>
-	<detector name="experiments/clas12/pcal/pcal"                factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/dc/dc"       factory="TEXT"/>
+	<detector name="experiments/clas12/ftof/ftof"   factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/ec/ec"       factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/pcal/pcal"   factory="TEXT" variation="rga_fall2018"/>
 	<detector name="experiments/clas12/ltcc/ltcc"                factory="TEXT" variation="rgb_spring2019"/>
-	<detector name="experiments/clas12/ltcc/cad_cone/"           factory="CAD"/>
-	<detector name="experiments/clas12/ltcc/cad/"                factory="CAD"/>
-	<detector name="experiments/clas12/rich/rich"                factory="TEXT" variation="rga_fall2018"/>
-	<detector name="experiments/clas12/rich/cad_rga_fall2018/"   factory="CAD"/>
+	<detector name="experiments/clas12/ltcc/cad/"   factory="CAD"/>
+	<detector name="experiments/clas12/rich/rich"   factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/rich/cad/"   factory="CAD" variation="rga_fall2018"/>
 
 
 	<!-- you can scale the fields here. Remember torus -1 means e- INBENDING  -->
@@ -115,8 +113,6 @@
 	<detector name="BMT">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 	<!--  notice no shift of MM as its geometry its already centered at -3 cm in the micromegas rgf_spring2020 variation-->
 	<detector name="FMT">       <position x="0*cm"     y="0*cm"     z="0.00*cm"  />  </detector>
-	<detector name="ctof">      <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
-	<detector name="cnd">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 
 	<!-- solenoid volume and field map shifted upstream by 30 mm -->
 	<detector name="solenoid">  <position x="0*cm"  y="0*cm"  z="-3.00*cm"  />  </detector>
