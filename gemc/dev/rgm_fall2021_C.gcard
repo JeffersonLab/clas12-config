@@ -7,7 +7,7 @@
 
 	<!-- target. Notice variation give the target type. Can be: lH2, lD2, ND3 -->
 	<detector name="experiments/clas12/targets/cad_rgm/"   factory="CAD"/>
-	<detector name="experiments/clas12/targets/target"    factory="TEXT" variation="RGM_2_C"/>
+	<detector name="experiments/clas12/targets/target"     factory="TEXT" variation="RGM_2_C"/>
 
 	<!-- central detectors 	-->
 	<detector name="experiments/clas12/bst/bst"               factory="TEXT"/>
@@ -38,10 +38,10 @@
 	<detector name="experiments/clas12/ftof/ftof"   factory="TEXT" variation="rga_fall2018"/>
 	<detector name="experiments/clas12/ec/ec"       factory="TEXT" variation="rga_fall2018"/>
 	<detector name="experiments/clas12/pcal/pcal"   factory="TEXT" variation="rga_fall2018"/>
-	<detector name="experiments/clas12/ltcc/ltcc"                factory="TEXT" variation="rgm_winter2021"/>
+	<detector name="experiments/clas12/ltcc/ltcc"   factory="TEXT" variation="rgm_winter2021"/>
 	<detector name="experiments/clas12/ltcc/cad/"   factory="CAD"/>
 	<detector name="experiments/clas12/rich/rich"   factory="TEXT" variation="rga_fall2018"/>
-	<detector name="experiments/clas12/rich/cad/"   factory="CAD" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/rich/cad/"   factory="CAD"  variation="rga_fall2018"/>
 
 
 	<!-- you can scale the fields here. Remember torus -1 means e- INBENDING  -->
