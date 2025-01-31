@@ -19,8 +19,11 @@
   },
   "rga_spring2018": {
 	"tor-1.00_sol-1.00": [
+          "35nA_10594MeV",
+          "50nA_10594MeV"
 	],
 	"tor+1.00_sol-1.00": [
+          "45nA_10594MeV"
 	],
 	"raster": [
 	  "0.0*cm, 0.0*cm"
@@ -33,7 +36,8 @@
 	],
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.6.1",
-	  "gemc/5.10 coatjava/10.0.7"
+	  "gemc/5.11 coatjava/11.1.0",
+	  "gemc/dev coatjava/11.1.0"
 	]
   },
   "rga_fall2018": {
@@ -61,7 +65,9 @@
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.6.1",
 	  "gemc/5.10 coatjava/10.0.7",
-	  "gemc/5.10 coatjava/10.1.1"
+	  "gemc/5.10 coatjava/10.1.1",
+ 	  "gemc/dev coatjava/10.1.1"
+
 	]
   },
   "rga_fall2018_target_at_m3.5": {
