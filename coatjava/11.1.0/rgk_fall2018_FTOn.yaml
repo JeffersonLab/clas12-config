@@ -1,7 +1,7 @@
 # YAML file for RG-A Fall2018 Pass2 simulations
 # Uses AI-assisted tracking and denoising
 # Compatible with:
-# - coatjava 11.1.0 or later              
+# - coatjava 11.1.0 or later
 # - gemc 5.11 or later
 io-services:
   reader:
@@ -82,7 +82,7 @@ configuration:
     DCCR:
       rawBankGroup: "NOISE1"
     MLTD:
-      run: "5197"
+      run: "5901"
     DCHAI:
       outputBankPrefix: "HB"
     RTPC:

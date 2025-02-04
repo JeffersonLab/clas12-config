@@ -1,7 +1,7 @@
-# YAML file for RG-A Fall2018 Pass2 simulations
-# Uses AI-assisted tracking and denoising
+# YAML file for RG-F Summer2020 pass1v1 simulations
+# Uses AI-assisted tracking and no denoising
 # Compatible with:
-# - coatjava 11.1.0 or later              
+# - coatjava 11.1.0 or later
 # - gemc 5.11 or later
 io-services:
   reader:
@@ -65,7 +65,7 @@ services:
     name: MC
 configuration:
   global:
-    variation: rga_fall2018_mc
+    variation: rgf_summer2020_mc
     dcMinistagger: "NOTONREFWIRE"
     dcFeedthroughs: "OFF"
 #    timestamp: 07/27/2023-12:00:00
@@ -80,9 +80,9 @@ configuration:
       magfieldSolenoidMap: Symm_solenoid_r601_phi1_z1201_13June2018.dat
       magfieldTorusMap: Symm_torus_r2501_phi16_z251_24Apr2018.dat
     DCCR:
-      rawBankGroup: "NOISE1"
+      rawBankGroup: "NODENOISE"
     MLTD:
-      run: "5197"
+      run: "12922"
     DCHAI:
       outputBankPrefix: "HB"
     RTPC:
