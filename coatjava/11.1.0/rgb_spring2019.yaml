@@ -1,7 +1,7 @@
-# YAML file for RG-A Fall2018 Pass2 simulations
+# YAML file for RG-B Spring2019 Pass2 simulations
 # Uses AI-assisted tracking and denoising
 # Compatible with:
-# - coatjava 11.1.0 or later              
+# - coatjava 11.1.0 or later
 # - gemc 5.11 or later
 io-services:
   reader:
@@ -65,7 +65,7 @@ services:
     name: MC
 configuration:
   global:
-    variation: rga_fall2018_mc
+    variation: rgb_spring2019_mc
     dcMinistagger: "NOTONREFWIRE"
     dcFeedthroughs: "OFF"
 #    timestamp: 07/27/2023-12:00:00
@@ -82,9 +82,13 @@ configuration:
     DCCR:
       rawBankGroup: "NOISE1"
     MLTD:
-      run: "5197"
+      run: "6302"
     DCHAI:
       outputBankPrefix: "HB"
+    CVTFP:
+      targetMat: "LD2"
+    CVTSP:
+      targetMat: "LD2"
     RTPC:
       rtpcSimulation: "true"
       

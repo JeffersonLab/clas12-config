@@ -1,8 +1,8 @@
 # YAML file for RG-B Spring2019 Pass2 simulations
 # Uses AI-assisted tracking and denoising
 # Compatible with:
-# - coatjava 9.0.2 or later
-# - gemc 5.2 or later
+# - coatjava 11.1.0 or later
+# - gemc 5.11 or later
 io-services:
   reader:
     class: org.jlab.io.clara.HipoToHipoReader
@@ -66,12 +66,14 @@ services:
 configuration:
   global:
     variation: rga_fall2018_mc
+    dcMinistagger: "NOTONREFWIRE"
+    dcFeedthroughs: "OFF"
 #    timestamp: 07/27/2023-12:00:00
 # uncomment to use bank filtering based on schema, schema path should be updated 
 # to point to the correct coatjava folder
 #  io-services:
 #    writer:
-#      schema_dir: /group/clas12/packages/clara/5.0.2_10.0.2/plugins/clas12/etc/bankdefs/hipo4/singles/dst
+#      schema_dir: /scigroup/cvmfs/hallb/clas12/sw/noarch/clara/5.0.2_11.1.0/plugins/clas12/etc/bankdefs/hipo4/singles/dst
   services:
 # should match the field maps used in the gemc simulation
     MAGFIELDS:
