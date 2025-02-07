@@ -13,7 +13,7 @@
 	<!-- central detectors 	-->
 	<detector name="experiments/clas12/bst/bst"               factory="TEXT" />
 	<detector name="experiments/clas12/bstShield/bstShield"   factory="TEXT" variation="w51-rge"/>
-	<detector name="experiments/clas12/micromegas/micromegas" factory="TEXT" variation="michel"/>
+	<detector name="experiments/clas12/micromegas/micromegas" factory="TEXT" variation="rga_spring2018"/>
 
 	<!--ctof, cnd  -->
 	<detector name="experiments/clas12/ctof/ctof"    factory="TEXT" variation="rga_fall2018"/>
