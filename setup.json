@@ -108,7 +108,7 @@
 	  "-3.0*cm, 2.5*cm"
 	],
 	"software_versions": [
-	  "gemc/4.4.2 coatjava/6.5.9",
+	  "gemc/4.4.2 coatjava/6.5.6.1",
 	  "gemc/5.10 coatjava/10.0.7",
 	  "gemc/5.11 coatjava/11.1.0"
 	]
