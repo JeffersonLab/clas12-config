@@ -26,10 +26,10 @@
 	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT" variation="original"/>
 	<detector name="experiments/clas12/magnets/cad/"     factory="CAD" />
 
-	<!-- Beamline configuration: FTOn is used -->
-	<detector name="experiments/clas12/ft/ft"                      factory="TEXT" variation="rgb_spring2019"/>
-	<detector name="experiments/clas12/beamline/cad/"              factory="CAD"  variation="FTOn"/>
-	<detector name="experiments/clas12/beamline/beamline"          factory="TEXT" variation="FTOn"/>
+	<!-- FT/Beamline configuration -->
+	<detector name="experiments/clas12/ft/ft"             factory="TEXT" variation="rgb_spring2019"/>
+	<detector name="experiments/clas12/beamline/cad/"     factory="CAD"  variation="rgb_spring2019"/>
+	<detector name="experiments/clas12/beamline/beamline" factory="TEXT" variation="rgb_spring2019"/>
 
 	<!-- Detectors in the forward carriage -->
 	<detector name="experiments/clas12/dc/dc"       factory="TEXT"/>
