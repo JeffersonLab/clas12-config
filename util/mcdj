@@ -1,0 +1,258 @@
+#!/usr/bin/env python3
+
+_logger = None
+
+import os
+import sys
+import logging
+
+class ColoredFormatter(logging.Formatter):
+    def __init__(self, msg):
+        self.length = 20
+        self.colors = {'WARNING':35,'CRITICAL':31,'ERROR':31}
+        self.reset_seq = '\033[0m'
+        self.color_seq = '\033[1;%dm'
+        logging.Formatter.__init__(self, msg)
+    def format(self, record):
+        if record.levelname in self.colors:
+            l = record.levelname
+            record.levelname = '%-20s'%( (self.color_seq % self.colors[l]) + l + self.reset_seq)
+            record.msg =  self.color_seq % (self.colors[l]) + record.msg + self.reset_seq
+        else:
+            l = self.length - len(self.reset_seq) - len(self.color_seq)
+            record.levelname = ('%%-%ds'%l) % record.levelname
+        return logging.Formatter.format(self, record)
+
+class ColoredLogger(logging.Logger):
+    def __init__(self, name):
+        logging.Logger.__init__(self, name, logging.INFO)
+        console = ExitingStreamHandler()
+        console.setFormatter(ColoredFormatter('[%(levelname)s] %(message)s'))
+        self.addHandler(console)
+        return
+
+class ExitingStreamHandler(logging.StreamHandler):
+    def emit(self, record):
+        self.setFormatter(ColoredFormatter('[%(levelname)s] %(message)s'))
+        super().emit(record)
+        if record.levelno >= logging.CRITICAL:
+            sys.exit(record.levelno)
+
+def run(cmd, dryrun=False, quiet=False):
+    _logger.info(' '.join(cmd))
+    if dryrun: return 0
+    import subprocess
+    p = subprocess.Popen(cmd,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,universal_newlines=True,encoding='latin-1')
+    if not quiet:
+        for line in iter(p.stdout.readline, ''):
+            if len(line.strip())>0:
+                print(line.rstrip())
+    p.wait()
+    return p.returncode
+
+# choose output filename based on input filename and new prefix/suffix:
+def get_out(inp, prefix=None, suffix=None):
+    o = os.path.basename(inp)
+    if suffix:
+        if o.rfind('.') > 0:
+            o = o[:o.rfind('.')]
+        o = o + suffix
+    if prefix:
+        o = prefix + o
+    if os.path.exists(o):
+        _logger.critical(f'output file {o} already exists, for input {inp}')
+    return o
+
+# run a clas12-mcgen event genetator:
+def generate(cfg):
+    o = cfg.gen[0]+'.dat'
+    cmd = [cfg.gen[0]]
+    cmd.extend(['--docker','--trig',str(cfg.nevents),'--seed',str(cfg.seed)])
+    cmd.extend(cfg.gen[1:])
+    return run(cmd, cfg.dryrun), o
+
+# run GEMC, with LUND input or internal generator:
+def gemc(cfg, lund=None):
+    cmd = ['gemc',cfg.gcard,f'-RUNNO={cfg.run}','-USE_GUI=0',f'-N={cfg.nevents}']
+    if cfg.match:
+        cmd.extend(['-SAVE_ALL_MOTHERS=1','-SKIPREJECTEDHITS=1','-INTEGRATEDRAW="*"','-NGENP=50'])
+    if lund:
+        o = get_out(lund, suffix='.hipo')
+        cmd.append(f'-INPUT_GEN_FILE=LUND,{lund}')
+    else:
+        o = 'gemc.hipo'
+        cmd.extend(cfg.gen[1:])
+    cmd.append(f'-OUTPUT=hipo,{o}')
+    return run(cmd, cfg.dryrun), o
+
+# run background merging:
+def bgmerge(cfg, inp):
+    o = get_out(inp, prefix='bg_')
+    cmd=['bg-merger','-i',inp,'-o',o]
+    cmd.extend(cfg.bgmerge)
+    return run(cmd, cfg.dryrun), o
+
+# run denoising:
+def denoise(cfg, inp):
+    o = get_out(inp, prefix='dn_')
+    cmd=['denoise2.exe','-o',o,cfg.bgmerge]
+    return run(cmd, cfg.dryrun), o
+
+# run reconstruction:
+def recon(cfg, inp):
+    o = get_out(inp, prefix='rec_')
+    cmd=['recon-util','-y',cfg.yaml,'-i',inp,'-o',o]
+    return run(cmd, cfg.dryrun), o
+
+# run dst maker:
+def dst(cfg, inp):
+    o = get_out(inp, prefix='dst_')
+    cmd=['dst-maker','-o',o,inp]
+    return run(cmd, cfg.dryrun), o
+
+# get check clas12-config for the requested configuration files:
+def get_config_repo(stub, tag='main'):
+    uri = 'https://github.com/jeffersonlab/clas12-config'
+    if not os.path.isdir('./clas12-config'):
+        _logger.info(f'retrieving {uri} ...')
+        if run(['git','clone','--branch',tag,'--depth','1',uri]):
+            _logger.critical('failed to get clas12-config repo.')
+    _logger.info('checking existing ./clas12-config directory ...')
+    if not os.path.isfile(f'./clas12-config/{stub}'):
+        _logger.critical(f'failed to find {stub} in {uri}')
+    _logger.info(f'using config file from {uri}/blob/{tag}/{stub}')
+    return os.path.abspath(f'./clas12-config/{stub}')
+
+# retrieve background file via xrootd:
+def get_background_file(b):
+    uri = 'xroot://sci-xrootd.jlab.org'
+    d = '/osgpool/hallb/clas12/backgroundfiles'
+    if not b.startswith('/') or not run(['xrdfs',uri,'ls',b]):
+        b = f'{d}/{b}'
+        if 0 != run(['xrdfs',uri,'ls',b]):
+            _logger.critical('failed to find background file:  '+b)
+    if 0 != run(['xrdcp',f'{uri}/{b}','.']):
+        _logger.critical('failed to retrieve background file:  '+b)
+    return os.path.basename(b)
+
+# process a LUND file through entire simulation workflow:
+def lund_workflow(cfg, lund):
+    ret,o = gemc(cfg, lund)
+    if ret != 0: _logger.critical('gemc failed.')
+    if len(cfg.bgmerge) > 0:
+        ret,o = bgmerge(cfg, o)
+        if ret != 0: _logger.critical('background merging failed.')
+    if cfg.denoise:
+        ret,o = denoise(cfg, o)
+        if ret != 0: _logger.critical('denoising failed.')
+    ret,o = recon(cfg, o)
+    if ret != 0: _logger.critical('reconstruction failed.')
+    ret,o = dst(cfg, o)
+    if ret != 0: _logger.critical('dst making failed.')
+
+# make and change to a new working directory: 
+def mkworkdir(d):
+    import tempfile
+    import datetime
+    if not os.path.isdir(d):
+        if os.path.isfile(d): _logger.critical(f'invalid --tmpdir {cfg.tmpdir} is a file')
+        try: os.makedirs(d)
+        except AttributeError as e: _logger.critical(f'error creating directory --tmpdir {cfg.tmpdir}')
+    date =datetime.datetime.now().strftime('%Y%m%d-%H:%M:%S')
+    try: d = tempfile.mkdtemp(dir=d,prefix=f'mcdj-{date}-')
+    except OSError as e: _logger.critical('error creating new directory in --tmpdir {cfg.tmpdir}')
+    _logger.warning(f'using new working directory:  {d} ...')
+    os.chdir(d)
+    return d
+
+def configure(args):
+
+    # parse command-line:
+    import argparse
+    cli = argparse.ArgumentParser(description='CLAS12 Monte-Carlo Deejay',
+            epilog='Note, generator command-line options should be placed after a "--".  '
+            'See https://github.com/jeffersonlab/clas12-config for configuration files.')
+    cli.add_argument('-r','--run',default=11,type=int,help='run number (default=11)',metavar='#')
+    cli.add_argument('-t','--threads',default=1,type=int,help='number of threads (default=1)',metavar='#')
+    cli.add_argument('-n','--nevents',default=1,type=int,help='number of events (default=1)',metavar='#')
+    cli.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)',metavar='#')
+    cli.add_argument('-g','--gcard',required=True,type=str,help='GEMC gcard configuration file',metavar='G')
+    cli.add_argument('-y','--yaml',required=True,type=str,help='COATJAVA yaml configuration file',metavar='C')
+    cli.add_argument('-b','--bgmerge',default=[],action='append',help='background files for merging',metavar='B')
+    cli.add_argument('-m','--match',default=False,action='store_true',help='enable truth matching')
+    cli.add_argument('-d','--denoise',default=False,action='store_true',help='enable denoising')
+    cli.add_argument('-v','--verbose',default=0,action='count',help='verbosity (repeatable)')
+    cli.add_argument('--tmpdir',default='.',help='temporary directory location (default=.)')
+    cli.add_argument('--dryrun',default=False,action='store_true',help='dry run')
+    cli.add_argument('gen',nargs='+',help='generator command line or LUND file')
+    cfg = cli.parse_args(args)
+
+    # configure logger:
+    global _logger
+    logging.setLoggerClass(ColoredLogger)
+    _logger = logging.getLogger(__name__)
+    _logger.setLevel(20-10*cfg.verbose)
+
+    # check existence of executables in $PATH:
+    import shutil
+    executables = ['gemc','bg-merger','denoise2.exe','recon-util','dst-maker']
+    for exe in filter(lambda x: not shutil.which(x), executables):
+        _logger.critical('executable not found in $PATH: '+exe)
+
+    # determine event generator:
+    if cfg.gen[0] == 'gemc':
+        _logger.warning('using GEMC internal generator.')
+        _logger.warning('using generator options:  '+' '.join(cfg.gen[1:]))
+    elif shutil.which(cfg.gen[0]):
+        _logger.warning('using generator found in $PATH:  '+shutil.which(cfg.gen[0]))
+        _logger.warning('using generator options:  '+' '.join(cfg.gen[1:]))
+    else:
+        if cfg.gen[0].lower() != 'lund':
+            cfg.gen.insert(0, 'lund')
+        _logger.warning('generator not found in $PATH, interpreting as LUND file(s) ...')
+        for f in filter(lambda x: not os.path.isfile(x),cfg.gen):
+            _logger.critical(f'LUND file does not exist:  {f}.')
+
+    # do everything in a new working directory:
+    mkworkdir(cfg.tmpdir)
+
+    # retrieve configuration files, if necessary:
+    retrieve(cfg)
+
+    _logger.debug('config:  '+str(cfg))
+    return cfg
+
+def retrieve(cfg):
+
+    # check/retrieve configuration files:
+    if not os.path.isfile(cfg.gcard):
+        _logger.warning(f'--gcard {cfg.gcard} is not a local file, trying to get it from clas12-config ...')
+        cfg.gcard = get_config_repo(cfg.gcard)
+        if not cfg.gcard:
+            _logger.critical(f'could not determine GCARD file from --gcard:  {cfg.gcard}.')
+    if not os.path.isfile(cfg.yaml):
+        _logger.warning(f'--yaml {cfg.yaml} is not a local file, trying to get it from clas12-config ...')
+        cfg.yaml = get_config_repo(cfg.yaml)
+        if not cfg.yaml:
+            _logger.critical(f'could not determine YAML file from --yaml:  {cfg.yaml}.')
+
+    # check/retrieve background files:
+    for i,b in enumerate(cfg.bgmerge):
+        if not os.path.isfile(b):
+            cfg.bgmerge[i] = get_background_file(b)
+
+def main(argv):
+
+    cfg = configure(argv)
+
+    if cfg.gen[0] == 'lund':
+        for lund in cfg.gen[1:]:
+            lund_workflow(cfg, lund)
+    else:
+        ret,o = generate(cfg)
+        if ret != 0: _logger.critical(f'generator {cfg.gen[0]} failed.')
+        lund_workflow(cfg, o)
+
+if __name__ == '__main__':
+    main(sys.argv[1:])
+
