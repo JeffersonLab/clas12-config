@@ -23,7 +23,7 @@
 	<detector name="experiments/clas12/htcc/cad/"  factory="CAD"  variation="rga_spring2018"/>
 
 	<!-- magnets -->
-	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT" variation="original"/>
+	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT"/>
 	<detector name="experiments/clas12/magnets/cad/"     factory="CAD" />
 
 	<!-- FT/Beamline configuration -->
@@ -112,7 +112,6 @@
 	<detector name="FMT">       <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
 
 	<!-- solenoid volume and field map shifted upstream by 19.4 mm -->
-	<detector name="solenoid">  <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
 	<option name="DISPLACE_FIELDMAP"     value="binary_solenoid, 0*cm, 0*cm, -1.94*cm" />
 
 

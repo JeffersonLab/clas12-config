@@ -8,7 +8,7 @@
 
 
 	<!-- magnets -->
-	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT" variation="original"/>
+	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT"/>
 	<detector name="experiments/clas12/magnets/cad/"     factory="CAD" />
 
 
