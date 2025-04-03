@@ -103,5 +103,5 @@
 	<detector name="solenoid">  <position x="0*cm"  y="0*cm"  z="-3.00*cm"  />  </detector>
 	<option name="DISPLACE_FIELDMAP"     value="binary_solenoid, 0*cm, 0*cm, -3.00*cm" />
 	
-	
+
 </gcard>
