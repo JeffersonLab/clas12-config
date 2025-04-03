@@ -64,7 +64,7 @@
 	<!--  Do not track staff after the downstream shielding -->
 	<option name="MAX_Z_POS" value="9000"/>
 
-	<!--  Time window defined by LUMI_EVENT -->
+	<!--  Time window defined by LUMI_EVENT -->l
 	<option name="LUMI_EVENT"  value="0, 248.5*ns, 4*ns" />
 	<!--  Uncomment this (and replace the LUMI_EVENT Above) to simulate 10^35 luminosity beam on a 5cm liquid hydrogen target, use 124K e- / event   -->
 	<!--  Scale accordingly for different target / luminosity  -->
@@ -81,13 +81,8 @@
 	<option name="RFSTART"     value="eventVertex, 0, 0, -19.4" />
 
 	<!-- production threshold for passive volumes -->
-	<!-- beamline shielding: 2cm-->
+	<!-- beamline shielding and torus magnet: 2cm-->
 	<option name="PRODUCTIONCUTFORVOLUMES" value="innerShieldAndFlange, outerFlange, outerMount, nut1, nut2, nut3, nut4, nut5, nut6, nut7, nut8, nut9, taggerInnerShield,  main-cone,  adjuster1, adjuster2, adjuster3, Apex_Shield_Lead_Fill, Apex_Shield_PCAL_Hub, Downstream_Beam_tube_Segment_1, Downstream_Beam_tube_Segment_2, Torus_Beam_Tube_Reducer_2, Torus_Exit_Shield_Casing, Torus_Exit_Shield_Lead_Fill, 20"/>
-
-
-
-
-	<!-- torus magnet: 2cm-->
 	<option name="PRODUCTIONCUTFORVOLUMES" value="BoreShield, CenterTube, DownstreamShieldingPlate, DownstreamVacuumJacket, WarmBoreTube, apex, Shield1, Shield2, Shield3, Shield4, Shield5, Shield6, Shield7, shell1a, shell1b, shell2a, shell2b, shell3a, shell3b, shell4a, shell4b, shell5a, shell5b, shell6a, shell6b, 20" />
 
 	<detector name="target">    <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
@@ -97,6 +92,7 @@
 	<detector name="BMT">       <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
 	<detector name="FMT">       <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
 
+	<detector name="bstShield"> <position x="0*cm"     y="0*cm"     z="--1.94*cm"  />  </detector>
 	<option name="DISPLACE_FIELDMAP" value="binary_solenoid, 0*cm, 0*cm, -1.94*cm" />
 
 
