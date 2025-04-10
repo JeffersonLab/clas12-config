@@ -9,16 +9,4 @@ on:
 
 jobs:
   validation:
-    uses: JeffersonLab/clas12-validation/.github/workflows/ci.yml@main
-    with:
-      num_events: 500
-      gemc_version: build
-      config_file_versions: >-
-        {
-          "coatjava": "latest",
-          "gemc":     "dev"
-        }
-      git_upstream: >-
-        {
-          "clas12Tags": { "fork": "gemc/clas12Tags", "ref": "dev" }
-        }
+    uses: gemc/clas12Tags/.github/workflows/experiment_test.yml@main
