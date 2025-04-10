@@ -9,13 +9,13 @@
 
 
 	<!-- magnets -->
-	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT" variation="default"/>
+	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT" />
 	<detector name="experiments/clas12/magnets/cad/"     factory="CAD" variation="rga_fall2018"/>
 
 	<detector name="experiments/clas12/cnd/cnd"                       factory="TEXT" variation="default"/>
 
 	<detector name="experiments/clas12/uRwell/uRwell"             factory="TEXT" variation="default_1R"/>
-	<detector name="experiments/clas12/dc/dc"                     factory="TEXT" variation="default"/>
+	<detector name="experiments/clas12/dc/dc"                     factory="TEXT" />
 	<detector name="experiments/clas12/ftof/ftof"                 factory="TEXT" variation="rga_spring2018"/>
 	<detector name="experiments/clas12/ec/ec"                     factory="TEXT" variation="rga_spring2018"/>
 	<detector name="experiments/clas12/pcal/pcal"                 factory="TEXT" variation="rga_spring2018"/>
