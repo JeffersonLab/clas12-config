@@ -1,4 +1,4 @@
-name: gcards test
+name: Gcards test
 
 on:
   pull_request:
