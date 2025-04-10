@@ -1,4 +1,4 @@
-name: Validation-dev
+name: gcards test
 
 on:
   pull_request:
