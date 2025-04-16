@@ -261,7 +261,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-1.0*cm, 0.6*mm"
+	  "-1.5*cm, 0.6*mm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
@@ -277,7 +277,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-1.0*cm, 0.74*mm"
+	  "-1.5*cm, 0.74*mm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
@@ -293,7 +293,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-1.0*cm, 0.18*mm"
+	  "-1.5*cm, 0.18*mm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
@@ -309,7 +309,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-1.0*cm, 0.15*mm"
+	  "-1.5*cm, 0.15*mm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
@@ -325,7 +325,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-1.0*cm, 0.07*mm"
+	  "-1.5*cm, 0.07*mm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
@@ -341,7 +341,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-6.0*cm, 1.0*cm"
+	  "-6.5*cm, 1.0*cm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
@@ -357,7 +357,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-6.0*cm, 1.0*cm"
+	  "-6.5*cm, 1.0*cm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
@@ -373,7 +373,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-6.0*cm, 1.0*cm"
+	  "-6.5*cm, 1.0*cm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
@@ -389,7 +389,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-6.0*cm, 1.0*cm"
+	  "-6.5*cm, 1.0*cm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
@@ -405,7 +405,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-6.0*cm, 1.0*cm"
+	  "-6.5*cm, 1.0*cm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
