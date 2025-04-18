@@ -5,7 +5,6 @@
 	<detector name="experiments/clas12/band/band" factory="TEXT" variation="main"/>
 
 
-	<!-- target. Notice variation give the target type. Can be: lH2, lD2, ND3 -->
 	<detector name="experiments/clas12/targets/cad/"      factory="CAD"/>
 	<detector name="experiments/clas12/targets/target"    factory="TEXT" variation="lH2"/>
 
@@ -107,14 +106,12 @@
 	<option name="PRODUCTIONCUTFORVOLUMES" value="BoreShield, CenterTube, DownstreamShieldingPlate, DownstreamVacuumJacket, WarmBoreTube, apex, Shield1, Shield2, Shield3, Shield4, Shield5, Shield6, Shield7, shell1a, shell1b, shell2a, shell2b, shell3a, shell3b, shell4a, shell4b, shell5a, shell5b, shell6a, shell6b, 20" />
 
 	<!--  Target and central detectors are all shifted upstream by 30 mm -->
-	<detector name="target">    <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 	<detector name="svt">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 	<detector name="bstShield"> <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 	<detector name="BMT">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 	<detector name="FMT">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 
 	<!-- solenoid volume and field map shifted upstream by 30 mm -->
-	<detector name="solenoid">  <position x="0*cm"  y="0*cm"  z="-3.00*cm"  />  </detector>
 	<option name="DISPLACE_FIELDMAP"     value="binary_solenoid, 0*cm, 0*cm, -3.00*cm" />
 
 
