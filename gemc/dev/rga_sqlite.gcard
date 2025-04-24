@@ -5,7 +5,7 @@
 
 	<!-- CLAS12 Setup 	-->
 	<detector name="experiments/clas12/targets/cad/"     factory="CAD"/>
-	<detector name="experiments/clas12/targets/target"   factory="TEXT" variation="lH2"/>
+	<detector name="experiments/clas12/targets/target"   factory="SQLITE"/>
 
 	<detector name="solenoid"     factory="SQLITE"/>
 	<detector name="torus_cad"    factory="SQLITECAD" />

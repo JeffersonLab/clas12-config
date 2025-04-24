@@ -6,7 +6,7 @@
 
 
 	<detector name="experiments/clas12/targets/cad_rgm/"   factory="CAD"/>
-	<detector name="experiments/clas12/targets/target"     factory="TEXT" variation="RGM_Ca"/>
+	<detector name="experiments/clas12/targets/target"     factory="TEXT" variation="rgm_fall2021_Ca"/>
 
 	<!-- central detectors 	-->
 	<detector name="experiments/clas12/bst/bst"               factory="TEXT"/>
