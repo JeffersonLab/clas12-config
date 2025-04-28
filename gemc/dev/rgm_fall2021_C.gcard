@@ -5,8 +5,8 @@
 	<detector name="experiments/clas12/band/band" factory="TEXT" variation="main"/>
 
 
-	<detector name="experiments/clas12/targets/cad_rgm/"   factory="CAD"/>
-	<detector name="experiments/clas12/targets/target"     factory="TEXT" variation="rgm_fall2021_C"/>
+	<detector name="experiments/clas12/targets/cad/"   factory="CAD" variation="rgm"/>
+	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="rgm_fall2021_C"/>
 
 	<!-- central detectors 	-->
 	<detector name="experiments/clas12/bst/bst"               factory="TEXT"/>
