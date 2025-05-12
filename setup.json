@@ -19,11 +19,11 @@
   },
   "rga_spring2018": {
 	"tor-1.00_sol-1.00": [
-          "35nA_10594MeV",
-          "50nA_10594MeV"
+	  "35nA_10594MeV",
+	  "50nA_10594MeV"
 	],
 	"tor+1.00_sol-1.00": [
-          "45nA_10594MeV"
+	  "45nA_10594MeV"
 	],
 	"raster": [
 	  "0.0*cm, 0.0*cm"
@@ -170,7 +170,7 @@
 	"software_versions": [
 	  "gemc/5.10 coatjava/10.0.9",
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rgc_summer2022": {
 	"tor-1.00_sol-1.00": [
@@ -249,7 +249,7 @@
 	"software_versions": [
 	  "gemc/5.10 coatjava/10.1.1",
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rge_spring2024_LD2-Al-sol": {
 	"tor-1.00_sol-1.00": [
@@ -265,7 +265,7 @@
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rge_spring2024_LD2-C-sol": {
 	"tor-1.00_sol-1.00": [
@@ -281,7 +281,7 @@
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rge_spring2024_LD2-Cu-sol": {
 	"tor-1.00_sol-1.00": [
@@ -297,7 +297,7 @@
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rge_spring2024_LD2-Sn-sol": {
 	"tor-1.00_sol-1.00": [
@@ -313,7 +313,7 @@
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rge_spring2024_LD2-Pb-sol": {
 	"tor-1.00_sol-1.00": [
@@ -329,7 +329,7 @@
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rge_spring2024_LD2-Al-liq": {
 	"tor-1.00_sol-1.00": [
@@ -345,7 +345,7 @@
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rge_spring2024_LD2-C-liq": {
 	"tor-1.00_sol-1.00": [
@@ -361,7 +361,7 @@
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rge_spring2024_LD2-Cu-liq": {
 	"tor-1.00_sol-1.00": [
@@ -377,7 +377,7 @@
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rge_spring2024_LD2-Sn-liq": {
 	"tor-1.00_sol-1.00": [
@@ -393,7 +393,7 @@
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rge_spring2024_LD2-Pb-liq": {
 	"tor-1.00_sol-1.00": [
@@ -409,6 +409,6 @@
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   }
 }

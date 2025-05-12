@@ -7,7 +7,6 @@
 	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="APOLLOnh3"/>
 
 
-
 	<!-- central detectors 	-->
 	<detector name="experiments/clas12/bst/bst"               factory="TEXT"/>
 	<detector name="experiments/clas12/micromegas/micromegas" factory="TEXT"/>
