@@ -249,6 +249,7 @@
 	"software_versions": [
 	  "gemc/5.10 coatjava/10.1.1",
 	  "gemc/5.11 coatjava/11.1.0"
+	  "gemc/dev coatjava/11.1.0"
 	]
   },
   "rge_spring2024_LD2-Al-sol": {
