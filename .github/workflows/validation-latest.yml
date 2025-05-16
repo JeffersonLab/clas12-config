@@ -3,9 +3,13 @@ name: Validation-latest
 on:
   pull_request:
     branches-ignore: [ dev ] # PRs which do not target `dev` (cf. `validation-dev.yml`)
+    paths-ignore:
+      - 'wok/**'
   push:
     branches: [ main ] # pushes on `main` (viz., merging PRs to `main`)
     tags: [ '*' ] # any tags
+    paths-ignore:
+      - 'wok/**'
   workflow_dispatch: # manual trigger
 
 jobs:
