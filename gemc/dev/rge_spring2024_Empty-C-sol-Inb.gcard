@@ -3,11 +3,11 @@
 
 	<!-- targets -->
 	<!-- Liquid target. Variations include: "2cm-lD2", "2cm-lD2-empty"-->
-	<detector name="experiments/clas12/targets/target"         factory="TEXT" variation="2cm-lD2"/>
+	<detector name="experiments/clas12/targets/target"         factory="TEXT" variation="2cm-lD2-empty"/>
 
 	<!--Solid target. Can be changed here by choosing a CAD subdirectory. Possible options: C, Al, Cu, Sn, Pb, Empty-->
-	<detector name="experiments/clas12/targets/rge-dt/Sn/"  		factory="CAD"/>
-	<detector name="experiments/clas12/targets/rge-dt/common/"		factory="CAD"/>
+	<detector name="experiments/clas12/targets/rge-dt/C/"  		factory="CAD"/>
+	<detector name="experiments/clas12/targets/rge-dt/common/"	factory="CAD"/>
 
 
 	<!-- central detectors 	-->
@@ -54,8 +54,8 @@
 
 	<!-- beam conditions -->
 	<option name="BEAM_P"   value="e-, 10.6*GeV, 0.0*deg, 0*deg"/>
-	<option name="BEAM_V"    value="(0, 0, -3)cm"/>
-	<option name="SPREAD_V"  value="(0.0, 2.5)cm"/>
+	<option name="BEAM_V"    value="(0, 0, -1.5)cm"/>
+	<option name="SPREAD_V"  value="(0.0, 0.074)cm"/>
 
 	<option name="SAVE_ALL_MOTHERS" value="1"/>
 	<option name="RECORD_OPTICALPHOTONS"   value="1"/>
@@ -109,6 +109,5 @@
 
 	<!-- solenoid volume and field map shifted upstream by 30 mm -->
 	<option name="DISPLACE_FIELDMAP"     value="binary_solenoid, 0*cm, 0*cm, -3.00*cm" />
-
 
 </gcard>
