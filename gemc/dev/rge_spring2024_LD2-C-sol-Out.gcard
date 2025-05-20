@@ -1,0 +1,113 @@
+<!-- GEMC dev -->
+<gcard>
+
+	<!-- targets -->
+	<!-- Liquid target. Variations include: "2cm-lD2", "2cm-lD2-empty"-->
+	<detector name="experiments/clas12/targets/target"         factory="TEXT" variation="2cm-lD2"/>
+
+	<!--Solid target. Can be changed here by choosing a CAD subdirectory. Possible options: C, Al, Cu, Sn, Pb, Empty-->
+	<detector name="experiments/clas12/targets/rge-dt/C/"  		factory="CAD"/>
+	<detector name="experiments/clas12/targets/rge-dt/common/"	factory="CAD"/>
+
+
+	<!-- central detectors 	-->
+	<detector name="experiments/clas12/bst/bst"               factory="TEXT" variation="rge_spring2024"/>
+	<detector name="experiments/clas12/micromegas/micromegas" factory="TEXT"/>
+
+	<!--ctof, cnd  -->
+	<detector name="experiments/clas12/ctof/ctof"    factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/ctof/cad/"    factory="CAD"  variation="rga_fall2018"/>
+	<detector name="experiments/clas12/cnd/cnd"      factory="TEXT" variation="rga_fall2018"/>
+
+	<!--high threshold cherenkov -->
+	<detector name="experiments/clas12/htcc/htcc"  factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/htcc/cad/"  factory="CAD"  variation="rga_fall2018"/>
+
+	<!-- magnets -->
+	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT"/>
+	<detector name="experiments/clas12/magnets/cad/"     factory="CAD" />
+
+
+	<!-- FT/Beamline configuration -->
+	<detector name="experiments/clas12/ft/ft"             factory="TEXT" variation="rge_spring2024"/>
+	<detector name="experiments/clas12/beamline/cad/"     factory="CAD"  variation="rge_spring2024"/>
+	<detector name="experiments/clas12/beamline/beamline" factory="TEXT" variation="rge_spring2024"/>
+
+	<!-- Detectors in the forward carriage -->
+	<detector name="experiments/clas12/dc/dc"       factory="TEXT" />
+	<detector name="experiments/clas12/ftof/ftof"   factory="TEXT" variation="rga_spring2018"/>
+	<detector name="experiments/clas12/ec/ec"       factory="TEXT" variation="rga_spring2018"/>
+	<detector name="experiments/clas12/pcal/pcal"   factory="TEXT" variation="rga_spring2018"/>
+	<detector name="experiments/clas12/ltcc/ltcc"   factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/ltcc/cad/"   factory="CAD"  variation="rga_fall2018"/>
+	<detector name="experiments/clas12/rich/rich"   factory="TEXT" variation="rga_spring2018"/>
+	<detector name="experiments/clas12/rich/cad/"   factory="CAD"  variation="rga_spring2018"/>
+
+
+	<!-- you can scale the fields here. Remember torus -1 means e- INBENDING  -->
+	<option name="SCALE_FIELD" value="binary_torus, 1"/>
+	<option name="SCALE_FIELD" value="binary_solenoid, -1"/>
+
+	<!-- hall field  -->
+	<option name="HALL_FIELD"  value="Symm_solenoid_r601_phi1_z1201_13June2018:Symm_torus_r2501_phi16_z251_24Apr2018"/>
+
+
+	<!-- beam conditions -->
+	<option name="BEAM_P"   value="e-, 10.6*GeV, 0.0*deg, 0*deg"/>
+	<option name="BEAM_V"    value="(0, 0, -1.5)cm"/>
+	<option name="SPREAD_V"  value="(0.0, 0.074)cm"/>
+
+	<option name="SAVE_ALL_MOTHERS" value="1"/>
+	<option name="RECORD_OPTICALPHOTONS"   value="1"/>
+ 	<option name="SKIPREJECTEDHITS"    value="1" />
+
+ 	<!-- Uncomment this line to save the true information (necessary for Truth Matching -->
+ 	<!--  <option name="INTEGRATEDRAW"    value="*" /> -->
+
+
+	<option name="PHYSICS" value="FTFP_BERT + STD + Optical"/>
+
+	<option name="OUTPUT"   value="hipo, out.hipo"/>
+
+	<!--  Will print message every 10 events -->
+	<option name="PRINT_EVENT"    value="100" />
+
+
+	<!--  Run Number 11, picked up by digitization routines -->
+	<option name="RUNNO"    value="11" />
+	<option name="DIGITIZATION_VARIATION"  value="rga_fall2018_mc" />
+
+	<!--  Do not track staff after the apex -->
+	<option name="MAX_Z_POS" value="9000"/>
+
+	<!--  Time window defined by LUMI_EVENT -->
+	<option name="LUMI_EVENT"  value="0, 248.5*ns, 4*ns" />
+	<!--  Uncomment this (and replace the LUMI_EVENT Above) to simulate 10^35 luminosity beam on a 5cm liquid hydrogen target, use 124K e- / event   -->
+	<!--  Scale accordingly for different target / luminosity  -->
+	<!--
+	<option name="LUMI_EVENT"     value="124000, 248.5*ns, 4*ns" />
+	<option name="LUMI_P"         value="e-, 10.6*GeV, 0*deg, 0*deg" />
+	<option name="LUMI_V"         value="(0.0, 0.0, -10)cm" />
+	<option name="LUMI_SPREAD_V"  value="(0.03, 0.03)cm" />
+	-->
+
+	<!--  RF Signal needs event time window defined by LUMI_EVENT -->
+	<!--  Reference position set as target shift below -->
+	<option name="RFSETUP"     value="clas12_ccdb" />
+	<option name="RFSTART"     value="eventVertex, 0, 0, -30.0" />
+
+	<!-- production threshold for passive volumes -->
+	<!-- beamline shielding and torus magnet: 2cm-->
+	<option name="PRODUCTIONCUTFORVOLUMES" value="innerShieldAndFlange, outerFlange, outerMount, nut1, nut2, nut3, nut4, nut5, nut6, nut7, nut8, nut9, taggerInnerShield,  main-cone,  adjuster1, adjuster2, adjuster3, Apex_Shield_Lead_Fill, Apex_Shield_PCAL_Hub, Downstream_Beam_tube_Segment_1, Downstream_Beam_tube_Segment_2, Torus_Beam_Tube_Reducer_2, Torus_Exit_Shield_Casing, Torus_Exit_Shield_Lead_Fill, 20"/>
+	<option name="PRODUCTIONCUTFORVOLUMES" value="BoreShield, CenterTube, DownstreamShieldingPlate, DownstreamVacuumJacket, WarmBoreTube, apex, Shield1, Shield2, Shield3, Shield4, Shield5, Shield6, Shield7, shell1a, shell1b, shell2a, shell2b, shell3a, shell3b, shell4a, shell4b, shell5a, shell5b, shell6a, shell6b, 20" />
+
+	<!--  Target and central detectors are all shifted upstream by 30 mm -->
+	<detector name="svt">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
+	<detector name="bstShield"> <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
+	<detector name="BMT">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
+	<detector name="FMT">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
+
+	<!-- solenoid volume and field map shifted upstream by 30 mm -->
+	<option name="DISPLACE_FIELDMAP"     value="binary_solenoid, 0*cm, 0*cm, -3.00*cm" />
+
+</gcard>
