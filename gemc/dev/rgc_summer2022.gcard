@@ -4,7 +4,7 @@
 
 
 	
-	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="APOLLOnh3"/>
+	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="rgc_summer2022"/>
 
 
 	<!-- central detectors 	-->
