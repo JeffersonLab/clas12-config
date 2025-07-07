@@ -1,12 +1,9 @@
 <gcard>
 	
-	<!-- target. ALERT target -->
+	<!-- Alert Target and Detectors -->
 	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="rgl_spring2025_H2"/>
+	<detector name="experiments/clas12/alert/alert" factory="TEXT"/>
 
-	<!-- Implementation ATOF, ahdc -->
-	<detector name="experiments/clas12/alert/atof/atof" factory="TEXT"/>
-	<detector name="experiments/clas12/alert/ahdc/ahdc" factory="TEXT"/>
-	<detector name="experiments/clas12/alert/external_shell_nonActif/alertshell" factory="TEXT" variation="original"/>
 
 	<!-- He bag -->
 	<detector name="experiments/clas12/alert/He_bag/hebag" factory="TEXT" variation="original"/>
