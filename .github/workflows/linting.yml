@@ -11,7 +11,7 @@ jobs:
   linting:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: Bpolitycki/setup-xmllint-action@1.0.1
       - name: json
         run: find . -name '*.json' -printf 'import json ; print(json.load(open("%p")))\n' | xargs -0 python3 -c
