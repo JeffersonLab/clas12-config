@@ -19,11 +19,11 @@
   },
   "rga_spring2018": {
 	"tor-1.00_sol-1.00": [
-          "35nA_10594MeV",
-          "50nA_10594MeV"
+	  "35nA_10594MeV",
+	  "50nA_10594MeV"
 	],
 	"tor+1.00_sol-1.00": [
-          "45nA_10594MeV"
+	  "45nA_10594MeV"
 	],
 	"raster": [
 	  "0.0*cm, 0.0*cm"
@@ -155,23 +155,6 @@
 	  "gemc/5.11 coatjava/11.1.0"
 	]
   },
-  "rgc_fall2022": {
-	"tor-1.00_sol-1.00": [
-	],
-	"raster": [
-	  "0.0*cm, 0.0*cm"
-	],
-	"beam_spot": [
-	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
-	],
-	"z-position": [
-	  "-3.0*cm, 2.5*cm"
-	],
-	"software_versions": [
-	  "gemc/5.10 coatjava/10.0.9",
-	  "gemc/5.11 coatjava/11.1.0"
-        ]
-  },
   "rgc_summer2022": {
 	"tor-1.00_sol-1.00": [
 	  "4nA_10547MeV"
@@ -186,7 +169,46 @@
 	  "-3.0*cm, 2.5*cm"
 	],
 	"software_versions": [
-	  "gemc/5.10 coatjava/10.0.9",
+	  "gemc/5.10 coatjava/10.0.9"
+	]
+  },
+  "rgc_fall2022": {
+	"tor-1.00_sol+1.00": [
+	  "8nA_10547MeV"
+	],
+	"tor-1.00_sol-1.00": [
+	  "8nA_10547MeV"
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-3.0*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/5.11 coatjava/11.0.1"
+	]
+  },
+  "rgc_spring2023": {
+	"tor+1.00_sol-1.00": [
+	  "4nA_10556MeV"
+	],
+	"tor-1.00_sol-1.00": [
+	  "4nA_10556MeV"
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-3.0*cm, 2.5*cm"
+	],
+	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
 	]
   },
@@ -249,7 +271,7 @@
 	"software_versions": [
 	  "gemc/5.10 coatjava/10.1.1",
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rge_spring2024_LD2-Al-sol": {
 	"tor-1.00_sol-1.00": [
@@ -265,7 +287,7 @@
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rge_spring2024_LD2-C-sol": {
 	"tor-1.00_sol-1.00": [
@@ -281,7 +303,7 @@
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rge_spring2024_LD2-Cu-sol": {
 	"tor-1.00_sol-1.00": [
@@ -297,7 +319,7 @@
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rge_spring2024_LD2-Sn-sol": {
 	"tor-1.00_sol-1.00": [
@@ -313,7 +335,7 @@
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rge_spring2024_LD2-Pb-sol": {
 	"tor-1.00_sol-1.00": [
@@ -329,7 +351,7 @@
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rge_spring2024_LD2-Al-liq": {
 	"tor-1.00_sol-1.00": [
@@ -345,7 +367,7 @@
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rge_spring2024_LD2-C-liq": {
 	"tor-1.00_sol-1.00": [
@@ -361,7 +383,7 @@
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rge_spring2024_LD2-Cu-liq": {
 	"tor-1.00_sol-1.00": [
@@ -377,7 +399,7 @@
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rge_spring2024_LD2-Sn-liq": {
 	"tor-1.00_sol-1.00": [
@@ -393,7 +415,7 @@
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   },
   "rge_spring2024_LD2-Pb-liq": {
 	"tor-1.00_sol-1.00": [
@@ -409,6 +431,6 @@
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
-        ]
+	]
   }
 }
