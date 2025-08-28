@@ -2,12 +2,8 @@
 <gcard>
 
 	<!-- targets -->
-	<!-- Liquid target. Variations include: "2cm-lD2", "2cm-lD2-empty"-->
-	<detector name="experiments/clas12/targets/target"         factory="TEXT" variation="2cm-lD2-empty"/>
-
-	<!--Solid target. Can be changed here by choosing a CAD subdirectory. Possible options: C, Al, Cu, Sn, Pb, Empty-->
-	<detector name="experiments/clas12/targets/rge-dt/Al/"  		factory="CAD"/>
-	<detector name="experiments/clas12/targets/rge-dt/common/"	factory="CAD"/>
+	<detector name="experiments/clas12/targets/target"    factory="TEXT" variation="rge_spring2024_Empty_Al"/>
+	<detector name="experiments/clas12/targets/cad_rge/"  factory="CAD"  variation="rge_spring2024_Empty_Al"/>
 
 
 	<!-- central detectors 	-->
