@@ -1,0 +1,20 @@
+#!/bin/sh
+
+#link 40-49 files of a run list in a dir to be used for mon cooking
+#$1 for run list name
+
+#./runlist_mon_link runlist_2019spring_mon 6b.1.1
+
+mkdir $1_$2
+
+for xx in `cat $1`
+do 
+
+for i in {0..9}
+
+do ln -s /cache/clas12/rg-b/production/decoded/$2/00$xx/clas_00$xx.evio.0004$i.hipo $1_$2/
+
+done
+
+
+done

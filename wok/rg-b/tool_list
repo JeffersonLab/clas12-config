@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# for xx in {6326,6327,6328,6346,6347,6349}; 
+# for xx in {6501,6502,6515,6522};
+# for xx in {6346,6347,6349,6515,6522,6420}; 
+# for xx in {6515,6522,6420}; 
+# for xx in {6326,6502,6515}; 
+for xx in {6524,6546,6559,6571,6586,6595}; 
+
+do 
+
+# mv filelist_$xx filelist_$xx\r21
+
+ls ~/work/list/decode_$xx
+
+comm -23 ~/work/list/decode_$xx ~/work/list/done_$xx | cat > filelist_$xx
+ 
+done
+

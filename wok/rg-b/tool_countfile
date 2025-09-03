@@ -1,0 +1,82 @@
+#!/bin/sh
+
+#link 40-49 files of a run list in a dir to be used for mon cooking
+#$1 for run list name
+
+#./runlist_xxxxx 6b.1.1
+
+sum=0;
+sum1=0;
+sum2=0;
+
+compare1=0;
+compare2=0;
+
+problem=0;
+
+echo -e run"\t"raw"\t"decoded"\t"diff"\t"cooked"\t"diff"\t""|\t"r_sum"\t"d_sum"\t"c_sum"|\t"dst;
+
+for xx in `cat $1`
+do 
+count=`ls /mss/clas12/rg-b/data/clas_*$xx/*.evio.* |wc  | awk '{print$1'}`;
+# count=`ls /mss/clas12/rg-k/data/clas_*$xx/*.evio.* |wc  | awk '{print$1'}`;
+# ((sum=sum+count));
+# echo $xx $count	$sum;
+
+count1=`ls /mss/clas12/rg-b/production/decoded/6.5.6/$xx/ |wc  | awk '{print$1'}`;
+# count1=`ls /mss/clas12/rg-k/production/decoded/6b.2.0/$xx/ |wc  | awk '{print$1'}`;
+((count1=count1*5));
+
+# count2=`ls /mss/clas12/rg-b/production/recon/spring2019/torus-1/pass2/v0/dst/recon/$xx/ |wc  | awk '{print$1'}`;
+# count2=`ls /mss/clas12/rg-b/production/recon/fall2019/torus+1/pass2/v1/dst/recon/$xx/ |wc  | awk '{print$1'}`;
+# count2=`ls /mss/clas12/rg-b/production/recon/fall2019/torus-1/pass2/v1/dst/recon/$xx/ |wc  | awk '{print$1'}`;
+ count2=`ls /mss/clas12/rg-b/production/recon/spring2020/torus-1/pass2/v1/dst/recon/$xx/ |wc  | awk '{print$1'}`;
+((count2=count2*5));
+
+#count3=`ls /mss/clas12/rg-b/production/recon/spring2019/torus-1/pass2/v0/dst/train/*/ | grep $xx |wc  | awk '{print$1'}`;
+# count3=`ls /mss/clas12/rg-b/production/recon/fall2019/torus+1/pass2/v1/dst/train/*/ | grep $xx |wc  | awk '{print$1'}`;
+# count3=`ls /mss/clas12/rg-b/production/recon/fall2019/torus-1/pass2/v1/dst/train/*/ | grep $xx |wc  | awk '{print$1'}`;
+ count3=`ls /mss/clas12/rg-b/production/recon/spring2020/torus-1/pass2/v1/dst/train/*/ | grep $xx |wc  | awk '{print$1'}`;
+
+if [ $count -gt $count1 ]
+  then
+    ((compare1=$count-$count1));
+fi  
+
+if [ $count -gt $count2 ]
+  then
+    ((compare2=$count-$count2));
+#     ((problem=1));
+fi  
+
+((sum=sum+count));
+((sum1=sum1+count1));
+((sum2=sum2+count2));
+
+echo -e $xx"\t"$count"\t"$count1"\t"$compare1"\t"$count2"\t"$compare2"\t""|\t"$sum"\t"$sum1"\t"$sum2"|\t"$count3;
+
+# if [ $compare1 -gt 0 ]
+#   then
+#     echo $xx
+# fi  
+
+# if [ $compare2 -gt 0 ]
+#   then
+#     echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# fi  
+
+compare1=0;
+compare2=0;
+problem=0;
+
+# sum=0
+done
+
+# echo "sum $sum";
+
+# find /mss/clas12/rg-b/production/recon/spring2019/torus-1/pass1/v0/dst/train /mss/clas12/rg-b/production/recon/fall2019/torus+1/pass1/v1/dst/train /mss/clas12/rg-b/production/recon/fall2019/torus-1/pass1/v1/dst/train /mss/clas12/rg-b/production/recon/spring2020/torus-1/pass1/v1/dst/train
+# 
+# 5.8T    /mss/clas12/rg-b/production/recon/spring2020/torus-1/pass1/v1/dst/train
+# 5.6T    /mss/clas12/rg-b/production/recon/fall2019/torus+1/pass1/v1/dst/train
+# 408G    /mss/clas12/rg-b/production/recon/fall2019/torus-1/pass1/v1/dst/train
+# 12T     /mss/clas12/rg-b/production/recon/spring2019/torus-1/pass1/v0/dst/train

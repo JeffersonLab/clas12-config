@@ -1,0 +1,19 @@
+#!/bin/sh
+
+rm -f jobstat
+jobstat -u clas12-1 | cat > jobstat
+
+# echo mon `ls /cache/clas12/rg-b/production/recon/pass0/v16/mon | wc -l` `grep mon jobstat |wc -l` `grep mon jobstat | grep PD | wc -l`
+
+# for xx in {6428,6467,6433,6442,6474,6450,6481,6492,6302,6310,6313,6321,6303,6305,6307,6311,6328,6326,6327,6346,6347,6349,6501,6502,6515,6522}; 
+# for xx in {6326,6327,6328,6346,6347,6349,6501,6502,6515,6522,6420}; 
+# for xx in {6326,6328,6501,6502,6515,6522,6420}; 
+# for xx in {6326,6328,6502,6515}; 
+for xx in {6524,6546,6559,6571,6586,6595}; 
+
+do 
+
+echo $xx `cat ~/work/list/decode_$xx | wc -l`  `ls /cache/clas12/rg-b/production/recon/pass0/v16/dst/unfiltered/00$xx/*00$xx* | wc -l` `grep dst$xx jobstat |wc -l` `grep dst$xx jobstat | grep PD | wc -l`
+# echo "==========================" 
+
+done

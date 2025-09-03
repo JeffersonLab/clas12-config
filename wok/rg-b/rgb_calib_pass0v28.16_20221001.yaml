@@ -1,0 +1,46 @@
+io-services:
+  reader:
+    class: org.jlab.io.clara.HipoToHipoReader
+    name: HipoToHipoReader
+  writer:
+    class: org.jlab.io.clara.HipoToHipoWriter
+    name: HipoToHipoWriter
+services:
+  - class: org.jlab.clas.swimtools.MagFieldsEngine
+    name: MAGFIELDS
+  - class: org.jlab.rec.ft.cal.FTCALEngine
+    name: FTCAL
+  - class: org.jlab.rec.ft.hodo.FTHODOEngine
+    name: FTHODO
+  - class: org.jlab.rec.ft.trk.FTTRKEngine
+    name: FTTRK
+  - class: org.jlab.rec.ft.FTEBEngine
+    name: FTEB
+  - class: org.jlab.service.eb.EBTBEngine
+    name: EBTB
+configuration:
+  global:
+    timestamp: 10/01/2022-11:00:00
+#    triggerMask: "0x1"
+  io-services:
+    writer:
+      compression: 2
+      schema_dir: /group/clas12/packages/clara/5.0.2_8.2.4/plugins/clas12/etc/bankdefs/hipo4/singles/calib
+  services:
+    MAGFIELDS:
+      magfieldSolenoidMap: Symm_solenoid_r601_phi1_z1201_13June2018.dat
+      magfieldTorusMap: Full_torus_r251_phi181_z251_25Jan2021.dat
+      variation: rgb_spring2019
+    FTCAL:
+      variation: rgb_spring2019
+    FTHODO:
+      variation: rgb_spring2019
+    FTTRK:
+      variation: rgb_spring2019
+    FTEB:
+      variation: rgb_spring2019
+    EBTB:
+      variation: rgb_spring2019
+
+mime-types:
+  - binary/data-hipo

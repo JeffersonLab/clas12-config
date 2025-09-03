@@ -1,0 +1,26 @@
+#!/bin/sh
+
+#link 40-49 files of a run list in a dir to be used for mon cooking
+#$1 for run list name
+
+#./runlist_xxxxx 6b.1.1
+
+# for xx in `cat $1`
+# do 
+# # jcache put /cache/clas12/rg-b/production/decoded/6.5.6/$xx/*;
+# # jcache put /cache/clas12/rg-b/production/decoded/6.5.6/$xx/* -d;
+# 
+# # jcache pin /cache/clas12/rg-b/production/decoded/6.5.6/$xx/* -D 60;
+# # jcache unpin /cache/clas12/rg-b/production/decoded/6.5.6/$xx/*;
+# 
+# # jcache pin -D 60 /cache/clas12/rg-b/production/recon/spring2019/torus-1/pass1/v0/dst/recon/$xx/*
+# # jcache pin -D 60 /cache/clas12/rg-b/production/recon/fall2019/torus+1/pass1/v1/dst/recon/$xx/*
+# # jcache pin -D 60 /cache/clas12/rg-b/production/recon/fall2019/torus-1/pass1/v1/dst/recon/$xx/*
+# jcache pin -D 60 /cache/clas12/rg-b/production/recon/spring2020/torus-1/pass1/v1/dst/recon/$xx/*
+# 
+# done
+
+jcache pin -D 60 /cache/clas12/rg-b/production/recon/spring2019/torus-1/pass1/v0/dst/train/*/*
+jcache pin -D 60 /cache/clas12/rg-b/production/recon/fall2019/torus+1/pass1/v1/dst/train/*/*
+jcache pin -D 60 /cache/clas12/rg-b/production/recon/fall2019/torus-1/pass1/v1/dst/train/*/*
+jcache pin -D 60 /cache/clas12/rg-b/production/recon/spring2020/torus-1/pass1/v1/dst/train/*/*

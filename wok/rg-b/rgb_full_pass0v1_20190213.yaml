@@ -1,0 +1,71 @@
+io-services:
+  reader:
+    class: org.jlab.clas.std.services.convertors.HipoToHipoReader
+    name: HipoToHipoReader
+  writer:
+    class: org.jlab.clas.std.services.convertors.HipoToHipoWriter
+    name: HipoToHipoWriter
+services:
+  - class: org.jlab.clas.swimtools.MagFieldsEngine
+    name: MAGFIELDS
+  - class: org.jlab.rec.ft.cal.FTCALEngine
+    name: FTCAL
+  - class: org.jlab.rec.ft.hodo.FTHODOEngine
+    name: FTHODO
+  - class: org.jlab.rec.ft.FTEBEngine
+    name: FTEB
+  - class: org.jlab.service.dc.DCHBEngine
+    name: DCHB
+  - class: org.jlab.service.ftof.FTOFHBEngine
+    name: FTOFHB
+  - class: org.jlab.service.ec.ECEngine
+    name: EC
+  - class: org.jlab.rec.cvt.services.CVTReconstruction
+    name: CVT
+  - class: org.jlab.service.ctof.CTOFEngine
+    name: CTOF
+#  - class: org.jlab.service.cnd.CNDEngine
+  - class: org.jlab.service.cnd.CNDCalibrationEngine
+    name: CND
+  - class: org.jlab.service.htcc.HTCCReconstructionService
+    name: HTCC
+  - class: org.jlab.service.ltcc.LTCCEngine
+    name: LTCC
+  - class: org.jlab.rec.rich.RICHEBEngine
+    name: RICH
+  - class: org.jlab.service.eb.EBHBEngine
+    name: EBHB
+  - class: org.jlab.service.dc.DCTBEngine
+    name: DCTB
+  - class: org.jlab.service.ftof.FTOFTBEngine
+    name: FTOFTB
+  - class: org.jlab.service.eb.EBTBEngine
+    name: EBTB
+configuration:
+  io-services:
+    writer:
+      compression: 2
+#      schema_dir: "absolute-path-to-schema-folder"
+      schema_dir: "/work/clas12/rg-b/clas12_clara4.3.5_coatjava5b.7.7/clara/plugins/clas12/etc/bankdefs/hipo/singles/full"
+  services:
+    MAGFIELDS:
+      torusMap: Symm_torus_r2501_phi16_z251_24Apr2018.dat
+      solenoidMap: Symm_solenoid_r601_phi1_z1201_13June2018.dat
+# solenoid shift to -2.9 cm instead of -1.9 cm. The -1.9 was RG-A spring while the solenoid position in Fall and now is close to -2.9 cm. I will actually try to get the latest survey to give you a more precise number. It¡¯s anyway a small effect.   Raffaella  2/12/2019
+#      solenoidShift: "-1.9"
+      solenoidShift: "-2.9"
+      torusXShift: "0.0"
+      torusYShift: "0.0"
+      torusZShift: "0.0"
+    DCHB:  
+# example of how to set variation and timestamp for a service, uncomment to use        
+#      variation: default
+#      timestamp: 08/22/2018  
+      useStartTime: "true"
+      wireDistortionsFlag: "true"
+      geomDBVariation: may_2018_engineers
+    DCTB:
+      geomDBVariation: may_2018_engineers
+
+mime-types:
+  - binary/data-hipo

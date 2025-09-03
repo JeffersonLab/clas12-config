@@ -1,0 +1,121 @@
+io-services:
+  reader:
+    class: org.jlab.jnp.grapes.io.HipoFrameReader
+    name: HipoFrameReader
+  writer:
+    class: org.jlab.jnp.grapes.io.HipoFrameWriter
+    name: HipoFrameWriter
+services:
+# #################################################### JPSI/TCS
+#   - class: org.jlab.jnp.grapes.services.JpsiTcsWagon
+#     name: JPSITCS
+# #################################################### nDVCS
+#   - class: org.jlab.jnp.grapes.services.GenericWagon
+#     name: nDVCS1
+#   - class: org.jlab.jnp.grapes.services.GenericWagon
+#     name: nDVCS2
+#   - class: org.jlab.jnp.grapes.services.GenericWagon
+#     name: nDVCS3
+# #################################################### eDeut
+#   - class: org.jlab.jnp.grapes.services.GenericWagon
+#     name: eDeut1
+#   - class: org.jlab.jnp.grapes.services.GenericWagon
+#     name: eDeut2
+#################################################### INCLUSIVE
+  - class: org.jlab.jnp.grapes.services.GenericWagon
+    name: INCLUSIVE1
+  - class: org.jlab.jnp.grapes.services.GenericWagon
+    name: INCLUSIVE2
+#################################################### DIS
+# #  - class: org.jlab.jnp.grapes.services.DISWagon
+# #    name: DIS
+# #################################################### FTOF_HTCC
+#   - class: org.jlab.jnp.grapes.services.GenericWagon
+#     name: FTOF_HTCCm
+#   - class: org.jlab.jnp.grapes.services.GenericWagon
+#     name: FTOF_HTCCp
+# #################################################### CTOF_CND
+#   - class: org.jlab.jnp.grapes.services.GenericWagon
+#     name: CTOF_CND
+# #################################################### FT
+#   - class: org.jlab.jnp.grapes.services.GenericWagon
+#     name: FTp
+#   - class: org.jlab.jnp.grapes.services.GenericWagon
+#     name: FTm
+#   - class: org.jlab.jnp.grapes.services.GenericWagon
+#     name: FTn
+# ####################################################
+configuration:
+  services:
+#################################################### JPSI/TCS
+#     JPSITCS:
+#       id: 1
+#################################################### nDVCS
+#     nDVCS1:
+#       id: 2
+#       forward: 11:Xn
+#       tagger: Xn
+#       central: Xn
+#     nDVCS2:
+#       id: 2
+#       forward: 11:2212:Xn
+#       tagger: Xn
+#       central: Xn
+#     nDVCS3:
+#       id: 2
+#       forward: 11:Xn
+#       tagger: Xn
+#       central: 2212:Xn
+#################################################### eDeut
+#     eDeut1:
+#       id: 3
+#       forward: 11:45:X+:X-:Xn
+#       tagger: X+:X-:Xn
+#       central: X+:X-:Xn
+#     eDeut2:
+#       id: 3
+#       forward: 11:X+:X-:Xn
+#       tagger: X+:X-:Xn
+#       central: 45:X+:X-:Xn
+#################################################### INCLUSIVE
+    INCLUSIVE1:
+      id: 4
+      forward: 11:X+:X-:Xn
+      tagger: X+:X-:Xn
+      central: X+:X-:Xn
+    INCLUSIVE2:
+      id: 4
+      forward: -11:X+:X-:Xn
+      tagger: X+:X-:Xn
+      central: X+:X-:Xn
+#################################################### DIS
+#    DIS:
+#      id: 5
+#################################################### FTOF_HTCC
+#     FTOF_HTCCm:
+#       id: 6
+#       forward: 1-:11:X+:X-:Xn
+#     FTOF_HTCCp:
+#       id: 6
+#       forward: 1+:11:X+:X-:Xn
+#################################################### CTOF_CND
+#     CTOF_CND:
+#       id: 7
+#       forward: 11:X+:X-:Xn
+#       central: 1-:X+:X-:Xn
+#################################################### FT
+#     FTp:
+#       id: 8
+#       forward: 11:X+:X-:Xn
+#       tagger: 1+:X+:X-:Xn
+#     FTm:
+#       id: 8
+#       forward: 11:X+:X-:Xn
+#       tagger: 1-:X+:X-:Xn
+#     FTn:
+#       id: 8
+#       forward: 11:X+:X-:Xn
+#       tagger: 1n:X+:X-:Xn
+
+mime-types:
+  - binary/data-hipo-frame

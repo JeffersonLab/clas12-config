@@ -1,0 +1,45 @@
+=====================================================================================
+rgb run range  		spring2019		fall2019	spring2020	total
+
+total event		21e9			9e9		13e9		43e9
+event per file		80e3			73e3		71e3
+number of run		246 (34) [13]		123		181		550
+
+number of file		303938 (73525)[18184]	121314		184828		610080
+file raw (2GB)		594TB			237TB		361TB		1192TB
+file decode (0.8GB)	238TB (60TB)[14TB]	95TB		145TB		478TB
+file dst (0.3GB)	89TB (23TB) [5TB]	36TB		54TB		179TB
+file mon_full (2.5GB)		    
+file dst skim ???
+
+file decode (0.8GB)								20TB 
+file mon_10file (2.5GB)	30TB			9TB		15TB		70TB 
+file calib (1.2GB)	30TB			30TB		30TB		90TB 
+file calib skim 	5TB			5TB		5TB		15TB
+
+time decoding 		2.2e5h (0.5e5h)[0.1e5h]	8.4e5h		1.3e5h		4.3e5h
+time cook dst 		6.1e5h (1.5e5h)[0.3e5h]	2.4e5h		3.6e5h		12.2e5h
+time cook mon 		2.5e4h			1.25e4h		2e4h		6e4h 
+time cook calib		5e4h			5e4h		5e4h		15e4h
+time train ???
+=====================================================================================
+
+number in round bracket is for 2019 spring DNP run list, which has 34 runs and 73525 files and is about 25% of the whole run range
+number in square bracket is for 2019 spring short run list used for pass1 review, which has 13 runs and 18184 files and is about 6% of the whole run range
+
+assumption
+1.mon, 10 files per run and 5 iterations
+2.calib, 1000 files of 5 runs for each run range and 5 iterations
+3.decoding 1 file takes about 0.7 wall hour with 1 core for a single farm job
+4.cooking 1 files takes about 2 wall hour with 16 core for a single farm job
+
+Not counted
+1. tape to disk time
+2. job pending time
+
+
+
+refer to run summary
+https://www.jlab.org/indico/event/381/session/17/contribution/8/material/slides/0.pdf
+
+

@@ -1,0 +1,165 @@
+#--------------------------------------------
+# Configuration script to run trains
+#--------------------------------------------
+#set servicesFile ${CLARA_HOME}/plugins/clas12/config/dst.yaml
+
+#set servicesFile /work/clas12/rg-b/clas12_cooking_rgb/rgb_dst_pass0v5_20190529.yaml
+#set outputFilePrefix    dst_
+#set description rgbv5dst6595r4
+#set fileList     filelist_6595
+#set inputDir /cache/clas12/rg-b/production/decoded/5b.7.8/006595
+#set files /cache/clas12/rg-b/production/decoded/5b.7.8/006595/*
+#set outputDir    /work/clas12/rg-b/production/recon/pass0/v5/dst/006595
+
+#set servicesFile /work/clas12/rg-b/clas12_cooking_rgb/rgb_calib_pass0v5_20190529.yaml
+#set outputFilePrefix    calib_
+#set description rgbv5lc5nAr6
+#set fileList     filelist_lc5nA
+#set inputDir /work/clas12/rg-b/clas12_cooking_rgb/runlist_2019spring_lc5nA_5b.7.8
+#set files /work/clas12/rg-b/clas12_cooking_rgb/runlist_2019spring_lc5nA_5b.7.8/*
+#set outputDir    /work/clas12/rg-b/production/recon/pass0/v5/calib/unfiltered/lc5nA
+
+#set servicesFile /work/clas12/rg-b/clas12_cooking_rgb/rgb_calib_pass0v5_20190529.yaml
+#set outputFilePrefix    calib_
+#set description rgbv5calib6595r12
+#set fileList     filelist_6595
+#set inputDir /cache/clas12/rg-b/production/decoded/5b.7.8/006595
+#set files /cache/clas12/rg-b/production/decoded/5b.7.8/006595/*
+#set outputDir    /work/clas12/rg-b/production/recon/pass0/v5/calib/unfiltered/006595
+
+#set servicesFile /work/clas12/rg-b/clas12_cooking_rgb/rgb_mon_pass0v5_20190529.yaml	
+#set outputFilePrefix    mon_
+#set description rgbv5mon10
+#set fileList     filelist_mon
+#set inputDir /work/clas12/rg-b/clas12_cooking_rgb/runlist_2019spring_mon_5b.7.8/
+#set files /work/clas12/rg-b/clas12_cooking_rgb/runlist_2019spring_mon_5b.7.8/*
+#set outputDir    /work/clas12/rg-b/production/recon/pass0/v5/mon/
+
+#set servicesFile /work/clas12/rg-b/clas12_cooking_rgb/rgb_calib_pass0v8_20190620.yaml
+#set outputFilePrefix    calib_
+#set description rgbv8calib6595r3
+#set fileList     filelist_6595
+#set inputDir /cache/clas12/rg-b/production/decoded/6b.1.1/006595
+#set files /cache/clas12/rg-b/production/decoded/6b.1.1/006595/*
+#set outputDir    /work/clas12/rg-b/production/recon/pass0/v8/calib/unfiltered/006595
+
+#set servicesFile /work/clas12/rg-b/clas12_cooking_rgb/rgb_calib_pass0v9_20190717.yaml
+#set outputFilePrefix    calib_
+#set description rgbv9calib6227r1
+#set fileList     filelist_6227
+#set inputDir /cache/clas12/rg-b/production/decoded/6b.1.1/006227
+#set files /cache/clas12/rg-b/production/decoded/6b.1.1/006227/*
+#set outputDir    /work/clas12/rg-b/production/recon/pass0/v9/calib/unfiltered/006227
+
+#set servicesFile /work/clas12/rg-b/clas12_cooking_rgb/rgb_calib_pass0v15_20190828.yaml
+#set outputFilePrefix    calib_
+#set description rgbv15calib6595r3
+#set fileList     filelist_6595
+#set inputDir /cache/clas12/rg-b/production/decoded/6b.1.1/006595
+#set files /cache/clas12/rg-b/production/decoded/6b.1.1/006595/*
+#set outputDir    /work/clas12/rg-b/production/recon/pass0/v15/calib/unfiltered/006595
+
+#set servicesFile /work/clas12/rg-b/clas12_cooking_rgb/rgb_mon_pass0v15_20190828.yaml
+#set outputFilePrefix    mon_
+#set description rgbv15mon5
+#set fileList     filelist_mon
+#set inputDir /work/clas12/rg-b/clas12_cooking_rgb/runlist_2019spring_mon_6b.1.1/
+#set files /work/clas12/rg-b/clas12_cooking_rgb/runlist_2019spring_mon_6b.1.1/*
+#set outputDir    /work/clas12/rg-b/production/recon/pass0/v15/mon/
+
+#set servicesFile /work/clas12/rg-b/clas12_cooking_rgb/rgb_mon_pass0v16_20190911.yaml
+#set outputFilePrefix    mon_
+#set description rgbv16mon5
+#set fileList     filelist_mon_DNP
+#set inputDir /work/clas12/rg-b/clas12_cooking_rgb/runlist_2019spring_DNP2019_6b.1.1/
+#set files /work/clas12/rg-b/clas12_cooking_rgb/runlist_2019spring_DNP2019_6b.1.1/*
+#set outputDir    /cache/clas12/rg-b/production/recon/pass0/v16/mon/
+
+#set servicesFile /work/clas12/rg-b/clas12_cooking_rgb/rgb_calib_pass0v16_20190911.yaml
+#set outputFilePrefix    calib_
+#set description rgbv16calib6420r22
+#set fileList     filelist_6420nn
+#set inputDir /cache/clas12/rg-b/production/decoded/6b.1.1/006420
+#set files /cache/clas12/rg-b/production/decoded/6b.1.1/006420/*
+#set outputDir    /cache/clas12/rg-b/production/recon/pass0/v16/calib/unfiltered/006420
+
+#set servicesFile /work/clas12/rg-b/clas12_cooking_rgb/rgb_dst_pass0v16_20190911.yaml
+#set outputFilePrefix    dst_
+#set description rgbv16dst6227r21
+#set fileList     filelist_6227
+#set inputDir /cache/clas12/rg-b/production/decoded/6b.1.1/006227
+#set files /cache/clas12/rg-b/production/decoded/6b.1.1/006227/*
+#set outputDir    /cache/clas12/rg-b/production/recon/pass0/v16/dst/unfiltered/006227
+
+#set servicesFile /work/clas12/rg-b/clas12_cooking_rgb/rgb_dst_pass0v16_20190911.yaml
+#set outputFilePrefix    dst_
+#set description rgbv16lc5nA
+#set fileList     filelist_lc5nA
+#set inputDir /work/clas12/rg-b/clas12_cooking_rgb/runlist_2019spring_lc5nA_6b.1.1
+#set files /work/clas12/rg-b/clas12_cooking_rgb/runlist_2019spring_lc5nA_6b.1.1/*
+#set outputDir    /cache/clas12/rg-b/production/recon/pass0/v16/dst/unfiltered/lc5nA
+
+set servicesFile /work/clas12/rg-b/clas12_cooking_rgb/rgb_mon_pass0v17_20191204.yaml
+set outputFilePrefix    mon_
+set description rgbv17mon011114r1
+#set fileList     filelist_011114
+#set inputDir /cache/clas12/rg-b/production/decoded/tmp/011114
+set files /cache/clas12/rg-b/production/decoded/tmp/011114/*
+set outputDir    /work/clas12/rg-b/production/recon/pass0/v17/mon/011114
+
+
+#------------
+#set inputDir     ${CLARA_INPUT}
+#set outputDir    ${CLARA_OUTPUT}
+#set outputDir    ${WORK}/output/006202
+#set logDir	 ${CLARA_LOG}
+#set maxEvents   1000
+set reportEvents 1000
+set session RGB
+
+#------------
+#set farm.node farm16
+#set farm.cpu 72			
+#set farm.memory 62
+#set farm.disk 20
+#set farm.scaling 0
+#set farm.time 600
+
+#set farm.node farm18
+#set farm.cpu 80
+#set farm.memory 92
+#set farm.disk 10
+#set farm.scaling 0
+#set farm.time 600
+
+#set farm.cpu 32
+#set farm.memory 31
+#set farm.disk 10
+#set farm.scaling 10
+#set farm.time 600
+
+set farm.cpu 16
+set farm.memory 15
+set javaMemory 12
+set farm.disk 5
+set farm.scaling 2
+set farm.time 200
+
+#exclusive, include cpu,mem,disk and NUMA affinity
+#set farm.exclusive farm18
+#set farm.exclusive farm16
+#set farm.scaling 40
+#set farm.exclusive farm14
+#set farm.exclusive qcd12s
+#set farm.scaling 20
+#set farm.time 1440
+
+set farm.os centos7
+#set farm.track debug
+set farm.track reconstruction
+set farm.system jlab
+set farm.stage /scratch/clara/${USER}
+show config
+run farm
+#show farmStatus
+

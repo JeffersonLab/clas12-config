@@ -1,0 +1,463 @@
+Nathan's cooking speed record and run info
+https://jeffersonlab-my.sharepoint.com/:x:/g/personal/baltzell_jlab_org/EU096WRXcyBLl_ApLfSCuvoBiwsPFfBN_0enCzU3dFV6rw?e=ec9M3E
+
+bad fall2019 evio file
+clas_011131.evio.00262
+
+==== timeline =======================================================
+
+cd /work/clas12/rg-b/offline_monitoring/output
+mkdir rgb_v29.38.1
+cd rgb_v29.38.1
+
+old
+../../clas12-timeline_commit3c00e3d_20230911/bin/slurm-mon12.sh rgb_v29.38.1 ../pass0/v29.38.1/mon/recon/*
+../../clas12-timeline_commit3c00e3d_20230911/bin/detectors.sh rgb v29.38.1 plots | cat > log_run
+mv log_run rgb_v29.38.1
+mv rgb_v29.38.1 ../www/v29.38.1_org
+../../clas12-timeline_commit3c00e3d_20230911/bin/qa.sh rgb/pass0/v29.38.1_org
+mv ../www/v29.38.1_org_qa ../www/v29.38.1
+
+new
+module load clas12/pro
+../../bin/run-monitoring.sh -d v1 --submit --focus-detectors -o ./ --rundir ../pass0/v29.38.1/mon/recon/
+../../bin/run-detectors-timelines.sh -i timeline_detectors -d v1 
+mv /w/hallb-scshelf2102/clas12/rg-b/offline_monitoring/clas12-timeline/outfiles ./
+../../bin/deploy-timelines.sh -d v1 -i outfiles/v1/timeline_web -t rgb/pass0
+
+==== Raffa email on 2022/07/27  ========================================
+
+As you can see from New rgb_spring2019 CCDB variation created for pass2, the new CVT and DC alignment constants were uploaded into CCDB and it is now possible to launch the pass0s with the latest coatjava release, 8.2.1.
+
+Because of changes to the default settings for some reconstruction services and the specific features of the Spring 2019 data related to cable swaps, new yaml files should be set up.
+
+ You can use as a reference the file at /home/clas12/users/devita/dcalign/spring2019/spring2019_pass0.yaml, considering the following notes:
+- the swap service is needed to handle the BMT cable swap that was found before pass1; when the swap service is in use, the global variation cannot be set and the CCDB variation  has to be set for each service;
+- since there were bank changes compared to previous releases, make sure to use the schemas from the 8.2.1 installation;
+- for RG-A, the CVT yaml setting 
+       targetMat: "LD2"
+should be commented out since RG-A has LH2 which is the default.
+
+===== recovery ============
+
+My understanding is that the CLAS12 collaboration's usage of CCDB prior to my database permissions changes a couple years ago rendered RG-X's pass1 not realistically reproducible.  That's the crux of it.  Any attempts at reconciling that are really flawed, and CCDB has everything necessary to prevent this, but it was bypassed.  Unfortunately, that wasn't realized before the work was done to configure the workflows to reproduce that data.  So that's the state, that pass1 data really isn't reproducible and so isn't publishable.
+-Nathan
+
+old sqlite file location
+https://clasweb.jlab.org/clas12offline/sqlite/ccdb/clas12tags/ 
+/scigroup/cvmfs/hallb/clas12/soft/noarch/data/ccdb/
+
+"ccdb_4.4.0.sqlite - Aug 21, 2020" works for rgb Spring19 pass1v0
+
+====do everything with clas12-workflow =============================================
+refer to 
+https://github.com/baltzell/clas12-workflow
+
+source /group/clas12/packages/setup.csh
+module load clas12/pro
+module load clas12/4.1
+module load clas12/3.4
+
+module load workflow
+
+more $CLAS12WFLOW/README.md
+clas12-workflow.py -h
+
+check log to make cooking speed plot
+clara-log-ana.py -i -r -m"-r-" /farm_out/clas12-1/rgb-dmra-pass1v0-6156x74
+
+check log to make cpu and wall time plot
+slurm-status.py -u clas12-1 -m "6156x74-p0-r-"
+slurm-status.py -u clas12-1 -m rgb-dm-pass1v0-11159x21 -w 7 -g
+
+check problem
+swif-status.py --problemStats --workflow rgb-ra-v26.2-6366
+
+To delete everything older than a day:
+find /farm_out/$USER/rgb-dmra-pass1v0-6156x74 -type f -mtime +1 -exec mv {} ~/work/farm_out/rgb-dmra-pass1v0-6156x74 \;
+
+when we need to pause jobs
+****************************
+swif pause -workflow asdf
+jkill 0
+...­ wait until disaster is gone ...
+swif run -workflow asdf 
+no need to stop crontab retry because it doesn't affect paused workflow
+****************************
+
+jasmine list-files -tape 803771
+jasmine list-files -tape 803771 | awk -F \| '{print$1}' | grep rg-b | grep train
+
+tape-regenerate -tape 803771 b rec
+filelist_missing_20240508_rec
+
+tape-regenerate -tape 803771 b ana 
+filelist_missing_20240508_ana
+
+check rcdb
+python $CLAS12WFLOW/lib/clas12/RcdbManager.py 11014
+
+import
+swif2 import -file rgb_decode_R6223x1_x1200.json
+
+run
+swif2 run -workflow rgb_decode_R6223x1_x1200
+
+swif2 notify rgb-ra-v29.19-11101x15 -when done -email zwzhao@jlab.org
+swif2 notify my-workflow [-clear] -when done [-email bob@dobbs.com <mailto:bob@dobbs.com>]
+This will cause swif to send an email to bob@dobbs.com <mailto:bob@dobbs.com> when the workflow named my-workflow is done.  If you omit -email it will assume workflow_user@jlab.org.  You can call multiple times to specify multiple email addresses.  You can use -clear to remove any previously requested notification for specified condition / email.  I intend to add other conditions in the future.   Pleaes give it a try and let me know how it goes.
+Also, if you call this after a notification has already been sent, it will reset the status field indicating the notification was sent and it will be resent if/when the condition holds.
+
+check
+swif2 list
+swif-status.py 
+swif-status.py | grep workflow_name
+swif-status.py --workflow workflowName
+swif-status.py --details --workflow workflowName
+
+retry
+swif-status.py --retry --workflow workflowName
+swif-status.py --retry  (retry all workflow)
+
+cancel jobs
+swif2 cancel -workflow workflowName
+
+sweep clean
+swif2 cancel -delete -workflow workflowName
+
+release slurm job manually
+scontrol show job slurm_id
+scontrol release slurm_id
+
+fix problem_types  SITE_PREP_FAIL
+swif-status.py --problems --workflow rgb-ra-v28.24-6224x5 |grep job_attempt_problem_details (see disk needed)
+if results is like "job_attempt_problem_details": "Requested disk reservation (79,000,000,000) is less than size of inputs (100,572,392,844)"
+add 25GB disk by the following
+swif2 modify-jobs "rgb-ra-v28.24-6224x5" -disk add 25gb -problems SITE_PREP_FAIL
+
+fix problem type SLURM_FAILED with corrupt file verified by "hipo-util -test"
+swif2 retry-jobs rgb-ra-v28.22_8.3.2-6449x15 -refresh-input /lustre/expphy/volatile/clas12/rg-b/production/recon/pass0/v28.22_8.3.2/dst/recon/006455/rec_clas_006455.evio.00275-00279.hipo 8577763
+
+On the truncated output file problem for a succesfull job, that results in SLURM_FAILED for a downstream job, I added an --exitStats option to swif-stats.py that will print the exit codes.  #101 is the bad guy to watchout for;  it means the input file for a job is corrupt/truncated.
+
+make timeout double
+pause a workflow first, then run command below, then restart workflow. for a running workflow, it will cause running jobs get recalled
+swif modify-jobs -workflow rgb-dm-pass1v0-11250x36 -time mult 2 -names -regexp '.*'
+
+cron 
+cp $CLAS12WFLOW/cron/swif.cron ./
+edit swif.cron
+crontab swif.cron to install it and it will retry all jobs every 30m
+crontab -e to edit
+crontab -l to list
+crontab -r to remove
+
+As a result,  "swif-status.py --retry" now takes arguments corresponding to problem types.  The cronjobs stay as is for now, i.e. no arguments to the --retry option.
+Currently, these will now never be retried from swif-status.py (nor our automated cronjobs) unless explicitly requested:
+SLURM_INPUT_FAIL
+SITE_PREP_FAIL
+SLURM_FAILED***
+And these will always be retried, regardless whether requested:
+SLURM_NODE_FAIL
+SLURM_CANCELLED
+SLURM_TIMEOUT
+
+https://clasweb.jlab.org/wiki/index.php/CLAS12_Chef_Documentation#tab=Tips
+
+== file check ==================
+
+#!/bin/bash
+for x in `cat filelist_missing_20240702_dec` ; do ls $x >> file-without-globs.txt ; done
+
+#!/bin/bash
+touch log
+for x in /cache/clas12/rg-x/asdf/*/*.hipo
+do
+  hipo-check-integrity.py $x >> log
+done
+
+And then script on log to collect the issues.  Or 
+
+hipo-check-integrity.py /cache/clas12/asdf/*
+
+which will fail on first file with problem, which you then remove, log, and rerun.
+
+Hipo-utils -info gives the number of tag-0 events and tag-1 events. The former are the physics events that survive the skim conditions while the latter are the special events that contain scaler/helicity information. The latter ones are written out independently on the skim condition to ensure the train output has all information for normalization etc. If the skim condition is very tight, it can happen that you end up with mostly tag-1 events that have helicity/scaler,¡­banks only.
+
+== access clas online data =============================================================
+(do this only when data mover is not working or too slow)
+ssh hallgw
+login with PIN+passcode from the mobile app
+ssh clas@clondaq6
+cd /data/stage_in
+
+==install clara and coatjava  ===========================
+cd /work/clas12/rg-b
+
+setenv clara_version 4.3.8
+setenv coatjava_version 5.9.0
+
+setenv clara_version 4.3.10
+setenv coatjava_version 6c.2.1
+
+setenv WORK /work/clas12/rg-b/clas12_clara${clara_version}_coatjava${coatjava_version}
+setenv CLARA_HOME ${WORK}/clara
+
+mkdir ${WORK}
+cd ${WORK}
+
+wget https://claraweb.jlab.org/clara/_downloads/install-claracre-clas.sh   
+chmod 755 install-claracre-clas.sh
+./install-claracre-clas.sh -f ${clara_version} -v ${coatjava_version} -g 2.1
+
+setenv CLARA_USER_DATA ${WORK}
+
+setenv CLARA_OUTPUT ${WORK}/output
+setenv CLARA_LOG ${WORK}/log
+
+mkdir $CLARA_OUTPUT
+mkdir $CLARA_LOG
+
+setenv CLARA_INPUT ${WORK}/input
+ln -s /lustre/expphy/farm_out/${USER} ${WORK}/farm_out
+ln -s /work/clas12/clas12/data/calib/decoded_single/ ${WORK}/input
+
+setenv COATJAVA ${CLARA_HOME}/plugins/clas12
+
+setenv PATH ${COATJAVA}/bin:$PATH
+
+==run clara and coatjava, and other tools ===========================
+
+/u/home/clas12-2/users/markov/configFiles/pass1/train_physKaonNoFTNoIH.yaml
+
+cd /work/clas12/rg-b
+
+setenv coatjava_version 5b.7.8
+setenv clara_version 4.3.5
+setenv WORK /work/clas12/rg-b/clas12_clara${clara_version}_coatjava${coatjava_version}
+setenv CLARA_HOME ${WORK}/clara
+setenv COATJAVA ${CLARA_HOME}/plugins/clas12
+setenv PATH ${COATJAVA}/bin:$PATH
+setenv CLARA_OUTPUT ${WORK}/output
+setenv CLARA_LOG ${WORK}/log
+setenv PATH ${GROOVY_HOME}/bin:$PATH
+cd $WORK
+
+setenv coatjava_version 5.9.0
+setenv clara_version 4.3.8
+setenv WORK /work/clas12/rg-b/clas12_clara${clara_version}_coatjava${coatjava_version}
+setenv CLARA_HOME ${WORK}/clara
+setenv COATJAVA ${CLARA_HOME}/plugins/clas12
+setenv PATH ${COATJAVA}/bin:$PATH
+setenv CLARA_USER_DATA ${WORK}
+cd $WORK
+
+mkdir /work/clas12/rg-b/clas12_clara4.3.10_coatjava6b.2.0
+source /group/clas12/packages/setup.csh 
+module load coatjava/6b.2.0
+setenv CLARA_USER_DATA /work/clas12/rg-b/clas12_clara4.3.10_coatjava6b.2.0
+cd $CLARA_USER_DATA
+
+mkdir /work/clas12/rg-b/clas12_clara4.3.10_coatjava6.3.1
+source /group/clas12/packages/setup.csh 
+module load coatjava/6.3.1
+setenv CLARA_USER_DATA /work/clas12/rg-b/clas12_clara4.3.10_coatjava6.3.1
+cd $CLARA_USER_DATA
+
+mkdir /work/clas12/rg-b/clas12_clara4.3.11_coatjava6b.4.0
+source /group/clas12/packages/setup.csh 
+module load coatjava/6b.4.0
+setenv CLARA_USER_DATA /work/clas12/rg-b/clas12_clara4.3.11_coatjava6b.4.0
+cd $CLARA_USER_DATA
+
+source /group/clas12/packages/setup.csh 
+module load coatjava/6b.4.1
+
+diff /group/clas12/packages/clara/4.3.12_6b.5.1/plugins/clas12/config/data.yaml /group/clas12/packages/clara/4.3.12_6b.5.0/plugins/clas12/config/data.yaml
+diff /group/clas12/packages/clara/4.3.12_6b.5.0/plugins/clas12/etc/bankdefs/util/bankSplit.py /group/clas12/packages/clara/4.3.11_6b.4.0/plugins/clas12/etc/bankdefs/util/bankSplit.py
+diff /group/clas12/packages/clara/4.3.12_6b.5.1/plugins/clas12/etc/bankdefs/util/bankSplit.py /group/clas12/packages/clara/4.3.11_6b.4.0/plugins/clas12/etc/bankdefs/util/bankSplit.py
+diff -r /group/clas12/packages/clara/4.3.12_6b.4.1/plugins/clas12/etc/bankdefs/hipo4 /group/clas12/packages/clara/4.3.11_6b.4.0/plugins/clas12/etc/bankdefs/hipo4
+
+$CLARA_HOME/bin/clara-shell /work/clas12/rg-b/clas12_cooking_rgb/script.clara_farm
+
+$CLARA_HOME/bin/clara-shell /work/clas12/rg-b/clas12_cooking_rgb/script.clara_local
+
+coatjava/bin/notsouseful-util
+
+hipo-utils -stats ../production/recon/pass0/tmp/dst_clas_006489.evio.00000.hipo
+hipo-utils -info ../production/recon/pass0/tmp/dst_clas_006489.evio.00000.hipo
+
+hipo writer overwrite existing file by default
+
+bash-4.2$ for xx in `/site/scicomp/auger-slurm/bin/slurmJobs -u clas12-1 | grep 'Feb-10 03:' | awk '{print$1'}`; do /site/scicomp/auger-slurm/bin/jkill $xx; done
+
+#create new filelist from filelist difference
+comm -23 allfile donefile | cat > leftfile
+
+#rename "calib_" of file name in filelist
+sed -i 's/calib_//g' filelist
+sed -i 's/mon_//g' filelist
+sed -i 's/dst_//g' filelist
+
+#rename many file name
+for xx in `ls */* | grep "hipo"` ; 
+#do echo $xx
+#do mv $xx $xx; 
+do mv $xx `echo $xx | sed 's/0000/0004/g'`
+done
+
+
+#check database
+https://clasweb.jlab.org/cgi-bin/ccdb/show_request?request=/calibration/htcc/gain:6213:default:2019-02-14_09-40-09
+
+#make sqlite from ccdb
+module load clas12/pro
+cd /work/clas12/rg-b/ccdb
+/group/clas12/packages/local/bin/clas12-ccdb-mysql2sqlite.py ccdb.sqlite
+
+farm.scaling  multiples of 4 for farm18 and multiples of 2 for other to match their NUMA sockets
+
+Does old pbs farm support exclusive beside slurm farm?
+>>>>> No. However one can achieve the same with a few parameter settings like cpu and mem
+
+for local job, will it use all memory by default?
+Yes. By default it will use all available cores. However, you can set the core count (thus limit the memory use) by `set threads #`
+
+for submitting a single job, don't set farm.scaling and just use default 0
+otherwise, clara will create more jobs and could miss files
+
+grape and train
+We have to use the grape in the same version of coatjava used for cooking to do train, otherwise at least REC bank could be corrupted
+
+====decode with clas12-workflow (old) =============================================
+
+#decode simulation
+$CLARA_HOME/plugins/clas12/bin/evio2hipo -r 4310 -t -1 -s 1 -o $CLARA_INPUT/jpsi_gen_qf_1.hipo jpsi_gen_qf_1.evio
+t for torus field scale, negative is electron inbending, s for solenoid field scale. 
+They have to match what is defined in gcard by "SCALE_FIELD" option when evio file produced, otherwise reconstruction will be wrong !!!!!
+
+#decode raw data
+$CLARA_HOME/plugins/clas12/bin/decoder -t -1 -s -1 -o /work/clas12/rg-b/production/decoded/v1/006141/clas_006141.evio.00001.hipo /work/clas12/rg-b/data/clas_006141/clas_006141.evio.00001
+
+/cache/clas12/rg-b/data/clas_pin_011077/clas_pin_011077.evio.00001
+
+$CLARA_HOME/plugins/clas12/bin/decoder -t 1 -s -1 -o clas_006141.evio.00001.hipo /cache/clas12/rg-b/data/clas_pin_011077/clas_pin_011077.evio.00001
+
+ls -l && rm -f in.evio && /bin/dd bs=1M if=/cache/clas12/rg-b/data/clas_006233/clas_006233.evio.00037 of=in.evio && unalias -a ; /work/clas12/rg-b/clas12_clara4.3.9_coatjava6b.1.1/clara/plugins/clas12/bin/decoder -c 2 -s -1.0000 -t -1.0000 -o out.hipo in.evio && ls out.hipo && /work/clas12/rg-b/clas12_clara4.3.9_coatjava6b.1.1/clara/plugins/clas12/bin/hipo-utils -test out.hipo || rm -f out.hipo && ls out.hipo
+
+for filenum in {40..49}; do /work/clas12/rg-b/clas12_clara4.3.5_coatjava5b.7.8/clara/plugins/clas12/bin/decoder -t -1 -s -1 -o /cache/clas12/rg-b/production/decoded/v1/00$rnum/clas_00
+$rnum.evio.000$filenum.hipo /cache/clas12/rg-b/data/clas_00$rnum/clas_00$rnum.evio.000$filenum & ; done;
+
+#use clas12-workflow to do decoding
+git clone --single-branch --branch hipo3 https://github.com/baltzell/clas12-workflow.git
+cd clas12-workflow
+
+mkdir output
+
+source env.sh
+
+./scripts/gen-decoding.py --runGroup rgb --workflow rgb_decode9 --task decode --run 6213 --inputs /cache/clas12/rg-b/data/clas_pin_006213 --fileRegex '.*_(\d+)\.evio\.(00[1-9]\d+)' --workDir /work/clas12/rg-b/clas12-workflow_hipo3/output  --outDir /work/clas12/rg-b/clas12-workflow_hipo3/output --coatjava /work/clas12/rg-b/clas12_clara4.3.5_coatjava5b.7.7/clara/plugins/clas12 --model 2
+
+./scripts/gen-decoding.py --runGroup rgb --workflow rgb_decode --task decode --run 6210,6211 --inputs /cache/clas12/rg-b/data/ --workDir /work/clas12/rg-b/clas12-workflow_hipo3/output  --outDir /work/clas12/rg-b/clas12-workflow_hipo3/output --coatjava /work/clas12/rg-b/clas12_clara4.3.5_coatjava5b.7.7/clara/plugins/clas12  --model 2
+
+by default it find all find under input 
+--fileRegex ".*clas[_A-Za-z]*_(\d+)\.evio\.0004(\d+)"
+
+
+== skim ===================================
+clara1601.jlab.org and clara1602.jlab.org can be used for this
+
+source /group/clas12/packages/setup.csh 
+module load coatjava/6b.4.0
+
+> common tasks always have this line there:
+>
+> MALLOC_ARENA_MAX=1; export MALLOC_ARENA_MAX
+>
+> You should use this, it limits how much memory JVM asks from the
+>
+> system. It helps a lot.
+
+compile code
+javac -cp "$COATJAVA/lib/clas/*:$COATJAVA/lib/utils/*:." filter_pid11.java
+
+run code
+java -DCLAS12DIR="$COATJAVA" -cp "$COATJAVA/lib/clas/*:$COATJAVA/lib/utils/*:." filter_pid11 file file_skim
+
+
+another way
+setenv  GROOVY_HOME /work/clas12/rg-b/groovy-2.5.6/
+setenv PATH ${GROOVY_HOME}/bin:$PATH
+run-groovy skim.groovy 
+
+=== make new schema =========================================
+mkdir hipo_20190424
+cp /work/clas12/rg-b/clas12_clara4.3.8_coatjava5.9.0/clara/plugins/clas12/etc/bankdefs/hipo/* hipo_20190424/
+python bankSplit_20190424.py hipo_20190424
+
+mkdir hipo4_20190523
+cp /group/clas12/packages/clara/4.4_6b.2.0/plugins/clas12/etc/bankdefs/hipo4/* hipo4_20190523/
+python bankSplit_20190523.py hipo4_20190523
+
+mkdir hipo4_20190722
+cp /group/clas12/packages/clara/4.3.10_6b.3.0/plugins/clas12/etc/bankdefs/util/bankSplit.py bankSplit_20190722.py
+edit bankSplit_20190722.py
+cp /group/clas12/packages/clara/4.3.10_6b.3.0/plugins/clas12/etc/bankdefs/hipo4/* hipo4_20190722/
+python bankSplit_20190722.py hipo4_20190722
+
+mkdir hipo4_6.3.1_20190815
+cp /group/clas12/packages/clara/4.3.10_6.3.1/plugins/clas12/etc/bankdefs/util/bankSplit.py bankSplit_6.3.1_20190815.py
+edit bankSplit_6.3.1_20190815.py
+cp /group/clas12/packages/clara/4.3.10_6.3.1/plugins/clas12/etc/bankdefs/hipo4/* hipo4_6.3.1_20190815/
+python bankSplit_6.3.1_20190815.py hipo4_6.3.1_20190815
+
+mkdir hipo4_6b.4.0_20191204
+cp /group/clas12/packages/clara/4.3.11_6b.4.0/plugins/clas12/etc/bankdefs/util/bankSplit.py bankSplit_6b.4.0_20191204.py
+edit bankSplit_6b.4.0_20191204.py
+cp /group/clas12/packages/clara/4.3.11_6b.4.0/plugins/clas12/etc/bankdefs/hipo4/* hipo4_6b.4.0_20191204
+python bankSplit_6b.4.0_20191204.py hipo4_6b.4.0_20191204
+
+mkdir hipo4_6c.5.4_20200417
+cp /group/clas12/packages/clara/4.3.12_6c.5.4/plugins/clas12/etc/bankdefs/util/bankSplit.py bankSplit_6c.5.4_20200417.py
+edit bankSplit_6c.5.4_20200317.py
+cp /group/clas12/packages/clara/4.3.12_6c.5.4/plugins/clas12/etc/bankdefs/hipo4/* hipo4_6c.5.4_20200417
+python bankSplit_6c.5.4_20200417.py hipo4_6c.5.4_20200417
+
+mkdir hipo4_6c.5.5_20200417
+cp /group/clas12/packages/clara/4.3.12_6c.5.5/plugins/clas12/etc/bankdefs/util/bankSplit.py bankSplit_6c.5.5_20200417.py
+edit bankSplit_6c.5.5_20200417.py
+cp /group/clas12/packages/clara/4.3.12_6c.5.5/plugins/clas12/etc/bankdefs/hipo4/* hipo4_6c.5.5_20200417
+python bankSplit_6c.5.5_20200417.py hipo4_6c.5.5_20200417
+
+mkdir hipo4_6c.5.7_20200515
+cp /group/clas12/packages/clara/4.3.12_6c.5.7/plugins/clas12/etc/bankdefs/util/bankSplit.py bankSplit_6c.5.7_20200515.py
+edit bankSplit_6c.5.7_20200515.py
+cp /group/clas12/packages/clara/4.3.12_6c.5.7/plugins/clas12/etc/bankdefs/hipo4/* hipo4_6c.5.7_20200515
+python bankSplit_6c.5.7_20200515.py hipo4_6c.5.7_20200515
+
+
+cp /group/clas12/packages/clara/4.3.12_6.5.8/plugins/clas12/etc/bankdefs/util/bankSplit.py bankSplit_6.5.8_20200610.py
+edit bankSplit_6.5.8_20200610.py
+mkdir hipo4_6.5.8_20200610
+cp /group/clas12/packages/clara/4.3.12_6.5.8/plugins/clas12/etc/bankdefs/hipo4/* hipo4_6.5.8_20200610
+python bankSplit_6.5.8_20200610.py hipo4_6.5.8_20200610
+
+cp /group/clas12/packages/clara/4.3.12_6.5.12/plugins/clas12/etc/bankdefs/util/bankSplit.py bankSplit_6.5.12_20201028.py
+edit bankSplit_6.5.12_20201028.py
+mkdir hipo4_6.5.12_20201028
+cp /group/clas12/packages/clara/4.3.12_6.5.12/plugins/clas12/etc/bankdefs/hipo4/* hipo4_6.5.12_20201028
+python bankSplit_6.5.12_20201028.py hipo4_6.5.12_20201028
+
+
+=== yaml trick =============================================
+
+To simplify things, you can use rga_fall2018 everywhere. This variation has default as a parent and differs for default only for DC,FTOF,ECAL geometries, target position and beam offsets. If you specify rga_fall2018 for other services as FT for example, it would be equivalent to use default.
+>
+> Does a combination of variation and timestamp completely determine a cooking condition in CCDB?
+> Only one of them can'st?
+If you specify only the timestamp, the code will use default as variation, which is not good for real data reconstruction because of geometry. If you specify a variation, you still want to specify a timestamp to freeze the constants that will be read from that variation. However there is one more caveat because I think the timestamp is applied only to the calibration constants and not to the geometry constants. If you point me to a log file, I can verify that.
+
+> If I starting cooking now using an old timestamp, will I use old content of Rga_fall2018?
+With the exception of geometry constants. See above.
+Best regards,
+	Raffaella

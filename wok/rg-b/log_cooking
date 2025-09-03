@@ -1,0 +1,945 @@
+for CLAS12 cooking, a version is defined by software, schema file, yaml file, ccdb variation and timestamp
+
+***** pass2 *****************************************************************************************
+version	 			decode	cook		cook_yaml				schema	variation	train_yaml
+
+spring2019/torus-1/pass2/v0	6.5.6	5.0.2/9.0.1	rgb_dst_pass2v0_20230525.yaml		default	rgb_spring2019	train_dst_20210109.yaml
+
+fall2019/torus+1/pass1/v1	6.5.6	5.0.2/10.0.3	rgb_dst_pass2v1_2019fall_20231204.yaml	default	rgb_fall2019	train_dst_20210109.yaml
+
+fall2019/torus-1/pass1/v1	6.5.6	5.0.2/10.0.3	rgb_dst_pass2v1_2019fall_20231204.yaml	default	rgb_fall2019	train_dst_20210109.yaml
+
+spring2020/torus-1/pass1/v1	6.5.6	5.0.2/10.0.3	rgb_dst_pass2v1_2020spring_20231204.yaml	default	rgb_spring2020	train_dst_20210109.yaml
+
+***** pass1 *****************************************************************************************
+version	 			decode	cook		cook_yaml			schema	timestamp		variation	train_yaml
+
+spring2019/torus-1/pass1/v0	6.5.6	4.3.12/6.5.8	rgb_dst_pass1v0_20200610.yaml	bankSplit_6.5.8_20200610.py	06/10/2020-18:00:00	rga_fall2018	train_dst_20200610.yaml
+
+fall2019/torus+1/pass1/v1	6.5.6	4.3.12/6.5.12	rgb_dst_pass1v1_20201125.yaml	bankSplit_6.5.12_20201028.py	11/25/2020-11:00:00	rga_fall2018	train_dst_20210109.yaml
+
+fall2019/torus-1/pass1/v1	6.5.6	4.3.12/6.5.12	rgb_dst_pass1v1_20201125.yaml	bankSplit_6.5.12_20201028.py	11/25/2020-11:00:00	rga_fall2018	train_dst_20210109.yaml
+
+spring2020/torus-1/pass1/v1	6.5.6	4.3.12/6.5.12	rgb_dst_pass1v1_20210210.yaml	bankSplit_6.5.12_20201028.py	02/10/2021-11:00:00	rga_fall2018	train_dst_20210109.yaml
+
+***** pass0 *****************************************************************************************
+using clas12-workflow/dev for train_calib.yaml and post process when Charge and lifetime are transferred to REC::Event
+only calibration constants use timestamp, geometry constants use latest
+
+v28.x calibration cooking for spring2019, using rgb_spring2019 https://logbooks.jlab.org/entry/4020490
+
+v27.x some tests
+
+v26.x magfield test 
+
+v25.x calibration cooking for spring2020
+
+v24.x calibration cooking for fall2019
+
+v23.x test cooking for spring2019
+v22.x test cooking for spring2019
+v21.x calibration cooking mostly for spring2019
+
+v19.x calibration cooking
+
+v16 hipo4 cooking for Spring 2019 run, used for DNP2019
+
+v5  latest hipo3 cooking for Spring 2019 run
+
+v20 cooking during Spring 2020 run
+v17 cooking during Fall 2019 run
+v1  cooking during Spring 2019 run
+
+=====================================================================================================================
+version	 decode	cook		yaml					schema		variation
+
+v29.49	 6.5.6	5.0.2/10.0.3	rgb_mon_pass0v29.49_20231117.yaml	default		rgb_fall2019
+v29.48	 6.5.6	5.0.2/10.0.3	rgb_mon_pass0v29.48_20231117.yaml	default		rgb_spring2020
+v29.47	 6.5.6	5.0.2/10.0.3	rgb_mon_pass0v29.47_20231107.yaml	default		rgb_spring2020
+v29.46	 6.5.6	5.0.2/10.0.3	rgb_mon_pass0v29.46_20231107.yaml	default		rgb_fall2019
+v29.45	 6.5.6	5.0.2/10.0.3	rgb_mon_pass0v29.45_20231027.yaml	default		rgb_fall2019
+v29.44	 6.5.6	5.0.2/10.0.3	rgb_mon_pass0v29.44_20231024.yaml	default		rgb_fall2019
+v29.43	 6.5.6	5.0.2/10.0.3	rgb_mon_pass0v29.43_20231013.yaml	default		rgb_fall2019
+v29.42	 6.5.6	5.0.2/10.0.3	rgb_dst_pass0v29.42_20231009.yaml	default		rgb_fall2019
+v29.41	 6.5.6	5.0.2/10.0.3	rgb_calib_pass0v29.41_20231009.yaml	default		rgb_fall2019
+v29.40	 6.5.6	5.0.2/10.0.3	rgb_mon_pass0v29.40_20231004.yaml	default		rgb_fall2019
+v29.39	 6.5.6	5.0.2/10.0.3	rgb_mon_pass0v29.39_20230928.yaml	default		rgb_fall2019
+v29.38	 6.5.6	5.0.2/10.0.3	rgb_mon_pass0v29.38_20230928.yaml	default		rgb_fall2019
+v29.37	 6.5.6	5.0.2/10.0.3	rgb_dcalign_pass0v29.37_20230922.yaml	default		rgb_fall2019
+v29.36	 6.5.6	5.0.2/10.0.2	rgb_mon_pass0v29.36_20230922.yaml	default		rgb_fall2019
+v29.35	 6.5.6	5.0.2/10.0.2	rgb_calib_pass0v29.35_20230922.yaml	default		rgb_fall2019
+v29.34	 6.5.6	5.0.2/10.0.2	rgb_mon_pass0v29.34_20230912.yaml	default		rgb_fall2019
+v29.33	 6.5.6	5.0.2/10.0.2	rgb_mon_pass0v29.33_20230908.yaml	default		rgb_fall2019
+v29.32	 6.5.6	5.0.2/10.0.2	rgb_calib_pass0v29.32_20230906.yaml	default		rgb_fall2019
+v29.31	 6.5.6	5.0.2/10.0.2	rgb_dst_pass0v29.31_20230904.yaml	default		rgb_fall2019
+v29.30	 6.5.6	5.0.2/9.0.1	rgb_calib_pass0v29.30_20230830.yaml	default		rgb_fall2019
+v29.29	 6.5.6	5.0.2/9.0.1	rgb_calib_pass0v29.29_20230825.yaml	default		rgb_fall2019
+v29.28	 6.5.6	5.0.2/9.0.1	rgb_calib_pass0v29.28_20230822.yaml	default		rgb_fall2019
+v29.27	 6.5.6	5.0.2/9.0.1	rgb_mon_pass0v29.27_20230818.yaml	default		rgb_fall2019
+v29.26	 6.5.6	5.0.2/9.0.1	rgb_calib_pass0v29.26_20230811.yaml	default		rgb_fall2019
+v29.25	 6.5.6	5.0.2/9.0.1	rgb_calib_pass0v29.25_20230803.yaml	default		rgb_fall2019
+v29.24	 6.5.6	5.0.2/9.0.1	rgb_mon_pass0v29.24_20230803.yaml	default		rgb_fall2019
+v29.23	 6.5.6	5.0.2/9.0.1	rgb_mon_pass0v29.23_20230726.yaml	default		rgb_fall2019
+v29.22	 6.5.6	5.0.2/9.0.1	rgb_mon_pass0v29.22_20230721.yaml	default		rgb_fall2019
+v29.21	 6.5.6	5.0.2/9.0.1	rgb_mon_pass0v29.21_20230709.yaml	default		rgb_fall2019
+v29.20	 6.5.6	5.0.2/9.0.1	rgb_mon_pass0v29.20_20230607.yaml	default		rgb_fall2019
+v29.19	 6.5.6	5.0.2/9.0.1	rgb_calib_pass0v29.19_20230606.yaml	default		rgb_fall2019
+v29.18	 6.5.6	5.0.2/9.0.1	rgb_mon_pass0v29.18_20230604.yaml	default		rgb_fall2019
+v29.17	 6.5.6	5.0.2/9.0.1	rgb_calib_pass0v29.17_20230524.yaml	default		rgb_fall2019
+v29.16	 6.5.6	5.0.2/9.0.1	rgb_calib_pass0v29.16_20230519.yaml	default		rgb_fall2019
+v29.15	 6.5.6	5.0.2/9.0.0	rgb_mon_pass0v29.15_20230516.yaml	default		rgb_fall2019
+v29.14	 6.5.6	5.0.2/9.0.0	rgb_calib_pass0v29.14_20230508.yaml	default		rgb_fall2019
+v29.13	 6.5.6	5.0.2/9.0.0	rgb_mon_pass0v29.13_20230502.yaml	default		rgb_fall2019
+v29.12	 6.5.6	5.0.2/8.7.1	rgb_mon_pass0v29.12_20230421.yaml	default		rgb_fall2019
+v29.11	 6.5.6	5.0.2/8.7.1	rgb_mon_pass0v29.11_20230417.yaml	default		rgb_fall2019
+v29.10	 6.5.6	5.0.2/8.7.0	rgb_mon_pass0v29.10_20230411.yaml	default		rgb_fall2019
+v29.9	 6.5.6	5.0.2/8.7.0	rgb_calib_pass0v29.9_20230409.yaml	default		rgb_fall2019
+v29.8	 6.5.6	5.0.2/8.7.0	rgb_calib_pass0v29.8_20230405.yaml	default		rgb_fall2019
+v29.7	 6.5.6	5.0.2/8.6.0	rgb_calib_pass0v29.7_20230315.yaml	default		rgb_fall2019
+v29.6	 6.5.6	5.0.2/8.6.0	rgb_dst_pass0v29.6_20230309.yaml	default		rgb_spring2019
+v29.5	 6.5.6	5.0.2/8.5.0	rgb_mon_pass0v29.5_20230210.yaml	default		rgb_spring2019
+v29.4	 6.5.6	5.0.2/8c.4.0	rgb_dst_pass0v29.4_20230104.yaml	default		rgb_spring2019
+v29.3	 6.5.6	5.0.2/8c.3.2	rgb_mon_pass0v29.3_20230104.yaml	default		rgb_spring2019
+v29.2	 6.5.6	5.0.2/8c.4.0	rgb_mon_pass0v29.2_20221216.yaml	default		rgb_spring2019
+v29.1	 6.5.6	5.0.2/8c.3.2	rgb_mon_pass0v29.1_20221129.yaml	default		rgb_spring2019
+
+v28.62	 6.5.6	5.0.2/9.0.1	rgb_dst_pass0v28.62_20230525.yaml	default		rgb_spring2019
+v28.61	 6.5.6	5.0.2/9.0.1	rgb_calib_pass0v28.61_20230522.yaml	default		rgb_spring2019
+v28.60	 6.5.6	5.0.2/9.0.0	rgb_mon_pass0v28.60_20230503.yaml	default		rgb_spring2019
+v28.59	 6.5.6	5.0.2/9.0.0	rgb_mon_pass0v28.59_20230503.yaml	default		rgb_spring2019
+v28.58	 6.5.6	5.0.2/9.0.0	rgb_dst_pass0v28.58_20230503.yaml	default		rgb_spring2019
+v28.57	 6.5.6	5.0.2/8.7.1	rgb_mon_pass0v28.57_20230419.yaml	default		rgb_spring2019
+v28.56	 6.5.6	5.0.2/8.5.0	rgb_mon_pass0v28.56_20230414.yaml	default		rgb_spring2019
+v28.55	 6.5.6	5.0.2/8.7.1	rgb_mon_pass0v28.55_20230414.yaml	default		rgb_spring2019
+v28.54	 6.5.6	5.0.2/8.7.1	rgb_mon_pass0v28.54_20230414.yaml	default		rgb_spring2019
+v28.53	 6.5.6	5.0.2/8.7.1	rgb_mon_pass0v28.53_20230413.yaml	default		rgb_spring2019
+v28.52	 6.5.6	5.0.2/8.7.0	rgb_calib_pass0v28.52_20230410.yaml	default		rgb_spring2019
+v28.51	 6.5.6	5.0.2/8.7.0	rgb_mon_pass0v28.51_20230410.yaml	default		rgb_spring2019
+v28.50	 6.5.6	5.0.2/8.7.0	rgb_mon_pass0v28.50_20230329.yaml	default		rgb_spring2019
+v28.49	 6.5.6	5.0.2/8.7.0	rgb_dst_pass0v28.49_20230329.yaml	default		rgb_spring2019
+v28.48	 6.5.6	5.0.2/8.6.0	rgb_dst_pass0v28.48_20230302.yaml	default		rgb_spring2019
+v28.47	 6.5.6	5.0.2/8.6.0	rgb_dst_pass0v28.47_20230228.yaml	default		rgb_spring2019
+v28.46	 6.5.6	5.0.2/8.5.0	rgb_mon_pass0v28.46_20230206.yaml	default		rgb_spring2019
+v28.45	 6.5.6	5.0.2/8.5.0	rgb_dst_pass0v28.45_20230206.yaml	default		rgb_spring2019
+v28.44	 6.5.6	5.0.2/8.5.0	rgb_mon_pass0v28.44_20230206.yaml	default		rgb_spring2019
+v28.43	 6.5.6	5.0.2/8.5.0	rgb_mon_pass0v28.43_20230204.yaml	default		rgb_spring2019
+v28.42	 6.5.6	5.0.2/8.5.0	rgb_calib_pass0v28.41_20230127.yaml	default		rgb_spring2019
+v28.41	 6.5.6	5.0.2/8.5.0	rgb_dst_pass0v28.41_20230127.yaml	default		rgb_spring2019
+v28.40	 6.5.6	5.0.2/8.5.0	rgb_dst_pass0v28.40_20230120.yaml	default		rgb_spring2019
+v28.39	 6.5.6	5.0.2/8c.4.0	rgb_cvt_pass0v28.39_20230104.yaml	default		rgb_spring2019
+v28.38	 6.5.6	5.0.2/8c.4.0	rgb_mon_pass0v28.38_20221216.yaml	default		rgb_spring2019
+v28.37	 6.5.6	5.0.2/8.4.0-8c.4.0	rgb_dst_pass0v28.37_20221212.yaml	default	rgb_spring2019
+v28.36	 6.5.6	5.0.2/8c.4.0	rgb_mon_pass0v28.36_20221212.yaml	default		rgb_spring2019
+v28.35	 6.5.6	5.0.2/8c.4.0	rgb_mon_pass0v28.35_20221206.yaml	default		rgb_spring2019
+v28.34	 6.5.6	5.0.2/8.4.0-8c.4.0	rgb_dst_pass0v28.34_20221206.yaml	default	rgb_spring2019
+v28.33	 6.5.6	5.0.2/8c.3.2	rgb_mon_pass0v28.33_20221201.yaml	default		rgb_spring2019
+v28.32	 6.5.6	5.0.2/8c.3.2	rgb_mon_pass0v28.32_20221125.yaml	default		rgb_spring2019
+v28.31	 6.5.6	5.0.2/8c.3.2	rgb_calib_pass0v28.31_20221117.yaml	default		rgb_spring2019
+v28.30	 6.5.6	5.0.2/8c.3.2	rgb_mon_pass0v28.30_20221111.yaml	default		rgb_spring2019
+v28.29	 6.5.6	5.0.2/8c.3.2	rgb_calib_pass0v28.29_20221028.yaml	default		rgb_spring2019
+v28.28	 6.5.6	5.0.2/8c.3.2	rgb_calib_pass0v28.28_20221028.yaml	default		rgb_spring2019
+v28.27	 6.5.6	5.0.2/8.3.2-8c.3.2	rgb_mon_pass0v28.23_20221026.yaml	default	rgb_spring2019
+v28.26	 6.5.6	5.0.2/8.3.2-8c.3.2	rgb_mon_pass0v28.23_20221025.yaml	default	rgb_spring2019
+v28.25	 6.5.6	5.0.2/8c.3.2	rgb_calib_pass0v28.25_20221019.yaml	default		rgb_spring2019
+v28.24	 6.5.6	5.0.2/8c.3.2	rgb_calib_pass0v28.24_20221019.yaml	default		rgb_spring2019
+v28.23	 6.5.6	5.0.2/8.3.2-8c.3.2	rgb_mon_pass0v28.23_20221019.yaml	default	rgb_spring2019
+v28.22	 6.5.6	5.0.2/8.3.2-8c.3.2	rgb_dst_pass0v28.22_20221014.yaml	default	rgb_spring2019
+v28.21	 6.5.6	5.0.2/8.2.4	rgb_mon_pass0v28.21_20221010.yaml	default		rgb_spring2019
+v28.20	 6.5.6	5.0.2/8.2.4	rgb_calib_pass0v28.20_20221008.yaml	default		rgb_spring2019
+v28.19	 6.5.6	5.0.2/8.2.4	rgb_calib_pass0v28.19_20221003.yaml	default		rgb_spring2019
+v28.18	 6.5.6	5.0.2/8.2.4	rgb_mon_pass0v28.18_20221003.yaml	default		rgb_spring2019
+v28.17	 6.5.6	5.0.2/8.2.4	rgb_mon_pass0v28.17_20221002.yaml	default		rgb_spring2019
+v28.16	 6.5.6	5.0.2/8.2.4	rgb_calib_pass0v28.16_20221001.yaml	default		rgb_spring2019
+v28.15	 6.5.6	5.0.2/8.2.4	rgb_calib_pass0v28.15_20220929.yaml	default		rgb_spring2019
+v28.14	 6.5.6	5.0.2/8.2.4	rgb_mon_pass0v28.14_20220929.yaml	default		rgb_spring2019
+v28.13	 6.5.6	5.0.2/8.2.4	rgb_mon_pass0v28.13_20220927.yaml	default		rgb_spring2019
+v28.12	 6.5.6	5.0.2/8.2.4	rgb_calib_pass0v28.12_20220923.yaml	default		rgb_spring2019
+v28.11	 6.5.6	5.0.2/8.2.4	rgb_mon_pass0v28.11_20220922.yaml	default		rgb_spring2019
+v28.10	 6.5.6	5.0.2/8.2.4	rgb_calib_pass0v28.10_20220921.yaml	default		rgb_spring2019
+v28.9	 6.5.6	5.0.2/8.2.4	rgb_mon_pass0v28.9_20220920.yaml	default		rgb_spring2019
+v28.8	 6.5.6	5.0.2/8.2.4	rgb_mon_pass0v28.8_20220914.yaml	default		rgb_spring2019
+v28.7	 6.5.6	5.0.2/8.2.4	rgb_mon_pass0v28.7_20220912.yaml	default		rgb_spring2019
+v28.6	 6.5.6	5.0.2/8.2.4	rgb_mon_pass0v28.6_20220902.yaml	default		rgb_spring2019
+v28.5	 8.3.0	5.0.2/8.3.0	rgb_calib_pass0v28.5_20220902.yaml	default		rgb_spring2019
+v28.4	 6.5.6	5.0.2/8.2.4	rgb_mon_pass0v28.4_20220823.yaml	default		rgb_spring2019
+v28.3	 6.5.6	5.0.2/8.2.2	rgb_calib_pass0v28.3_20220814.yaml	default		rgb_spring2019
+v28.2	 6.5.6	5.0.2/8.2.2	rgb_mon_pass0v28.2_20220814.yaml	default		rgb_spring2019
+v28.1	 6.5.6	5.0.2/8.2.1	rgb_calib_pass0v28.1_20220805.yaml	default		rgb_spring2019
+v28.0	 6.5.6	5.0.2/8.2.1	rgb_mon_pass0v28.0_20220727.yaml	default		rgb_spring2019
+
+v27.10	 same	5.0.2/clara-iss908-dcJitterV2ti	rgb_calib_pass0v27.10_20220807.yaml	default		rga_fall2018
+v27.9	 same	5.0.2/clara-iss908-dcJitterV2	rgb_calib_pass0v27.9_20220807.yaml	default		rga_fall2018
+v27.8	 same	5.0.2/clara-iss908-dcJitter	rgb_calib_pass0v27.8_20220725.yaml	default		rga_fall2018
+v27.7	 6.5.6	5.0.2/clara-iss831	rgb_mon_pass0v27.7_20220615.yaml	default		rga_fall2018
+v27.6	 6.5.6	5.0.2/8.0.0	rgb_calib_pass0v27.6_20220429.yaml	default		rga_fall2018
+v27.5	 6.5.6	4.3.12/6.5.12	rgb_calib_pass0v27.5_20220124.yaml	default		rga_fall2018
+v27.4	 6.5.6	4.3.12/6.5.12	rgb_calib_pass0v27.4_20211201.yaml	default		rga_fall2018
+v27.2	 6.5.6	4.3.12/6.5.12	rgb_dst_pass0v27.2_20211012.yaml	default		rga_fall2018
+v27.1	 6.5.6	4.3.12/6.5.12	rgb_calib_pass0v27.1_20210210.yaml	default		rga_fall2018
+
+v26.2	 6.5.6	4.3.12/6.5.12	rgb_calib_pass0v26.2_20201028.yaml	default		rga_fall2018
+v26.1	 6.5.6	4.3.12/6.5.12	rgb_calib_pass0v26.1_20201028.yaml	default		rga_fall2018
+
+v25.20	 6.5.6	clara-iss641-cndclustering	rgb_calib_pass0v25.20_20210423.yaml	default		rga_fall2018
+v25.19	 6.5.6	clara-iss641-cndclustering	rgb_calib_pass0v25.19_20210202.yaml	default		rga_fall2018
+v25.18	 6.5.6	4.3.12/6.5.12	rgb_mon_pass0v25.18_20210125.yaml	default				rga_fall2018
+v25.17	 6.5.6	4.3.12/6.5.12	rgb_dst_pass0v25.17_20210106.yaml	hipo4_6.5.12_20201028		rga_fall2018
+v25.16	 6.5.6	4.3.12/6.5.12	rgb_calib_pass0v25.16_20210106.yaml	default		rga_fall2018
+v25.15	 6.5.6	4.3.12/6.5.12	rgb_mon_pass0v25.15_20210106.yaml	default		rga_fall2018
+v25.14	 6.5.6	4.3.12/6.5.12	rgb_mon_pass0v25.14_20210106.yaml	default		rga_fall2018
+v25.13	 6.5.6	4.3.12/6.5.12	rgb_mon_pass0v25.13_20201230.yaml	default		rga_fall2018
+v25.12	 6.5.6	4.3.12/6.5.12	rgb_calib_pass0v25.12_20201227.yaml	default		rga_fall2018
+v25.11	 6.5.6	4.3.12/6.5.12	rgb_mon_pass0v25.11_20201227.yaml	default		rga_fall2018
+v25.10	 6.5.6	4.3.12/6.5.12	rgb_mon_pass0v25.10_20201222.yaml	default		rga_fall2018
+v25.9	 6.5.6	4.3.12/6.5.12	rgb_calib_pass0v25.9_20201218.yaml	default		rga_fall2018
+v25.8	 6.5.6	4.3.12/6.5.12	rgb_mon_pass0v25.8_20201216.yaml	default		rga_fall2018
+v25.7	 6.5.6	4.3.12/6.5.12	rgb_calib_pass0v25.7_20201210.yaml	default		rga_fall2018
+v25.6	 6.5.6	4.3.12/6.5.12	rgb_mon_pass0v25.6_20201122.yaml	default		rga_fall2018
+v25.5	 6.5.6	4.3.12/6.5.12	rgb_calib_pass0v25.5_20201118.yaml	default		rga_fall2018
+v25.4	 6.5.6	4.3.12/6.5.8	rgb_calib_pass0v25.4_20201028.yaml	default		rga_fall2018
+v25.3	 6.5.6	4.3.12/6.5.8	rgb_calib_pass0v25.3_20201027.yaml	default		rga_fall2018
+v25.2	 6.5.6	4.3.12/6.5.8	rgb_calib_pass0v25.2_20201025.yaml	default		rga_fall2018
+v25.1	 6.5.6	4.3.12/6.5.8	rgb_mon_pass0v25.1_20201014.yaml	default		rga_fall2018
+
+v24.20	 6.5.6	4.3.12/6.5.8	rgb_mon_pass0v24.20_20201110.yaml	default		rga_fall2018
+v24.19	 6.5.6	4.3.12/6.5.8	rgb_mon_pass0v24.19_20201109.yaml	default		rga_fall2018
+v24.18	 6.5.6	4.3.12/6.5.8	rgb_calib_pass0v24.18_20201030.yaml	default		rga_fall2018
+v24.17	 6.5.6	4.3.12/6.5.12	rgb_dst_pass0v24.17_20201030.yaml	hipo4_6.5.12_20201028	rga_fall2018
+v24.16	 6.5.6	4.3.12/6.5.12	rgb_mon_pass0v24.16_20201030.yaml	default		rga_fall2018
+v24.15	 6.5.6	4.3.12/6.5.8	rgb_mon_pass0v24.15_20201030.yaml	default		rga_fall2018
+v24.14	 6.5.6	4.3.12/6.5.8	rgb_mon_pass0v24.14_20201030.yaml	default		rga_fall2018
+v24.13	 6.5.6	4.3.12/6.5.12	rgb_dst_pass0v24.13_20201028.yaml	hipo4_6.5.12_20201028	rga_fall2018
+v24.12	 6.5.6	4.3.12/6.5.8	rgb_mon_pass0v24.12_20201023.yaml	default		rga_fall2018
+v24.11	 6.5.6	4.3.12/6.5.8	rgb_mon_pass0v24.11_20201023.yaml	default		rga_fall2018
+v24.10	 6.5.6	4.3.12/6.5.8	rgb_mon_pass0v24.10_20201016.yaml	default		rga_fall2018
+v24.9	 6.5.6	4.3.12/6.5.8	rgb_calib_pass0v24.9_20201013.yaml	default		rga_fall2018
+v24.8	 6.5.6	4.3.12/6.5.8	rgb_mon_pass0v24.8_20201007.yaml	default		rga_fall2018
+v24.7	 6.5.6	4.3.12/6.5.8	rgb_calib_pass0v24.7_20200913.yaml	default		rga_fall2018
+v24.6	 6.5.6	4.3.12/6.5.8	rgb_mon_pass0v24.6_20200913.yaml	default		rga_fall2018
+v24.5	 6.5.6	4.3.12/6.5.8	rgb_calib_pass0v24.5_20200902.yaml	default		rga_fall2018
+v24.4	 6.5.6	4.3.12/6.5.8	rgb_calib_pass0v24.4_20200821.yaml	default		rga_fall2018
+v24.3	 6.5.6	4.3.12/6.5.8	rgb_dst_pass0v24.3_20200709.yaml	hipo4_6.5.8_20200610	rga_fall2018
+v24.2	 6.5.6	4.3.12/6.5.8	rgb_calib_pass0v24.2_20200709.yaml	default		rga_fall2018
+v24.1	 6.5.6	4.3.12/6.5.8	rgb_mon_pass0v24.1_20200619.yaml 	default		rga_fall2018
+
+v23.3	 6.5.6	4.3.12/6.5.8	rgb_dst_pass0v23.4_20200610.yaml	hipo4_6.5.8_20200610	rga_fall2018
+v23.3	 6.5.6	4.3.12/6c.5.7n	rgb_calib_pass0v23.3_20200526.yaml	default		rga_fall2018
+v23.2	 6.5.6	4.3.12/6c.5.7	rgb_dst_pass0v23.2_20200515.yaml	hipo4_6c.5.7_20200515	rga_fall2018
+v23.1	 6.5.6	4.3.12/6c.5.7	rgb_calib_pass0v23.1_20200515.yaml	default		rga_fall2018
+
+v22.4	 6c.5.4	4.3.12/6c.5.4	rgb_calib_pass0v22.4_20200506.yaml	default		rga_fall2018
+v22.3	 6c.5.4	4.3.12/6c.5.4	rgb_calib_pass0v22.3_20200429.yaml	default		rga_fall2018
+v22.2	 6c.5.4	4.3.12/6c.5.4	rgb_dst_pass0v22.2_20200417.yaml	hipo4_6c.5.4_20200417	rga_fall2018
+v22.1	 6b.5.1	4.3.12/6c.5.5	rgb_dst_pass0v22.1_20200417.yaml	hipo4_6c.5.5_20200417	rga_fall2018
+
+v21.8.2	 6b.5.1	4.3.12/6c.5.7n	rgb_mon_pass0v21.8.2_20200526.yaml	default		rga_fall2018
+v21.8.1	 6b.5.1	4.3.12/6c.5.7	rgb_mon_pass0v21.8.1_20200522.yaml	default		rga_fall2018
+v21.7.5	 6b.5.1	4.3.12/6c.5.4	rgb_mon_pass0v21.7.5_20200511.yaml	default		rga_fall2018
+v21.7.4	 6b.5.1	4.3.12/6c.5.4	rgb_mon_pass0v21.7.4_20200506.yaml	default		rga_fall2018
+v21.7.3	 6b.5.1	4.3.12/6c.5.4	rgb_mon_pass0v21.7.3_20200504.yaml	default		rga_fall2018
+v21.7.2	 6b.5.1	4.3.12/6c.5.4	rgb_mon_pass0v21.7.2_20200501.yaml	default		rga_fall2018
+v21.7.1	 6b.5.1	4.3.12/6c.5.4	rgb_mon_pass0v21.7.1_20200425.yaml	default		rga_fall2018
+v21.6.3	 6b.5.1	4.3.12/6c.5.4	rgb_mon_pass0v21.6.3_20200418.yaml	default		rga_fall2018
+v21.6.2	 6b.5.1	4.3.12/6c.5.5	rgb_mon_pass0v21.6.2_20200416.yaml	default		rga_fall2018
+v21.6.1	 6b.5.1	4.3.12/6c.5.4	rgb_mon_pass0v21.6.1_20200406.yaml	default		rga_fall2018
+v21.5.13 6b.5.1	4.3.12/6c.5.4	rgb_calib_pass0v21.5.13_20200512.yaml 	default		rga_fall2018
+v21.5.12 6b.5.1	4.3.12/6c.5.4	rgb_calib_pass0v21.5.12_20200509.yaml 	default		rga_fall2018
+v21.5.11 6b.5.1	4.3.12/6c.5.4	rgb_calib_pass0v21.5.11_20200506.yaml 	default		rga_fall2018
+v21.5.10 6b.5.1	4.3.12/6c.5.4	rgb_calib_pass0v21.5.10_20200430.yaml 	default		rga_fall2018
+v21.5.9	 6b.5.1	4.3.12/6c.5.4	rgb_calib_pass0v21.5.9_20200428.yaml	default		rga_fall2018
+v21.5.8	 6b.5.1	4.3.12/6c.5.4	rgb_calib_pass0v21.5.8_20200425.yaml	default		rga_fall2018
+v21.5.7	 6b.5.1	4.3.12/6c.5.4	rgb_calib_pass0v21.5.7_20200424.yaml	default		rga_fall2018
+v21.5.6	 6b.5.1	4.3.12/6c.5.4	rgb_calib_pass0v21.5.6_20200421.yaml	default		rga_fall2018
+v21.5.5	 6b.5.1	4.3.12/6c.5.5	rgb_calib_pass0v21.5.6_20200417.yaml	default		rga_fall2018
+v21.5.4	 6b.5.1	4.3.12/6c.5.5	rgb_calib_pass0v21.5.4_20200415.yaml	default		rga_fall2018
+v21.5.3	 6b.5.1	4.3.12/6c.5.4	rgb_calib_pass0v21.5.3_20200414.yaml	default		rga_fall2018
+v21.5.2	 6b.5.1	4.3.12/6c.5.4	rgb_calib_pass0v21.5.2_20200320.yaml	default		rga_fall2018
+v21.5.1	 6b.5.1	4.3.12/6c.5.4	rgb_calib_pass0v21.5.1_20200317.yaml	default		rga_fall2018
+v21.4.2	 6b.5.1	4.3.12/6c.5.4	rgb_calib_pass0v21.4.2_20200331.yaml	default		rga_fall2018
+v21.4.1	 6b.5.1	4.3.12/6b.5.2	rgb_calib_pass0v21.4.1_20200302.yaml	default		rga_fall2018
+v21.3.2	 6b.5.1	4.3.12/6c.5.4	rgb_mon_pass0v21.3.2_20200318.yaml	default		rga_fall2018
+v21.3.1	 6b.5.1	4.3.12/6c.5.4	rgb_mon_pass0v21.3.1_20200313.yaml	default		rga_fall2018
+v21.2.1	 6b.5.1	4.3.12/6c.5.4	rgb_calib_pass0v21.2.1_20200307.yaml	default		rga_fall2018
+v21.2	 6b.5.1	4.3.12/6b.5.1	rgb_calib_pass0v21.2_20200221.yaml	default		rga_fall2018
+=====================================================================================================================
+
+== v20  ==============================================================
+by Zhiwen Zhao, during data taking in 2020/01
+
+use clas12-workflow
+decode by coatjava6b.4.0
+cook by clara4.3.12 and coatjava6b.4.1
+
+yaml 
+rgb_mon_v20_20200108.yaml
+
+schema  in yaml
+bankSplit_6b.4.0_20191204.py
+  # copy the file from /group/clas12/packages/clara/4.3.11_6b.4.0/plugins/clas12/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+
+timestamp in yaml
+all services,  default, which means latest at run time
+
+variation in yaml
+some are  default, some are rga_fall2018
+
+== v19.3  ==============================================================
+by Zhiwen Zhao, 2020/02
+
+calibration cooking 
+after many calib
+
+using clas12-workflow
+decode by coatjava6b.5.1
+cooking by clara4.3.12 and coatjava6b.5.1
+
+yaml 
+rgb_mon_v19.3_20200211.yaml
+
+schema in yaml
+ default in coatjava6b.5.1
+
+timestamp in yaml
+all services, timestamp: 02/11/2020-11:00:00
+only calibration constants use timestamp
+geometry constant use latest
+
+variation in yaml
+some are  default, some are rga_fall2018
+
+== v19.2.2  ==============================================================
+by Zhiwen Zhao, 2020/02
+
+calibration cooking 
+after many calib
+
+using clas12-workflow
+decode by coatjava6b.4.0
+cooking by clara4.3.12 and coatjava6b.5.1
+
+schema 
+bankSplit_6b.4.0_20191204.py
+  # copy the file from /group/clas12/packages/clara/4.3.11_6b.4.0/plugins/clas12/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+
+yaml 
+rgb_calib_v19.2.2_20200201.yaml
+
+timestamp in yaml
+all services, timestamp: 02/01/2020-18:00:00
+only calibration constants use timestamp
+geometry constant use latest
+
+variation in yaml
+some are  default, some are rga_fall2018
+
+== v19.2.1  ==============================================================
+by Zhiwen Zhao, 2020/01
+
+calibration cooking 
+calib ftof run 11328 on 2020/01/20 https://logbooks.jlab.org/entry/3767639
+
+using clas12-workflow
+decode by coatjava6b.4.0
+cooking by clara4.3.12 and coatjava6b.4.1
+
+schema 
+bankSplit_6b.4.0_20191204.py
+  # copy the file from /group/clas12/packages/clara/4.3.11_6b.4.0/plugins/clas12/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+
+yaml 
+rgb_calib_v19.2.1_20200120.yaml
+
+timestamp in yaml
+all services, timestamp: 01/20/2020-18:00:00
+only calibration constants use timestamp
+geometry constant use latest
+
+variation in yaml
+some are  default, some are rga_fall2018
+
+== v19.2  ==============================================================
+by Zhiwen Zhao, 2020/01
+
+calibration cooking 
+On 12/27 (see https://clasweb.jlab.org/cgi-bin/ccdb/versions?table=/calibration/ftof/time_walk_exp)
+Raffaella deleted and recreated the FTOF time_walk_exp CCDB table to add more columns as requested by Dan to give more flexibility to the time-walk correction function.
+Dan completed the FTOF calibrations for the recently cooked runs 6164, 11019, and 11093
+with reconstruction tag 6b.4.1 and uploaded the constants to 
+ccdb. I made a corresponding entry in clas12calib (see https://logbooks.jlab.org/entry/3757437).
+run 6164 is used to cover range 6150-6603 as 1/6/2020
+
+using clas12-workflow/dev
+decode by coatjava6b.4.0
+cooking by clara4.3.12 and coatjava6b.4.1
+
+schema 
+bankSplit_6b.4.0_20191204.py
+  # copy the file from /group/clas12/packages/clara/4.3.11_6b.4.0/plugins/clas12/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+
+yaml 
+rgb_calib_v19.2_20200106.yaml
+
+timestamp in yaml
+all services, timestamp: 01/06/2020-11:00:00
+only calibration constants use timestamp
+geometry constant use latest
+
+variation in yaml
+some are  default, some are rga_fall2018
+
+== v19.1.1  ==============================================================
+by Zhiwen Zhao, 2019/02
+
+calibration cooking
+after beam offset are done for 2019 fall and 2020 winter run
+
+using clas12-workflow/dev for train_calib.yaml and post process when Charge and lifetime are transferred to REC::Event
+decode by coatjava6b.5.1
+cooking by clara4.3.12 and coatjava6b.5.1
+
+yaml 
+rgb_calib_v19.1.1_20200212.yaml
+
+schema in yaml
+ default in coatjava6b.5.1
+
+timestamp in yaml
+all services, timestamp: 02/12/2020-16:45:00
+only calibration constants use timestamp
+geometry constant use latest
+
+variation in yaml
+some are  default, some are rga_fall2018
+
+== v19.1  ==============================================================
+by Zhiwen Zhao, 2019/12
+
+calibration cooking
+
+variation "rga_fall2018" has updated in CCDB on 12/17 by Raffaella with new alignment and new end-plates bow parameters.
+Just relevant for rga, also the beam offset has been updated for the run range around 5038
+
+using clas12-workflow/0.5
+decode by coatjava6b.4.0
+cooking by clara4.3.11 and coatjava6b.4.1
+
+schema 
+bankSplit_6b.4.0_20191204.py
+  # copy the file from /group/clas12/packages/clara/4.3.11_6b.4.0/plugins/clas12/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+
+yaml 
+rgb_calib_v19.1_20191218.yaml
+
+timestamp in yaml
+all services, timestamp: 12/18/2019-11:00:00
+only calibration constants use timestamp
+geometry constant use latest which is 12/18/2019
+
+variation in yaml
+some are  default, some are rga_fall2018
+
+== v18  ==============================================================
+by Zhiwen Zhao, 2019/12
+
+calibration cooking 
+
+using clas12-workflow/0.5
+decode by coatjava6b.4.0
+cooking by clara4.3.11 and coatjava6b.4.1
+
+schema 
+bankSplit_6b.4.0_20191204.py
+  # copy the file from /group/clas12/packages/clara/4.3.11_6b.4.0/plugins/clas12/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+
+yaml 
+rgb_calib_v18_20191215.yaml
+
+timestamp in yaml
+all services, timestamp: 12/15/2019-11:00:00
+
+variation in yaml
+some are  default, some are rga_fall2018
+
+== v17  ==============================================================
+by Zhiwen Zhao, during data taking in 2019/12
+
+use clas12-workflow/0.4 and clas12-workflow/0.5
+decode by coatjava6b.4.0
+cook by clara4.3.11 and coatjava6b.4.0 for runs before 011200
+cook by clara4.3.11 and coatjava6b.4.1 for runs after  011200
+
+schema 
+bankSplit_6b.4.0_20191204.py
+  # copy the file from /group/clas12/packages/clara/4.3.11_6b.4.0/plugins/clas12/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+
+yaml 
+rgb_mon_v17_20191204.yaml
+rgb_calib_v17_20191204.yaml
+
+timestamp in yaml
+all services,  default, which means latest at run time
+
+variation in yaml
+some are  default, some are rga_fall2018
+== v16  ==============================================================
+by Zhiwen Zhao, in 2019/09
+
+used for DNP 2019 presentation
+
+same software like v15
+FTCAL energy calibrations
+https://logbooks.jlab.org/entry/3728662
+RICH time_offset calib
+https://logbooks.jlab.org/entry/3729534
+CND calib
+https://logbooks.jlab.org/entry/3731032
+https://logbooks.jlab.org/entry/3730780
+
+use hipo4
+
+decode by coatjava6b.1.1
+cooking by clara4.3.10 and coatjava 6.3.1
+
+schema 
+bankSplit_6.3.1_20190815.py
+  # copy the file from coatjava6.3.1 defined at https://github.com/JeffersonLab/clas12-offline-software/blob/6.3.1/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+
+yaml 
+rgb_dst_v16_20190911.yaml
+rgb_mon_v16_20190911.yaml
+rgb_calib_v16_20190911.yaml
+
+timestamp in yaml
+all services, 09/11/2019-10:00:00
+
+variation in yaml
+some are  default, some are rga_fall2018
+== v15  ==============================================================
+by Zhiwen Zhao, in 2019/08
+
+same software like v14
+RICH calib time_offset
+https://logbooks.jlab.org/entry/3725177
+https://clasweb.jlab.org/cgi-bin/ccdb/show_request?request=/calibration/rich/time_offset:6189: default:2019-08-28_08-24-57
+LTCC calib
+https://clasweb.jlab.org/cgi-bin/ccdb/show_request?request=/calibration/ltcc/spe:6595: default:2019-08-28_11-35-53
+CND calib
+https://logbooks.jlab.org/entry/3725094
+
+use hipo4
+
+decode by coatjava6b.1.1
+cooking by clara4.3.10 and coatjava 6.3.1
+
+schema 
+bankSplit_6.3.1_20190815.py
+  # copy the file from coatjava6.3.1 defined at https://github.com/JeffersonLab/clas12-offline-software/blob/6.3.1/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+
+yaml 
+rgb_calib_v15_20190828.yaml
+rgb_mon_v15_20190828.yaml
+
+timestamp in yaml
+all services, 08/28/2019-12:00:00
+
+variation in yaml
+some are  default, some are rga_fall2018
+== v14  ==============================================================
+by Zhiwen Zhao, in 2019/08
+
+same software like v13
+beam position update
+https://clasweb.jlab.org/cgi-bin/ccdb/show_request?request=/geometry/beam/position:6141:rga_fall2018:2019-08-23_18-11-06
+
+use hipo4
+
+decode by coatjava6b.1.1
+cooking by clara4.3.10 and coatjava 6.3.1
+
+schema 
+bankSplit_6.3.1_20190815.py
+  # copy the file from coatjava6.3.1 defined at https://github.com/JeffersonLab/clas12-offline-software/blob/6.3.1/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+
+yaml 
+rgb_calib_v14_20190823.yaml
+
+timestamp in yaml
+all services, 08/23/2019-18:15:00
+
+variation in yaml
+some are  default, some are rga_fall2018
+== v13  ==============================================================
+by Zhiwen Zhao, in 2019/08
+
+same software like v12
+bank schema fixed
+
+use hipo4
+
+decode by coatjava6b.1.1
+cooking by clara4.3.10 and coatjava 6.3.1
+
+schema 
+bankSplit_6.3.1_20190815.py
+  # copy the file from coatjava6.3.1 defined at https://github.com/JeffersonLab/clas12-offline-software/blob/6.3.1/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+
+yaml 
+rgb_calib_v13_20190815.yaml
+
+timestamp in yaml
+all services, 08/15/2019-00:00:00
+
+variation in yaml
+some are  default, some are rga_fall2018
+== v12  ==============================================================
+by Zhiwen Zhao, in 2019/08
+
+same software like v11
+after redo FTOF calib https://logbooks.jlab.org/entry/3715492
+
+bank schema wrong because coatjava6b.3.0 and coatjava6.3.1 has changes, resulting 4 corrupted banks
+>>> RECFT::Particle
+>>> RECHB::Particle
+>>> REC::Particle
+>>> RICH::ringCher
+
+use hipo4
+
+decode by coatjava6b.1.1
+cooking by clara4.3.10 and coatjava 6.3.1
+
+schema 
+bankSplit_20190722.py
+  # copy the file from coatjava6b.3.0 defined at https://github.com/JeffersonLab/clas12-offline-software/blob/6b.3.0/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+
+yaml 
+rgb_calib_v12_20190806.yaml
+
+timestamp in yaml
+all services, 08/06/2019-12:00:00
+
+variation in yaml
+some are  default, some are rga_fall2018
+
+== v11  ==============================================================
+by Zhiwen Zhao, in 2019/08
+
+software change from 6b.3.0 to 6.3.1
+after RF calibration
+
+bank schema wrong because coatjava6b.3.0 and coatjava6.3.1 has changes, resulting 4 corrupted banks
+>>> RECFT::Particle
+>>> RECHB::Particle
+>>> REC::Particle
+>>> RICH::ringCher
+
+use hipo4
+
+decode by coatjava6b.1.1
+cooking by clara4.3.10 and coatjava 6.3.1
+
+schema 
+bankSplit_20190722.py
+  # copy the file from coatjava6b.3.0 defined at https://github.com/JeffersonLab/clas12-offline-software/blob/6b.3.0/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+
+yaml 
+rgb_calib_v11_20190801.yaml
+
+timestamp in yaml
+all services, 08/01/2019
+
+variation in yaml
+some are  default, some are rga_fall2018
+== v10  ==============================================================
+by Zhiwen Zhao, in 2019/07
+
+software change from 6b.2.0 to 6b.3.0
+timestamp same as v9
+
+use hipo4
+
+decode by coatjava6b.1.1
+cooking by clara4.3.10 and coatjava6b.3.0
+
+schema 
+bankSplit_20190722.py
+  # copy the file from coatjava6b.3.0 defined at https://github.com/JeffersonLab/clas12-offline-software/blob/6b.3.0/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+
+yaml 
+rgb_mon_v10_20190717.yaml
+rgb_calib_v10_20190717.yaml
+
+timestamp in yaml
+all services, 07/17/2019
+
+variation in yaml
+some are  default, some are rga_fall2018
+== v9  ==============================================================
+by Zhiwen Zhao, in 2019/07
+
+software same as v8
+timestamp use 07/17/2019 after CTOF,RF,FTCal and CND constants updated
+
+use hipo4
+
+decode by coatjava6b.1.1
+cooking by clara4.3.10 and coatjava6b.2.0
+
+schema 
+bankSplit_20190523.py
+  # copy the file from coatjava6b.2.0 defined at https://github.com/JeffersonLab/clas12-offline-software/blob/6b.2.0/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+  #new mon schema will add "HEL::adc"
+
+yaml 
+rgb_mon_v9_20190717.yaml
+rgb_calib_v9_20190717.yaml
+rgb_calib_v9_20190705.yaml (only used for calib run 6164,6233,6489)
+
+timestamp in yaml
+all services, 07/17/2019
+
+variation in yaml
+some are  default, some are rga_fall2018
+== v8  ==============================================================
+by Zhiwen Zhao, in 2019/06
+
+software same as v6
+timestamp use 06/20/2019 after Dan updated ftof with
+run 6164: https://logbooks.jlab.org/entry/3689692
+run 6233: https://logbooks.jlab.org/entry/3689998
+run 6489: https://logbooks.jlab.org/entry/3688165
+
+use hipo4
+
+decode by coatjava6b.1.1
+cooking by clara4.3.10 and coatjava6b.2.0
+
+schema 
+bankSplit_20190523.py
+  # copy the file from coatjava6b.2.0 defined at https://github.com/JeffersonLab/clas12-offline-software/blob/6b.2.0/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+  #new mon schema will add "HEL::adc"
+
+yaml 
+rgb_calib_v8_20190620.yaml
+
+timestamp in yaml
+all services, 06/20/2019
+
+variation in yaml
+some are  default, some are rga_fall2018
+
+== v7  ==============================================================
+by Zhiwen Zhao, in 2019/06
+
+calibration same as v6
+LTCC reconstruction check
+
+use hipo4
+
+decode by coatjava6b.1.1
+cooking by clara4.3.10 and coatjava6c.2.1
+
+schema 
+bankSplit_20190523.py
+  # copy the file from coatjava6b.2.0 defined at https://github.com/JeffersonLab/clas12-offline-software/blob/6b.2.0/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+  #new mon schema will add "HEL::adc"
+
+yaml 
+rgb_calib_v7_20190607.yaml
+
+timestamp in yaml
+all services, 06/07/2019
+
+variation in yaml
+some are  default, some are rga_fall2018
+
+== v6  ==============================================================
+by Zhiwen Zhao, in 2019/06
+
+software same as v3
+timestamp use 06/07/2019 after Dan updated FTOF https://logbooks.jlab.org/entry/3685523
+
+use hipo4
+
+decode by coatjava6b.1.1
+cooking by clara4.3.10 and coatjava6b.2.0
+
+schema 
+bankSplit_20190523.py
+  # copy the file from coatjava6b.2.0 defined at https://github.com/JeffersonLab/clas12-offline-software/blob/6b.2.0/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+  #new mon schema will add "HEL::adc"
+
+yaml 
+rgb_calib_v6_20190607.yaml
+
+timestamp in yaml
+all services, 06/07/2019
+
+variation in yaml
+some are  default, some are rga_fall2018
+
+== v5 ==============================================================
+by Zhiwen Zhao, in 2019/05
+
+software same as v4
+timestamp use 05/29/2019 after another RF calibration update
+
+use hipo3
+
+decode by coatjava5b.7.8
+cooking by clara4.3.8 and coatjava5.9.0
+
+schema 
+bankSplit_20190424.py
+  #based on coatjava5.9.0 defined at https://github.com/JeffersonLab/clas12-offline-software/blob/5.9.0/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+  #new calib schema will add "ECAL::adc","ECAL::moments","ECAL::tdc","ECAL::hits"
+  #new mon schema will add "ECAL::adc","ECAL::moments","ECAL::tdc","HEL::adc","BMT::adc","BST::adc","BMTRec::Clusters","BSTRec::Clusters" and remove "BMTRec::Hits, BSTRec::Hits, BMTRec::LayerEffs, and BSTRec::LayerEffs" 
+
+yaml 
+rgb_mon_v5_20190529.yaml
+rgb_calib_v5_20190529.yaml
+rgb_dst_v5_20190529.yaml
+
+timestamp in yaml
+all service, 05/29/2019
+
+== v4 ==============================================================
+by Zhiwen Zhao, in 2019/05
+
+software same as v2
+timestamp use 05/18/2019 after RF calibration update
+
+use hipo3
+
+decode by coatjava5b.7.8
+cooking by clara4.3.8 and coatjava5.9.0
+
+schema 
+bankSplit_20190424.py
+  #based on coatjava5.9.0 defined at https://github.com/JeffersonLab/clas12-offline-software/blob/5.9.0/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+  #new calib schema will add "ECAL::adc","ECAL::moments","ECAL::tdc","ECAL::hits"
+  #new mon schema will add "ECAL::adc","ECAL::moments","ECAL::tdc","HEL::adc","BMT::adc","BST::adc","BMTRec::Clusters","BSTRec::Clusters" and remove "BMTRec::Hits, BSTRec::Hits, BMTRec::LayerEffs, and BSTRec::LayerEffs" 
+
+yaml 
+rgb_mon_v4_20190518.yaml
+rgb_calib_v4_20190518.yaml
+
+timestamp in yaml
+all service, 05/18/2019
+
+== v3  ==============================================================
+by Zhiwen Zhao, in 2019/06
+
+1st hipo4 cooking
+
+use hipo4
+decode by coatjava6b.1.1
+
+cooking by clara4.3.10 and coatjava6b.2.0
+
+schema 
+bankSplit_20190523.py
+  # copy the file from coatjava6b.2.0 defined at https://github.com/JeffersonLab/clas12-offline-software/blob/6b.2.0/etc/bankdefs/util/bankSplit.py
+  #new dst schema will add "BAND::adc","BAND::tdc","BAND::hits","CND::hits"
+  #new mon schema will add "HEL::adc"
+
+yaml 
+rgb_mon_v3_20190529.yaml
+rgb_calib_v3_20190529.yaml
+rgb_dst_v3_20190529.yaml
+
+timestamp in yaml
+all services, 05/29/2019
+
+variation in yaml
+some are  default, some are rga_fall2018
+
+== v2 ==============================================================
+by Zhiwen Zhao, in 2019/05
+
+1st cooking after run finished
+
+use hipo3
+
+decode by coatjava5b.7.8
+cooking by clara4.3.8 and coatjava5.9.0
+
+schema 
+bankSplit_20190424.py
+     based on  default schema in coatjava5.9.0 at https://github.com/JeffersonLab/clas12-offline-software/blob/5.9.0/etc/bankdefs/util/bankSplit.py
+    (0.25GB per file) new dst schema adds "BAND::adc","BAND::tdc","BAND:hits","CND::hits"
+    (1GB per file) new calib schema adds "ECAL::adc","ECAL::moments","ECAL::tdc","ECAL::hits"
+    (2GB per file) new mon schema adds "ECAL::adc","ECAL::moments","ECAL::tdc","HEL::adc","BMT::adc","BST::adc","BMTRec::Clusters","BSTRec::Clusters" and removes "BMTRec::Hits, BSTRec::Hits, BMTRec::LayerEffs, and BSTRec::LayerEffs" 
+
+yaml 
+rgb_mon_v2_20190501.yaml
+rgb_dst_v2_20190501.yaml
+rgb_calib_v2_20190501.yaml
+
+timestamp in yaml
+DCHB service, 05/01/2019, which means May 1 2019 0AM ET
+all other services,  default, which means latest at run time
+
+== v1 ====================================================================
+by Zhiwen Zhao, during data taking from 2019/02 to 2019/03 
+
+detailed log
+https://jeffersonlab-my.sharepoint.com/:x:/g/personal/zwzhao_jlab_org/Ef0DF0RF5UpCvKrwZf5u4cAB3IYkCp8-vaXCk8NmjewvKw
+
+The solenoid shift is updated with "-2.9" instead of "0" to better match rgb condition 
+wireDistortionsFlag true instead of false
+skim-e condition: (pid==1 && 2000<status<3000) in REC::Particle or RECHB::Particle bank
+
+use hipo3
+
+decode by coatjava5b.7.7, coatjava5b.7.8
+cooking by clara4.3.5 and coatjava5b.7.7, clara4.3.5 and coatjava5b.7.8, clara4.3.8 and coatjava5b.7.8
+
+runlist
+runlist_2019spring, 235 production runs with full target and full current during 2019 spring run
+runlist_v2, 226 of runlist_2019spring with at least 50 files, used for mon cooking
+
+schema 
+ default in coatjava5b.7.7 and coatjava5b.7.8, $CLARA_HOME/plugins/clas12/etc/bankdefs/hipo/singles
+With all EC banks added to calibration schema
+
+yaml   
+rgb_calib_v1_20190213.yaml  rgb_dst_v1_20190313.yaml   rgb_mon_v1_20190213.yaml
+rgb_calib_v1_20190221.yaml  rgb_full_v1_20190209.yaml  rgb_mon_v1_20190221.yaml
+rgb_calib_v1_20190313.yaml  rgb_full_v1_20190213.yaml  rgb_mon_v1_20190313.yaml
+
+timsstamp in yaml
+all services,  default, which means latest at run time
+
+run list of decoding and cooking condition
+https://jeffersonlab-my.sharepoint.com/:x:/g/personal/zwzhao_jlab_org/Ef0DF0RF5UpCvKrwZf5u4cAB3IYkCp8-vaXCk8NmjewvKw?e=cSQB3m
+
+== v0 ====================================================================
+by Zhiwen Zhao, cosmic run at the very beginning data taking in 2019/02
+
+use hipo3
+
+decode by coatjava5b.7.6, coatjava5b.7.7
+cooking by clara4.3.5 and coatjava5b.7.6, clara4.3.5 and coatjava5b.7.6
+
+
