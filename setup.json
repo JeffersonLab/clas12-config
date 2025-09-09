@@ -432,5 +432,69 @@
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
 	]
+  },
+  "rgd_fall20223_lD2": {
+	"tor1.00_sol-1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+		"0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"	
+	],
+	"z-position": [
+	  "-5.5*cm, 0.0*cm"
+	],
+	"software_versions": [
+	  "gemc/dev coatjava/11.1.0"
+	]
+  },
+  "rgd_fall20223_CxC": {
+	"tor1.00_sol-1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+		"0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"	
+	],
+	"z-position": [
+	  "-5.5*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/dev coatjava/11.1.0"
+	]
+  },
+  "rgd_fall20223_Cu": {
+	"tor1.00_sol-1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+		"0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"	
+	],
+	"z-position": [
+	  "-8.0*cm, 0.0*cm"
+	],
+	"software_versions": [
+	  "gemc/dev coatjava/11.1.0"
+	]
+  },
+  "rgd_fall20223_Sn": {
+	"tor1.00_sol-1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+		"0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"	
+	],
+	"z-position": [
+	  "-3.0*cm, 0.0*cm"
+	],
+	"software_versions": [
+	  "gemc/dev coatjava/11.1.0"
+	]
   }
 }

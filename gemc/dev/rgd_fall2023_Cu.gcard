@@ -46,14 +46,14 @@
 	<option name="BEAM_V"    value="(0, 0, -3)cm"/>
 	<option name="SPREAD_V"  value="(0.0, 2.5)cm"/>
 
-	<option name="SAVE_ALL_MOTHERS"        value="1"/>
+	<!--  <option name="SAVE_ALL_MOTHERS"        value="1"/> -->
 	<option name="RECORD_OPTICALPHOTONS"   value="1"/>
  	<option name="SKIPREJECTEDHITS"        value="1" />
 	<option name="PHYSICS"                 value="FTFP_BERT + STD + Optical"/>
 	<option name="OUTPUT"                  value="hipo, out.hipo"/>
 
  	<!-- Uncomment this line to save the true information (necessary for Truth Matching) -->
- 	<!--  <option name="INTEGRATEDRAW"    value="*" /> -->
+ 	<option name="INTEGRATEDRAW"    value="*" />
 
 	<!--  Will print message every 1000 events -->
 	<option name="PRINT_EVENT"    value="1000" />
