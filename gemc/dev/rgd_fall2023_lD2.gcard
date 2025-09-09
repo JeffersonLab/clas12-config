@@ -1,38 +1,38 @@
 <gcard>	
 	<!-- RG-D Nuclear-target Assembly; variation can be for the flag assembly: lD2CuSn, lD2CxC -->
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/targets/target" factory="TEXT" variation="rgd_fall2023_lD2"/>
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/targets/cad/" factory="CAD" variation="rgd_fall2023_lD2"/>
+	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="rgd_fall2023_lD2"/>
+	<detector name="experiments/clas12/targets/cad/" factory="CAD" variation="rgd_fall2023_lD2"/>
 
 	<!-- central detectors 	-->
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/bst/bst" factory="TEXT"/>
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/micromegas/micromegas" factory="TEXT" variation="rgm_fall2021_H"/>
+	<detector name="experiments/clas12/bst/bst" factory="TEXT"/>
+	<detector name="experiments/clas12/micromegas/micromegas" factory="TEXT" variation="rgm_fall2021_H"/>
 	
 	<!--ctof, cnd  -->
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/ctof/ctof"    factory="TEXT" variation="rga_fall2018"/>
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/ctof/cad/"    factory="CAD"  variation="rga_fall2018"/>
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/cnd/cnd"      factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/ctof/ctof"    factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/ctof/cad/"    factory="CAD"  variation="rga_fall2018"/>
+	<detector name="experiments/clas12/cnd/cnd"      factory="TEXT" variation="rga_fall2018"/>
 
 	<!--high threshold cherenkov -->
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/htcc/htcc"  factory="TEXT" variation="rga_fall2018"/>
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/htcc/cad/"  factory="CAD"  variation="rga_fall2018"/>
+	<detector name="experiments/clas12/htcc/htcc"  factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/htcc/cad/"  factory="CAD"  variation="rga_fall2018"/>
 
 	<!-- magnets -->
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/magnets/solenoid" factory="TEXT"/>
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/magnets/cad/"     factory="CAD" />
+	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT"/>
+	<detector name="experiments/clas12/magnets/cad/"     factory="CAD" />
 
 	<!-- FT/Beamline configuration -->
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/beamline/cad/"      factory="CAD"  variation="rgd_fall2023"/>
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/beamline/beamline"  factory="TEXT" variation="rgd_fall2023"/>
+	<detector name="experiments/clas12/beamline/cad/"      factory="CAD"  variation="rgd_fall2023"/>
+	<detector name="experiments/clas12/beamline/beamline"  factory="TEXT" variation="rgd_fall2023"/>
 
 	<!-- Detectors in the forward carriage -->
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/dc/dc"       factory="TEXT"/>
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/ftof/ftof"   factory="TEXT" variation="rga_spring2018"/>
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/ec/ec"       factory="TEXT" variation="rga_spring2018"/>
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/pcal/pcal"   factory="TEXT" variation="rga_spring2018"/>
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/ltcc/ltcc"   factory="TEXT" variation="rga_fall2018"/>
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/ltcc/cad/"   factory="CAD"  variation="rga_fall2018"/>
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/rich/rich"   factory="TEXT" variation="rgc_summer2022"/>
-	<detector name="/work/clas12/ouillon/tmp/ct2/experiments/clas12/rich/cad/"   factory="CAD"  variation="rgc_summer2022"/>
+	<detector name="experiments/clas12/dc/dc"       factory="TEXT"/>
+	<detector name="experiments/clas12/ftof/ftof"   factory="TEXT" variation="rga_spring2018"/>
+	<detector name="experiments/clas12/ec/ec"       factory="TEXT" variation="rga_spring2018"/>
+	<detector name="experiments/clas12/pcal/pcal"   factory="TEXT" variation="rga_spring2018"/>
+	<detector name="experiments/clas12/ltcc/ltcc"   factory="TEXT" variation="rga_fall2018"/>
+	<detector name="experiments/clas12/ltcc/cad/"   factory="CAD"  variation="rga_fall2018"/>
+	<detector name="experiments/clas12/rich/rich"   factory="TEXT" variation="rgc_summer2022"/>
+	<detector name="experiments/clas12/rich/cad/"   factory="CAD"  variation="rgc_summer2022"/>
 	
 	<!-- you can scale the fields here. Remember torus -1 means e- INBENDING  -->
 	<option name="SCALE_FIELD" value="binary_torus, 1"/>
