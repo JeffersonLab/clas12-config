@@ -1,0 +1,37 @@
+io-services:
+  reader:
+    class: org.jlab.jnp.grapes.io.HipoFrameReader
+    name: HipoFrameReader
+  writer:
+    class: org.jlab.jnp.grapes.io.HipoFrameWriter
+    name: HipoFrameWriter
+services:
+#################################################### gmn
+  - class: org.jlab.jnp.grapes.services.GenericWagon
+    name: gmn1
+  - class: org.jlab.jnp.grapes.services.GenericWagon
+    name: gmn2
+####################################################
+configuration:
+  custom-names:
+    1: gmn_all
+  io-services:
+    writer:
+      compression: 2
+  services:
+#################################################### nDVCS
+    gmn1:
+      id: 1
+      forward: 11:Xn:X+:X-
+      beamEnergy: 10.410
+      targetPDG: 2112
+      electron: Q2>0.95 && W<2 && vz>-25 && vz<20
+    gmn2:
+      id: 1
+      forward: 11:2212:Xn:X+:X-
+      beamEnergy: 10.410
+      targetPDG: 2212
+      electron: Q2>0.95 && W<2 && vz>-25 && vz<20     
+
+mime-types:
+  - binary/data-hipo-frame
