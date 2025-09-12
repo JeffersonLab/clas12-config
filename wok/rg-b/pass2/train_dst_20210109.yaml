@@ -1,0 +1,88 @@
+io-services:
+  reader:
+    class: org.jlab.jnp.grapes.io.HipoFrameReader
+    name: HipoFrameReader
+  writer:
+    class: org.jlab.jnp.grapes.io.HipoFrameWriter
+    name: HipoFrameWriter
+services:
+#################################################### JPSI/TCS
+  - class: org.jlab.jnp.grapes.services.JpsiTcsWagon
+    name: JPSITCS
+#################################################### gmn
+  - class: org.jlab.jnp.grapes.services.GenericWagon
+    name: gmn1
+  - class: org.jlab.jnp.grapes.services.GenericWagon
+    name: gmn2
+#################################################### eDeut
+  - class: org.jlab.jnp.grapes.services.GenericWagon
+    name: eDeutQ1
+  - class: org.jlab.jnp.grapes.services.GenericWagon
+    name: eDeutQ2
+#################################################### sidisdvcs
+  - class: org.jlab.jnp.grapes.services.GenericWagon
+    name: sidisdvcs
+#################################################### TWO    
+  - class: org.jlab.jnp.grapes.services.GenericWagon
+    name: TWO1
+  - class: org.jlab.jnp.grapes.services.GenericWagon
+    name: TWO2
+####################################################
+configuration:
+  custom-names:
+    1: jpsi 
+    2: gmn
+    3: edeutcut
+    4: sidisdvcs
+    5: two    
+  io-services:
+    writer:
+      compression: 2
+  services:
+#################################################### JPSI/TCS
+    JPSITCS:
+      id: 1
+#################################################### nDVCS
+    gmn1:
+      id: 2
+      forward: 11:Xn
+      beamEnergy: 10.410
+      targetPDG: 2112
+      electron: Q2>0.95 && W<2 && vz>-25 && vz<20
+    gmn2:
+      id: 2
+      forward: 11:2212:Xn
+      beamEnergy: 10.410
+      targetPDG: 2212
+      electron: Q2>0.95 && W<2 && vz>-25 && vz<20
+#################################################### eDeut
+    eDeutQ1:
+      id: 3
+      forward: 11:45:X+:X-:Xn
+      beamEnergy: 10.410
+      targetPDG: 45
+      electron: Q2>0.95 && W>1.95 && p>1 && vz>-25 && vz<20 
+    eDeutQ2:
+      id: 3
+      forward: 11:X+:X-:Xn
+      central: 45:X+:X-:Xn
+      beamEnergy: 10.410
+      targetPDG: 45
+      electron: Q2>0.95 && W>1.95 && p>1 && vz>-25 && vz<20     
+#################################################### sidisdvcs
+    sidisdvcs:
+      id: 4
+      forward: 11:X+:X-:Xn
+      beamEnergy: 10.410
+      targetPDG: 2112 
+      electron: Q2>0.95 && W>1.95 && p>1 && vz>-25 && vz<20
+#################################################### Two
+    TWO1:
+      id: 5
+      filter: 321:321:X+:X-:Xn
+    TWO2:
+      id: 5
+      filter: 2212:2212:X+:X-:Xn      
+
+mime-types:
+  - binary/data-hipo-frame
