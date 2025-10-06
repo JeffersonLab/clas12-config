@@ -4,10 +4,6 @@
 	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="rgl_spring2025_H2"/>
 	<detector name="experiments/clas12/alert/alert" factory="TEXT"/>
 
-
-	<!-- He bag -->
-	<detector name="experiments/clas12/alert/He_bag/hebag" factory="TEXT" variation="original"/>
-
 	<!--ctof, cnd  -->
 	<detector name="experiments/clas12/ctof/ctof"    factory="TEXT" variation="rga_fall2018"/>
 	<detector name="experiments/clas12/ctof/cad/"    factory="CAD"  variation="rga_fall2018"/>
