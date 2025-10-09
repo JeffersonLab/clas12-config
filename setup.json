@@ -249,7 +249,7 @@
 	"software_versions": [
 	  "gemc/5.10 coatjava/10.1.1",
 	  "gemc/5.11 coatjava/11.1.0",
-	  "gemc/dev coatjava/11.1.0"
+	  "gemc/dev coatjava/13.3.0"
 	]
   },
   "rge_spring2024_LD2-Al-sol": {
@@ -425,7 +425,7 @@
 	  "-5.5*cm, 0.0*cm"
 	],
 	"software_versions": [
-	  "gemc/dev coatjava/11.1.0"
+	  "gemc/dev coatjava/13.3.0"
 	]
   },
   "rgd_fall20223_CxC": {
@@ -441,7 +441,7 @@
 	  "-5.5*cm, 2.5*cm"
 	],
 	"software_versions": [
-	  "gemc/dev coatjava/11.1.0"
+	  "gemc/dev coatjava/13.3.0"
 	]
   },
   "rgd_fall20223_Cu": {
@@ -457,7 +457,7 @@
 	  "-8.0*cm, 0.0*cm"
 	],
 	"software_versions": [
-	  "gemc/dev coatjava/11.1.0"
+	  "gemc/dev coatjava/13.3.0"
 	]
   },
   "rgd_fall20223_Sn": {
@@ -473,7 +473,7 @@
 	  "-3.0*cm, 0.0*cm"
 	],
 	"software_versions": [
-	  "gemc/dev coatjava/11.1.0"
+	  "gemc/dev coatjava/13.3.0"
 	]
   }
 }
