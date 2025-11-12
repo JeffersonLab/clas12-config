@@ -25,9 +25,9 @@
 
 
 	<!-- FT/Beamline configuration -->
-	<detector name="experiments/clas12/ft/ft"             factory="TEXT" variation="rge_spring2024"/>
-	<detector name="experiments/clas12/beamline/cad/"     factory="CAD"  variation="rge_spring2024"/>
-	<detector name="experiments/clas12/beamline/beamline" factory="TEXT" variation="rge_spring2024"/>
+	<detector name="experiments/clas12/ft/ft"             factory="TEXT" variation="rgd_fall2023"/>
+	<detector name="experiments/clas12/beamline/cad/"     factory="CAD"  variation="rgd_fall2023"/>
+	<detector name="experiments/clas12/beamline/beamline" factory="TEXT" variation="rgd_fall2023"/>
 
 	<!-- Detectors in the forward carriage -->
 	<detector name="experiments/clas12/dc/dc"       factory="TEXT" />
