@@ -78,7 +78,7 @@
 
 	<!--  Run Number 11, picked up by digitization routines -->
 	<option name="RUNNO"    value="11" />
-	<option name="DIGITIZATION_VARIATION"  value="rga_fall2018_mc" />
+	<option name="DIGITIZATION_VARIATION"  value="rge_spring2024_mc" />
 
 	<!--  Do not track staff after the apex -->
 	<option name="MAX_Z_POS" value="9000"/>
@@ -112,10 +112,8 @@
 <!-- torus magnet: 2cm-->
 	<option name="PRODUCTIONCUTFORVOLUMES" value="BoreShield, CenterTube, DownstreamShieldingPlate, DownstreamVacuumJacket, WarmBoreTube, apex, Shield1, Shield2, Shield3, Shield4, Shield5, Shield6, Shield7, shell1a, shell1b, shell2a, shell2b, shell3a, shell3b, shell4a, shell4b, shell5a, shell5b, shell6a, shell6b, 20" />
 
-	<!--  Target and central detectors are all shifted upstream by 30 mm -->
-	<detector name="target">    <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
+	<!--  Central detectors are all shifted upstream by 30 mm -->
 	<detector name="svt">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
-	<detector name="bstShield"> <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 	<detector name="BMT">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 	<detector name="FMT">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 	<detector name="ctof">      <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
@@ -129,5 +127,11 @@
 	<detector name="htcc">                 <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
 	<detector name="htccEntryWindow">      <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
 	<detector name="htccExitWindow">       <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
+
+	<!--  Target shifted upstream by 5 mm due to thermal contraction-->
+	<detector name="target">    <position x="0*cm"     y="0*cm"     z="-0.50*cm"  />  </detector>
+
+	<!--  BST shield shifted downstream by 15 mm to align to scattering chamber-->
+	<detector name="bstShield"> <position x="0*cm"     y="0*cm"     z="1.50*cm"  />  </detector>
 
 </gcard>

@@ -155,23 +155,6 @@
 	  "gemc/5.11 coatjava/11.1.0"
 	]
   },
-  "rgc_fall2022": {
-	"tor-1.00_sol-1.00": [
-	],
-	"raster": [
-	  "0.0*cm, 0.0*cm"
-	],
-	"beam_spot": [
-	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
-	],
-	"z-position": [
-	  "-3.0*cm, 2.5*cm"
-	],
-	"software_versions": [
-	  "gemc/5.10 coatjava/10.0.9",
-	  "gemc/5.11 coatjava/11.1.0"
-	]
-  },
   "rgc_summer2022": {
 	"tor-1.00_sol-1.00": [
 	  "4nA_10547MeV"
@@ -186,7 +169,46 @@
 	  "-3.0*cm, 2.5*cm"
 	],
 	"software_versions": [
-	  "gemc/5.10 coatjava/10.0.9",
+	  "gemc/5.10 coatjava/10.0.9"
+	]
+  },
+  "rgc_fall2022": {
+	"tor-1.00_sol+1.00": [
+	  "8nA_10547MeV"
+	],
+	"tor-1.00_sol-1.00": [
+	  "8nA_10547MeV"
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-3.0*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/5.11 coatjava/11.0.1"
+	]
+  },
+  "rgc_spring2023": {
+	"tor+1.00_sol-1.00": [
+	  "4nA_10556MeV"
+	],
+	"tor-1.00_sol-1.00": [
+	  "4nA_10556MeV"
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-3.0*cm, 2.5*cm"
+	],
+	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
 	]
   },
@@ -248,8 +270,7 @@
 	],
 	"software_versions": [
 	  "gemc/5.10 coatjava/10.1.1",
-	  "gemc/5.11 coatjava/11.1.0",
-	  "gemc/dev coatjava/13.3.0"
+	  "gemc/5.11 coatjava/11.1.0"
 	]
   },
   "rge_spring2024_LD2-Al-sol": {
@@ -262,7 +283,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-1.0*cm, 0.6*mm"
+	  "-1.5*cm, 0.6*mm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
@@ -278,7 +299,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-1.0*cm, 0.74*mm"
+	  "-1.5*cm, 0.74*mm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
@@ -294,7 +315,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-1.0*cm, 0.18*mm"
+	  "-1.5*cm, 0.18*mm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
@@ -310,7 +331,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-1.0*cm, 0.15*mm"
+	  "-1.5*cm, 0.15*mm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
@@ -326,7 +347,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-1.0*cm, 0.07*mm"
+	  "-1.5*cm, 0.07*mm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
@@ -342,7 +363,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-6.0*cm, 1.0*cm"
+	  "-6.5*cm, 1.0*cm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
@@ -358,7 +379,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-6.0*cm, 1.0*cm"
+	  "-6.5*cm, 1.0*cm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
@@ -374,7 +395,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-6.0*cm, 1.0*cm"
+	  "-6.5*cm, 1.0*cm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
@@ -390,7 +411,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-6.0*cm, 1.0*cm"
+	  "-6.5*cm, 1.0*cm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
@@ -406,7 +427,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-6.0*cm, 1.0*cm"
+	  "-6.5*cm, 1.0*cm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
@@ -419,7 +440,7 @@
 	  "0.0*cm, 0.0*cm"
 	],
 	"beam_spot": [
-		"0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"	
+		"0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
 	  "-5.5*cm, 0.0*cm"
@@ -435,7 +456,7 @@
 	  "0.0*cm, 0.0*cm"
 	],
 	"beam_spot": [
-		"0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"	
+		"0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
 	  "-5.5*cm, 2.5*cm"
@@ -451,7 +472,7 @@
 	  "0.0*cm, 0.0*cm"
 	],
 	"beam_spot": [
-		"0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"	
+		"0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
 	  "-8.0*cm, 0.0*cm"
@@ -467,7 +488,7 @@
 	  "0.0*cm, 0.0*cm"
 	],
 	"beam_spot": [
-		"0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"	
+		"0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
 	  "-3.0*cm, 0.0*cm"

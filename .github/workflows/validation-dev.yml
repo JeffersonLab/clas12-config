@@ -3,8 +3,12 @@ name: Validation-dev
 on:
   pull_request:
     branches: [ dev ] # PRs which target `dev`
+    paths-ignore:
+      - 'wok/**'
   push:
     branches: [ dev ] # pushes on `dev` (and merging PRs to `dev`)
+    paths-ignore:
+      - 'wok/**'
   workflow_dispatch: # manual trigger
 
 jobs:
