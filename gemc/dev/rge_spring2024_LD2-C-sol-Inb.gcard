@@ -1,10 +1,11 @@
 <!-- GEMC dev -->
 <gcard>
 
+
+
 	<!-- targets -->
 	<detector name="experiments/clas12/targets/target"    factory="TEXT" variation="rge_spring2024_LD2_C"/>
 	<detector name="experiments/clas12/targets/cad_rge/"  factory="CAD"  variation="rge_spring2024_LD2_C"/>
-
 
 	<!-- central detectors 	-->
 	<detector name="experiments/clas12/bst/bst"               factory="TEXT" variation="rge_spring2024"/>
@@ -20,9 +21,8 @@
 	<detector name="experiments/clas12/htcc/cad/"  factory="CAD"  variation="rga_fall2018"/>
 
 	<!-- magnets -->
-	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT"/>
+	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT" variation="rga_fall2018"/>
 	<detector name="experiments/clas12/magnets/cad/"     factory="CAD" />
-
 
 	<!-- FT/Beamline configuration -->
 	<detector name="experiments/clas12/ft/ft"             factory="TEXT" variation="rgd_fall2023"/>

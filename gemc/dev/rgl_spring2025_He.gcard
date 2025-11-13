@@ -1,8 +1,15 @@
 <gcard>
-	
+
+
+
+
 	<!-- Alert Target and Detectors -->
 	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="rgl_spring2025_He"/>
-	<detector name="experiments/clas12/alert/alert" factory="TEXT"/>
+	<detector name="experiments/clas12/alert/alert"    factory="TEXT"/>
+
+
+
+
 
 	<!--ctof, cnd  -->
 	<detector name="experiments/clas12/ctof/ctof"    factory="TEXT" variation="rga_fall2018"/>
@@ -14,15 +21,15 @@
 	<detector name="experiments/clas12/htcc/cad/"  factory="CAD"  variation="rga_fall2018"/>
 
 	<!-- magnets -->
-	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT"/>
+	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT" variation="rga_fall2018"/>
 	<detector name="experiments/clas12/magnets/cad/"     factory="CAD" />
 
-	<!-- Beamline configuration: FT is used -->
+	<!-- FT/Beamline configuration -->
  	<detector name="experiments/clas12/ft/ft"                  factory="TEXT" variation="rgl_spring2025"/>
 	<detector name="experiments/clas12/beamline/cad/"          factory="CAD"  variation="rgl_spring2025"/>
 	<detector name="experiments/clas12/beamline/beamline"      factory="TEXT" variation="rgl_spring2025"/>
 
-		<!-- Detectors in the forward carriage -->
+	<!-- Detectors in the forward carriage -->
 	<detector name="experiments/clas12/dc/dc"       factory="TEXT" />
 	<detector name="experiments/clas12/ftof/ftof"   factory="TEXT" variation="rga_spring2018"/>
 	<detector name="experiments/clas12/ec/ec"       factory="TEXT" variation="rga_spring2018"/>

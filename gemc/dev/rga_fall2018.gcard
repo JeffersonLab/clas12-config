@@ -106,4 +106,5 @@
 	<!-- solenoid volume and field map shifted upstream by 30 mm -->
 	<option name="DISPLACE_FIELDMAP"     value="binary_solenoid, 0*cm, 0*cm, -3.00*cm" />
 
+
 </gcard>

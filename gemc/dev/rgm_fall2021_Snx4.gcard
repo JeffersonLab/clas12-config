@@ -4,9 +4,8 @@
 	<!-- band detector upstream of the target -->
 	<detector name="experiments/clas12/band/band" factory="TEXT" variation="main"/>
 
+	<detector name="experiments/clas12/targets/target"    factory="TEXT" variation="rgm_fall2021_Snx4"/>
 
-
-	<detector name="experiments/clas12/targets/target"     factory="TEXT" variation="rgm_fall2021_Snx4"/>
 
 	<!-- central detectors 	-->
 	<detector name="experiments/clas12/bst/bst"               factory="TEXT"/>
@@ -22,9 +21,8 @@
 	<detector name="experiments/clas12/htcc/cad/"  factory="CAD"  variation="rga_fall2018"/>
 
 	<!-- magnets -->
-	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT"/>
+	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT" variation="rga_fall2018"/>
 	<detector name="experiments/clas12/magnets/cad/"     factory="CAD" />
-
 
 	<!-- FT/Beamline configuration -->
 	<detector name="experiments/clas12/ft/ft"              factory="TEXT" variation="rgf_spring2020"/>
