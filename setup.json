@@ -440,7 +440,7 @@
 	  "0.0*cm, 0.0*cm"
 	],
 	"beam_spot": [
-		"0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
 	  "-5.5*cm, 0.0*cm"
@@ -456,7 +456,7 @@
 	  "0.0*cm, 0.0*cm"
 	],
 	"beam_spot": [
-		"0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
 	  "-5.5*cm, 2.5*cm"
@@ -472,7 +472,7 @@
 	  "0.0*cm, 0.0*cm"
 	],
 	"beam_spot": [
-		"0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
 	  "-8.0*cm, 0.0*cm"
@@ -488,7 +488,7 @@
 	  "0.0*cm, 0.0*cm"
 	],
 	"beam_spot": [
-		"0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
 	  "-3.0*cm, 0.0*cm"
