@@ -1,0 +1,38 @@
+io-services:
+  reader:
+    class: org.jlab.jnp.grapes.io.HipoFrameReader
+    name: HipoFrameReader
+  writer:
+    class: org.jlab.jnp.grapes.io.HipoFrameWriter
+    name: HipoFrameWriter
+services:
+#################################################### lambda
+  - class: org.jlab.jnp.grapes.services.LambdaWagon
+    name: LAMBDA1
+  - class: org.jlab.jnp.grapes.services.LambdaWagon
+    name: LAMBDA2
+  - class: org.jlab.jnp.grapes.services.LambdaWagon
+    name: LAMBDA3
+####################################################
+configuration:
+  custom-names:
+    1: lambda1
+    2: lambda2
+    3: lambda3
+  io-services:
+    writer:
+      compression: 2
+  services:
+#################################################### lambda
+    LAMBDA1:
+      id: 1
+      forward: 11:2212:-211:X+-X-:Xn
+    LAMBDA2:
+      id: 2 
+      tagger: 11:2212:-211:X+-X-:Xn 
+    LAMBDA3: 
+      id: 3 
+      noetrig: 11:2212:-211:X+-X-:Xn
+
+mime-types:
+  - binary/data-hipo-frame
