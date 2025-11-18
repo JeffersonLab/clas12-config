@@ -9,4 +9,4 @@ on:
 
 jobs:
   validation:
-    uses: gemc/clas12Tags/.github/workflows/experiment_test.yml@main
+    uses: gemc/clas12Tags/.github/workflows/clas12_config_gcards_test.yml@main
