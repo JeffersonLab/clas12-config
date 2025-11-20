@@ -71,7 +71,7 @@
 	<!--  Do not track staff after the apex -->
 	<option name="MAX_Z_POS" value="9000"/>
 
-	<option name="LUMI_EVENT"  value="0, 248.5*ns, 4*ns" />
+	<option name="LUMI_EVENT"  value="0, 248.5*ns, 2.004*ns" />
 	<option name="RFSETUP"     value="clas12_ccdb" />
 	<option name="RFSTART"     value="eventVertex, 0, 0, -30.0" />
 	 
