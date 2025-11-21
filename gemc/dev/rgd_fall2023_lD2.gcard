@@ -25,7 +25,7 @@
 	<detector name="experiments/clas12/magnets/cad/"     factory="CAD" />
 
 	<!-- FT/Beamline configuration -->
-
+	<detector name="experiments/clas12/ft/ft"              factory="TEXT" variation="rgd_fall2023"/>
 	<detector name="experiments/clas12/beamline/cad/"      factory="CAD"  variation="rgd_fall2023"/>
 	<detector name="experiments/clas12/beamline/beamline"  factory="TEXT" variation="rgd_fall2023"/>
 
@@ -34,8 +34,8 @@
 	<detector name="experiments/clas12/ftof/ftof"   factory="TEXT" variation="rga_spring2018"/>
 	<detector name="experiments/clas12/ec/ec"       factory="TEXT" variation="rga_spring2018"/>
 	<detector name="experiments/clas12/pcal/pcal"   factory="TEXT" variation="rga_spring2018"/>
-	<detector name="experiments/clas12/ltcc/ltcc"   factory="TEXT" variation="rga_fall2018"/>
-	<detector name="experiments/clas12/ltcc/cad/"   factory="CAD"  variation="rga_fall2018"/>
+	<detector name="experiments/clas12/ltcc/ltcc"   factory="TEXT" variation="rgm_fall2021_H"/>
+	<detector name="experiments/clas12/ltcc/cad/"   factory="CAD"  variation="rgm_fall2021_H"/>
 	<detector name="experiments/clas12/rich/rich"   factory="TEXT" variation="rgc_summer2022"/>
 	<detector name="experiments/clas12/rich/cad/"   factory="CAD"  variation="rgc_summer2022"/>
 
@@ -49,7 +49,7 @@
 
 	<!-- beam conditions -->
 	<option name="BEAM_P"    value="e-, 10.6*GeV, 0.0*deg, 0*deg"/>
-	<option name="BEAM_V"    value="(0, 0, -3)cm"/>
+	<option name="BEAM_V"    value="(0, 0, -5.5)cm"/>
 	<option name="SPREAD_V"  value="(0.0, 2.5)cm"/>
 
 	<!-- <option name="SAVE_ALL_MOTHERS"        value="1"/> -->

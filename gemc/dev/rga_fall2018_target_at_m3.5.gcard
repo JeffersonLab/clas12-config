@@ -107,4 +107,8 @@
 	<option name="DISPLACE_FIELDMAP"     value="binary_solenoid, 0*cm, 0*cm, -3.00*cm" />
 	<detector name="target">    <position x="0*cm"     y="0*cm"     z="-0.50*cm"  />  </detector>
 
+	<detector name="FMT">
+		<existence exist="no" />
+	</detector>
+
 </gcard>

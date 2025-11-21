@@ -34,8 +34,8 @@
 	<detector name="experiments/clas12/ftof/ftof"   factory="TEXT" variation="rga_spring2018"/>
 	<detector name="experiments/clas12/ec/ec"       factory="TEXT" variation="rga_spring2018"/>
 	<detector name="experiments/clas12/pcal/pcal"   factory="TEXT" variation="rga_spring2018"/>
-	<detector name="experiments/clas12/ltcc/ltcc"   factory="TEXT" variation="rga_fall2018"/>
-	<detector name="experiments/clas12/ltcc/cad/"   factory="CAD"  variation="rga_fall2018"/>
+	<detector name="experiments/clas12/ltcc/ltcc"   factory="TEXT" variation="rgm_fall2021_H"/>
+	<detector name="experiments/clas12/ltcc/cad/"   factory="CAD"  variation="rgm_fall2021_H"/>
 	<detector name="experiments/clas12/rich/rich"   factory="TEXT" variation="rgc_summer2022"/>
 	<detector name="experiments/clas12/rich/cad/"   factory="CAD"  variation="rgc_summer2022"/>
 

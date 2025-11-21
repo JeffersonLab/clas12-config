@@ -34,8 +34,8 @@
 	<detector name="experiments/clas12/ftof/ftof"   factory="TEXT" variation="rga_spring2018"/>
 	<detector name="experiments/clas12/ec/ec"       factory="TEXT" variation="rga_spring2018"/>
 	<detector name="experiments/clas12/pcal/pcal"   factory="TEXT" variation="rga_spring2018"/>
-	<detector name="experiments/clas12/ltcc/ltcc"   factory="TEXT" variation="rgb_spring2020"/>
-	<detector name="experiments/clas12/ltcc/cad/"   factory="CAD"  variation="rgb_spring2020"/>
+	<detector name="experiments/clas12/ltcc/ltcc"   factory="TEXT" variation="rga_spring2018"/>
+	<detector name="experiments/clas12/ltcc/cad/"   factory="CAD"  variation="rga_spring2018"/>
 	<detector name="experiments/clas12/rich/rich"   factory="TEXT" variation="rga_spring2018"/>
 	<detector name="experiments/clas12/rich/cad/"   factory="CAD"  variation="rga_spring2018"/>
 
@@ -109,5 +109,8 @@
 	<!-- band moved with solenoid by 30 mm -->
 	<detector name="band">                 <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 
+	<detector name="FMT">
+		<existence exist="no" />
+	</detector>
 
 </gcard>
