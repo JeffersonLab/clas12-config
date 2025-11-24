@@ -15,6 +15,7 @@ jobs:
   validation:
     uses: JeffersonLab/clas12-validation/.github/workflows/ci.yml@main
     with:
+      num_events: 500
       gemc_version: build
       config_file_versions: >-
         {

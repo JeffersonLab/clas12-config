@@ -1,0 +1,12 @@
+name: Gcards test
+
+on:
+  pull_request:
+    branches: [ dev ] # PRs which target `dev`
+  push:
+    branches: [ dev ] # pushes on `dev` (and merging PRs to `dev`)
+  workflow_dispatch: # manual trigger
+
+jobs:
+  validation:
+    uses: gemc/clas12Tags/.github/workflows/clas12_config_gcards_test.yml@main
