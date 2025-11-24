@@ -110,4 +110,8 @@
 	<!-- band moved with solenoid by 30 mm -->
 	<detector name="band">                 <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 
+	<detector name="FMT">
+		<existence exist="no" />
+	</detector>
+
 </gcard>
