@@ -36,7 +36,7 @@
 	],
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.6.1",
-	  "gemc/5.11 coatjava/11.1.0"
+	  "gemc/5.12 coatjava/11.1.0"
 	]
   },
   "rga_fall2018": {
@@ -63,8 +63,7 @@
 	],
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.6.1",
-	  "gemc/5.10 coatjava/10.0.7",
-	  "gemc/5.11 coatjava/11.1.0"
+	  "gemc/5.12 coatjava/10.0.7"
 	]
   },
   "rga_fall2018_target_at_m3.5": {
@@ -91,7 +90,7 @@
 	],
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.6.1",
-	  "gemc/5.10 coatjava/10.0.7"
+	  "gemc/5.12 coatjava/10.0.7"
 	]
   },
   "rga_spring2019": {
@@ -109,8 +108,7 @@
 	],
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.6.1",
-	  "gemc/5.10 coatjava/10.0.7",
-	  "gemc/5.11 coatjava/11.1.0"
+	  "gemc/5.12 coatjava/10.0.7"
 	]
   },
   "rgb_spring2019": {
