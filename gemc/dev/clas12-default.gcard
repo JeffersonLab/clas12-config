@@ -4,44 +4,40 @@
 
 
 
-	<!-- target. Notice variation give the target type. Can be: lH2, lD2, ND3 -->
 	<detector name="experiments/clas12/targets/cad/"   factory="CAD"/>
-	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="lH2"/>
+	<detector name="experiments/clas12/targets/target" factory="TEXT"/>
 
 	<!-- central detectors 	-->
-	<detector name="experiments/clas12/bst/bst"               factory="TEXT" variation="default"/>
-	<detector name="experiments/clas12/bstShield/bstShield"   factory="TEXT" variation="w51"/>
-	<detector name="experiments/clas12/micromegas/micromegas" factory="TEXT" variation="michel"/>
+	<detector name="experiments/clas12/bst/bst"               factory="TEXT"/>
+	<detector name="experiments/clas12/micromegas/micromegas" factory="TEXT"/>
 
 	<!--ctof, cnd  -->
-	<detector name="experiments/clas12/ctof/ctof"                     factory="TEXT" variation="default"/>
-	<detector name="experiments/clas12/ctof/javacad_default/"         factory="CAD"/>
-	<detector name="experiments/clas12/cnd/cnd"                       factory="TEXT" variation="original"/>
+	<detector name="experiments/clas12/ctof/ctof"    factory="TEXT"/>
+	<detector name="experiments/clas12/ctof/cad/"    factory="CAD"/>
+	<detector name="experiments/clas12/cnd/cnd"      factory="TEXT"/>
 
 	<!--high threshold cherenkov -->
-	<detector name="experiments/clas12/htcc/htcc"           factory="TEXT" variation="original"/>
-	<detector name="experiments/clas12/htcc/cad/"           factory="CAD"/>
+	<detector name="experiments/clas12/htcc/htcc"  factory="TEXT"/>
+	<detector name="experiments/clas12/htcc/cad/"  factory="CAD"/>
 
 	<!-- magnets -->
-	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT" variation="original"/>
+	<detector name="experiments/clas12/magnets/solenoid" factory="TEXT"/>
 	<detector name="experiments/clas12/magnets/cad/"     factory="CAD" />
 
-	<!-- Beamline configuration: FTOn is used -->
-	<detector name="experiments/clas12/ft/ft"                      factory="TEXT" variation="FTOn"/>
-	<detector name="experiments/clas12/beamline/cadBeamline/"      factory="CAD"/>
-	<detector name="experiments/clas12/beamline/beamline"          factory="TEXT" variation="FTOn"/>
-	<detector name="experiments/clas12/beamline/cad_downstream_beamline/" factory="CAD"/>
+	<!-- FT/Beamline configuration -->
+	<detector name="experiments/clas12/ft/ft"              factory="TEXT"/>
+	<detector name="experiments/clas12/beamline/cad/"      factory="CAD"  />
+	<detector name="experiments/clas12/beamline/beamline"  factory="TEXT" />
 
 	<!-- Detectors in the forward carriage -->
-	<detector name="experiments/clas12/dc/dc"                    factory="TEXT" variation="default"/>
-	<detector name="experiments/clas12/ftof/ftof"                factory="TEXT" variation="default"/>
-	<detector name="experiments/clas12/ec/ec"                    factory="TEXT" variation="default"/>
-	<detector name="experiments/clas12/pcal/pcal"                factory="TEXT" variation="default"/>
-	<detector name="experiments/clas12/ltcc/ltcc"                factory="TEXT" variation="default"/>
-	<detector name="experiments/clas12/ltcc/cad_cone/"           factory="CAD"/>
-	<detector name="experiments/clas12/ltcc/cad/"                factory="CAD"/>
-	<detector name="experiments/clas12/rich/rich"                factory="TEXT" variation="default"/>
-	<detector name="experiments/clas12/rich/cad_default/"        factory="CAD"/>
+	<detector name="experiments/clas12/dc/dc"       factory="TEXT"/>
+	<detector name="experiments/clas12/ftof/ftof"   factory="TEXT"/>
+	<detector name="experiments/clas12/ec/ec"       factory="TEXT"/>
+	<detector name="experiments/clas12/pcal/pcal"   factory="TEXT"/>
+	<detector name="experiments/clas12/ltcc/ltcc"   factory="TEXT"/>
+	<detector name="experiments/clas12/ltcc/cad/"   factory="CAD"/>
+	<detector name="experiments/clas12/rich/rich"   factory="TEXT"/>
+	<detector name="experiments/clas12/rich/cad/"   factory="CAD"/>
 
 
 	<!-- you can scale the fields here. Remember torus -1 means e- INBENDING  -->
@@ -81,11 +77,11 @@
 	<option name="MAX_Z_POS" value="9000"/>
 
 	<!--  Time window defined by LUMI_EVENT -->
-	<option name="LUMI_EVENT"  value="0, 248.5*ns, 4*ns" />
+	<option name="LUMI_EVENT"  value="0, 248.5*ns, 4.008*ns" />
 	<!--  Uncomment this (and replace the LUMI_EVENT Above) to simulate 10^35 luminosity beam on a 5cm liquid hydrogen target, use 124K e- / event   -->
 	<!--  Scale accordingly for different target / luminosity  -->
 	<!--
-	<option name="LUMI_EVENT"     value="124000, 248.5*ns, 4*ns" />
+	<option name="LUMI_EVENT"     value="124000, 248.5*ns, 4.008*ns" />
 	<option name="LUMI_P"         value="e-, 10.6*GeV, 0*deg, 0*deg" />
 	<option name="LUMI_V"         value="(0.0, 0.0, -10)cm" />
 	<option name="LUMI_SPREAD_V"  value="(0.03, 0.03)cm" />
