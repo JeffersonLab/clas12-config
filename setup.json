@@ -476,7 +476,7 @@
 	  "-8.0*cm, 0.0*cm"
 	],
 	"software_versions": [
-	  "gemc/dev coatjava/13.3.0"
+	  "gemc/dev coatjava/13.0.0"
 	]
   },
   "rgd_fall2023_Sn": {
