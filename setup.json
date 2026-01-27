@@ -431,7 +431,7 @@
 	  "gemc/5.11 coatjava/11.1.0"
 	]
   },
-  "rgd_fall20223_lD2": {
+  "rgd_fall2023_lD2": {
 	"tor1.00_sol-1.00": [
 	],
 	"raster": [
@@ -447,7 +447,7 @@
 	  "gemc/5.12 coatjava/13.0.0"
 	]
   },
-  "rgd_fall20223_CxC": {
+  "rgd_fall2023_CxC": {
 	"tor1.00_sol-1.00": [
 	],
 	"raster": [
@@ -463,7 +463,7 @@
 	  "gemc/5.12 coatjava/13.0.0"
 	]
   },
-  "rgd_fall20223_Cu": {
+  "rgd_fall2023_Cu": {
 	"tor1.00_sol-1.00": [
 	],
 	"raster": [
@@ -476,10 +476,10 @@
 	  "-8.0*cm, 0.0*cm"
 	],
 	"software_versions": [
-	  "gemc/dev coatjava/13.3.0"
+	  "gemc/dev coatjava/13.0.0"
 	]
   },
-  "rgd_fall20223_Sn": {
+  "rgd_fall2023_Sn": {
 	"tor1.00_sol-1.00": [
 	],
 	"raster": [
