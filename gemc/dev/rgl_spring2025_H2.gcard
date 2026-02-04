@@ -8,7 +8,8 @@
 	<detector name="experiments/clas12/alert/alert"    factory="TEXT"/>
 
 
-
+	<!-- central detectors 	-->
+	<detector name="experiments/clas12/micromegas/micromegas" factory="TEXT" variation="rgl_spring2025"/>
 
 
 	<!--ctof, cnd  -->
