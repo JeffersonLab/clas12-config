@@ -164,7 +164,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-5.95*cm, 3.0*cm"
+	  "-5.95*cm, 2.5*cm"
 	],
 	"software_versions": [
 	  "gemc/5.10 coatjava/10.0.9"
@@ -184,7 +184,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-4.58*cm, 3.15*cm"
+	  "-4.58*cm, 2.5*cm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.0.1"
@@ -204,7 +204,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-4.55*cm, 3.0*cm"
+	  "-4.55*cm, 2.5*cm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
