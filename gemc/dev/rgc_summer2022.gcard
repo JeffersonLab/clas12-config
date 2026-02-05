@@ -90,7 +90,7 @@
 	<!--  RF Signal needs event time window defined by LUMI_EVENT -->
 	<!--  Reference position set as target shift below -->
 	<option name="RFSETUP"     value="clas12_ccdb" />
-	<option name="RFSTART"     value="eventVertex, 0, 0, -30.0" />
+	<option name="RFSTART"     value="eventVertex, -1.1, -2.1, -59.5" />
 
 	<!-- production threshold for passive volumes -->
 	<!-- beamline shielding and torus magnet: 2cm-->
