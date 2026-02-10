@@ -204,7 +204,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-3.6*cm, 2.5*cm"
+	  "-3.25*cm, 2.5*cm"
 	],
 	"software_versions": [
 	  "gemc/5.11 coatjava/11.1.0"
