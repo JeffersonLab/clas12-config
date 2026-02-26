@@ -201,7 +201,7 @@ def configure(args):
     cli.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)',metavar='#')
     cli.add_argument('-g','--gcard',required=True,type=str,help='GEMC gcard configuration file',metavar='G')
     cli.add_argument('-y','--yaml',required=True,type=str,help='COATJAVA yaml configuration file',metavar='C')
-    cli.add_argument('-b','--bgmerge',default=[],action='append',help='background files for merging',metavar='B')
+    cli.add_argument('-b','--bgmerge',default=[],action='append',help='background files for merging (broken)',metavar='B')
     cli.add_argument('-m','--match',default=False,action='store_true',help='enable truth matching')
     cli.add_argument('-d','--denoise',default=False,action='store_true',help='enable denoising')
     cli.add_argument('-v','--verbose',default=0,action='count',help='verbosity (repeatable)')
