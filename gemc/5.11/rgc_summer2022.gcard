@@ -114,6 +114,7 @@
 	<detector name="FMT">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 	<detector name="ctof">      <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 	<detector name="cnd">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
+	<detector name="target">    <position x="0*cm"     y="0*cm"     z="-1.35*cm"  />  </detector>
 
 	<!-- solenoid volume and field map shifted upstream by 30 mm -->
 	<detector name="solenoid">  <position x="0*cm"  y="0*cm"  z="-3.00*cm"  />  </detector>
