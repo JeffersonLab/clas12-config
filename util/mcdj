@@ -203,7 +203,7 @@ def configure(args):
     cli = argparse.ArgumentParser(description='CLAS12 Monte-Carlo Deejay',
             epilog='Note, generator command-line options should be placed after a "--".  '
             'See https://github.com/jeffersonlab/clas12-config for configuration files.')
-    cli.add_argument('-o',help='output HIPO file',metavar='PATH')
+    #cli.add_argument('-o',help='output HIPO file',metavar='PATH')
     cli.add_argument('-n',default=1,type=int,help='number of events (default=1)')
     cli.add_argument('-g','--gcard',required=True,type=str,help='GEMC gcard configuration file',metavar='PATH')
     cli.add_argument('-y','--yaml',required=True,type=str,help='COATJAVA yaml configuration file',metavar='PATH')
