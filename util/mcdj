@@ -205,23 +205,6 @@ def make_workdir(d):
     _logger.warning(f'using new working directory:  {d} ...')
     return d
 
-# check clas12-config for the requested configuration files:
-def get_config(name, path, tag='main'):
-    uri = 'https://github.com/jeffersonlab/clas12-config'
-    if os.path.isdir('clas12-config'):
-        if not os.path.isfile(f'clas12-config/{path}'):
-            _logger.critical(f'failed to find {path} in local ./clas12-config')
-    else:
-        _logger.warning(f'trying to get --{name} from clas12-config git repo ...')
-        _logger.info(f'retrieving {uri} ...')
-        if run(['git','clone','--branch',tag,'--depth','1',uri]):
-            _logger.critical('failed to get clas12-config repo.')
-    _logger.info('checking existing ./clas12-config directory ...')
-    if not os.path.isfile(f'./clas12-config/{path}'):
-        _logger.critical(f'failed to find {path} in {uri}')
-    _logger.info(f'using config file from {uri}/blob/{tag}/{path}')
-    return os.path.abspath(f'./clas12-config/{path}')
-
 def setup(cfg):
     # convert to absolute paths:
     if os.path.isfile(cfg.gcard):
@@ -230,9 +213,9 @@ def setup(cfg):
         cfg.yaml = os.path.abspath(cfg.yaml)
     # retrieve configuration files:
     if not os.path.isfile(cfg.gcard):
-        cfg.gcard = get_config('gcard',cfg.gcard)
+        _logger.critical(f'invalid gcard: {cfg.gcard}')
     if not os.path.isfile(cfg.yaml):
-        cfg.yaml = get_config('yaml',cfg.yaml)
+        _logger.critical(f'invalid yaml: {cfg.yaml}')
     # retrieve background files:
     for i,b in enumerate(cfg.back):
         if not os.path.isfile(b):
