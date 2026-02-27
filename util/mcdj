@@ -103,7 +103,7 @@ def merge_background(cfg, inp):
 # run denoising:
 def denoise(cfg, inp):
     o = get_out(inp, prefix='dn_')
-    cmd=['denoise2.exe','-o',o,cfg.back]
+    cmd=['denoise2.exe','-o',o,inp]
     return run(cmd, cfg.dryrun), o
 
 # run reconstruction:
