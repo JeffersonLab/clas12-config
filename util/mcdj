@@ -196,7 +196,6 @@ def configure(args):
             epilog='Note, generator command-line options should be placed after a "--".  '
             'See https://github.com/jeffersonlab/clas12-config for configuration files.')
     cli.add_argument('-r','--run',default=11,type=int,help='run number (default=11)',metavar='#')
-    cli.add_argument('-t','--threads',default=1,type=int,help='number of threads (default=1)',metavar='#')
     cli.add_argument('-n','--nevents',default=1,type=int,help='number of events (default=1)',metavar='#')
     cli.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)',metavar='#')
     cli.add_argument('-g','--gcard',required=True,type=str,help='GEMC gcard configuration file',metavar='G')
