@@ -9,7 +9,7 @@
 
 	<!-- central detectors 	-->
 	<detector name="experiments/clas12/bst/bst"               factory="TEXT"/>
-	<detector name="experiments/clas12/micromegas/micromegas" factory="TEXT"/>
+	<detector name="experiments/clas12/micromegas/micromegas" factory="TEXT" variation="rgc_summer2022"/>
 
 	<!--ctof, cnd  -->
 	<detector name="experiments/clas12/ctof/ctof"    factory="TEXT" variation="rga_fall2018"/>
@@ -102,6 +102,7 @@
 	<detector name="bstShield"> <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 	<detector name="BMT">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 	<detector name="FMT">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
+	<detector name="target">    <position x="0*cm"     y="0*cm"     z="-0.25*cm"  />  </detector>
 
 	<!-- solenoid volume and field map shifted upstream by 30 mm -->
 	<option name="DISPLACE_FIELDMAP"     value="binary_solenoid, 0*cm, 0*cm, -3.00*cm" />
