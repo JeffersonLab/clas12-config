@@ -74,7 +74,7 @@ def generate(cfg):
 # run GEMC, with LUND input or internal generator:
 def gemc(cfg, lund=None):
     cmd = ['gemc',cfg.gcard,f'-RUNNO={cfg.run}','-USE_GUI=0',f'-N={cfg.n}']
-    if cfg.match:
+    if cfg.truth:
         cmd.extend(['-SAVE_ALL_MOTHERS=1','-SKIPREJECTEDHITS=1','-INTEGRATEDRAW="*"','-NGENP=50'])
     if lund:
         o = get_out(lund, suffix='.hipo')
@@ -198,13 +198,13 @@ def configure(args):
             'See https://github.com/jeffersonlab/clas12-config for configuration files.')
     cli.add_argument('-o',help='output HIPO file',metavar='PATH')
     cli.add_argument('-n',default=1,type=int,help='number of events (default=1)')
-    cli.add_argument('--gcard',required=True,type=str,help='GEMC gcard configuration file',metavar='PATH')
-    cli.add_argument('--yaml',required=True,type=str,help='COATJAVA yaml configuration file',metavar='PATH')
-    cli.add_argument('--run',default=11,type=int,help='run number (default=11)')
-    cli.add_argument('--truth',default=False,action='store_true',help='enable truth matching')
-    cli.add_argument('--bgmerge',default=[],action='append',help='background files for merging',metavar='PATH')
-    cli.add_argument('--denoise',default=False,action='store_true',help='enable denoising')
-    cli.add_argument('--seed',default=0,type=int,help='random number seed (default=clock)')
+    cli.add_argument('-g','--gcard',required=True,type=str,help='GEMC gcard configuration file',metavar='PATH')
+    cli.add_argument('-y','--yaml',required=True,type=str,help='COATJAVA yaml configuration file',metavar='PATH')
+    cli.add_argument('-r','--run',default=11,type=int,help='run number (default=11)')
+    cli.add_argument('-t','--truth',default=False,action='store_true',help='enable truth matching')
+    cli.add_argument('-b','--bgmerge',default=[],action='append',help='background files for merging',metavar='PATH')
+    cli.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)')
+    cli.add_argument('--denoise',default=False,action='store_true',help='enable *old* denoising')
     cli.add_argument('--verbose',default=0,action='count',help='verbosity (repeatable)')
     cli.add_argument('--tmpdir',default='.',help='temporary directory location (default=.)',metavar='PATH')
     cli.add_argument('--dryrun',default=False,action='store_true',help='dry run')
