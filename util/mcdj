@@ -6,7 +6,6 @@
 # - disable stanadlone background merging (YAML instead)
 # - implement the -o option (currently rec_$GENERATOR.hipo) 
 # - parallelize
-# - remove make_workdir and get_config
 #
 
 _logger = None
@@ -131,29 +130,66 @@ def get_background_file(b):
         _logger.critical('failed to retrieve background file:  '+b)
     return os.path.basename(b)
 
-# process a LUND file through entire simulation workflow:
-def lund_workflow(cfg, lund):
+# runs a LUND file through entire simulation pipeline:
+def lund_pipeline(cfg, lund):
+    if cfg.j > 1:
+        make_workdir('.')
     ret,o = gemc(cfg, lund)
-    if ret != 0: _logger.critical('gemc failed.')
+    if ret != 0:
+        _logger.error('gemc failed.')
+        return ret,o
     if len(cfg.back) > 0:
         ret,o = merge_background(cfg, o)
-        if ret != 0: _logger.critical('background merging failed.')
+        if ret != 0:
+            _logger.error('background merging failed.')
+            return ret,o
     if cfg.denoise:
         ret,o = denoise(cfg, o)
-        if ret != 0: _logger.critical('denoising failed.')
+        if ret != 0:
+            _logger.error('denoising failed.')
+            return ret,o
     ret,o = recon(cfg, o)
-    if ret != 0: _logger.critical('reconstruction failed.')
+    if ret != 0:
+        _logger.error('reconstruction failed.')
+        return ret,o
     if cfg.dst:
         ret,o = dst(cfg, o)
-        if ret != 0: _logger.critical('dst making failed.')
+        if ret != 0:
+            _logger.error('dst making failed.')
+            return ret,o
     return ret,o
 
-# run a generator through entire simulation workflow:
-def gen_workflow(cfg):
+# run a generator through entire simulation pipeline:
+def generator_pipeline(cfg):
+    if cfg.j > 1:
+        make_workdir('.')
     ret,o = generate(cfg)
     if ret != 0:
-        _logger.critical(f'generator {cfg.gen[0]} failed.')
-    return lund_workflow(cfg, o)
+        _logger.error(f'generator {cfg.gen[0]} failed.')
+        return ret,o
+    return lund_pipeline(cfg, o)
+
+def launch_pipelines(cfg):
+    status = []
+    import concurrent.futures as cf
+    with cf.ThreadPoolExecutor(max_workers=cfg.jobs) as exe:
+        futures = []
+        if cfg.gen[0] == 'lund':
+            for j in range(cfg.jobs):
+                if j > len(cfg.gen):
+                    _logger.warning(f'insufficient LUND files for {cfg.jobs} jobs.')
+                    break
+                lund = cfg.gen[1+j]
+                futures.append(exe.submit(lund_pipeline,cfg,lund))
+        else:
+            for j in range(cfg.jobs):
+                futures.append(exe.submit(generator_pipeline(cfg)))
+        for f in futures:
+            concurrent.futures.wait([f])
+            if f.exception() is not None:
+                print(f.exception())
+                return None
+            ret,o = f.result()
 
 # make and change to a new working directory: 
 def make_workdir(d):
@@ -258,16 +294,6 @@ def configure(args):
 
     return cfg
 
-def main(argv):
-
-    cfg = setup(configure(argv))
-
-    if cfg.gen[0] == 'lund':
-        for lund in cfg.gen[1:]:
-            lund_workflow(cfg, lund)
-    else:
-        gen_workflow(cfg)
-
 if __name__ == '__main__':
-    main(sys.argv[1:])
+    launch_pipelines(setup(configure(sys.argv[1:])))
 
