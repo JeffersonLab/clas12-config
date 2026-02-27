@@ -4,7 +4,8 @@
 #
 # - restore background file retrieval (xrootd broken)
 # - disable stanadlone background merging (YAML instead)
-# - implement the -o option (currently GENERATOR.hipo) 
+# - implement the -o option (currently rec_$GENERATOR.hipo) 
+# - remove colored formatter (or make it work everywhere)
 #
 
 _logger = None
