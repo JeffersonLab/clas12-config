@@ -5,7 +5,8 @@
 # - restore background file retrieval (xrootd broken)
 # - disable stanadlone background merging (YAML instead)
 # - implement the -o option (currently rec_$GENERATOR.hipo) 
-# - remove colored formatter (or make it work everywhere)
+# - parallelize
+# - remove make_workdir and get_config
 #
 
 _logger = None
@@ -147,6 +148,13 @@ def lund_workflow(cfg, lund):
         if ret != 0: _logger.critical('dst making failed.')
     return ret,o
 
+# run a generator through entire simulation workflow:
+def gen_workflow(cfg):
+    ret,o = generate(cfg)
+    if ret != 0:
+        _logger.critical(f'generator {cfg.gen[0]} failed.')
+    return lund_workflow(cfg, o)
+
 # make and change to a new working directory: 
 def make_workdir(d):
     import tempfile
@@ -204,11 +212,12 @@ def configure(args):
             epilog='Note, generator command-line options should be placed after a "--".  '
             'See https://github.com/jeffersonlab/clas12-config for configuration files.')
     #cli.add_argument('-o',help='output HIPO file',metavar='PATH')
-    cli.add_argument('-n',default=1,type=int,help='number of events (default=1)')
+    cli.add_argument('-n',default=1,type=int,help='number of events (default=1)',metavar='#')
+    cli.add_argument('-j','--jobs',default=1,type=int,help='number of parallel jobs (default=1)',metavar='#')
     cli.add_argument('-g','--gcard',required=True,type=str,help='GEMC gcard configuration file',metavar='PATH')
     cli.add_argument('-y','--yaml',required=True,type=str,help='COATJAVA yaml configuration file',metavar='PATH')
     cli.add_argument('-r','--run',default=11,type=int,help='run number (default=11)')
-    cli.add_argument('-t','--truth',default=False,action='store_true',help='enable truth matching')
+    cli.add_argument('-m','--match',default=False,action='store_true',help='enable truth matching')
     cli.add_argument('-b','--back',default=[],action='append',help='background files for merging',metavar='PATH')
     cli.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)')
     cli.add_argument('-d','--dst',default=False,action='store_true',help='run standalone dst-maker')
@@ -257,9 +266,7 @@ def main(argv):
         for lund in cfg.gen[1:]:
             lund_workflow(cfg, lund)
     else:
-        ret,o = generate(cfg)
-        if ret != 0: _logger.critical(f'generator {cfg.gen[0]} failed.')
-        lund_workflow(cfg, o)
+        gen_workflow(cfg)
 
 if __name__ == '__main__':
     main(sys.argv[1:])
