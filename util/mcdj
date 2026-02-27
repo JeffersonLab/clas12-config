@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+# TODO:
+#
+# - restore background file retrieval (xrootd broken)
+# - disable stanadlone background merging (YAML instead)
+# - implement the -o option (currently GENERATOR.hipo) 
+
 _logger = None
 
 import os
