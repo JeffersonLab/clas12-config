@@ -67,13 +67,13 @@ def get_out(inp, prefix=None, suffix=None):
 def generate(cfg):
     o = cfg.gen[0]+'.dat'
     cmd = [cfg.gen[0]]
-    cmd.extend(['--docker','--trig',str(cfg.nevents),'--seed',str(cfg.seed)])
+    cmd.extend(['--docker','--trig',str(cfg.n),'--seed',str(cfg.seed)])
     cmd.extend(cfg.gen[1:])
     return run(cmd, cfg.dryrun), o
 
 # run GEMC, with LUND input or internal generator:
 def gemc(cfg, lund=None):
-    cmd = ['gemc',cfg.gcard,f'-RUNNO={cfg.run}','-USE_GUI=0',f'-N={cfg.nevents}']
+    cmd = ['gemc',cfg.gcard,f'-RUNNO={cfg.run}','-USE_GUI=0',f'-N={cfg.n}']
     if cfg.match:
         cmd.extend(['-SAVE_ALL_MOTHERS=1','-SKIPREJECTEDHITS=1','-INTEGRATEDRAW="*"','-NGENP=50'])
     if lund:
@@ -197,11 +197,10 @@ def configure(args):
             epilog='Note, generator command-line options should be placed after a "--".  '
             'See https://github.com/jeffersonlab/clas12-config for configuration files.')
     cli.add_argument('-o',help='output HIPO file',metavar='PATH')
+    cli.add_argument('-n',default=1,type=int,help='number of events (default=1)')
     cli.add_argument('--gcard',required=True,type=str,help='GEMC gcard configuration file',metavar='PATH')
     cli.add_argument('--yaml',required=True,type=str,help='COATJAVA yaml configuration file',metavar='PATH')
     cli.add_argument('--run',default=11,type=int,help='run number (default=11)')
-    cli.add_argument('--nevents',default=1,type=int,help='number of events (default=1)')
-    cli.add_argument('--output',help='output HIPO file name')
     cli.add_argument('--truth',default=False,action='store_true',help='enable truth matching')
     cli.add_argument('--bgmerge',default=[],action='append',help='background files for merging',metavar='PATH')
     cli.add_argument('--denoise',default=False,action='store_true',help='enable denoising')
