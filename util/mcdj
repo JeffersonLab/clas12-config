@@ -136,6 +136,7 @@ def lund_workflow(cfg, lund):
     if ret != 0: _logger.critical('reconstruction failed.')
     ret,o = dst(cfg, o)
     if ret != 0: _logger.critical('dst making failed.')
+    return ret,o
 
 # make and change to a new working directory: 
 def make_workdir(d):
