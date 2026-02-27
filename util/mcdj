@@ -86,16 +86,16 @@ def gemc(cfg, lund=None):
     return run(cmd, cfg.dryrun), o
 
 # run background merging:
-def bgmerge(cfg, inp):
+def merge_background(cfg, inp):
     o = get_out(inp, prefix='bg_')
     cmd=['bg-merger','-i',inp,'-o',o]
-    cmd.extend(cfg.bgmerge)
+    cmd.extend(cfg.back)
     return run(cmd, cfg.dryrun), o
 
 # run denoising:
 def denoise(cfg, inp):
     o = get_out(inp, prefix='dn_')
-    cmd=['denoise2.exe','-o',o,cfg.bgmerge]
+    cmd=['denoise2.exe','-o',o,cfg.back]
     return run(cmd, cfg.dryrun), o
 
 # run reconstruction:
@@ -126,8 +126,8 @@ def get_background_file(b):
 def lund_workflow(cfg, lund):
     ret,o = gemc(cfg, lund)
     if ret != 0: _logger.critical('gemc failed.')
-    if len(cfg.bgmerge) > 0:
-        ret,o = bgmerge(cfg, o)
+    if len(cfg.back) > 0:
+        ret,o = merge_background(cfg, o)
         if ret != 0: _logger.critical('background merging failed.')
     if cfg.denoise:
         ret,o = denoise(cfg, o)
@@ -175,17 +175,15 @@ def setup(cfg):
         cfg.gcard = os.path.abspath(cfg.gcard)
     if os.path.isfile(cfg.yaml):
         cfg.yaml = os.path.abspath(cfg.yaml)
-    # do everything in a new working directory:
-    os.chdir(make_workdir(cfg.tmpdir))
     # retrieve configuration files:
     if not os.path.isfile(cfg.gcard):
         cfg.gcard = get_config('gcard',cfg.gcard)
     if not os.path.isfile(cfg.yaml):
         cfg.yaml = get_config('yaml',cfg.yaml)
     # retrieve background files:
-    for i,b in enumerate(cfg.bgmerge):
+    for i,b in enumerate(cfg.back):
         if not os.path.isfile(b):
-            cfg.bgmerge[i] = get_background_file(b)
+            cfg.back[i] = get_background_file(b)
     _logger.debug('config:  '+str(cfg))
     return cfg
 
@@ -202,18 +200,17 @@ def configure(args):
     cli.add_argument('-y','--yaml',required=True,type=str,help='COATJAVA yaml configuration file',metavar='PATH')
     cli.add_argument('-r','--run',default=11,type=int,help='run number (default=11)')
     cli.add_argument('-t','--truth',default=False,action='store_true',help='enable truth matching')
-    cli.add_argument('-b','--bgrd',default=[],action='append',help='background files for merging',metavar='PATH')
+    cli.add_argument('-b','--back',default=[],action='append',help='background files for merging',metavar='PATH')
     cli.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)')
     cli.add_argument('--denoise',default=False,action='store_true',help='enable *old* denoising (use YAML for new)')
     cli.add_argument('--verbose',default=0,action='count',help='verbosity (repeatable)')
-    cli.add_argument('--tmpdir',default='.',help='temporary directory location (default=.)',metavar='PATH')
     cli.add_argument('--dryrun',default=False,action='store_true',help='dry run')
     cli.add_argument('gen',nargs='+',help='generator command line, or LUND file')
     cfg = cli.parse_args(args)
 
-    if len(cfg.bgmerge) > 0:
-        cli.warning('ignoring broken --bgmerge option')
-        cfg.bgmerge = []
+    if len(cfg.back) > 0:
+        cli.warning('ignoring broken --back option')
+        cfg.back = []
 
     # configure logger:
     global _logger
