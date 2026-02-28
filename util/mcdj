@@ -160,7 +160,7 @@ def generator_pipeline(cfg, cwd):
 # choose job directory and make it if necessary:
 def get_job_dir(cfg, i):
     import os
-    d = '.' if cfg.jobs==1 else f'{cfg.gen[0]}-{i}'
+    d = '.' if cfg.jobs==1 else f'mcdj-{cfg.gen[0]}-{i}'
     os.makedirs(d)
     return os.path.abspath(d)
 
