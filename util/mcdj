@@ -5,7 +5,6 @@
 # - restore background file retrieval (xrootd broken)
 # - disable stanadlone background merging (YAML instead)
 # - implement the -o option (currently rec_$GENERATOR.hipo) 
-# - parallelize
 #
 
 _logger = None
@@ -185,7 +184,7 @@ def launch_pipelines(cfg):
             for j in range(cfg.jobs):
                 futures.append(exe.submit(generator_pipeline(cfg)))
         for f in futures:
-            concurrent.futures.wait([f])
+            cf.wait([f])
             if f.exception() is not None:
                 print(f.exception())
                 return None
