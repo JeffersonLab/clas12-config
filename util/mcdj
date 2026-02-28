@@ -5,6 +5,7 @@
 # - restore background file retrieval (xrootd broken)
 # - disable stanadlone background merging (YAML instead)
 # - implement the -o option (currently rec_$GENERATOR.hipo) 
+# - implement --seed for GEMC (currently generators only)
 #
 
 _logger = None
@@ -177,6 +178,7 @@ def generator_pipeline(cfg):
         return ret,o
     return lund_pipeline(cfg, o)
 
+# launch parallel pipelines and wait for them to fininsh:
 def launch_pipelines(cfg):
     status = []
     import concurrent.futures as cf
@@ -215,34 +217,16 @@ def make_workdir(d):
     _logger.warning(f'using new working directory:  {d} ...')
     return d
 
-def setup(cfg):
-    # convert to absolute paths:
-    if os.path.isfile(cfg.gcard):
-        cfg.gcard = os.path.abspath(cfg.gcard)
-    if os.path.isfile(cfg.yaml):
-        cfg.yaml = os.path.abspath(cfg.yaml)
-    # retrieve configuration files:
-    if not os.path.isfile(cfg.gcard):
-        _logger.critical(f'invalid gcard: {cfg.gcard}')
-    if not os.path.isfile(cfg.yaml):
-        _logger.critical(f'invalid yaml: {cfg.yaml}')
-    # retrieve background files:
-    for i,b in enumerate(cfg.back):
-        if not os.path.isfile(b):
-            cfg.back[i] = get_background_file(b)
-    _logger.debug('config:  '+str(cfg))
-    return cfg
-
 def configure(args):
 
     # parse command-line:
     import argparse
     cli = argparse.ArgumentParser(description='CLAS12 Monte-Carlo Deejay',
-            epilog='All executables must be in $PATH.  Generator command-line options can'
-            'be placed after a "--", e.g., if sharing the same name as one of mcdj\'s.'
+            epilog='All executables must be in $PATH.  Generator command-line options can '
+            'be placed after a "--", e.g., if sharing the same name as one of mcdj\'s.  '
             'See https://github.com/jeffersonlab/clas12-config for configuration files.')
     #cli.add_argument('-o',help='output HIPO file',metavar='PATH')
-    cli.add_argument('-n',default=10,type=int,help='number of events (default=1)',metavar='#')
+    cli.add_argument('-n',default=10,type=int,help='number of events (default=10)',metavar='#')
     cli.add_argument('-j','--jobs',default=1,type=int,help='number of parallel jobs (default=1)',metavar='#')
     cli.add_argument('-g','--gcard',required=True,type=str,help='GEMC gcard configuration file',metavar='PATH')
     cli.add_argument('-y','--yaml',required=True,type=str,help='COATJAVA yaml configuration file',metavar='PATH')
@@ -252,7 +236,7 @@ def configure(args):
     cli.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)')
     cli.add_argument('-d','--dst',default=False,action='store_true',help='run standalone dst-maker')
     cli.add_argument('-q','--quiet',default=False,action='store_true',help='silence GEANT4 exceptions')
-    cli.add_argument('-v','--verbose',default=0,action='count',help='verbosity (repeatable)')
+    cli.add_argument('-v','--verbose',default=0,action='count',help='increase verbosity (repeatable)')
     cli.add_argument('--denoise',default=False,action='store_true',help='enable *old* denoising (use YAML for new)')
     cli.add_argument('gen',nargs='+',help='generator command line, or LUND file')
     cfg = cli.parse_args(args)
@@ -286,8 +270,28 @@ def configure(args):
             _logger.critical(f'LUND file does not exist:  {f}.')
         cfg.gen.insert(0, 'lund')
 
+    # convert to absolute paths:
+    if os.path.isfile(cfg.gcard):
+        cfg.gcard = os.path.abspath(cfg.gcard)
+    if os.path.isfile(cfg.yaml):
+        cfg.yaml = os.path.abspath(cfg.yaml)
+
+    # check existence of configuration files:
+    if not os.path.isfile(cfg.gcard):
+        _logger.critical(f'invalid gcard: {cfg.gcard}')
+    if not os.path.isfile(cfg.yaml):
+        _logger.critical(f'invalid yaml: {cfg.yaml}')
+
+    # retrieve background files:
+    for i,b in enumerate(cfg.back):
+        if not os.path.isfile(b):
+            cfg.back[i] = get_background_file(b)
+
+    _logger.debug('config:  '+str(cfg))
+
     return cfg
 
 if __name__ == '__main__':
-    sys.exit(launch_pipelines(setup(configure(sys.argv[1:]))))
+
+    sys.exit(launch_pipelines(configure(sys.argv[1:])))
 
