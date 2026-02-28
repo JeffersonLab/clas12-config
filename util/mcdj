@@ -1,51 +1,40 @@
 #!/usr/bin/env python3
-
-# TODO:
 #
+# TODO:
 # - restore background file retrieval (xrootd broken)
 # - disable stanadlone background merging (YAML instead)
 # - implement the -o option (currently rec_$GENERATOR.hipo) 
-# - implement --seed for GEMC (currently generators only)
 #
+def cli():
+    import argparse
+    p = argparse.ArgumentParser(description='CLAS12 Monte-Carlo Deejay',
+        epilog='All executables must be in $PATH.  Generator command-line options can '
+        'be placed after a "--", e.g., if sharing the same name as one of mcdj\'s.  '
+        'See https://github.com/jeffersonlab/clas12-config for configuration files.')
+    #p.add_argument('-o',help='output HIPO file',metavar='PATH')
+    p.add_argument('-n','--nevents',default=10,type=int,help='number of events (default=10)',metavar='#')
+    p.add_argument('-j','--jobs',default=1,type=int,help='number of parallel jobs (default=1)',metavar='#')
+    p.add_argument('-g','--gcard',required=True,type=str,help='GEMC gcard configuration file',metavar='PATH')
+    p.add_argument('-y','--yaml',required=True,type=str,help='COATJAVA yaml configuration file',metavar='PATH')
+    p.add_argument('-r','--run',default=11,type=int,help='run number (default=11)')
+    p.add_argument('-m','--match',default=False,action='store_true',help='enable truth matching')
+    p.add_argument('-b','--back',default=[],action='append',help='background files for merging',metavar='PATH')
+    p.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)')
+    p.add_argument('-d','--dst',default=False,action='store_true',help='run standalone dst-maker')
+    p.add_argument('-q','--quiet',default=False,action='store_true',help='silence GEANT4 exceptions')
+    p.add_argument('-v','--verbose',default=0,action='count',help='increase verbosity (repeatable)')
+    p.add_argument('--denoise',default=False,action='store_true',help='enable *old* denoising (use YAML for new)')
+    p.add_argument('gen',nargs='+',help='generator command line, or LUND file')
+    return p
 
+import logging
 _logger = None
 
-import os
-import sys
-import logging
+def get_rng_clock_seed():
+    import time
+    return int(time.time()*1e6) & 0xFFFFFFFF
 
-class ColoredFormatter(logging.Formatter):
-    def __init__(self, msg):
-        self.length = 20
-        self.colors = {'INFO':32,'WARNING':35,'CRITICAL':31,'ERROR':31}
-        self.reset_seq = '\033[0m'
-        self.color_seq = '\033[1;%dm'
-        logging.Formatter.__init__(self, msg)
-    def format(self, record):
-        if record.levelname in self.colors:
-            l = record.levelname
-            record.levelname = '%-20s'%( (self.color_seq % self.colors[l]) + l + self.reset_seq)
-            record.msg =  self.color_seq % (self.colors[l]) + record.msg + self.reset_seq
-        else:
-            l = self.length - len(self.reset_seq) - len(self.color_seq)
-            record.levelname = ('%%-%ds'%l) % record.levelname
-        return logging.Formatter.format(self, record)
-
-class ColoredLogger(logging.Logger):
-    def __init__(self, name):
-        logging.Logger.__init__(self, name, logging.INFO)
-        console = ExitingStreamHandler()
-        console.setFormatter(ColoredFormatter('[%(levelname)s] %(message)s'))
-        self.addHandler(console)
-        return
-
-class ExitingStreamHandler(logging.StreamHandler):
-    def emit(self, record):
-        self.setFormatter(ColoredFormatter('[%(levelname)s] %(message)s'))
-        super().emit(record)
-        if record.levelno >= logging.CRITICAL:
-            sys.exit(record.levelno)
-
+# run a subprocess and wait for it to return:
 def run(cfg, cmd):
     _logger.info(' '.join(cmd))
     import subprocess
@@ -69,6 +58,7 @@ def run(cfg, cmd):
 
 # choose output filename based on input filename and new prefix/suffix:
 def get_out(inp, prefix=None, suffix=None):
+    import os
     o = os.path.basename(inp)
     if suffix:
         if o.rfind('.') > 0:
@@ -85,19 +75,16 @@ def generate(cfg):
     import time
     o = cfg.gen[0]+'.dat'
     cmd = [cfg.gen[0]]
-    seed = cfg.seed
-    if seed == 0:
-        # get a 32-bit RNG seed from system clock
-        cfg.seed = int(time.time()*1e6) & 0xFFFFFFFF
-    cmd.extend(['--docker','--trig',str(cfg.n),'--seed',str(seed)])
+    seed = get_rng_clock_seed() if cfg.seed==0 else cfg.seed
+    cmd.extend(['--docker','--trig',str(cfg.nevents),'--seed',str(seed)])
     cmd.extend(cfg.gen[1:])
     return run(cfg,cmd), o
 
 # run GEMC, with LUND input or internal generator:
 def gemc(cfg, lund=None):
-    cmd = ['gemc',cfg.gcard,f'-RUNNO={cfg.run}','-USE_GUI=0',f'-N={cfg.n}']
-    if cfg.seed != 0:
-        cmd.extend([f'-RANDOM={cfg.seed}'])
+    cmd = ['gemc',cfg.gcard,f'-RUNNO={cfg.run}','-USE_GUI=0',f'-N={cfg.nevents}']
+    seed = get_rng_clock_seed() if cfg.seed==0 else cfg.seed
+    cmd.extend([f'-RANDOM={seed}'])
     if cfg.match:
         cmd.extend(['-SAVE_ALL_MOTHERS=1','-SKIPREJECTEDHITS=1','-INTEGRATEDRAW="*"','-NGENP=50'])
     if lund:
@@ -133,18 +120,6 @@ def dst(cfg, inp):
     o = get_out(inp, prefix='dst_')
     cmd=['dst-maker','-o',o,inp]
     return run(cfg,cmd), o
-
-# retrieve background file via xrootd:
-def get_background_file(b):
-    uri = 'xroot://sci-xrootd.jlab.org'
-    d = '/osgpool/hallb/clas12/backgroundfiles'
-    if not b.startswith('/') or not run(['xrdfs',uri,'ls',b]):
-        b = f'{d}/{b}'
-        if 0 != run(['xrdfs',uri,'ls',b]):
-            _logger.critical('failed to find background file:  '+b)
-    if 0 != run(['xrdcp',f'{uri}/{b}','.']):
-        _logger.critical('failed to retrieve background file:  '+b)
-    return os.path.basename(b)
 
 # runs a LUND file through entire simulation pipeline:
 def lund_pipeline(cfg, lund):
@@ -213,6 +188,7 @@ def launch_pipelines(cfg):
 
 # make and change to a new working directory: 
 def make_workdir(d):
+    import os
     import tempfile
     import datetime
     if not os.path.isdir(d):
@@ -225,30 +201,42 @@ def make_workdir(d):
     _logger.warning(f'using new working directory:  {d} ...')
     return d
 
-# configure the whole darn thing:
+class ColoredFormatter(logging.Formatter):
+    def __init__(self, msg):
+        self.length = 20
+        self.colors = {'INFO':32,'WARNING':35,'CRITICAL':31,'ERROR':31}
+        self.reset_seq = '\033[0m'
+        self.color_seq = '\033[1;%dm'
+        logging.Formatter.__init__(self, msg)
+    def format(self, record):
+        if record.levelname in self.colors:
+            l = record.levelname
+            record.levelname = '%-20s'%( (self.color_seq % self.colors[l]) + l + self.reset_seq)
+            record.msg =  self.color_seq % (self.colors[l]) + record.msg + self.reset_seq
+        else:
+            l = self.length - len(self.reset_seq) - len(self.color_seq)
+            record.levelname = ('%%-%ds'%l) % record.levelname
+        return logging.Formatter.format(self, record)
+
+class ColoredLogger(logging.Logger):
+    def __init__(self, name):
+        logging.Logger.__init__(self, name, logging.INFO)
+        console = ExitingStreamHandler()
+        console.setFormatter(ColoredFormatter('[%(levelname)s] %(message)s'))
+        self.addHandler(console)
+        return
+
+class ExitingStreamHandler(logging.StreamHandler):
+    def emit(self, record):
+        self.setFormatter(ColoredFormatter('[%(levelname)s] %(message)s'))
+        super().emit(record)
+        if record.levelno >= logging.CRITICAL:
+            import sys
+            sys.exit(record.levelno)
+
 def configure(args):
 
-    # parse command-line:
-    import argparse
-    cli = argparse.ArgumentParser(description='CLAS12 Monte-Carlo Deejay',
-            epilog='All executables must be in $PATH.  Generator command-line options can '
-            'be placed after a "--", e.g., if sharing the same name as one of mcdj\'s.  '
-            'See https://github.com/jeffersonlab/clas12-config for configuration files.')
-    #cli.add_argument('-o',help='output HIPO file',metavar='PATH')
-    cli.add_argument('-n',default=10,type=int,help='number of events (default=10)',metavar='#')
-    cli.add_argument('-j','--jobs',default=1,type=int,help='number of parallel jobs (default=1)',metavar='#')
-    cli.add_argument('-g','--gcard',required=True,type=str,help='GEMC gcard configuration file',metavar='PATH')
-    cli.add_argument('-y','--yaml',required=True,type=str,help='COATJAVA yaml configuration file',metavar='PATH')
-    cli.add_argument('-r','--run',default=11,type=int,help='run number (default=11)')
-    cli.add_argument('-m','--match',default=False,action='store_true',help='enable truth matching')
-    cli.add_argument('-b','--back',default=[],action='append',help='background files for merging',metavar='PATH')
-    cli.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)')
-    cli.add_argument('-d','--dst',default=False,action='store_true',help='run standalone dst-maker')
-    cli.add_argument('-q','--quiet',default=False,action='store_true',help='silence GEANT4 exceptions')
-    cli.add_argument('-v','--verbose',default=0,action='count',help='increase verbosity (repeatable)')
-    cli.add_argument('--denoise',default=False,action='store_true',help='enable *old* denoising (use YAML for new)')
-    cli.add_argument('gen',nargs='+',help='generator command line, or LUND file')
-    cfg = cli.parse_args(args)
+    cfg = cli().parse_args(args)
 
     if len(cfg.back) > 0:
         cli.warning('ignoring broken --back option')
@@ -261,6 +249,7 @@ def configure(args):
     _logger.setLevel(20-10*cfg.verbose)
 
     # check existence of executables in $PATH:
+    import os
     import shutil
     executables = ['gemc','bg-merger','denoise2.exe','recon-util','dst-maker']
     for exe in filter(lambda x: not shutil.which(x), executables):
@@ -291,16 +280,12 @@ def configure(args):
     if not os.path.isfile(cfg.yaml):
         _logger.critical(f'invalid yaml: {cfg.yaml}')
 
-    # retrieve background files:
-    for i,b in enumerate(cfg.back):
-        if not os.path.isfile(b):
-            cfg.back[i] = get_background_file(b)
-
     _logger.debug('config:  '+str(cfg))
 
     return cfg
 
 if __name__ == '__main__':
 
+    import sys
     sys.exit(launch_pipelines(configure(sys.argv[1:])))
 
