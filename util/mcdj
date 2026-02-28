@@ -53,10 +53,14 @@ def run(cfg, cmd):
     for line in iter(p.stdout.readline, ''):
         if len(line.strip())>0:
             if cfg.quiet:
+                if line.find('*********************************************************************') >= 0:
+                    continue
                 if line.find('-------- WWWW ------- G4Exception-START -------- WWWW -------') >= 0:
                     hush = True
+                    continue
                 elif line.find('-------- WWWW -------- G4Exception-END --------- WWWW -------') >= 0:
                     hush = False
+                    continue
             if not hush:
                 print(line.rstrip())
     p.wait()
