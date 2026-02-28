@@ -2,7 +2,6 @@
 #
 # TODO:
 # - restore background file retrieval (xrootd broken)
-# - disable stanadlone background merging (YAML instead)
 # - implement the -o option (currently rec_$GENERATOR.hipo) 
 #
 def cli():
@@ -25,6 +24,7 @@ def cli():
     p.add_argument('-v','--verbose',default=0,action='count',help='increase verbosity (repeatable)')
     p.add_argument('--denoise',default=False,action='store_true',help='enable *old* denoising (use YAML for new)')
     p.add_argument('gen',nargs='+',help='generator command line, or LUND file')
+    p.iback = 0
     return p
 
 import logging
@@ -100,7 +100,10 @@ def gemc(cfg, lund=None):
 def merge_background(cfg, inp):
     o = get_out(inp, prefix='bg_')
     cmd=['bg-merger','-i',inp,'-o',o]
-    cmd.extend(cfg.back)
+    cmd.extend(cfg.back[cfg.iback])
+    cfg.iback += 1
+    if cfg.iback >= len(cfg.back):
+        cfg.iback = 0
     return run(cfg,cmd), o
 
 # run denoising:
@@ -237,10 +240,6 @@ class ExitingStreamHandler(logging.StreamHandler):
 def configure(args):
 
     cfg = cli().parse_args(args)
-
-    if len(cfg.back) > 0:
-        cli.warning('ignoring broken --back option')
-        cfg.back = []
 
     # configure logger:
     global _logger
