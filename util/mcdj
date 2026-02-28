@@ -82,15 +82,22 @@ def get_out(inp, prefix=None, suffix=None):
 
 # run a clas12-mcgen event genetator:
 def generate(cfg):
+    import time
     o = cfg.gen[0]+'.dat'
     cmd = [cfg.gen[0]]
-    cmd.extend(['--docker','--trig',str(cfg.n),'--seed',str(cfg.seed)])
+    seed = cfg.seed
+    if seed == 0:
+        # get a 32-bit RNG seed from system clock
+        cfg.seed = int(time.time()*1e6) & 0xFFFFFFFF
+    cmd.extend(['--docker','--trig',str(cfg.n),'--seed',str(seed)])
     cmd.extend(cfg.gen[1:])
     return run(cfg,cmd), o
 
 # run GEMC, with LUND input or internal generator:
 def gemc(cfg, lund=None):
     cmd = ['gemc',cfg.gcard,f'-RUNNO={cfg.run}','-USE_GUI=0',f'-N={cfg.n}']
+    if cfg.seed != 0:
+        cmd.extend([f'-RANDOM={cfg.seed}'])
     if cfg.match:
         cmd.extend(['-SAVE_ALL_MOTHERS=1','-SKIPREJECTEDHITS=1','-INTEGRATEDRAW="*"','-NGENP=50'])
     if lund:
@@ -218,6 +225,7 @@ def make_workdir(d):
     _logger.warning(f'using new working directory:  {d} ...')
     return d
 
+# configure the whole darn thing:
 def configure(args):
 
     # parse command-line:
