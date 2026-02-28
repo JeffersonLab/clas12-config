@@ -45,14 +45,19 @@ class ExitingStreamHandler(logging.StreamHandler):
         if record.levelno >= logging.CRITICAL:
             sys.exit(record.levelno)
 
-def run(cmd, dryrun=False, quiet=False):
+def run(cfg, cmd):
     _logger.info(' '.join(cmd))
-    if dryrun: return 0
     import subprocess
     p = subprocess.Popen(cmd,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,universal_newlines=True,encoding='latin-1')
-    if not quiet:
-        for line in iter(p.stdout.readline, ''):
-            if len(line.strip())>0:
+    hush = False
+    for line in iter(p.stdout.readline, ''):
+        if len(line.strip())>0:
+            if cfg.quiet:
+                if line.find('-------- WWWW ------- G4Exception-START -------- WWWW -------') >= 0:
+                    hush = True
+                elif line.find('-------- WWWW -------- G4Exception-END --------- WWWW -------') >= 0:
+                    hush = False
+            if not hush:
                 print(line.rstrip())
     p.wait()
     return p.returncode
@@ -76,7 +81,7 @@ def generate(cfg):
     cmd = [cfg.gen[0]]
     cmd.extend(['--docker','--trig',str(cfg.n),'--seed',str(cfg.seed)])
     cmd.extend(cfg.gen[1:])
-    return run(cmd, cfg.dryrun), o
+    return run(cfg,cmd), o
 
 # run GEMC, with LUND input or internal generator:
 def gemc(cfg, lund=None):
@@ -90,32 +95,32 @@ def gemc(cfg, lund=None):
         o = 'gemc.hipo'
         cmd.extend(cfg.gen[1:])
     cmd.append(f'-OUTPUT=hipo,{o}')
-    return run(cmd, cfg.dryrun), o
+    return run(cfg,cmd), o
 
 # run background merging:
 def merge_background(cfg, inp):
     o = get_out(inp, prefix='bg_')
     cmd=['bg-merger','-i',inp,'-o',o]
     cmd.extend(cfg.back)
-    return run(cmd, cfg.dryrun), o
+    return run(cfg,cmd), o
 
 # run denoising:
 def denoise(cfg, inp):
     o = get_out(inp, prefix='dn_')
     cmd=['denoise2.exe','-o',o,inp]
-    return run(cmd, cfg.dryrun), o
+    return run(cfg,cmd), o
 
 # run reconstruction:
 def recon(cfg, inp):
     o = get_out(inp, prefix='rec_')
     cmd=['recon-util','-y',cfg.yaml,'-i',inp,'-o',o]
-    return run(cmd, cfg.dryrun), o
+    return run(cfg,cmd), o
 
 # run dst maker:
 def dst(cfg, inp):
     o = get_out(inp, prefix='dst_')
     cmd=['dst-maker','-o',o,inp]
-    return run(cmd, cfg.dryrun), o
+    return run(cfg,cmd), o
 
 # retrieve background file via xrootd:
 def get_background_file(b):
@@ -182,13 +187,15 @@ def launch_pipelines(cfg):
                 futures.append(exe.submit(lund_pipeline,cfg,lund))
         else:
             for j in range(cfg.jobs):
-                futures.append(exe.submit(generator_pipeline(cfg)))
+                futures.append(exe.submit(generator_pipeline,cfg))
         for f in futures:
             cf.wait([f])
             if f.exception() is not None:
                 print(f.exception())
                 return None
             ret,o = f.result()
+            status.append(ret)
+    return sum(status)
 
 # make and change to a new working directory: 
 def make_workdir(d):
@@ -227,7 +234,8 @@ def configure(args):
     # parse command-line:
     import argparse
     cli = argparse.ArgumentParser(description='CLAS12 Monte-Carlo Deejay',
-            epilog='Note, generator command-line options should be placed after a "--".  '
+            epilog='All executables must be in $PATH.  Generator command-line options can'
+            'be placed after a "--", e.g., if sharing the same name as one of mcdj\'s.'
             'See https://github.com/jeffersonlab/clas12-config for configuration files.')
     #cli.add_argument('-o',help='output HIPO file',metavar='PATH')
     cli.add_argument('-n',default=10,type=int,help='number of events (default=1)',metavar='#')
@@ -239,9 +247,9 @@ def configure(args):
     cli.add_argument('-b','--back',default=[],action='append',help='background files for merging',metavar='PATH')
     cli.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)')
     cli.add_argument('-d','--dst',default=False,action='store_true',help='run standalone dst-maker')
+    cli.add_argument('-q','--quiet',default=False,action='store_true',help='silence GEANT4 exceptions')
+    cli.add_argument('-v','--verbose',default=0,action='count',help='verbosity (repeatable)')
     cli.add_argument('--denoise',default=False,action='store_true',help='enable *old* denoising (use YAML for new)')
-    cli.add_argument('--verbose',default=0,action='count',help='verbosity (repeatable)')
-    cli.add_argument('--dryrun',default=False,action='store_true',help='dry run')
     cli.add_argument('gen',nargs='+',help='generator command line, or LUND file')
     cfg = cli.parse_args(args)
 
@@ -277,5 +285,5 @@ def configure(args):
     return cfg
 
 if __name__ == '__main__':
-    launch_pipelines(setup(configure(sys.argv[1:])))
+    sys.exit(launch_pipelines(setup(configure(sys.argv[1:]))))
 
