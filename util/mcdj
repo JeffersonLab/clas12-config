@@ -198,7 +198,8 @@ def launch_pipelines(cfg):
             cf.wait([f])
             if f.exception() is not None:
                 print(f.exception())
-                return None
+                status.append(1)
+                continue
             ret,o = f.result()
             status.append(ret)
     return sum(status)
