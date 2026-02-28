@@ -17,7 +17,7 @@ import logging
 class ColoredFormatter(logging.Formatter):
     def __init__(self, msg):
         self.length = 20
-        self.colors = {'WARNING':35,'CRITICAL':31,'ERROR':31}
+        self.colors = {'INFO':32,'WARNING':35,'CRITICAL':31,'ERROR':31}
         self.reset_seq = '\033[0m'
         self.color_seq = '\033[1;%dm'
         logging.Formatter.__init__(self, msg)
@@ -82,7 +82,7 @@ def generate(cfg):
 # run GEMC, with LUND input or internal generator:
 def gemc(cfg, lund=None):
     cmd = ['gemc',cfg.gcard,f'-RUNNO={cfg.run}','-USE_GUI=0',f'-N={cfg.n}']
-    if cfg.truth:
+    if cfg.match:
         cmd.extend(['-SAVE_ALL_MOTHERS=1','-SKIPREJECTEDHITS=1','-INTEGRATEDRAW="*"','-NGENP=50'])
     if lund:
         o = get_out(lund, suffix='.hipo')
@@ -132,7 +132,7 @@ def get_background_file(b):
 
 # runs a LUND file through entire simulation pipeline:
 def lund_pipeline(cfg, lund):
-    if cfg.j > 1:
+    if cfg.jobs > 1:
         make_workdir('.')
     ret,o = gemc(cfg, lund)
     if ret != 0:
@@ -161,7 +161,7 @@ def lund_pipeline(cfg, lund):
 
 # run a generator through entire simulation pipeline:
 def generator_pipeline(cfg):
-    if cfg.j > 1:
+    if cfg.jobs > 1:
         make_workdir('.')
     ret,o = generate(cfg)
     if ret != 0:
