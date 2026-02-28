@@ -166,7 +166,6 @@ def get_job_dir(cfg, i):
 
 # launch parallel pipelines and wait for them to fininsh:
 def launch_pipelines(cfg):
-    import os
     import concurrent.futures as cf
     status,output = [],[]
     with cf.ThreadPoolExecutor(max_workers=cfg.jobs) as exe:
@@ -189,11 +188,23 @@ def launch_pipelines(cfg):
                 continue
             ret,o = f.result()
             status.append(ret)
-            output.append(o)
-    if cfg.cleanup:
-        import os
-        [ os.remove(o) for o in set(_outputs) - set(output) ]
+            output.append(f'{jobdir}/{o}')
+    cleanup(cfg, output)
     return sum(status)
+
+def cleanup(cfg, outputs):
+    import os
+    import shutil
+    # move and rename final output files:
+    if cfg.jobs > 1:
+        for i,o in enumerate(outputs):
+            os.rename(o, o.split('.')[0] + f'-{i}.' + o.split('.')[1])
+    if cfg.cleanup:
+        # remove intermediate output files:
+        [ os.remove(o) for o in set(_outputs) - set(outputs) ]
+        if cfg.jobs > 1:
+            # remove job subdirectories:
+            [ shutil.rmtree(os.path.dirname(o)) for o in outputs ]
 
 class ColoredFormatter(logging.Formatter):
     def __init__(self, msg):
