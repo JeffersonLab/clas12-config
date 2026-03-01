@@ -24,18 +24,16 @@ def cli():
     p.iback = 0
     return p
 
-import logging
-_logger = None
-_outputs = []
-
+# get a 32-bit RNG seed from the system clock:
 def get_rng_clock_seed():
     import time
     return int(time.time()*1e6) & 0xFFFFFFFF
 
 # run a subprocess and wait for it to return:
 def run(cfg, cwd, cmd):
-    _logger.info(' '.join(cmd))
+    import logging
     import subprocess
+    logging.getLogger(__name__).info(' '.join(cmd))
     p = subprocess.Popen(cmd,cwd=cwd,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,universal_newlines=True,encoding='latin-1')
     hush = False
     for line in iter(p.stdout.readline, ''):
@@ -54,9 +52,11 @@ def run(cfg, cwd, cmd):
     p.wait()
     return p.returncode
 
+# a list of all the output files we've made:
+_outputs = []
+
 # choose output filename based on input filename and new prefix/suffix:
 def get_out(cfg, inp, odir, prefix=None, suffix=None):
-    global _outputs
     import os
     o = os.path.basename(inp)
     if suffix:
@@ -122,59 +122,63 @@ def dst(cfg, cwd, inp):
     cmd=['dst-maker','-o',o,inp]
     return run(cfg,cwd,cmd), o
 
-# runs a LUND file through entire simulation pipeline:
+# run a LUND file through the simulation pipeline:
 def lund_pipeline(cfg, cwd, lund):
+    import logging
     ret,o = gemc(cfg, cwd, lund)
     if ret != 0:
-        _logger.error('gemc failed.')
+        logging.getLogger(__name__).error('gemc failed.')
         return ret,o
     if len(cfg.back) > 0:
         ret,o = merge_background(cfg, cwd, o)
         if ret != 0:
-            _logger.error('background merging failed.')
+            logging.getLogger(__name__).error('background merging failed.')
             return ret,o
     if cfg.denoise:
         ret,o = denoise(cfg, cwd, o)
         if ret != 0:
-            _logger.error('denoising failed.')
+            logging.getLogger(__name__).error('denoising failed.')
             return ret,o
     ret,o = recon(cfg, cwd, o)
     if ret != 0:
-        _logger.error('reconstruction failed.')
+        logging.getLogger(__name__).error('reconstruction failed.')
         return ret,o
     if cfg.dst:
         ret,o = dst(cfg, cwd, o)
         if ret != 0:
-            _logger.error('dst making failed.')
+            logging.getLogger(__name__).error('dst making failed.')
             return ret,o
     return ret,o
 
-# run a generator through entire simulation pipeline:
+# run an event generator through the simulation pipeline:
 def generator_pipeline(cfg, cwd):
+    import logging
     ret,o = generate(cfg, cwd)
     if ret != 0:
-        _logger.error(f'generator {cfg.gen[0]} failed.')
+        logging.getLogger(__name__).error(f'generator {cfg.gen[0]} failed.')
         return ret,o
     return lund_pipeline(cfg, cwd, o)
 
 # choose job directory and make it if necessary:
 def get_job_dir(cfg, i):
     import os
-    d = '.' if cfg.jobs==1 else f'mcdj-{cfg.gen[0]}-{i}'
+    d = '.' if cfg.jobs==1 else f'./mcdj-{cfg.gen[0]}-{i}'
     os.makedirs(d)
     return os.path.abspath(d)
 
-# launch parallel pipelines and wait for them to fininsh:
+# spawn parallel pipelines and wait for them to finish:
 def launch_pipelines(cfg):
+    import os
+    import logging
     import concurrent.futures as cf
-    status,output = [],[]
+    results = [SimpleNamespace(status=1, output=None)] * cfg.jobs
     with cf.ThreadPoolExecutor(max_workers=cfg.jobs) as exe:
         futures = []
         for j in range(cfg.jobs):
             jobdir = get_job_dir(cfg, j)
             if cfg.gen[0] == 'lund':
                 if j > len(cfg.gen):
-                    _logger.warning(f'insufficient LUND files for {cfg.jobs} jobs.')
+                    logging.getLogger(__name__).warning(f'insufficient LUND files for {cfg.jobs} jobs.')
                     break
                 lund = cfg.gen[1+j]
                 futures.append(exe.submit(lund_pipeline,cfg,jobdir,lund))
@@ -182,15 +186,14 @@ def launch_pipelines(cfg):
                 futures.append(exe.submit(generator_pipeline,cfg,jobdir))
         for i,f in enumerate(futures):
             cf.wait([f])
-            if f.exception() is not None:
+            if f.exception() is None:
+                ret,o = f.result()
+                results[i].status = ret
+                results[i].output = f'{jobdir}/{o}'
+            else:
                 print(f.exception())
-                status.append(1)
-                continue
-            ret,o = f.result()
-            status.append(ret)
-            output.append(f'{jobdir}/{o}')
-    cleanup(cfg, output)
-    return sum(status)
+    cleanup(cfg, [o.output for o in results and o.output is not None])
+    return sum([o.status for o in results and o.status is not None])
 
 def cleanup(cfg, outputs):
     import os
@@ -198,13 +201,16 @@ def cleanup(cfg, outputs):
     # move and rename final output files:
     if cfg.jobs > 1:
         for i,o in enumerate(outputs):
-            os.rename(o, o.split('.')[0] + f'-{i}.' + o.split('.')[1])
+            b,s = os.path.splitext(os.path.basename(o))
+            os.rename(o, f'{os.path.dirname(o)}/{b}-{i}.{s}')
     if cfg.cleanup:
         # remove intermediate output files:
         [ os.remove(o) for o in set(_outputs) - set(outputs) ]
         if cfg.jobs > 1:
             # remove job subdirectories:
             [ shutil.rmtree(os.path.dirname(o)) for o in outputs ]
+
+import logging
 
 class ColoredFormatter(logging.Formatter):
     def __init__(self, msg):
@@ -244,51 +250,51 @@ def configure(args):
     cfg = cli().parse_args(args)
 
     # configure logger:
-    global _logger
     logging.setLoggerClass(ColoredLogger)
-    _logger = logging.getLogger(__name__)
-    _logger.setLevel(20-10*cfg.verbose)
+    logging.getLogger(__name__).setLevel(20-10*cfg.verbose)
 
     # check existence of executables in $PATH:
     import os
     import shutil
     executables = ['gemc','bg-merger','denoise2.exe','recon-util','dst-maker']
     for exe in filter(lambda x: not shutil.which(x), executables):
-        _logger.critical('executable not found in $PATH: '+exe)
+        logging.getLogger(__name__).critical('executable not found in $PATH: '+exe)
 
     # determine event generator:
     if cfg.gen[0] == 'gemc':
-        _logger.warning('using GEMC internal generator.')
-        _logger.warning('using generator options:  '+' '.join(cfg.gen[1:]))
+        logging.getLogger(__name__).warning('using GEMC internal generator.')
+        logging.getLogger(__name__).warning('using generator options:  '+' '.join(cfg.gen[1:]))
     elif shutil.which(cfg.gen[0]):
-        _logger.warning('using generator found in $PATH:  '+shutil.which(cfg.gen[0]))
-        _logger.warning('using generator options:  '+' '.join(cfg.gen[1:]))
+        logging.getLogger(__name__).warning('using generator found in $PATH:  '+shutil.which(cfg.gen[0]))
+        logging.getLogger(__name__).warning('using generator options:  '+' '.join(cfg.gen[1:]))
     else:
-        _logger.warning('generator not found in $PATH, interpreting as LUND file(s) ...')
+        logging.getLogger(__name__).warning('generator not found in $PATH, interpreting as LUND file(s) ...')
         for f in filter(lambda x: not os.path.isfile(x),cfg.gen[1:]):
-            _logger.critical(f'LUND file does not exist:  {f}.')
+            logging.getLogger(__name__).critical(f'LUND file does not exist:  {f}.')
         cfg.gen.insert(0, 'lund')
 
-    # convert to absolute paths:
-    if os.path.isfile(cfg.gcard):
-        cfg.gcard = os.path.abspath(cfg.gcard)
-    if os.path.isfile(cfg.yaml):
-        cfg.yaml = os.path.abspath(cfg.yaml)
-    for i,b in enumerate(cfg.back):
-        cfg.back[i] = os.path.abspath(b)
+    # convert all input paths to absolute paths:
+    cfg.gcard = os.path.abspath(cfg.gcard)
+    cfg.yaml = os.path.abspath(cfg.yaml)
+    cfg.back = [ os.path.abspath(b) for b in cfg.back ]
+    for i in range(1,len(cfg.gen)) if cfg.gen[0] == 'lund':
+        cfg.gen[i] = os.path.abspath(cfg.gen[i])
 
-    # check existence of configuration files:
+    # check existence of input files:
     if not os.path.isfile(cfg.gcard):
-        _logger.critical(f'invalid gcard: {cfg.gcard}')
+        logging.getLogger(__name__).critical(f'invalid gcard: {cfg.gcard}')
     if not os.path.isfile(cfg.yaml):
-        _logger.critical(f'invalid yaml: {cfg.yaml}')
+        logging.getLogger(__name__).critical(f'invalid yaml: {cfg.yaml}')
+    for b in cfg.back if not os.path.isfile(b):
+        logging.getLogger(__name__).critical(f'invalid background file: {b}')
+    for l in cfg.gen[1:] if cfg.gen[0] == 'lund' and not os.path.isfile(l):
+        logging.getLogger(__name__).critical(f'invalid lund file: {l}')
 
-    _logger.debug('config:  '+str(cfg))
+    logging.getLogger(__name__).debug('config:  '+str(cfg))
 
     return cfg
 
 if __name__ == '__main__':
-
     import sys
-    sys.exit(launch_pipelines(configure(sys.argv[1:])))
-
+    cfg = configure(cli(sys.argv[1:]))
+    sys.exit(launch_pipelines(cfg))
