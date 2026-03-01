@@ -246,9 +246,7 @@ class ExitingStreamHandler(logging.StreamHandler):
             import sys
             sys.exit(record.levelno)
 
-def configure(args):
-
-    cfg = cli().parse_args(args)
+def configure(cfg):
 
     # configure logger:
     logging.setLoggerClass(ColoredLogger)
@@ -295,11 +293,11 @@ def configure(args):
 
     logging.getLogger(__name__).debug('config:  '+str(cfg))
 
-    return cfgd
+    return cfg
 
 if __name__ == '__main__':
     import sys
-    cfg = configure(sys.argv[1:])
+    cfg = configure(cli().parse_args(sys.argv[1:])) 
     result = launch_pipelines(cfg)
     sys.exit(result)
 
