@@ -195,6 +195,7 @@ def launch_pipelines(cfg):
     cleanup(cfg, [o.output for o in results and o.output is not None])
     return sum([o.status for o in results and o.status is not None])
 
+# cleanup the filesystem mess we made:
 def cleanup(cfg, outputs):
     import os
     import shutil
@@ -277,24 +278,28 @@ def configure(args):
     cfg.gcard = os.path.abspath(cfg.gcard)
     cfg.yaml = os.path.abspath(cfg.yaml)
     cfg.back = [ os.path.abspath(b) for b in cfg.back ]
-    for i in range(1,len(cfg.gen)) if cfg.gen[0] == 'lund':
-        cfg.gen[i] = os.path.abspath(cfg.gen[i])
+    if cfg.gen[0] == 'lund':
+        for i in range(1,len(cfg.gen)):
+            cfg.gen[i] = os.path.abspath(cfg.gen[i])
 
     # check existence of input files:
     if not os.path.isfile(cfg.gcard):
         logging.getLogger(__name__).critical(f'invalid gcard: {cfg.gcard}')
     if not os.path.isfile(cfg.yaml):
         logging.getLogger(__name__).critical(f'invalid yaml: {cfg.yaml}')
-    for b in cfg.back if not os.path.isfile(b):
+    for b in [ b for b in cfg.back if not os.path.isfile(b) ]:
         logging.getLogger(__name__).critical(f'invalid background file: {b}')
-    for l in cfg.gen[1:] if cfg.gen[0] == 'lund' and not os.path.isfile(l):
-        logging.getLogger(__name__).critical(f'invalid lund file: {l}')
+    if cfg.gen[0] == 'lund':
+        for l in [ l for l in cfg.gen[1:] if not os.path.isfile(l) ]:
+            logging.getLogger(__name__).critical(f'invalid lund file: {l}')
 
     logging.getLogger(__name__).debug('config:  '+str(cfg))
 
-    return cfg
+    return cfgd
 
 if __name__ == '__main__':
     import sys
-    cfg = configure(cli(sys.argv[1:]))
-    sys.exit(launch_pipelines(cfg))
+    cfg = configure(sys.argv[1:])
+    result = launch_pipelines(cfg)
+    sys.exit(result)
+
