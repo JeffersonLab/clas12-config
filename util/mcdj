@@ -253,7 +253,6 @@ def configure(cfg):
     logging.getLogger(__name__).setLevel(20-10*cfg.verbose)
 
     # check existence of executables in $PATH:
-    import os
     import shutil
     executables = ['gemc','bg-merger','denoise2.exe','recon-util','dst-maker']
     for exe in filter(lambda x: not shutil.which(x), executables):
@@ -273,6 +272,7 @@ def configure(cfg):
         cfg.gen.insert(0, 'lund')
 
     # convert all input paths to absolute paths:
+    import os
     cfg.gcard = os.path.abspath(cfg.gcard)
     cfg.yaml = os.path.abspath(cfg.yaml)
     cfg.back = [ os.path.abspath(b) for b in cfg.back ]
