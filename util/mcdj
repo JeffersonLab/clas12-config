@@ -24,6 +24,41 @@ def cli():
     p.iback = 0
     return p
 
+import logging
+
+class ColoredFormatter(logging.Formatter):
+    def __init__(self, msg):
+        self.length = 20
+        self.colors = {'INFO':32,'WARNING':35,'CRITICAL':31,'ERROR':31}
+        self.reset_seq = '\033[0m'
+        self.color_seq = '\033[1;%dm'
+        logging.Formatter.__init__(self, msg)
+    def format(self, record):
+        if record.levelname in self.colors:
+            l = record.levelname
+            record.levelname = '%-20s'%( (self.color_seq % self.colors[l]) + l + self.reset_seq)
+            record.msg =  self.color_seq % (self.colors[l]) + record.msg + self.reset_seq
+        else:
+            l = self.length - len(self.reset_seq) - len(self.color_seq)
+            record.levelname = ('%%-%ds'%l) % record.levelname
+        return logging.Formatter.format(self, record)
+
+class ColoredLogger(logging.Logger):
+    def __init__(self, name):
+        logging.Logger.__init__(self, name, logging.INFO)
+        console = ExitingStreamHandler()
+        console.setFormatter(ColoredFormatter('[%(levelname)s] %(message)s'))
+        self.addHandler(console)
+        return
+
+class ExitingStreamHandler(logging.StreamHandler):
+    def emit(self, record):
+        self.setFormatter(ColoredFormatter('[%(levelname)s] %(message)s'))
+        super().emit(record)
+        if record.levelno >= logging.CRITICAL:
+            import sys
+            sys.exit(record.levelno)
+
 # get a 32-bit RNG seed from the system clock:
 def get_rng_clock_seed():
     import time
@@ -204,48 +239,13 @@ def cleanup(cfg, outputs):
     if cfg.jobs > 1:
         for i,o in enumerate(outputs):
             b,s = os.path.splitext(os.path.basename(o))
-            os.rename(o, f'{os.path.dirname(o)}/{b}-{i}.{s}')
+            os.rename(o, f'{os.path.dirname(os.path.dirname(o))}/{b}-{i}{s}')
     if cfg.cleanup:
         # remove intermediate output files:
         [ os.remove(o) for o in set(_outputs) - set(outputs) ]
         if cfg.jobs > 1:
             # remove job subdirectories:
             [ shutil.rmtree(os.path.dirname(o)) for o in outputs ]
-
-import logging
-
-class ColoredFormatter(logging.Formatter):
-    def __init__(self, msg):
-        self.length = 20
-        self.colors = {'INFO':32,'WARNING':35,'CRITICAL':31,'ERROR':31}
-        self.reset_seq = '\033[0m'
-        self.color_seq = '\033[1;%dm'
-        logging.Formatter.__init__(self, msg)
-    def format(self, record):
-        if record.levelname in self.colors:
-            l = record.levelname
-            record.levelname = '%-20s'%( (self.color_seq % self.colors[l]) + l + self.reset_seq)
-            record.msg =  self.color_seq % (self.colors[l]) + record.msg + self.reset_seq
-        else:
-            l = self.length - len(self.reset_seq) - len(self.color_seq)
-            record.levelname = ('%%-%ds'%l) % record.levelname
-        return logging.Formatter.format(self, record)
-
-class ColoredLogger(logging.Logger):
-    def __init__(self, name):
-        logging.Logger.__init__(self, name, logging.INFO)
-        console = ExitingStreamHandler()
-        console.setFormatter(ColoredFormatter('[%(levelname)s] %(message)s'))
-        self.addHandler(console)
-        return
-
-class ExitingStreamHandler(logging.StreamHandler):
-    def emit(self, record):
-        self.setFormatter(ColoredFormatter('[%(levelname)s] %(message)s'))
-        super().emit(record)
-        if record.levelno >= logging.CRITICAL:
-            import sys
-            sys.exit(record.levelno)
 
 def configure(cfg):
 
