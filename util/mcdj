@@ -225,11 +225,11 @@ def launch_pipelines(cfg):
             if f.exception() is None:
                 ret,o = f.result()
                 results[i].status = ret
-                results[i].output = f'{jobdir}/{o}'
+                results[i].output = f'{get_job_dir(cfg, i)}/{o}'
             else:
                 print(f.exception())
-    cleanup(cfg, [o.output for o in results if o is not None])
-    return sum([o.status for o in results if o is not None])
+    cleanup(cfg, [o.output for o in results if o.output is not None])
+    return sum([o.status for o in results if o.output is not None])
 
 # cleanup the filesystem mess we made:
 def cleanup(cfg, outputs):
@@ -237,9 +237,11 @@ def cleanup(cfg, outputs):
     import shutil
     # move and rename final output files:
     if cfg.jobs > 1:
-        for i,o in enumerate(outputs):
+        for o in outputs:
+            i = os.path.basename(os.path.dirname(o)).split('-').pop()
             b,s = os.path.splitext(os.path.basename(o))
-            os.rename(o, f'{os.path.dirname(os.path.dirname(o))}/{b}-{i}{s}')
+            print(f'Renaming {o} to {b}-{i}{s}')
+            os.rename(o, f'{b}-{i}{s}')
     if cfg.cleanup:
         # remove intermediate output files:
         [ os.remove(o) for o in set(_outputs) - set(outputs) ]
