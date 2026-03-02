@@ -205,31 +205,30 @@ def get_job_dir(cfg, i):
 def launch_pipelines(cfg):
     import os
     import logging
+    import itertools
     import concurrent.futures as cf
     from types import SimpleNamespace
-    results = [SimpleNamespace(status=1, output=None)] * cfg.jobs
+    results = [SimpleNamespace(stat=1, out=None, cwd=None) for i in range(cfg.jobs)]
     with cf.ThreadPoolExecutor(max_workers=cfg.jobs) as exe:
         futures = []
         for j in range(cfg.jobs):
-            jobdir = get_job_dir(cfg, j)
+            results[j].cwd = get_job_dir(cfg, j)
             if cfg.gen[0] == 'lund':
                 if j > len(cfg.gen):
                     logging.getLogger(__name__).warning(f'insufficient LUND files for {cfg.jobs} jobs.')
                     break
                 lund = cfg.gen[1+j]
-                futures.append(exe.submit(lund_pipeline,cfg,jobdir,lund))
+                futures.append(exe.submit(lund_pipeline,cfg,results[j].cwd,lund))
             else:
-                futures.append(exe.submit(generator_pipeline,cfg,jobdir))
+                futures.append(exe.submit(generator_pipeline,cfg,results[j].cwd))
         for i,f in enumerate(futures):
             cf.wait([f])
             if f.exception() is None:
-                ret,o = f.result()
-                results[i].status = ret
-                results[i].output = f'{get_job_dir(cfg, i)}/{o}'
+                results[i].stat,results[i].out = f.result()
             else:
                 print(f.exception())
-    cleanup(cfg, [o.output for o in results if o.output is not None])
-    return sum([o.status for o in results if o.output is not None])
+    cleanup(cfg, [f'{o.cwd}/{o.out}' for o in results if o.out is not None])
+    return sum([o.stat for o in results if o.stat is not None])
 
 # cleanup the filesystem mess we made:
 def cleanup(cfg, outputs):
@@ -237,10 +236,8 @@ def cleanup(cfg, outputs):
     import shutil
     # move and rename final output files:
     if cfg.jobs > 1:
-        for o in outputs:
-            i = os.path.basename(os.path.dirname(o)).split('-').pop()
+        for i,o in enumerate(outputs):
             b,s = os.path.splitext(os.path.basename(o))
-            print(f'Renaming {o} to {b}-{i}{s}')
             os.rename(o, f'{b}-{i}{s}')
     if cfg.cleanup:
         # remove intermediate output files:
