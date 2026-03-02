@@ -171,6 +171,7 @@ def launch_pipelines(cfg):
     import os
     import logging
     import concurrent.futures as cf
+    from types import SimpleNamespace
     results = [SimpleNamespace(status=1, output=None)] * cfg.jobs
     with cf.ThreadPoolExecutor(max_workers=cfg.jobs) as exe:
         futures = []
@@ -192,8 +193,8 @@ def launch_pipelines(cfg):
                 results[i].output = f'{jobdir}/{o}'
             else:
                 print(f.exception())
-    cleanup(cfg, [o.output for o in results and o.output is not None])
-    return sum([o.status for o in results and o.status is not None])
+    cleanup(cfg, [o.output for o in results if o is not None])
+    return sum([o.status for o in results if o is not None])
 
 # cleanup the filesystem mess we made:
 def cleanup(cfg, outputs):
