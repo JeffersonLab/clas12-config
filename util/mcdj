@@ -1,17 +1,29 @@
 #!/usr/bin/env python3
 
-# TODO:
-#
-# - restore background file retrieval (xrootd broken)
-# - disable stanadlone background merging (YAML instead)
-# - implement the -o option (currently rec_$GENERATOR.hipo) 
-# - implement --seed for GEMC (currently generators only)
-#
+def cli():
+    import argparse
+    p = argparse.ArgumentParser(description='CLAS12 Monte-Carlo Deejay',
+        epilog='All executables must be in $PATH.  Generator command-line options can '
+        'be placed after a "--", e.g., if sharing the same name as one of mcdj\'s.  '
+        'See https://github.com/jeffersonlab/clas12-config for configuration files.')
+    p.add_argument('-o',help='output HIPO file',metavar='PATH')
+    p.add_argument('-n','--nevents',default=10,type=int,help='number of events (default=10)',metavar='#')
+    p.add_argument('-j','--jobs',default=1,type=int,help='number of parallel jobs (default=1)',metavar='#')
+    p.add_argument('-g','--gcard',required=True,type=str,help='GEMC gcard configuration file',metavar='PATH')
+    p.add_argument('-y','--yaml',required=True,type=str,help='COATJAVA yaml configuration file',metavar='PATH')
+    p.add_argument('-r','--run',default=11,type=int,help='run number (default=11)')
+    p.add_argument('-m','--match',default=False,action='store_true',help='enable truth matching')
+    p.add_argument('-b','--back',default=[],action='append',help='background files for merging',metavar='PATH')
+    p.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)')
+    p.add_argument('-d','--dst',default=False,action='store_true',help='run standalone dst-maker')
+    p.add_argument('-q','--quiet',default=False,action='store_true',help='silence GEANT4 exceptions')
+    p.add_argument('-v','--verbose',default=0,action='count',help='increase verbosity (repeatable)')
+    p.add_argument('-c','--cleanup',default=False,action='store_true',help='delete intermediate outputs')
+    p.add_argument('--denoise',default=False,action='store_true',help='enable old denoising (use YAML for new)')
+    p.add_argument('gen',nargs='+',help='generator command line, or LUND file')
+    p.iback = 0
+    return p
 
-_logger = None
-
-import os
-import sys
 import logging
 
 class ColoredFormatter(logging.Formatter):
@@ -44,12 +56,20 @@ class ExitingStreamHandler(logging.StreamHandler):
         self.setFormatter(ColoredFormatter('[%(levelname)s] %(message)s'))
         super().emit(record)
         if record.levelno >= logging.CRITICAL:
+            import sys
             sys.exit(record.levelno)
 
-def run(cfg, cmd):
-    _logger.info(' '.join(cmd))
+# get a 32-bit RNG seed from the system clock:
+def get_rng_clock_seed():
+    import time
+    return int(time.time()*1e6) & 0xFFFFFFFF
+
+# run a subprocess and wait for it to return:
+def run(cfg, cwd, cmd):
+    import logging
     import subprocess
-    p = subprocess.Popen(cmd,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,universal_newlines=True,encoding='latin-1')
+    logging.getLogger(__name__).info(' '.join(cmd))
+    p = subprocess.Popen(cmd,cwd=cwd,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,universal_newlines=True,encoding='latin-1')
     hush = False
     for line in iter(p.stdout.readline, ''):
         if len(line.strip())>0:
@@ -67,8 +87,12 @@ def run(cfg, cmd):
     p.wait()
     return p.returncode
 
+# a list of all the output files we've made:
+_outputs = []
+
 # choose output filename based on input filename and new prefix/suffix:
-def get_out(inp, prefix=None, suffix=None):
+def get_out(cfg, inp, odir, prefix=None, suffix=None):
+    import os
     o = os.path.basename(inp)
     if suffix:
         if o.rfind('.') > 0:
@@ -76,231 +100,204 @@ def get_out(inp, prefix=None, suffix=None):
         o = o + suffix
     if prefix:
         o = prefix + o
-    if os.path.exists(o):
-        _logger.critical(f'output file {o} already exists, for input {inp}')
+    _outputs.append(odir+'/'+o)
     return o
 
 # run a clas12-mcgen event genetator:
-def generate(cfg):
+def generate(cfg, cwd):
     import time
     o = cfg.gen[0]+'.dat'
     cmd = [cfg.gen[0]]
-    seed = cfg.seed
-    if seed == 0:
-        # get a 32-bit RNG seed from system clock
-        cfg.seed = int(time.time()*1e6) & 0xFFFFFFFF
-    cmd.extend(['--docker','--trig',str(cfg.n),'--seed',str(seed)])
+    seed = get_rng_clock_seed() if cfg.seed==0 else cfg.seed
+    cmd.extend(['--docker','--trig',str(cfg.nevents),'--seed',str(seed)])
     cmd.extend(cfg.gen[1:])
-    return run(cfg,cmd), o
+    return run(cfg,cwd,cmd), o
 
 # run GEMC, with LUND input or internal generator:
-def gemc(cfg, lund=None):
-    cmd = ['gemc',cfg.gcard,f'-RUNNO={cfg.run}','-USE_GUI=0',f'-N={cfg.n}']
-    if cfg.seed != 0:
-        cmd.extend([f'-RANDOM={cfg.seed}'])
+def gemc(cfg, cwd, lund=None):
+    cmd = ['gemc',cfg.gcard,f'-RUNNO={cfg.run}','-USE_GUI=0',f'-N={cfg.nevents}']
+    seed = get_rng_clock_seed() if cfg.seed==0 else cfg.seed
+    cmd.extend([f'-RANDOM={seed}'])
     if cfg.match:
         cmd.extend(['-SAVE_ALL_MOTHERS=1','-SKIPREJECTEDHITS=1','-INTEGRATEDRAW="*"','-NGENP=50'])
     if lund:
-        o = get_out(lund, suffix='.hipo')
+        o = get_out(cfg, lund, cwd, suffix='.hipo')
         cmd.append(f'-INPUT_GEN_FILE=LUND,{lund}')
     else:
-        o = 'gemc.hipo'
+        o = cwd+'/gemc.hipo'
         cmd.extend(cfg.gen[1:])
     cmd.append(f'-OUTPUT=hipo,{o}')
-    return run(cfg,cmd), o
+    return run(cfg,cwd,cmd), o
 
 # run background merging:
-def merge_background(cfg, inp):
-    o = get_out(inp, prefix='bg_')
+def merge_background(cfg, cwd, inp):
+    o = get_out(cfg, inp, cwd, prefix='bg_')
     cmd=['bg-merger','-i',inp,'-o',o]
-    cmd.extend(cfg.back)
-    return run(cfg,cmd), o
+    cmd.extend(cfg.back[cfg.iback])
+    cfg.iback += 1
+    if cfg.iback >= len(cfg.back):
+        cfg.iback = 0
+    return run(cfg,cwd,cmd), o
 
 # run denoising:
-def denoise(cfg, inp):
-    o = get_out(inp, prefix='dn_')
+def denoise(cfg, cwd, inp):
+    o = get_out(cfg, inp, cwd, prefix='dn_')
     cmd=['denoise2.exe','-o',o,inp]
-    return run(cfg,cmd), o
+    return run(cfg,cwd, cmd), o
 
 # run reconstruction:
-def recon(cfg, inp):
-    o = get_out(inp, prefix='rec_')
+def recon(cfg, cwd, inp):
+    o = get_out(cfg, inp, cwd, prefix='rec_')
     cmd=['recon-util','-y',cfg.yaml,'-i',inp,'-o',o]
-    return run(cfg,cmd), o
+    return run(cfg,cwd,cmd), o
 
 # run dst maker:
-def dst(cfg, inp):
-    o = get_out(inp, prefix='dst_')
+def dst(cfg, cwd, inp):
+    o = get_out(cfg, inp, cwd, prefix='dst_')
     cmd=['dst-maker','-o',o,inp]
-    return run(cfg,cmd), o
+    return run(cfg,cwd,cmd), o
 
-# retrieve background file via xrootd:
-def get_background_file(b):
-    uri = 'xroot://sci-xrootd.jlab.org'
-    d = '/osgpool/hallb/clas12/backgroundfiles'
-    if not b.startswith('/') or not run(['xrdfs',uri,'ls',b]):
-        b = f'{d}/{b}'
-        if 0 != run(['xrdfs',uri,'ls',b]):
-            _logger.critical('failed to find background file:  '+b)
-    if 0 != run(['xrdcp',f'{uri}/{b}','.']):
-        _logger.critical('failed to retrieve background file:  '+b)
-    return os.path.basename(b)
-
-# runs a LUND file through entire simulation pipeline:
-def lund_pipeline(cfg, lund):
-    if cfg.jobs > 1:
-        make_workdir('.')
-    ret,o = gemc(cfg, lund)
+# run a LUND file through the simulation pipeline:
+def lund_pipeline(cfg, cwd, lund):
+    import logging
+    ret,o = gemc(cfg, cwd, lund)
     if ret != 0:
-        _logger.error('gemc failed.')
+        logging.getLogger(__name__).error('gemc failed.')
         return ret,o
     if len(cfg.back) > 0:
-        ret,o = merge_background(cfg, o)
+        ret,o = merge_background(cfg, cwd, o)
         if ret != 0:
-            _logger.error('background merging failed.')
+            logging.getLogger(__name__).error('background merging failed.')
             return ret,o
     if cfg.denoise:
-        ret,o = denoise(cfg, o)
+        ret,o = denoise(cfg, cwd, o)
         if ret != 0:
-            _logger.error('denoising failed.')
+            logging.getLogger(__name__).error('denoising failed.')
             return ret,o
-    ret,o = recon(cfg, o)
+    ret,o = recon(cfg, cwd, o)
     if ret != 0:
-        _logger.error('reconstruction failed.')
+        logging.getLogger(__name__).error('reconstruction failed.')
         return ret,o
     if cfg.dst:
-        ret,o = dst(cfg, o)
+        ret,o = dst(cfg, cwd, o)
         if ret != 0:
-            _logger.error('dst making failed.')
+            logging.getLogger(__name__).error('dst making failed.')
             return ret,o
     return ret,o
 
-# run a generator through entire simulation pipeline:
-def generator_pipeline(cfg):
-    if cfg.jobs > 1:
-        make_workdir('.')
-    ret,o = generate(cfg)
+# run an event generator through the simulation pipeline:
+def generator_pipeline(cfg, cwd):
+    import logging
+    ret,o = generate(cfg, cwd)
     if ret != 0:
-        _logger.error(f'generator {cfg.gen[0]} failed.')
+        logging.getLogger(__name__).error(f'generator {cfg.gen[0]} failed.')
         return ret,o
-    return lund_pipeline(cfg, o)
+    return lund_pipeline(cfg, cwd, o)
 
-# launch parallel pipelines and wait for them to fininsh:
+# choose job directory and make it if necessary:
+def get_job_dir(cfg, i):
+    import os
+    d = '.' if cfg.jobs==1 else f'./mcdj-{cfg.gen[0]}-{i}'
+    os.makedirs(d)
+    return os.path.abspath(d)
+
+# spawn parallel pipelines and wait for them to finish:
 def launch_pipelines(cfg):
-    status = []
+    import os
+    import logging
+    import itertools
     import concurrent.futures as cf
+    from types import SimpleNamespace
+    results = [SimpleNamespace(stat=1, out=None, cwd=None) for i in range(cfg.jobs)]
     with cf.ThreadPoolExecutor(max_workers=cfg.jobs) as exe:
         futures = []
-        if cfg.gen[0] == 'lund':
-            for j in range(cfg.jobs):
+        for j in range(cfg.jobs):
+            results[j].cwd = get_job_dir(cfg, j)
+            if cfg.gen[0] == 'lund':
                 if j > len(cfg.gen):
-                    _logger.warning(f'insufficient LUND files for {cfg.jobs} jobs.')
+                    logging.getLogger(__name__).warning(f'insufficient LUND files for {cfg.jobs} jobs.')
                     break
                 lund = cfg.gen[1+j]
-                futures.append(exe.submit(lund_pipeline,cfg,lund))
-        else:
-            for j in range(cfg.jobs):
-                futures.append(exe.submit(generator_pipeline,cfg))
-        for f in futures:
+                futures.append(exe.submit(lund_pipeline,cfg,results[j].cwd,lund))
+            else:
+                futures.append(exe.submit(generator_pipeline,cfg,results[j].cwd))
+        for i,f in enumerate(futures):
             cf.wait([f])
-            if f.exception() is not None:
+            if f.exception() is None:
+                results[i].stat,results[i].out = f.result()
+            else:
                 print(f.exception())
-                status.append(1)
-                continue
-            ret,o = f.result()
-            status.append(ret)
-    return sum(status)
+    cleanup(cfg, [f'{o.cwd}/{o.out}' for o in results if o.out is not None])
+    return sum([o.stat for o in results if o.stat is not None])
 
-# make and change to a new working directory: 
-def make_workdir(d):
-    import tempfile
-    import datetime
-    if not os.path.isdir(d):
-        if os.path.isfile(d): _logger.critical(f'invalid --tmpdir {cfg.tmpdir} is a file')
-        try: os.makedirs(d)
-        except AttributeError as e: _logger.critical(f'error creating directory --tmpdir {cfg.tmpdir}')
-    date =datetime.datetime.now().strftime('%Y%m%d-%H:%M:%S')
-    try: d = tempfile.mkdtemp(dir=d,prefix=f'mcdj-{date}-')
-    except OSError as e: _logger.critical('error creating new directory in --tmpdir {cfg.tmpdir}')
-    _logger.warning(f'using new working directory:  {d} ...')
-    return d
+# cleanup the filesystem mess we made:
+def cleanup(cfg, outputs):
+    import os
+    import shutil
+    # move and rename final output files:
+    if cfg.jobs > 1:
+        for i,o in enumerate(outputs):
+            b,s = os.path.splitext(os.path.basename(o))
+            os.rename(o, f'{b}-{i}{s}')
+    if cfg.cleanup:
+        # remove intermediate output files:
+        [ os.remove(o) for o in set(_outputs) - set(outputs) ]
+        if cfg.jobs > 1:
+            # remove job subdirectories:
+            [ shutil.rmtree(os.path.dirname(o)) for o in outputs ]
 
-# configure the whole darn thing:
-def configure(args):
-
-    # parse command-line:
-    import argparse
-    cli = argparse.ArgumentParser(description='CLAS12 Monte-Carlo Deejay',
-            epilog='All executables must be in $PATH.  Generator command-line options can '
-            'be placed after a "--", e.g., if sharing the same name as one of mcdj\'s.  '
-            'See https://github.com/jeffersonlab/clas12-config for configuration files.')
-    #cli.add_argument('-o',help='output HIPO file',metavar='PATH')
-    cli.add_argument('-n',default=10,type=int,help='number of events (default=10)',metavar='#')
-    cli.add_argument('-j','--jobs',default=1,type=int,help='number of parallel jobs (default=1)',metavar='#')
-    cli.add_argument('-g','--gcard',required=True,type=str,help='GEMC gcard configuration file',metavar='PATH')
-    cli.add_argument('-y','--yaml',required=True,type=str,help='COATJAVA yaml configuration file',metavar='PATH')
-    cli.add_argument('-r','--run',default=11,type=int,help='run number (default=11)')
-    cli.add_argument('-m','--match',default=False,action='store_true',help='enable truth matching')
-    cli.add_argument('-b','--back',default=[],action='append',help='background files for merging',metavar='PATH')
-    cli.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)')
-    cli.add_argument('-d','--dst',default=False,action='store_true',help='run standalone dst-maker')
-    cli.add_argument('-q','--quiet',default=False,action='store_true',help='silence GEANT4 exceptions')
-    cli.add_argument('-v','--verbose',default=0,action='count',help='increase verbosity (repeatable)')
-    cli.add_argument('--denoise',default=False,action='store_true',help='enable *old* denoising (use YAML for new)')
-    cli.add_argument('gen',nargs='+',help='generator command line, or LUND file')
-    cfg = cli.parse_args(args)
-
-    if len(cfg.back) > 0:
-        cli.warning('ignoring broken --back option')
-        cfg.back = []
+def configure(cfg):
 
     # configure logger:
-    global _logger
     logging.setLoggerClass(ColoredLogger)
-    _logger = logging.getLogger(__name__)
-    _logger.setLevel(20-10*cfg.verbose)
+    logging.getLogger(__name__).setLevel(20-10*cfg.verbose)
 
     # check existence of executables in $PATH:
     import shutil
     executables = ['gemc','bg-merger','denoise2.exe','recon-util','dst-maker']
     for exe in filter(lambda x: not shutil.which(x), executables):
-        _logger.critical('executable not found in $PATH: '+exe)
+        logging.getLogger(__name__).critical('executable not found in $PATH: '+exe)
 
     # determine event generator:
     if cfg.gen[0] == 'gemc':
-        _logger.warning('using GEMC internal generator.')
-        _logger.warning('using generator options:  '+' '.join(cfg.gen[1:]))
+        logging.getLogger(__name__).warning('using GEMC internal generator.')
+        logging.getLogger(__name__).warning('using generator options:  '+' '.join(cfg.gen[1:]))
     elif shutil.which(cfg.gen[0]):
-        _logger.warning('using generator found in $PATH:  '+shutil.which(cfg.gen[0]))
-        _logger.warning('using generator options:  '+' '.join(cfg.gen[1:]))
+        logging.getLogger(__name__).warning('using generator found in $PATH:  '+shutil.which(cfg.gen[0]))
+        logging.getLogger(__name__).warning('using generator options:  '+' '.join(cfg.gen[1:]))
     else:
-        _logger.warning('generator not found in $PATH, interpreting as LUND file(s) ...')
+        logging.getLogger(__name__).warning('generator not found in $PATH, interpreting as LUND file(s) ...')
         for f in filter(lambda x: not os.path.isfile(x),cfg.gen[1:]):
-            _logger.critical(f'LUND file does not exist:  {f}.')
+            logging.getLogger(__name__).critical(f'LUND file does not exist:  {f}.')
         cfg.gen.insert(0, 'lund')
 
-    # convert to absolute paths:
-    if os.path.isfile(cfg.gcard):
-        cfg.gcard = os.path.abspath(cfg.gcard)
-    if os.path.isfile(cfg.yaml):
-        cfg.yaml = os.path.abspath(cfg.yaml)
+    # convert all input paths to absolute paths:
+    import os
+    cfg.gcard = os.path.abspath(cfg.gcard)
+    cfg.yaml = os.path.abspath(cfg.yaml)
+    cfg.back = [ os.path.abspath(b) for b in cfg.back ]
+    if cfg.gen[0] == 'lund':
+        for i in range(1,len(cfg.gen)):
+            cfg.gen[i] = os.path.abspath(cfg.gen[i])
 
-    # check existence of configuration files:
+    # check existence of input files:
     if not os.path.isfile(cfg.gcard):
-        _logger.critical(f'invalid gcard: {cfg.gcard}')
+        logging.getLogger(__name__).critical(f'invalid gcard: {cfg.gcard}')
     if not os.path.isfile(cfg.yaml):
-        _logger.critical(f'invalid yaml: {cfg.yaml}')
+        logging.getLogger(__name__).critical(f'invalid yaml: {cfg.yaml}')
+    for b in [ b for b in cfg.back if not os.path.isfile(b) ]:
+        logging.getLogger(__name__).critical(f'invalid background file: {b}')
+    if cfg.gen[0] == 'lund':
+        for l in [ l for l in cfg.gen[1:] if not os.path.isfile(l) ]:
+            logging.getLogger(__name__).critical(f'invalid lund file: {l}')
 
-    # retrieve background files:
-    for i,b in enumerate(cfg.back):
-        if not os.path.isfile(b):
-            cfg.back[i] = get_background_file(b)
-
-    _logger.debug('config:  '+str(cfg))
+    logging.getLogger(__name__).debug('config:  '+str(cfg))
 
     return cfg
 
 if __name__ == '__main__':
-
-    sys.exit(launch_pipelines(configure(sys.argv[1:])))
+    import sys
+    cfg = configure(cli().parse_args(sys.argv[1:])) 
+    result = launch_pipelines(cfg)
+    sys.exit(result)
 
