@@ -2,12 +2,15 @@
 
 def cli():
     import argparse
-    p = argparse.ArgumentParser(description='CLAS12 Monte-Carlo Deejay',
+    p = argparse.ArgumentParser(
+        description='CLAS12 MC Deejay runs the full, standard simulation pipeline, '
+        ' starting from clas12-mcgen or GEMC event generators or LUND files.',
         epilog='All executables must be in $PATH.  Generator command-line options can '
         'be placed after a "--", e.g., if sharing the same name as one of mcdj\'s.  '
-        'See https://github.com/jeffersonlab/clas12-config for configuration files.')
+        'For example, to run 12 parallel jobs of the dvcsgen generator with its default options: '
+        '`mcdj -j 12 -g ./gemc.xml -y ./recon.yml dvcsgen`')
     p.add_argument('-o',help='output HIPO file',metavar='PATH')
-    p.add_argument('-n','--nevents',default=10,type=int,help='number of events (default=10)',metavar='#')
+    p.add_argument('-n','--nevents',default=10,type=int,help='number of events per job (default=10)',metavar='#')
     p.add_argument('-j','--jobs',default=1,type=int,help='number of parallel jobs (default=1)',metavar='#')
     p.add_argument('-g','--gcard',required=True,type=str,help='GEMC gcard configuration file',metavar='PATH')
     p.add_argument('-y','--yaml',required=True,type=str,help='COATJAVA yaml configuration file',metavar='PATH')
