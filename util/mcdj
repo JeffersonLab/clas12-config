@@ -2,12 +2,11 @@
 
 def cli():
     import argparse
-    p = argparse.ArgumentParser(description='CLAS12 MC Deejay runs the standard clas12 simulation pipeline. '
-        'The trailing "gen" options define event generation '
-        'and can be either a clas12-mcgen or GEMC event-generator command-line, or list of LUND files.',
+    p = argparse.ArgumentParser(
+        description='CLAS12 MC Deejay runs the full, standard simulation pipeline, '
+        ' starting from clas12-mcgen or GEMC event generators or LUND files.',
         epilog='All executables must be in $PATH.  Generator command-line options can '
         'be placed after a "--", e.g., if sharing the same name as one of mcdj\'s.  '
-        'See https://github.com/jeffersonlab/clas12-config for configuration files. '
         'For example, to run 12 parallel jobs of the dvcsgen generator with its default options: '
         '`mcdj -j 12 -g ./gemc.xml -y ./recon.yml dvcsgen`')
     p.add_argument('-o',help='output HIPO file',metavar='PATH')
