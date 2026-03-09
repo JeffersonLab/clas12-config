@@ -1,0 +1,24 @@
+io-services:
+  reader:
+    class: org.jlab.jnp.grapes.io.HipoFrameReader
+    name: HipoFrameReader
+  writer:
+    class: org.jlab.jnp.grapes.io.HipoFrameWriter
+    name: HipoFrameWriter
+services:
+#################################################### JPSI/TCS
+  - class: org.jlab.jnp.grapes.services.JpsiTcsWagon
+    name: JPSITCS
+configuration:
+  custom-names:
+    1: jpsitcs
+  io-services:
+    writer:
+      compression: 2
+  services:
+#################################################### JPSI/TCS
+    JPSITCS:
+      id: 1
+ 
+mime-types:
+  - binary/data-hipo-frame
