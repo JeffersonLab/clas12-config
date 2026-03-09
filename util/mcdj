@@ -4,11 +4,15 @@ def cli():
     import argparse
     p = argparse.ArgumentParser(
         description='CLAS12 MC Deejay runs the full, standard simulation pipeline, '
-        ' starting from clas12-mcgen or GEMC event generators or LUND files.',
-        epilog='All executables must be in $PATH.  Generator command-line options can '
-        'be placed after a "--", e.g., if sharing the same name as one of mcdj\'s.  '
-        'For example, to run 12 parallel jobs of the dvcsgen generator with its default options: '
-        '`mcdj -j 12 -g ./gemc.xml -y ./recon.yml dvcsgen`')
+        ' starting from a clas12-mcgen geneator, the GEMC particle gun, or LUND files.',
+        epilog='All executables must be in $PATH.  All arguments following a double-dash "--" '
+        'will be ignored and passed to the generator.  For example, to run 12 parallel jobs of '
+        'the dvcsgen generator with its t-min cut: '
+        '`mcdj -j 12 -g ./gemc.xml -y ./recon.yml dvcsgen -- -t 0.1` '
+        'Or, to process LUND files 3-at-a-time: '
+        '`mcdj -j 3 ... lund1.txt lund2.txt lund3.txt ... ` '
+        'Or, to use GEMC\'s particle gun: '
+        '`mcdj gemc -BEAM_P="e-, 6*GeV, 15*deg, 20*deg"`')
     p.add_argument('-o',help='output HIPO file',metavar='PATH')
     p.add_argument('-n','--nevents',default=10,type=int,help='number of events per job (default=10)',metavar='#')
     p.add_argument('-j','--jobs',default=1,type=int,help='number of parallel jobs (default=1)',metavar='#')
@@ -23,7 +27,7 @@ def cli():
     p.add_argument('-v','--verbose',default=0,action='count',help='increase verbosity (repeatable)')
     p.add_argument('-c','--cleanup',default=False,action='store_true',help='delete intermediate outputs')
     p.add_argument('--denoise',default=False,action='store_true',help='enable old denoising (use YAML for new)')
-    p.add_argument('gen',nargs='+',help='generator command line, or LUND file')
+    p.add_argument('gen',nargs='+',help='generator command line or LUND file(s)')
     p.iback = 0
     return p
 
