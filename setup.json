@@ -167,7 +167,8 @@
 	  "-4.35*cm, 2.5*cm"
 	],
 	"software_versions": [
-	  "gemc/5.10 coatjava/10.0.9"
+	  "gemc/5.10 coatjava/10.0.9",
+	  "gemc/5.13 coatjava/10.0.9"
 	]
   },
   "rgc_fall2022": {
@@ -187,7 +188,8 @@
 	  "-3.25*cm, 2.5*cm"
 	],
 	"software_versions": [
-	  "gemc/5.11 coatjava/11.0.1"
+	  "gemc/5.11 coatjava/11.0.1",
+	  "gemc/5.13 coatjava/11.0.1"
 	]
   },
   "rgc_spring2023": {
@@ -207,7 +209,8 @@
 	  "-3.25*cm, 2.5*cm"
 	],
 	"software_versions": [
-	  "gemc/5.11 coatjava/11.1.0"
+	  "gemc/5.11 coatjava/11.1.0",
+	  "gemc/5.13 coatjava/11.1.0"
 	]
   },
   "rgk_fall2018_FTOff": {
