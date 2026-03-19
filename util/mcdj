@@ -260,6 +260,7 @@ def configure(cfg):
     logging.getLogger(__name__).setLevel(20-10*cfg.verbose)
 
     # check existence of executables in $PATH:
+    import os
     import shutil
     executables = ['gemc','bg-merger','denoise2.exe','recon-util','dst-maker']
     for exe in filter(lambda x: not shutil.which(x), executables):
