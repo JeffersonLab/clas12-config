@@ -223,7 +223,7 @@ def launch_pipelines(cfg):
     with cf.ThreadPoolExecutor(max_workers=cfg.jobs) as exe:
         futures = []
         while True:
-            while len(futures) < cfg.jobs and ijob <= cfg.jobs*cfg.Jobs:
+            while len(futures) < cfg.jobs and ijob < cfg.jobs*cfg.Jobs:
                 results[ijob].cwd = get_job_dir(cfg, ijob)
                 if cfg.gen[0] == 'lund':
                     if ijob >= len(cfg.gen):
