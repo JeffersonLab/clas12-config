@@ -205,8 +205,8 @@ def generator_pipeline(cfg, cwd):
 # choose job directory and make it if necessary:
 def get_job_dir(cfg, i):
     import os
-    d = '.' if cfg.jobs==1 else f'./mcdj-{cfg.gen[0]}-{i}'
-    os.makedirs(d)
+    d = '.' if cfg.jobs==1 and cfg.Jobs==1 else f'./mcdj-{cfg.gen[0]}-{i}'
+    if not os.path.exists(d): os.makedirs(d)
     return os.path.abspath(d)
 
 # spawn parallel pipelines and wait for them to finish:
@@ -224,18 +224,19 @@ def launch_pipelines(cfg):
         futures = []
         while True:
             while len(futures) < cfg.jobs and ijob <= cfg.jobs*cfg.Jobs:
+                results[ijob].cwd = get_job_dir(cfg, ijob)
                 if cfg.gen[0] == 'lund':
                     if ijob >= len(cfg.gen):
                         break
                     future = exe.submit(lund_pipeline,cfg,results[ijob].cwd,cfg.gen[ijob])
                     ijob += 1
                 else:
-                    future = exe.submit(generator_pipeline,cfg,results[ijob].cwd))
+                    future = exe.submit(generator_pipeline,cfg,results[ijob].cwd)
                     ijob += 1
                 futures.append(future)
-            time.sleep(1000)
+            time.sleep(1)
             for i,f in enumerate(futures):
-                if f.done:
+                if f.done():
                     if f.exception() is None:
                         results[ojob].stat,results[ojob].out = f.result()
                         ojob += 1
