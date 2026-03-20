@@ -16,6 +16,7 @@ def cli():
     p.add_argument('-o',help='output HIPO file',metavar='PATH')
     p.add_argument('-n','--nevents',default=10,type=int,help='number of events per job (default=10)',metavar='#')
     p.add_argument('-j','--jobs',default=1,type=int,help='number of parallel jobs (default=1)',metavar='#')
+    p.add_argument('-J','--Jobs',default=1,type=int,help='number of serial jobs (default=1)',metavar='#')
     p.add_argument('-g','--gcard',required=True,type=str,help='GEMC gcard configuration file',metavar='PATH')
     p.add_argument('-y','--yaml',required=True,type=str,help='COATJAVA yaml configuration file',metavar='PATH')
     p.add_argument('-r','--run',default=11,type=int,help='run number (default=11)')
@@ -211,29 +212,38 @@ def get_job_dir(cfg, i):
 # spawn parallel pipelines and wait for them to finish:
 def launch_pipelines(cfg):
     import os
+    import time
     import logging
     import itertools
     import concurrent.futures as cf
     from types import SimpleNamespace
-    results = [SimpleNamespace(stat=1, out=None, cwd=None) for i in range(cfg.jobs)]
+    results = [SimpleNamespace(stat=1, out=None, cwd=None) for i in range(cfg.jobs*cfg.Jobs)]
+    ijob = 0
+    ojob = 0
     with cf.ThreadPoolExecutor(max_workers=cfg.jobs) as exe:
         futures = []
-        for j in range(cfg.jobs):
-            results[j].cwd = get_job_dir(cfg, j)
-            if cfg.gen[0] == 'lund':
-                if j > len(cfg.gen):
-                    logging.getLogger(__name__).warning(f'insufficient LUND files for {cfg.jobs} jobs.')
-                    break
-                lund = cfg.gen[1+j]
-                futures.append(exe.submit(lund_pipeline,cfg,results[j].cwd,lund))
-            else:
-                futures.append(exe.submit(generator_pipeline,cfg,results[j].cwd))
-        for i,f in enumerate(futures):
-            cf.wait([f])
-            if f.exception() is None:
-                results[i].stat,results[i].out = f.result()
-            else:
-                print(f.exception())
+        while True:
+            while len(futures) < cfg.jobs and ijob <= cfg.jobs*cfg.Jobs:
+                if cfg.gen[0] == 'lund':
+                    if ijob >= len(cfg.gen):
+                        break
+                    future = exe.submit(lund_pipeline,cfg,results[ijob].cwd,cfg.gen[ijob])
+                    ijob += 1
+                else:
+                    future = exe.submit(generator_pipeline,cfg,results[ijob].cwd))
+                    ijob += 1
+                futures.append(future)
+            time.sleep(1000)
+            for i,f in enumerate(futures):
+                if f.done:
+                    if f.exception() is None:
+                        results[ojob].stat,results[ojob].out = f.result()
+                        ojob += 1
+                    else:
+                        print(f.exception())
+                    futures.pop(i)
+            if len(futures) == 0:
+                break
     cleanup(cfg, [f'{o.cwd}/{o.out}' for o in results if o.out is not None])
     return sum([o.stat for o in results if o.stat is not None])
 
