@@ -1,0 +1,37 @@
+io-services:
+  reader:
+    class: org.jlab.jnp.grapes.io.HipoFrameReader
+    name: HipoFrameReader
+  writer:
+    class: org.jlab.jnp.grapes.io.HipoFrameWriter
+    name: HipoFrameWriter
+
+services:
+  - class: org.jlab.jnp.grapes.services.GenericWagon
+    name: LAMBDA
+  - class: org.jlab.jnp.grapes.services.JpsiTcsWagon
+    name: JPSITCS
+  - class: org.jlab.jnp.grapes.services.GenericWagon
+    name: ANTIP
+
+configuration:
+  custom-names:
+    1: lambda
+    2: jpsitcs
+    3: antip
+  io-services:
+     writer:
+       compression: 2
+  services:
+    LAMBDA:
+      id: 1
+      forward: 11:X+:X-:Xn
+      filter: 2212:-211:X+:X-:Xn
+    JPSITCS:
+      id: 2
+    ANTIP:
+      id: 3
+      forward: 11:-2212:X+:X-:Xn
+
+mime-types:
+  - binary/data-hipo-frame
