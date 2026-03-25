@@ -210,43 +210,6 @@ def get_job_dir(cfg, i):
     if not os.path.exists(d): os.makedirs(d)
     return os.path.abspath(d)
 
-# spawn parallel pipelines and wait for them to finish:
-def launch_pipelines(cfg):
-    import os
-    import time
-    import logging
-    import itertools
-    import concurrent.futures as cf
-    from types import SimpleNamespace
-    results = [SimpleNamespace(stat=1, out=None, cwd=None) for i in range(cfg.jobs*cfg.Jobs)]
-    ijob = 0
-    ojob = 0
-    with cf.ThreadPoolExecutor(max_workers=cfg.jobs) as exe:
-        futures = []
-        while True:
-            while len(futures) < cfg.jobs and ijob < cfg.jobs*cfg.Jobs \
-                    and ( cfg.gen[0] != 'lund' or ijob+1 < len(cfg.gen) ):
-                results[ijob].cwd = get_job_dir(cfg, ijob)
-                if cfg.gen[0] == 'lund':
-                    future = exe.submit(lund_pipeline,cfg,results[ijob].cwd,cfg.gen[1:][ijob])
-                else:
-                    future = exe.submit(generator_pipeline,cfg,results[ijob].cwd)
-                ijob += 1
-                futures.append(future)
-            time.sleep(1)
-            for i,f in enumerate(futures):
-                if f.done():
-                    if f.exception() is None:
-                        results[ojob].stat,results[ojob].out = f.result()
-                        ojob += 1
-                    else:
-                        print(f.exception())
-                    futures.pop(i)
-            if len(futures) == 0:
-                break
-    cleanup(cfg, [f'{o.cwd}/{o.out}' for o in results if o.out is not None])
-    return sum([o.stat for o in results if o.stat is not None])
-
 # cleanup the filesystem mess we made:
 def cleanup(cfg, outputs):
     import os
@@ -262,6 +225,46 @@ def cleanup(cfg, outputs):
         if cfg.jobs > 1:
             # remove job subdirectories:
             [ shutil.rmtree(os.path.dirname(o)) for o in outputs ]
+
+# spawn parallel pipelines and wait for them to finish:
+def launch_pipelines(cfg):
+    import os
+    import time
+    import logging
+    import itertools
+    import concurrent.futures as cf
+    from types import SimpleNamespace
+    ijob,ojob = 0,0
+    futures = []
+    results = cfg.jobs * cfg.Jobs * [SimpleNamespace(stat=1, out=None, cwd=None)]
+    with cf.ThreadPoolExecutor(max_workers=cfg.jobs) as exe:
+        while True:
+            # collect finished tasks:
+            for i,f in enumerate(futures):
+                if f.done():
+                    if f.exception() is None:
+                        results[ojob].stat,results[ojob].out = f.result()
+                        ojob += 1
+                    else:
+                        print(f.exception())
+                    futures.pop(i)
+            # spawn new tasks:
+            while len(futures) < cfg.jobs and ijob < cfg.jobs*cfg.Jobs \
+                    and ( cfg.gen[0] != 'lund' or ijob+1 < len(cfg.gen) ):
+                results[ijob].cwd = get_job_dir(cfg, ijob)
+                if cfg.gen[0] == 'lund':
+                    futures.append( exe.submit(lund_pipeline, cfg, results[ijob].cwd, cfg.gen[1:][ijob]) )
+                else:
+                    futures.append( exe.submit(generator_pipeline, cfg, results[ijob].cwd) )
+                ijob += 1
+            # done, nothing left to do:
+            if len(futures) == 0:
+                break
+            time.sleep(1)
+    # cleanup filesystem:
+    cleanup(cfg, [f'{o.cwd}/{o.out}' for o in results if o.out is not None])
+    # return sum of all statuses:
+    return sum([o.stat for o in results if o.stat is not None])
 
 def configure(cfg):
 
