@@ -257,7 +257,7 @@ def cleanup(cfg, outputs):
             os.rename(o, f'{b}-{i}{s}')
     if cfg.cleanup:
         # remove intermediate output files:
-        [ os.remove(o) for o in set(_outputs) - set(outputs) ]
+        [ os.remove(o) for o in set(_outputs) - set(outputs) if os.path.isfile(o) ]
         if cfg.jobs > 1:
             # remove job subdirectories:
             [ shutil.rmtree(os.path.dirname(o)) for o in outputs ]
