@@ -226,9 +226,9 @@ def launch_pipelines(cfg):
             while len(futures) < cfg.jobs and ijob < cfg.jobs*cfg.Jobs:
                 results[ijob].cwd = get_job_dir(cfg, ijob)
                 if cfg.gen[0] == 'lund':
-                    if ijob >= len(cfg.gen):
+                    if ijob+1 >= len(cfg.gen):
                         break
-                    future = exe.submit(lund_pipeline,cfg,results[ijob].cwd,cfg.gen[ijob])
+                    future = exe.submit(lund_pipeline,cfg,results[ijob].cwd,cfg.gen[1:][ijob])
                     ijob += 1
                 else:
                     future = exe.submit(generator_pipeline,cfg,results[ijob].cwd)
