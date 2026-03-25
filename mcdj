@@ -228,10 +228,9 @@ def launch_pipelines(cfg):
                 results[ijob].cwd = get_job_dir(cfg, ijob)
                 if cfg.gen[0] == 'lund':
                     future = exe.submit(lund_pipeline,cfg,results[ijob].cwd,cfg.gen[1:][ijob])
-                    ijob += 1
                 else:
                     future = exe.submit(generator_pipeline,cfg,results[ijob].cwd)
-                    ijob += 1
+                ijob += 1
                 futures.append(future)
             time.sleep(1)
             for i,f in enumerate(futures):
