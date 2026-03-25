@@ -223,16 +223,14 @@ def launch_pipelines(cfg):
     with cf.ThreadPoolExecutor(max_workers=cfg.jobs) as exe:
         futures = []
         while True:
-            while len(futures) < cfg.jobs and ijob < cfg.jobs*cfg.Jobs:
+            while len(futures) < cfg.jobs and ijob < cfg.jobs*cfg.Jobs \
+                    and ( cfg.gen[0] != 'lund' or ijob+1 < len(cfg.gen) ):
                 results[ijob].cwd = get_job_dir(cfg, ijob)
                 if cfg.gen[0] == 'lund':
-                    if ijob >= len(cfg.gen):
-                        break
-                    future = exe.submit(lund_pipeline,cfg,results[ijob].cwd,cfg.gen[ijob])
-                    ijob += 1
+                    future = exe.submit(lund_pipeline,cfg,results[ijob].cwd,cfg.gen[1:][ijob])
                 else:
                     future = exe.submit(generator_pipeline,cfg,results[ijob].cwd)
-                    ijob += 1
+                ijob += 1
                 futures.append(future)
             time.sleep(1)
             for i,f in enumerate(futures):
