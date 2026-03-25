@@ -29,7 +29,6 @@ def cli():
     p.add_argument('-c','--cleanup',default=False,action='store_true',help='delete intermediate outputs')
     p.add_argument('--denoise',default=False,action='store_true',help='enable old denoising (use YAML for new)')
     p.add_argument('gen',nargs='+',help='generator command line or LUND file(s)')
-    p.iback = 0
     return p
 
 import logging
@@ -138,13 +137,14 @@ def gemc(cfg, cwd, lund=None):
     return run(cfg,cwd,cmd), o
 
 # run background merging:
+_iback = 0 # FIXME:  not threadsafe
 def merge_background(cfg, cwd, inp):
     o = get_out(cfg, inp, cwd, prefix='bg_')
     cmd=['bg-merger','-i',inp,'-o',o]
-    cmd.extend(cfg.back[cfg.iback])
-    cfg.iback += 1
-    if cfg.iback >= len(cfg.back):
-        cfg.iback = 0
+    cmd.extend(cfg.back[_iback])
+    _iback += 1
+    if _iback >= len(cfg.back):
+        _iback = 0
     return run(cfg,cwd,cmd), o
 
 # run denoising:
