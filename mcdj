@@ -2,7 +2,7 @@
 
 import logging
 
-def cli():
+def get_cli():
     import argparse
     p = argparse.ArgumentParser(
         description='mcdj runs the full CLAS12 simulation pipeline, '
@@ -17,12 +17,27 @@ def cli():
         '`mcdj -- gemc -BEAM_P="e-, 6*GeV, 15*deg, 20*deg"` '
         'Or, to run 100 jobs, 10 at a time: '
         '`mcdj -j 10 -J 10 ...`')
+    sp = p.add_subparsers(dest='mode')
+    sp_mcgen = sp.add_parser('mcgen',help='run a clas12-mcgen-compliant generator') 
+    sp_gemc = sp.add_parser('gemc',help='use gemc as the event generator')
+    sp_lund = sp.add_parser('lund',help='process LUND files')
+    sp_export = sp.add_parser('export',help='export configuration file')
+    sp_import = sp.add_parser('import',help='import configuration file')
+    sp_gemc.add_argument('arg',default=[],nargs='+',help='gemc particle gun command line')
+    sp_mcgen.add_argument('arg',default=[],nargs='+',help='clas12-mcgen event generator command line')
+    sp_lund.add_argument('lund',default=[],nargs='+',help='LUND files',metavar='PATH')
+    sp_import.add_argument('config',help='configuration file to read',metavar='PATH')
+    sp_gemc.add_argument('-g','--gcard',required=True,help='GEMC gcard configuration file',metavar='PATH')
+    sp_gemc.add_argument('-y','--yaml',required=True,help='COATJAVA yaml configuration file',metavar='PATH')
+    sp_mcgen.add_argument('-g','--gcard',required=True,help='GEMC gcard configuration file',metavar='PATH')
+    sp_mcgen.add_argument('-y','--yaml',required=True,help='COATJAVA yaml configuration file',metavar='PATH')
+    sp_lund.add_argument('-g','--gcard',required=True,help='GEMC gcard configuration file',metavar='PATH')
+    sp_lund.add_argument('-y','--yaml',required=True,help='COATJAVA yaml configuration file',metavar='PATH')
+    sp_import.add_argument('-g','--gcard',required=True,help='GEMC gcard configuration file',metavar='PATH')
+    sp_import.add_argument('-y','--yaml',required=True,help='COATJAVA yaml configuration file',metavar='PATH')
     p.add_argument('-n','--nevents',default=10,type=int,help='number of events per job (default=10)',metavar='#')
     p.add_argument('-j','--jobs',default=1,type=int,help='number of parallel jobs (default=1)',metavar='#')
     p.add_argument('-J','--Jobs',default=1,type=int,help='number of serial jobs (default=1)',metavar='#')
-    p.add_argument('-g','--gcard',required=True,type=str,help='GEMC gcard configuration file',metavar='PATH')
-    p.add_argument('-y','--yaml',required=True,type=str,help='COATJAVA yaml configuration file',metavar='PATH')
-    p.add_argument('-r','--run',default=11,type=int,help='run number (default=11)')
     p.add_argument('-m','--match',default=False,action='store_true',help='enable truth matching')
     p.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)')
     p.add_argument('-d','--dst',default=False,action='store_true',help='run standalone dst-maker')
@@ -32,7 +47,6 @@ def cli():
     p.add_argument('-c','--cleanup',default=False,action='store_true',help='delete intermediate outputs')
     p.add_argument('-b','--back',default=[],nargs='+',help='background files for merging',metavar='PATH')
     p.add_argument('--denoise',default=False,action='store_true',help='enable old denoising (use YAML for new)')
-    p.add_argument('gen',nargs='+',help='generator command line or LUND file(s)')
     return p
 
 class ColoredFormatter(logging.Formatter):
@@ -267,6 +281,10 @@ def configure(cfg):
 
     logging.getLogger(__name__).setLevel(20-10*cfg.verbose)
 
+    if cfg.gcard is None: cli.error('--gcard must be defined!')
+    if cfg.yaml is None: cli.error('--yaml must be defined!')
+    if len(cfg.gen)==0: cli.error('the gen argument must be defined!')
+
     # check existence of executables in $PATH:
     import os
     import shutil
@@ -317,12 +335,19 @@ def configure(cfg):
     return cfg
 
 if __name__ == '__main__':
-
-    import logging
-    logging.setLoggerClass(ColoredLogger)
-
-    cfg = cli().parse_args()
+    cli = get_cli()
+    cfg = cli.parse_args()
+    if cfg.inport:
+        import os,json
+        from types import SimpleNamespace
+        if not os.path.isfile(cfg.inport):
+            cli.error('Invalid input configuration file:  '+cfg.inport)
+        cfg = SimpleNamespace(**json.load(open(cfg.inport,'r')).update(vars(cfg)))
     cfg = configure(cfg)
-    import sys
-    sys.exit(launch_pipelines(cfg))
+    if cfg.export:
+        import json
+        print(json.dumps(vars(cfg), indent=4))
+    else:
+        import sys
+        sys.exit(launch_pipelines(cfg))
 
