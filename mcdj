@@ -5,14 +5,14 @@ def cli():
     p = argparse.ArgumentParser(
         description='CLAS12 MC Deejay runs the full, standard simulation pipeline, '
         ' starting from a clas12-mcgen geneator, the GEMC particle gun, or LUND files.',
-        epilog='All executables must be in $PATH.  All arguments following a double-dash "--" '
-        'will be ignored and passed to the generator.  For example, to run 12 parallel jobs of '
+        epilog='All executables must be in $PATH.  A double-dash should be used to separate '
+        'the generator arguments.  For example, to run 12 parallel jobs of '
         'the dvcsgen generator with its t-min cut: '
-        '`mcdj -j 12 -g ./gemc.xml -y ./recon.yml dvcsgen -- -t 0.1` '
+        '`mcdj -j 12 -g ./gemc.xml -y ./recon.yml -- dvcsgen -t 0.1` '
         'Or, to process LUND files 3-at-a-time: '
-        '`mcdj -j 3 ... lund1.txt lund2.txt lund3.txt ... ` '
+        '`mcdj -j 3 ... -- lund1.txt lund2.txt lund3.txt ... ` '
         'Or, to use GEMC\'s particle gun: '
-        '`mcdj gemc -BEAM_P="e-, 6*GeV, 15*deg, 20*deg"`')
+        '`mcdj -- gemc -BEAM_P="e-, 6*GeV, 15*deg, 20*deg"`')
     p.add_argument('-o',help='output HIPO file',metavar='PATH')
     p.add_argument('-n','--nevents',default=10,type=int,help='number of events per job (default=10)',metavar='#')
     p.add_argument('-j','--jobs',default=1,type=int,help='number of parallel jobs (default=1)',metavar='#')
@@ -21,12 +21,12 @@ def cli():
     p.add_argument('-y','--yaml',required=True,type=str,help='COATJAVA yaml configuration file',metavar='PATH')
     p.add_argument('-r','--run',default=11,type=int,help='run number (default=11)')
     p.add_argument('-m','--match',default=False,action='store_true',help='enable truth matching')
-    p.add_argument('-b','--back',default=[],action='append',help='background files for merging',metavar='PATH')
     p.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)')
     p.add_argument('-d','--dst',default=False,action='store_true',help='run standalone dst-maker')
     p.add_argument('-q','--quiet',default=False,action='store_true',help='silence GEANT4 exceptions')
     p.add_argument('-v','--verbose',default=0,action='count',help='increase verbosity (repeatable)')
     p.add_argument('-c','--cleanup',default=False,action='store_true',help='delete intermediate outputs')
+    p.add_argument('-b','--back',default=[],nargs='+',help='background files for merging',metavar='PATH')
     p.add_argument('--denoise',default=False,action='store_true',help='enable old denoising (use YAML for new)')
     p.add_argument('gen',nargs='+',help='generator command line or LUND file(s)')
     return p
@@ -316,6 +316,5 @@ def configure(cfg):
 if __name__ == '__main__':
     import sys
     cfg = configure(cli().parse_args(sys.argv[1:])) 
-    result = launch_pipelines(cfg)
-    sys.exit(result)
+    sys.exit(launch_pipelines(cfg))
 
