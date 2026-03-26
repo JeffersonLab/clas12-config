@@ -15,7 +15,6 @@ def cli():
         '`mcdj -- gemc -BEAM_P="e-, 6*GeV, 15*deg, 20*deg"` '
         'Or, to run 100 jobs, 10 at a time: '
         '`mcdj -j 10 -J 10 ...`')
-    p.add_argument('-o',help='output HIPO file',metavar='PATH')
     p.add_argument('-n','--nevents',default=10,type=int,help='number of events per job (default=10)',metavar='#')
     p.add_argument('-j','--jobs',default=1,type=int,help='number of parallel jobs (default=1)',metavar='#')
     p.add_argument('-J','--Jobs',default=1,type=int,help='number of serial jobs (default=1)',metavar='#')
@@ -327,5 +326,6 @@ if __name__ == '__main__':
 
     cfg = cli().parse_args()
     cfg = configure(cfg)
+    import sys
     sys.exit(launch_pipelines(cfg))
 
