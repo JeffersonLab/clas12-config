@@ -25,6 +25,7 @@ def cli():
     p.add_argument('-m','--match',default=False,action='store_true',help='enable truth matching')
     p.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)')
     p.add_argument('-d','--dst',default=False,action='store_true',help='run standalone dst-maker')
+    p.add_argument('-R','--recon',default=True,action='store_false',help='disable reconstruction')
     p.add_argument('-q','--quiet',default=False,action='store_true',help='silence GEANT4 exceptions')
     p.add_argument('-v','--verbose',default=0,action='count',help='increase verbosity (repeatable)')
     p.add_argument('-c','--cleanup',default=False,action='store_true',help='delete intermediate outputs')
@@ -183,10 +184,11 @@ def lund_pipeline(cfg, cwd, lund):
         if ret != 0:
             logging.getLogger(__name__).error('denoising failed.')
             return ret,o
-    ret,o = recon(cfg, cwd, o)
-    if ret != 0:
-        logging.getLogger(__name__).error('reconstruction failed.')
-        return ret,o
+    if cfg.recon:
+        ret,o = recon(cfg, cwd, o)
+        if ret != 0:
+            logging.getLogger(__name__).error('reconstruction failed.')
+            return ret,o
     if cfg.dst:
         ret,o = dst(cfg, cwd, o)
         if ret != 0:
@@ -322,6 +324,7 @@ def configure(cfg):
     return cfg
 
 if __name__ == '__main__':
+
     cfg = cli().parse_args()
     cfg = configure(cfg)
     sys.exit(launch_pipelines(cfg))
