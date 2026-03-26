@@ -141,8 +141,7 @@ _iback = 0 # FIXME:  not threadsafe
 def merge_background(cfg, cwd, inp):
     global _iback
     o = get_out(cfg, inp, cwd, prefix='bg_')
-    cmd=['bg-merger','-i',inp,'-o',o]
-    cmd.extend(cfg.back[_iback])
+    cmd=['bg-merger','-i',inp,'-o',o,cfg.back[_iback]]
     _iback += 1
     if _iback >= len(cfg.back):
         _iback = 0
