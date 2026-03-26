@@ -1,0 +1,70 @@
+# YAML file for RG-E Spring 2024 data reconstruction
+# Uses new AI models for denoising, HB track finding and HB tracking
+io-services:
+  reader:
+    class: org.jlab.io.clara.HipoToHipoReader
+    name: HipoToHipoReader
+  writer:
+    class: org.jlab.io.clara.HipoToHipoWriter
+    name: HipoToHipoWriter
+services:
+  - class: org.jlab.clas.swimtools.MagFieldsEngine
+    name: MAGFIELDS
+  - class: org.jlab.service.ai.DCDenoiseEngine
+    name: DCDN    
+  - class: org.jlab.service.dc.DCHBClustering
+    name: DCCR
+  - class: org.jlab.service.ai.DCClsComboEngine
+    name: DCCC
+  - class: org.jlab.service.dc.DCHBTrackingAI
+    name: DCHTAI
+  - class: org.jlab.service.ftof.FTOFHBEngine
+    name: FTOFHB
+  - class: org.jlab.service.ec.ECEngine
+    name: EC
+  - class: org.jlab.rec.cvt.services.CVTEngine
+    name: CVTFP
+  - class: org.jlab.service.ctof.CTOFEngine
+    name: CTOF
+  - class: org.jlab.service.cnd.CNDCalibrationEngine
+    name: CND
+  - class: org.jlab.service.band.BANDEngine
+    name: BAND
+  - class: org.jlab.service.htcc.HTCCReconstructionService
+    name: HTCC
+  - class: org.jlab.service.ltcc.LTCCEngine
+    name: LTCC
+  - class: org.jlab.service.eb.EBHBEngine
+    name: EBHB
+  - class: org.jlab.service.dc.DCTBEngine
+    name: DCTB
+  - class: org.jlab.service.fmt.FMTEngine
+    name: FMT
+  - class: org.jlab.rec.cvt.services.CVTSecondPassEngine
+    name: CVTSP
+  - class: org.jlab.service.ftof.FTOFTBEngine
+    name: FTOFTB
+  - class: org.jlab.service.eb.EBTBEngine
+    name: EBTB
+  - class: org.jlab.rec.rich.RICHEBEngine
+    name: RICH
+  - class: org.jlab.rec.service.vtx.VTXEngine
+    name: VTX
+configuration:
+  global:
+    variation: rge_spring2024
+    timestamp: 03/20/2026-12:00:00
+  io-services:
+    writer:
+      schema_dir: "dst"
+  services:
+    MAGFIELDS:
+      magfieldSolenoidMap: Symm_solenoid_r601_phi1_z1201_13June2018.dat
+      magfieldTorusMap: Full_torus_r251_phi181_z251_25Jan2021.dat
+    DCCR:
+      rawBankGroup: "NOISE1"
+    DCHTAI:
+      outputBankPrefix: "HB"
+
+mime-types:
+  - binary/data-hipo
