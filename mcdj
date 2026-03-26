@@ -23,14 +23,16 @@ def cli():
     p.add_argument('-y','--yaml',required=True,type=str,help='COATJAVA yaml configuration file',metavar='PATH')
     p.add_argument('-r','--run',default=11,type=int,help='run number (default=11)')
     p.add_argument('-m','--match',default=False,action='store_true',help='enable truth matching')
-    p.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)')
     p.add_argument('-d','--dst',default=False,action='store_true',help='run standalone dst-maker')
     p.add_argument('-R','--recon',default=True,action='store_false',help='disable reconstruction')
+    p.add_argument('-b','--back',default=[],nargs='+',help='background files for merging',metavar='PATH')
+    p.add_argument('--denoise',default=False,action='store_true',help='enable old denoising (use YAML for new)')
+    p.add_argument('-e','--export',default=False,action='store_true',help='just print the configuration')
+    p.add_argument('-i','--inport',help='configuration file to read',metavar='PATH')
     p.add_argument('-q','--quiet',default=False,action='store_true',help='silence GEANT4 exceptions')
     p.add_argument('-v','--verbose',default=0,action='count',help='increase verbosity (repeatable)')
     p.add_argument('-c','--cleanup',default=False,action='store_true',help='delete intermediate outputs')
-    p.add_argument('-b','--back',default=[],nargs='+',help='background files for merging',metavar='PATH')
-    p.add_argument('--denoise',default=False,action='store_true',help='enable old denoising (use YAML for new)')
+    p.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)',metavar='#')
     p.add_argument('gen',nargs='+',help='generator command line or LUND file(s)')
     return p
 
@@ -325,7 +327,18 @@ def configure(cfg):
 
 if __name__ == '__main__':
 
-    cfg = cli().parse_args()
+    cli2 = cli()
+    cfg = cli2.parse_args()
+    if cfg.inport:
+        import os,json
+        from types import SimpleNamespace
+        if not os.path.isfile(cfg.inport):
+            cli.error('Invalid input configuration file:  '+cfg.inport)
+        cfg = SimpleNamespace(**json.load(open(cfg.inport,'r')))
     cfg = configure(cfg)
+    if cfg.export:
+        import sys,json
+        print(json.dumps(vars(cfg), indent=4))
+        sys.exit(0)
     sys.exit(launch_pipelines(cfg))
 
