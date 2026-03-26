@@ -12,7 +12,9 @@ def cli():
         'Or, to process LUND files 3-at-a-time: '
         '`mcdj -j 3 ... -- lund1.txt lund2.txt lund3.txt ... ` '
         'Or, to use GEMC\'s particle gun: '
-        '`mcdj -- gemc -BEAM_P="e-, 6*GeV, 15*deg, 20*deg"`')
+        '`mcdj -- gemc -BEAM_P="e-, 6*GeV, 15*deg, 20*deg"` '
+        'Or, to run 100 jobs, 10 at a time: '
+        '`mcdj -j 10 -J 10 ...`')
     p.add_argument('-o',help='output HIPO file',metavar='PATH')
     p.add_argument('-n','--nevents',default=10,type=int,help='number of events per job (default=10)',metavar='#')
     p.add_argument('-j','--jobs',default=1,type=int,help='number of parallel jobs (default=1)',metavar='#')
@@ -140,14 +142,11 @@ def gemc(cfg, cwd, lund=None):
 import threading
 _bglock = threading.Lock()
 def merge_background(cfg, cwd, inp):
-    global _back_index
     o = get_out(cfg, inp, cwd, prefix='bg_')
     with _bglock:
         cmd=['bg-merger','-i',inp,'-o',o,cfg.back[cfg.iback[cfg.nback]]]
-        cfg.nback += 1
-        if cfg.nback  >= len(cfg.back):
-            cfg.nback = 0
-        return run(cfg,cwd,cmd), o
+        cfg.nback = 0 if cfg.nback+1 >= len(cfg.back) else cfg.nback+1
+    return run(cfg,cwd,cmd), o
 
 # run denoising:
 def denoise(cfg, cwd, inp):
