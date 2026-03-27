@@ -7,8 +7,8 @@ io-services:
     class: org.jlab.io.clara.DecoderReader
     name: DecoderReader
   writer:
-    class: org.jlab.io.clara.HipoToHipoWriter
-    name: HipoToHipoWriter
+    class: org.jlab.io.clara.DecoderWriter
+    name: DecoderWriter
 services:
   - class: org.jlab.clas.swimtools.MagFieldsEngine
     name: MAGFIELDS
