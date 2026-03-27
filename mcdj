@@ -12,8 +12,9 @@ def cli():
         'Or, to process LUND files 3-at-a-time: '
         '`mcdj -j 3 ... -- lund1.txt lund2.txt lund3.txt ... ` '
         'Or, to use GEMC\'s particle gun: '
-        '`mcdj -- gemc -BEAM_P="e-, 6*GeV, 15*deg, 20*deg"`')
-    p.add_argument('-o',help='output HIPO file',metavar='PATH')
+        '`mcdj -- gemc -BEAM_P="e-, 6*GeV, 15*deg, 20*deg"` '
+        'Or, to run 100 jobs, 10 at a time: '
+        '`mcdj -j 10 -J 10 ...`')
     p.add_argument('-n','--nevents',default=10,type=int,help='number of events per job (default=10)',metavar='#')
     p.add_argument('-j','--jobs',default=1,type=int,help='number of parallel jobs (default=1)',metavar='#')
     p.add_argument('-J','--Jobs',default=1,type=int,help='number of serial jobs (default=1)',metavar='#')
@@ -23,6 +24,7 @@ def cli():
     p.add_argument('-m','--match',default=False,action='store_true',help='enable truth matching')
     p.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)')
     p.add_argument('-d','--dst',default=False,action='store_true',help='run standalone dst-maker')
+    p.add_argument('-R','--recon',default=True,action='store_false',help='disable reconstruction')
     p.add_argument('-q','--quiet',default=False,action='store_true',help='silence GEANT4 exceptions')
     p.add_argument('-v','--verbose',default=0,action='count',help='increase verbosity (repeatable)')
     p.add_argument('-c','--cleanup',default=False,action='store_true',help='delete intermediate outputs')
@@ -137,14 +139,13 @@ def gemc(cfg, cwd, lund=None):
     return run(cfg,cwd,cmd), o
 
 # run background merging:
-_iback = 0 # FIXME:  not threadsafe
+import threading
+_bglock = threading.Lock()
 def merge_background(cfg, cwd, inp):
-    global _iback
     o = get_out(cfg, inp, cwd, prefix='bg_')
-    cmd=['bg-merger','-i',inp,'-o',o,cfg.back[_iback]]
-    _iback += 1
-    if _iback >= len(cfg.back):
-        _iback = 0
+    with _bglock:
+        cmd=['bg-merger','-i',inp,'-o',o,cfg.back[cfg.iback[cfg.nback]]]
+        cfg.nback = 0 if cfg.nback+1 >= len(cfg.back) else cfg.nback+1
     return run(cfg,cwd,cmd), o
 
 # run denoising:
@@ -182,10 +183,11 @@ def lund_pipeline(cfg, cwd, lund):
         if ret != 0:
             logging.getLogger(__name__).error('denoising failed.')
             return ret,o
-    ret,o = recon(cfg, cwd, o)
-    if ret != 0:
-        logging.getLogger(__name__).error('reconstruction failed.')
-        return ret,o
+    if cfg.recon:
+        ret,o = recon(cfg, cwd, o)
+        if ret != 0:
+            logging.getLogger(__name__).error('reconstruction failed.')
+            return ret,o
     if cfg.dst:
         ret,o = dst(cfg, cwd, o)
         if ret != 0:
@@ -313,10 +315,17 @@ def configure(cfg):
 
     logging.getLogger(__name__).debug('config:  '+str(cfg))
 
+    # generate static random sequence of background files: 
+    import random
+    cfg.iback = random.sample(range(len(cfg.back)), len(cfg.back))
+    cfg.nback = 0
+
     return cfg
 
 if __name__ == '__main__':
+
+    cfg = cli().parse_args()
+    cfg = configure(cfg)
     import sys
-    cfg = configure(cli().parse_args(sys.argv[1:])) 
     sys.exit(launch_pipelines(cfg))
 
