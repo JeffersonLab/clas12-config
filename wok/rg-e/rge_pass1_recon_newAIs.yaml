@@ -2,11 +2,11 @@
 # Uses new AI models for denoising, HB track finding and HB tracking
 io-services:
   reader:
-    class: org.jlab.io.clara.Clas12Reader
-    name: Clas12Reader
+    class: org.jlab.io.clara.DecoderReader
+    name: DecoderReader
   writer:
-    class: org.jlab.io.clara.DecoderWriter
-    name: DecoderWriter
+    class: org.jlab.io.clara.HipoToHipoWriter
+    name: HipoToHipoWriter
 services:
   - class: org.jlab.clas.swimtools.MagFieldsEngine
     name: MAGFIELDS
