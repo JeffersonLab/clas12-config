@@ -5,8 +5,8 @@ io-services:
     class: org.jlab.io.clara.DecoderReader
     name: DecoderReader
   writer:
-    class: org.jlab.io.clara.HipoToHipoWriter
-    name: HipoToHipoWriter
+    class: org.jlab.io.clara.DecoderWriter
+    name: DecoderWriter
 services:
   - class: org.jlab.clas.swimtools.MagFieldsEngine
     name: MAGFIELDS
@@ -56,15 +56,15 @@ configuration:
     timestamp: 03/20/2026-12:00:00
   io-services:
     writer:
-      schema_dir: "dst"
+      schema_dir: dst
   services:
     MAGFIELDS:
       magfieldSolenoidMap: Symm_solenoid_r601_phi1_z1201_13June2018.dat
       magfieldTorusMap: Full_torus_r251_phi181_z251_25Jan2021.dat
     DCCR:
-      rawBankGroup: "NOISE1"
+      rawBankGroup: NOISE1
     DCHTAI:
-      outputBankPrefix: "HB"
+      outputBankPrefix: HB
 
 mime-types:
   - binary/data-hipo
