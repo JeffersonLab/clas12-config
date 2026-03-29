@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import logging
+
 def cli():
     import argparse
     p = argparse.ArgumentParser(
@@ -32,8 +34,6 @@ def cli():
     p.add_argument('--denoise',default=False,action='store_true',help='enable old denoising (use YAML for new)')
     p.add_argument('gen',nargs='+',help='generator command line or LUND file(s)')
     return p
-
-import logging
 
 class ColoredFormatter(logging.Formatter):
     def __init__(self, msg):
@@ -75,7 +75,6 @@ def get_rng_clock_seed():
 
 # run a subprocess and wait for it to return:
 def run(cfg, cwd, cmd):
-    import logging
     import subprocess
     logging.getLogger(__name__).info(' '.join(cmd))
     p = subprocess.Popen(cmd,cwd=cwd,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,universal_newlines=True,encoding='latin-1')
@@ -168,7 +167,6 @@ def dst(cfg, cwd, inp):
 
 # run a LUND file through the simulation pipeline:
 def lund_pipeline(cfg, cwd, lund):
-    import logging
     ret,o = gemc(cfg, cwd, lund)
     if ret != 0:
         logging.getLogger(__name__).error('gemc failed.')
@@ -197,7 +195,6 @@ def lund_pipeline(cfg, cwd, lund):
 
 # run an event generator through the simulation pipeline:
 def generator_pipeline(cfg, cwd):
-    import logging
     ret,o = generate(cfg, cwd)
     if ret != 0:
         logging.getLogger(__name__).error(f'generator {cfg.gen[0]} failed.')
@@ -231,7 +228,6 @@ def cleanup(cfg, outputs):
 def launch_pipelines(cfg):
     import os
     import time
-    import logging
     import itertools
     import concurrent.futures as cf
     from types import SimpleNamespace
@@ -269,8 +265,6 @@ def launch_pipelines(cfg):
 
 def configure(cfg):
 
-    # configure logger:
-    logging.setLoggerClass(ColoredLogger)
     logging.getLogger(__name__).setLevel(20-10*cfg.verbose)
 
     # check existence of executables in $PATH:
@@ -323,6 +317,9 @@ def configure(cfg):
     return cfg
 
 if __name__ == '__main__':
+
+    import logging
+    logging.setLoggerClass(ColoredLogger)
 
     cfg = cli().parse_args()
     cfg = configure(cfg)
