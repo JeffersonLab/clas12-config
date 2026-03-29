@@ -5,7 +5,7 @@ import logging
 def cli():
     import argparse
     p = argparse.ArgumentParser(
-        description='CLAS12 MC Deejay runs the full, standard simulation pipeline, '
+        description='mcdj runs the full CLAS12 simulation pipeline, '
         ' starting from a clas12-mcgen geneator, the GEMC particle gun, or LUND files.',
         epilog='All executables must be in $PATH.  A double-dash should be used to separate '
         'the generator arguments.  For example, to run 12 parallel jobs of '
