@@ -1,0 +1,81 @@
+io-services:
+  reader:
+    class: org.jlab.jnp.grapes.io.HipoFrameReader
+    name: HipoFrameReader
+  writer:
+    class: org.jlab.jnp.grapes.io.HipoFrameWriter
+    name: HipoFrameWriter
+services:
+#################################################### JPSI/TCS
+  - class: org.jlab.jnp.grapes.services.JpsiTcsWagon
+    name: JpsiTcsWagon
+#################################################### KpKpWagon
+  - class: org.jlab.jnp.grapes.services.GenericWagon
+    name: KpKpWagon
+#################################################### Pi0PWagon
+  - class: org.jlab.jnp.grapes.services.Pi0PWagon
+    name: Pi0PWagon
+#################################################### ElastWagon
+  - class: org.jlab.jnp.grapes.services.ElastWagon
+    name: ElastWagon
+#################################################### KpKmp
+  - class: org.jlab.jnp.grapes.services.GenericWagon
+    name: KpKmPWagon
+#################################################### KpKpWagon
+  - class: org.jlab.jnp.grapes.services.GenericWagon
+    name: KpKpWagon
+#################################################### DVCSWagon
+  - class: org.jlab.jnp.grapes.services.DVCSWagon
+    name: DVCSWagon
+#################################################### DVKpKmPWagon
+  - class: org.jlab.jnp.grapes.services.DVKpKmPWagon
+    name: DVKpKmPWagon
+#################################################### DVPi0PWagon
+  - class: org.jlab.jnp.grapes.services.DVPi0PWagon
+    name: DVPi0PWagon
+#################################################### ElecFDKPlusWagon
+  - class: org.jlab.jnp.grapes.services.ElecFDKPlusWagon
+    name: ElecFDKPlusWagon
+####################################################
+configuration:
+  services:
+#################################################### JPSI/TCS
+    JpsiTcsWagon:
+      id: 4
+      beamEnergy: 6.395
+      targetPDG: 2212
+#################################################### Pi0PWagon
+    Pi0PWagon:
+      id: 5
+      beamEnergy: 6.395
+      targetPDG: 2212
+#################################################### ElastWagon
+    ElastWagon:
+      id: 6
+      beamEnergy: 6.395
+      targetPDG: 2212
+#################################################### KpKmPWagon RGK
+    KpKmPWagon:
+      id: 7
+      filter: 11:2212:321:-321:X+:X-:Xn
+#################################################### KpKpWagon
+    KpKpWagon:
+      id: 8
+      filter: 11:321:321:X+:X-:Xn
+#################################################### DVCSWagon
+    DVCSWagon:
+      id: 16
+      beamEnergy: 6.395
+      targetPDG: 2212
+#################################################### DVPi0PWagon
+    DVPi0PWagon:
+      id: 18
+      beamEnergy: 6.395
+      targetPDG: 2212
+#################################################### ElecFDKPlusWagon
+    ElecFDKPlusWagon:
+      id: 21
+      beamEnergy: 6.395
+      targetPDG: 2212
+mime-types:
+  - binary/data-hipo-frame
