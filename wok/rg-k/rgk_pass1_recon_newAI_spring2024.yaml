@@ -54,7 +54,7 @@ services:
 configuration:
   global:
     variation: rgk_spring2024
-    timestamp: 03/27/2026-06:00:00
+    timestamp: 03/31/2026-00:00:00
   io-services:
     writer:
       schema_dir: dst
