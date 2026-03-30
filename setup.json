@@ -63,7 +63,7 @@
 	],
 	"software_versions": [
 	  "gemc/4.4.2 coatjava/6.5.6.1",
-	  "gemc/5.13 coatjava/10.0.7"
+	  "gemc/5.14 coatjava/10.0.7"
 	]
   },
   "rga_fall2018_target_at_m3.5": {
