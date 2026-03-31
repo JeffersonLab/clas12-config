@@ -436,8 +436,10 @@
   },
   "rgd_fall2023_lD2": {
 	"tor1.00_sol-1.00": [
+	  "60nAAvg_10540MeV"
 	],
 	"tor-1.00_sol-1.00": [
+	  "50nAAvg_10540MeV"
 	],
 	"raster": [
 	  "0.0*cm, 0.0*cm"
@@ -454,8 +456,10 @@
   },
   "rgd_fall2023_CxC": {
 	"tor1.00_sol-1.00": [
+	  "50nAAvg_10540MeV"
 	],
 	"tor-1.00_sol-1.00": [
+	  "50nAAvg_10540MeV"
 	],
 	"raster": [
 	  "0.0*cm, 0.0*cm"
@@ -472,8 +476,10 @@
   },
   "rgd_fall2023_Cu": {
 	"tor1.00_sol-1.00": [
+	  "95nAAvg_10540MeV"
 	],
 	"tor-1.00_sol-1.00": [
+	  "130nAAvg_10540MeV"
 	],
 	"raster": [
 	  "0.0*cm, 0.0*cm"
@@ -490,8 +496,10 @@
   },
   "rgd_fall2023_Sn": {
 	"tor1.00_sol-1.00": [
+	  "95nAAvg_10540MeV"
 	],
 	"tor-1.00_sol-1.00": [
+	  "130nAAvg_10540MeV"
 	],
 	"raster": [
 	  "0.0*cm, 0.0*cm"
