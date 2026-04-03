@@ -79,14 +79,6 @@ class ColoredFormatter(logging.Formatter):
             record.levelname = ('%%-%ds'%l) % record.levelname
         return logging.Formatter.format(self, record)
 
-class ColoredLogger(logging.Logger):
-    def __init__(self, name):
-        logging.Logger.__init__(self, name, logging.INFO)
-        console = ExitingStreamHandler()
-        console.setFormatter(ColoredFormatter('[%(levelname)s] %(message)s'))
-        self.addHandler(console)
-        return
-
 class ExitingStreamHandler(logging.StreamHandler):
     def emit(self, record):
         self.setFormatter(ColoredFormatter('[%(levelname)s] %(message)s'))
@@ -94,6 +86,14 @@ class ExitingStreamHandler(logging.StreamHandler):
         if record.levelno >= logging.CRITICAL:
             import sys
             sys.exit(record.levelno)
+
+class ColoredLogger(logging.Logger):
+    def __init__(self, name):
+        logging.Logger.__init__(self, name, logging.INFO)
+        console = ExitingStreamHandler()
+        console.setFormatter(ColoredFormatter('[%(levelname)s] %(message)s'))
+        self.addHandler(console)
+        return
 
 # get a 32-bit RNG seed from the system clock:
 def get_rng_clock_seed():
