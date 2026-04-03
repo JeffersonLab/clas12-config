@@ -253,13 +253,18 @@ def cleanup(cfg, outputs):
 def launch_pipelines(cfg):
     import os
     import time
-    import itertools
-    import concurrent.futures as cf
+    import random
+    import concurrent.futures
     from types import SimpleNamespace
+    # generate static random sequence of background files: 
+    cfg.iback = random.sample(range(len(cfg.back)), len(cfg.back))
+    cfg.nback = 0
+    # bookkeeping:
     ijob,ojob = 0,0
     futures = []
     results = cfg.jobs * cfg.Jobs * [SimpleNamespace(stat=1, out=None, cwd=None)]
-    with cf.ThreadPoolExecutor(max_workers=cfg.jobs) as exe:
+    # thread pool:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=cfg.jobs) as exe:
         while True:
             # collect finished tasks:
             for i,f in enumerate(futures):
@@ -332,11 +337,6 @@ def configure(cfg):
         logging.getLogger(__name__).critical(f'invalid background file: {b}')
 
     logging.getLogger(__name__).debug('config:  '+str(cfg))
-
-    # generate static random sequence of background files: 
-    import random
-    cfg.iback = random.sample(range(len(cfg.back)), len(cfg.back))
-    cfg.nback = 0
 
     return cfg
 
