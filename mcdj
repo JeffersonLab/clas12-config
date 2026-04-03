@@ -24,7 +24,7 @@ def get_cli():
     sp_gen = sp.add_parser('gen',help='run a clas12-mcgen-compliant generator') 
     sp_gemc = sp.add_parser('gemc',help='use a gemc particle-gun event generator')
     sp_lund = sp.add_parser('lund',help='process LUND files')
-    sp_import = sp.add_parser('import',help='import configuration file')
+    sp_import = sp.add_parser('import',help='import an mcdj configuration file')
 
     # required options:
     sp_gemc.add_argument('-g','--gcard',required=True,help='GEMC gcard configuration file',metavar='PATH')
@@ -48,7 +48,7 @@ def get_cli():
         pp.add_argument('-q','--quiet',default=False,action='store_true',help='silence GEANT4 exceptions')
         pp.add_argument('-v','--verbose',default=0,action='count',help='increase verbosity (repeatable)')
         pp.add_argument('-c','--cleanup',default=False,action='store_true',help='delete intermediate outputs')
-        pp.add_argument('-e','--export',default=False,action='store_true',help='print resulting configuration file')
+        pp.add_argument('-e','--export',default=False,action='store_true',help='print resulting mcdj configuration file')
         pp.add_argument('--denoise',default=False,action='store_true',help='enable old denoising (use YAML for new)')
 
     # positional, trailing options:
@@ -354,12 +354,10 @@ if __name__ == '__main__':
         if not os.path.isfile(cfg.config):
             cli.error('Invalid input configuration file:  '+cfg.inport)
         cfg = SimpleNamespace(**json.load(open(cfg.config,'r')))
-        print(cfg)
 
     else:
         cfg = configure(cfg)
         if cfg.export:
-            import json
             print(json.dumps(vars(cfg), indent=4))
             sys.exit(0)
 
