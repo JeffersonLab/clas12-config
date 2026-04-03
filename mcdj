@@ -26,28 +26,6 @@ def get_cli():
     sp_lund = sp.add_parser('lund',help='process LUND files')
     sp_import = sp.add_parser('import',help='import configuration file')
 
-    # options common to all modes:
-    p.add_argument('-r','--run',default=11,type=int,help='run number',metavar='#')
-    p.add_argument('-n','--nevents',default=10,type=int,help='number of events per job (default=10)',metavar='#')
-    p.add_argument('-j','--jobs',default=1,type=int,help='number of parallel jobs (default=1)',metavar='#')
-    p.add_argument('-J','--Jobs',default=1,type=int,help='number of serial jobs (default=1)',metavar='#')
-    p.add_argument('-m','--match',default=False,action='store_true',help='enable truth matching')
-    p.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)')
-    p.add_argument('-b','--back',default=[],nargs='+',help='background files for merging',metavar='PATH')
-    p.add_argument('-d','--dst',default=False,action='store_true',help='run standalone dst-maker')
-    p.add_argument('-R','--recon',default=True,action='store_false',help='disable reconstruction')
-    p.add_argument('-q','--quiet',default=False,action='store_true',help='silence GEANT4 exceptions')
-    p.add_argument('-v','--verbose',default=0,action='count',help='increase verbosity (repeatable)')
-    p.add_argument('-c','--cleanup',default=False,action='store_true',help='delete intermediate outputs')
-    p.add_argument('-e','--export',default=False,action='store_true',help='print resulting configuration file')
-    p.add_argument('--denoise',default=False,action='store_true',help='enable old denoising (use YAML for new)')
-
-    # positional, trailing options:
-    sp_gemc.add_argument('gemc',default=[],nargs='+',help='gemc particle gun command line')
-    sp_gen.add_argument('gen',default=[],nargs='+',help='clas12-mcgen event generator command line')
-    sp_lund.add_argument('lund',default=[],nargs='+',help='LUND files',metavar='PATH')
-    sp_import.add_argument('config',help='configuration file to read',metavar='PATH')
-
     # required options:
     sp_gemc.add_argument('-g','--gcard',required=True,help='GEMC gcard configuration file',metavar='PATH')
     sp_gemc.add_argument('-y','--yaml',required=True,help='COATJAVA yaml configuration file',metavar='PATH')
@@ -56,9 +34,28 @@ def get_cli():
     sp_lund.add_argument('-g','--gcard',required=True,help='GEMC gcard configuration file',metavar='PATH')
     sp_lund.add_argument('-y','--yaml',required=True,help='COATJAVA yaml configuration file',metavar='PATH')
 
-    # optional options:
-    sp_import.add_argument('-g','--gcard',required=True,help='GEMC gcard configuration file',metavar='PATH')
-    sp_import.add_argument('-y','--yaml',required=True,help='COATJAVA yaml configuration file',metavar='PATH')
+    # optional options common to most modes:
+    for pp in [sp_gen, sp_gemc, sp_lund]:
+        pp.add_argument('-r','--run',default=11,type=int,help='run number',metavar='#')
+        pp.add_argument('-n','--nevents',default=10,type=int,help='number of events per job (default=10)',metavar='#')
+        pp.add_argument('-j','--jobs',default=1,type=int,help='number of parallel jobs (default=1)',metavar='#')
+        pp.add_argument('-J','--Jobs',default=1,type=int,help='number of serial jobs (default=1)',metavar='#')
+        pp.add_argument('-m','--match',default=False,action='store_true',help='enable truth matching')
+        pp.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)')
+        pp.add_argument('-d','--dst',default=False,action='store_true',help='run standalone dst-maker')
+        pp.add_argument('-R','--recon',default=True,action='store_false',help='disable reconstruction')
+        pp.add_argument('-b','--back',default=[],nargs='+',help='background files for merging',metavar='PATH')
+        pp.add_argument('-q','--quiet',default=False,action='store_true',help='silence GEANT4 exceptions')
+        pp.add_argument('-v','--verbose',default=0,action='count',help='increase verbosity (repeatable)')
+        pp.add_argument('-c','--cleanup',default=False,action='store_true',help='delete intermediate outputs')
+        pp.add_argument('-e','--export',default=False,action='store_true',help='print resulting configuration file')
+        pp.add_argument('--denoise',default=False,action='store_true',help='enable old denoising (use YAML for new)')
+
+    # positional, trailing options:
+    sp_gemc.add_argument('gemc',default=[],nargs='+',help='gemc particle gun command line')
+    sp_gen.add_argument('gen',default=[],nargs='+',help='clas12-mcgen event generator command line')
+    sp_lund.add_argument('lund',default=[],nargs='+',help='LUND files',metavar='PATH')
+    sp_import.add_argument('config',help='configuration file to read',metavar='PATH')
 
     return p
 
@@ -350,19 +347,21 @@ if __name__ == '__main__':
     cli = get_cli()
     cfg = cli.parse_args()
 
+    import os,sys,json
+
     if cfg.mode == 'import':
-        import os,json
         from types import SimpleNamespace
         if not os.path.isfile(cfg.config):
             cli.error('Invalid input configuration file:  '+cfg.inport)
-        cfg = SimpleNamespace(**json.load(open(cfg.config,'r')).update(vars(cfg)))
+        cfg = SimpleNamespace(**json.load(open(cfg.config,'r')))
+        print(cfg)
 
-    cfg = configure(cfg)
-
-    if cfg.export:
-        import json
-        print(json.dumps(vars(cfg), indent=4))
     else:
-        import sys
-        sys.exit(launch_pipelines(cfg))
+        cfg = configure(cfg)
+        if cfg.export:
+            import json
+            print(json.dumps(vars(cfg), indent=4))
+            sys.exit(0)
+
+    sys.exit(launch_pipelines(cfg))
 
