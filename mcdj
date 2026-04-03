@@ -160,7 +160,7 @@ def gemc(cfg, cwd, lund=None):
         cmd.append(f'-INPUT_GEN_FILE=LUND,{lund}')
     else:
         o = cwd+'/gemc.hipo'
-        cmd.extend(cfg.gen[1:])
+        cmd.extend(cfg.gemc[1:])
     cmd.append(f'-OUTPUT=hipo,{o}')
     return run(cfg,cwd,cmd), o
 
@@ -231,7 +231,8 @@ def generator_pipeline(cfg, cwd):
 # choose job directory and make it if necessary:
 def get_job_dir(cfg, i):
     import os
-    d = '.' if cfg.jobs==1 and cfg.Jobs==1 else f'./mcdj-{cfg.gen[0]}-{i}'
+    s = cfg.mode if cfg.mode != 'gen' else cfg.gen[0]
+    d = '.' if cfg.jobs==1 and cfg.Jobs==1 else f'./mcdj-{s}-{i}'
     if not os.path.exists(d): os.makedirs(d)
     return os.path.abspath(d)
 
@@ -274,10 +275,10 @@ def launch_pipelines(cfg):
                     futures.pop(i)
             # spawn new tasks:
             while len(futures) < cfg.jobs and ijob < cfg.jobs*cfg.Jobs \
-                    and ( cfg.gen[0] != 'lund' or ijob+1 < len(cfg.gen) ):
+                    and ( cfg.mode != 'lund' or ijob < len(cfg.lund) ):
                 results[ijob].cwd = get_job_dir(cfg, ijob)
-                if cfg.gen[0] == 'lund':
-                    futures.append( exe.submit(lund_pipeline, cfg, results[ijob].cwd, cfg.gen[1:][ijob]) )
+                if cfg.mode == 'lund':
+                    futures.append( exe.submit(lund_pipeline, cfg, results[ijob].cwd, cfg.lund[ijob]) )
                 else:
                     futures.append( exe.submit(generator_pipeline, cfg, results[ijob].cwd) )
                 ijob += 1
@@ -305,27 +306,25 @@ def configure(cfg):
     for exe in filter(lambda x: not shutil.which(x), executables):
         logging.getLogger(__name__).critical('executable not found in $PATH: '+exe)
 
-    # determine event generator:
-    if cfg.gen[0] == 'gemc':
-        logging.getLogger(__name__).warning('using GEMC internal generator.')
-        logging.getLogger(__name__).warning('using generator options:  '+' '.join(cfg.gen[1:]))
-    elif shutil.which(cfg.gen[0]):
+    # check event generation options:
+    if cfg.mode == 'gemc':
+        logging.getLogger(__name__).warning('using GEMC internal generator:  '+' '.join(cfg.gemc))
+    elif cfg.mode == 'gen':
+        if not shutil.which(cfg.gen[0]):
+            logging.getLogger(__name__).critical(f'generator executable not found in $PATH:  '+cfg.gen[0])
         logging.getLogger(__name__).warning('using generator found in $PATH:  '+shutil.which(cfg.gen[0]))
         logging.getLogger(__name__).warning('using generator options:  '+' '.join(cfg.gen[1:]))
-    else:
-        logging.getLogger(__name__).warning('generator not found in $PATH, interpreting as LUND file(s) ...')
-        for f in filter(lambda x: not os.path.isfile(x),cfg.gen[1:]):
+    elif cfg.mode == 'lund':
+        for f in filter(lambda x: not os.path.isfile(x),cfg.lund):
             logging.getLogger(__name__).critical(f'LUND file does not exist:  {f}.')
-        cfg.gen.insert(0, 'lund')
 
     # convert all input paths to absolute paths:
     import os
     cfg.gcard = os.path.abspath(cfg.gcard)
     cfg.yaml = os.path.abspath(cfg.yaml)
     cfg.back = [ os.path.abspath(b) for b in cfg.back ]
-    if cfg.gen[0] == 'lund':
-        for i in range(1,len(cfg.gen)):
-            cfg.gen[i] = os.path.abspath(cfg.gen[i])
+    if cfg.mode == 'lund':
+        cfg.lund = [ os.path.abspath(l) for l in cfg.lund ]
 
     # check existence of input files:
     if not os.path.isfile(cfg.gcard):
@@ -334,9 +333,6 @@ def configure(cfg):
         logging.getLogger(__name__).critical(f'invalid yaml: {cfg.yaml}')
     for b in [ b for b in cfg.back if not os.path.isfile(b) ]:
         logging.getLogger(__name__).critical(f'invalid background file: {b}')
-    if cfg.gen[0] == 'lund':
-        for l in [ l for l in cfg.gen[1:] if not os.path.isfile(l) ]:
-            logging.getLogger(__name__).critical(f'invalid lund file: {l}')
 
     logging.getLogger(__name__).debug('config:  '+str(cfg))
 
@@ -348,16 +344,21 @@ def configure(cfg):
     return cfg
 
 if __name__ == '__main__':
+
     logging.setLoggerClass(ColoredLogger)
+
     cli = get_cli()
     cfg = cli.parse_args()
+
     if cfg.mode == 'import':
         import os,json
         from types import SimpleNamespace
         if not os.path.isfile(cfg.config):
             cli.error('Invalid input configuration file:  '+cfg.inport)
         cfg = SimpleNamespace(**json.load(open(cfg.config,'r')).update(vars(cfg)))
+
     cfg = configure(cfg)
+
     if cfg.export:
         import json
         print(json.dumps(vars(cfg), indent=4))
