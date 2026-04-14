@@ -112,7 +112,7 @@ def get_out(cfg, inp, odir, prefix=None, suffix=None):
     return o
 
 # run a clas12-mcgen event genetator:
-def generate(cfg, cwd):
+def run_generator(cfg, cwd):
     import time
     o = cfg.gen[0]+'.dat'
     cmd = [cfg.gen[0]]
@@ -122,7 +122,7 @@ def generate(cfg, cwd):
     return run(cfg,cwd,cmd), o
 
 # run GEMC, with LUND input or internal generator:
-def gemc(cfg, cwd, lund=None):
+def run_gemc(cfg, cwd, lund=None):
     cmd = ['gemc',cfg.gcard,f'-RUNNO={cfg.run}','-USE_GUI=0',f'-N={cfg.nevents}']
     seed = get_rng_clock_seed() if cfg.seed==0 else cfg.seed
     cmd.extend([f'-RANDOM={seed}'])
@@ -140,7 +140,7 @@ def gemc(cfg, cwd, lund=None):
 # run background merging:
 import threading
 _bglock = threading.Lock()
-def merge_background(cfg, cwd, inp):
+def run_bgmerge(cfg, cwd, inp):
     o = get_out(cfg, inp, cwd, prefix='bg_')
     with _bglock:
         cmd=['bg-merger','-i',inp,'-o',o,cfg.back[cfg.iback[cfg.nback]]]
@@ -148,19 +148,19 @@ def merge_background(cfg, cwd, inp):
     return run(cfg,cwd,cmd), o
 
 # run denoising:
-def denoise(cfg, cwd, inp):
+def run_denoise(cfg, cwd, inp):
     o = get_out(cfg, inp, cwd, prefix='dn_')
     cmd=['denoise2.exe','-o',o,'-i',inp]
     return run(cfg,cwd, cmd), o
 
 # run reconstruction:
-def recon(cfg, cwd, inp):
+def run_recon(cfg, cwd, inp):
     o = get_out(cfg, inp, cwd, prefix='rec_')
     cmd=['recon-util','-y',cfg.yaml,'-i',inp,'-o',o]
     return run(cfg,cwd,cmd), o
 
 # run dst maker:
-def dst(cfg, cwd, inp):
+def run_dst(cfg, cwd, inp):
     o = get_out(cfg, inp, cwd, prefix='dst_')
     cmd=['dst-maker','-o',o,inp]
     return run(cfg,cwd,cmd), o
@@ -168,22 +168,22 @@ def dst(cfg, cwd, inp):
 # run the reconstruction portion of the simulation pipeline:
 def recon_pipelind(cfg, cwd, hipo):
     if len(cfg.back) > 0:
-        ret,o = merge_background(cfg, cwd, o)
+        ret,o = run_bgmerge(cfg, cwd, o)
         if ret != 0:
             logging.getLogger(__name__).error('background merging failed.')
             return ret,o
     if cfg.denoise:
-        ret,o = denoise(cfg, cwd, o)
+        ret,o = run_denoise(cfg, cwd, o)
         if ret != 0:
             logging.getLogger(__name__).error('denoising failed.')
             return ret,o
     if cfg.recon:
-        ret,o = recon(cfg, cwd, o)
+        ret,o = run_recon(cfg, cwd, o)
         if ret != 0:
             logging.getLogger(__name__).error('reconstruction failed.')
             return ret,o
     if cfg.dst:
-        ret,o = dst(cfg, cwd, o)
+        ret,o = run_dst(cfg, cwd, o)
         if ret != 0:
             logging.getLogger(__name__).error('dst making failed.')
             return ret,o
@@ -191,7 +191,7 @@ def recon_pipelind(cfg, cwd, hipo):
 
 # run a GEMC particle-gun simulation pipeline:
 def gemc_pipeline(cfg, cwd):
-    ret,o = gemc(cfg, cwd)
+    ret,o = run_gemc(cfg, cwd)
     if ret != 0:
         logging.getLogger(__name__).error('gemc failed.')
         return ret,o
@@ -199,7 +199,7 @@ def gemc_pipeline(cfg, cwd):
 
 # run a LUND simulation pipeline:
 def lund_pipeline(cfg, cwd, lund):
-    ret,o = gemc(cfg, cwd, lund)
+    ret,o = run_gemc(cfg, cwd, lund)
     if ret != 0:
         logging.getLogger(__name__).error('gemc failed.')
         return ret,o
@@ -207,7 +207,7 @@ def lund_pipeline(cfg, cwd, lund):
 
 # run a clas12-mcgen event-generator simulation pipeline:
 def generator_pipeline(cfg, cwd):
-    ret,o = generate(cfg, cwd)
+    ret,o = run_generator(cfg, cwd)
     if ret != 0:
         logging.getLogger(__name__).error(f'generator {cfg.gen[0]} failed.')
         return ret,o
