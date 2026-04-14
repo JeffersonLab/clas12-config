@@ -167,7 +167,7 @@ def run_dst(cfg, cwd, inp):
 
 # run the reconstruction portion of the simulation pipeline:
 def recon_pipeline(cfg, cwd, hipo):
-    o = hipo
+    ret,o = 0,hipo
     if len(cfg.back) > 0:
         ret,o = run_bgmerge(cfg, cwd, o)
         if ret != 0:
