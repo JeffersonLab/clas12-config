@@ -166,7 +166,7 @@ def run_dst(cfg, cwd, inp):
     return run(cfg,cwd,cmd), o
 
 # run the reconstruction portion of the simulation pipeline:
-def recon_pipelind(cfg, cwd, hipo):
+def recon_pipeline(cfg, cwd, hipo):
     o = hipo
     if len(cfg.back) > 0:
         ret,o = run_bgmerge(cfg, cwd, o)
@@ -196,7 +196,9 @@ def gemc_pipeline(cfg, cwd):
     if ret != 0:
         logging.getLogger(__name__).error('gemc failed.')
         return ret,o
-    return recon_pipeline(cfg, cwd, o)
+    if cfg.recon:
+        ret,o = recon_pipeline(cfg, cwd, o)
+    return ret,o
 
 # run a LUND simulation pipeline:
 def lund_pipeline(cfg, cwd, lund):
