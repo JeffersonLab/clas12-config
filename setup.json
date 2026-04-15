@@ -287,7 +287,7 @@
 	  "-1.5*cm, 0.6*mm"
 	],
 	"software_versions": [
-	  "gemc/5.11 coatjava/11.1.0"
+	  "gemc/5.14 coatjava/11.1.0"
 	]
   },
   "rge_spring2024_LD2-C-sol": {
@@ -303,7 +303,7 @@
 	  "-1.5*cm, 0.74*mm"
 	],
 	"software_versions": [
-	  "gemc/5.11 coatjava/11.1.0"
+	  "gemc/5.14 coatjava/11.1.0"
 	]
   },
   "rge_spring2024_LD2-Cu-sol": {
@@ -319,7 +319,7 @@
 	  "-1.5*cm, 0.18*mm"
 	],
 	"software_versions": [
-	  "gemc/5.11 coatjava/11.1.0"
+	  "gemc/5.14 coatjava/11.1.0"
 	]
   },
   "rge_spring2024_LD2-Sn-sol": {
@@ -335,7 +335,7 @@
 	  "-1.5*cm, 0.15*mm"
 	],
 	"software_versions": [
-	  "gemc/5.11 coatjava/11.1.0"
+	  "gemc/5.14 coatjava/11.1.0"
 	]
   },
   "rge_spring2024_LD2-Pb-sol": {
@@ -351,7 +351,7 @@
 	  "-1.5*cm, 0.07*mm"
 	],
 	"software_versions": [
-	  "gemc/5.11 coatjava/11.1.0"
+	  "gemc/5.14 coatjava/11.1.0"
 	]
   },
   "rge_spring2024_LD2-Al-liq": {
@@ -367,7 +367,7 @@
 	  "-6.5*cm, 1.0*cm"
 	],
 	"software_versions": [
-	  "gemc/5.11 coatjava/11.1.0"
+	  "gemc/5.14 coatjava/11.1.0"
 	]
   },
   "rge_spring2024_LD2-C-liq": {
@@ -383,7 +383,7 @@
 	  "-6.5*cm, 1.0*cm"
 	],
 	"software_versions": [
-	  "gemc/5.11 coatjava/11.1.0"
+	  "gemc/5.14 coatjava/11.1.0"
 	]
   },
   "rge_spring2024_LD2-Cu-liq": {
@@ -399,7 +399,7 @@
 	  "-6.5*cm, 1.0*cm"
 	],
 	"software_versions": [
-	  "gemc/5.11 coatjava/11.1.0"
+	  "gemc/5.14 coatjava/11.1.0"
 	]
   },
   "rge_spring2024_LD2-Sn-liq": {
@@ -415,7 +415,7 @@
 	  "-6.5*cm, 1.0*cm"
 	],
 	"software_versions": [
-	  "gemc/5.11 coatjava/11.1.0"
+	  "gemc/5.14 coatjava/11.1.0"
 	]
   },
   "rge_spring2024_LD2-Pb-liq": {
@@ -431,7 +431,7 @@
 	  "-6.5*cm, 1.0*cm"
 	],
 	"software_versions": [
-	  "gemc/5.11 coatjava/11.1.0"
+	  "gemc/5.14 coatjava/11.1.0"
 	]
   },
   "rgd_fall2023_lD2": {
