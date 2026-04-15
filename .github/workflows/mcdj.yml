@@ -1,0 +1,15 @@
+name: mcdj
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+    tags: [ '*' ]
+
+jobs:
+  mcgen:
+    runs-on: docker://codecr.jlab.org/hallb/clas12/container-forge/base_root:latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: json
+        run: ./mcdj -h
