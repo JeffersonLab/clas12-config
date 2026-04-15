@@ -53,7 +53,7 @@ services:
 configuration:
   global:
     variation: rge_spring2024
-    timestamp: 03/20/2026-12:00:00
+    timestamp: 03/31/2026-00:00:00
   io-services:
     writer:
       schema_dir: dst
