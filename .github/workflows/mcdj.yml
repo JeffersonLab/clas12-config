@@ -8,8 +8,9 @@ on:
 
 jobs:
   mcgen:
-    runs-on: docker://codecr.jlab.org/hallb/clas12/container-forge/base_root:latest
+    runs-on: ubuntu-latest
     steps:
+      - uses: docker://codecr.jlab.org/hallb/clas12/container-forge/base_root:latest
       - uses: actions/checkout@v6
       - name: json
         run: ./mcdj -h
