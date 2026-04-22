@@ -285,9 +285,11 @@ def configure(cfg):
     # check existence of executables in $PATH:
     import os
     import shutil
-    executables = ['gemc','bg-merger','denoise2.exe','recon-util','dst-maker']
+    executables = ['gemc','bg-merger','recon-util','dst-maker']
     for exe in filter(lambda x: not shutil.which(x), executables):
         logging.getLogger(__name__).critical('executable not found in $PATH: '+exe)
+    if cfg.denoise and not shutli.which('denoise2.exe'):
+        logging.getLogger(__name__).critical('executable not found in $PATH: denoise2.exe')
 
     # determine event generator:
     if cfg.gen[0] == 'gemc':
