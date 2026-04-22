@@ -81,7 +81,7 @@ def run(cfg, cwd, cmd):
     hush = False
     for line in iter(p.stdout.readline, ''):
         if len(line.strip())>0:
-            if cfg.quiet:
+            if cfg and cfg.quiet:
                 if line.find('*********************************************************************') >= 0:
                     continue
                 if line.find('-------- WWWW ------- G4Exception-START -------- WWWW -------') >= 0:
