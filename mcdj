@@ -95,6 +95,15 @@ def run(cfg, cwd, cmd):
     p.wait()
     return p.returncode
 
+def get_numa_cpus(node):
+    import subprocess
+    cmd = ['numactl','-H']
+    logging.getLogger(__name__).info(' '.join(cmd))
+    p = subprocess.Popen(cmd,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,universal_newlines=True,encoding='latin-1')
+    for line in iter(p.stdout.readline, ''):
+        if line.startswith(f'node {node} cpus:'):
+            return line.strip().split()[3:]
+
 # a list of all the output files we've made:
 _outputs = []
 
