@@ -58,9 +58,6 @@
 	<option name="PHYSICS"                 value="FTFP_BERT + STD + Optical"/>
 	<option name="OUTPUT"                  value="hipo, out.hipo"/>
 
- 	<!-- Uncomment this line to save the true information (necessary for Truth Matching) -->
- 	<option name="INTEGRATEDRAW"    value="*" />
-
 	<!--  Will print message every 1000 events -->
 	<option name="PRINT_EVENT"    value="1000" />
 
