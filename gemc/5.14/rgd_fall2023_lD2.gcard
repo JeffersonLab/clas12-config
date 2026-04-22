@@ -1,8 +1,5 @@
 <gcard>
 
-
-
-
 	<!-- RG-D Nuclear-target Assembly; variation can be for the flag assembly: lD2CuSn, lD2CxC -->
 	<detector name="experiments/clas12/targets/target"     factory="TEXT" variation="rgd_fall2023_lD2"/>
 	<detector name="experiments/clas12/targets/cad/"       factory="CAD" variation="rgd_fall2023_lD2"/>
@@ -38,7 +35,6 @@
 	<detector name="experiments/clas12/ltcc/cad/"   factory="CAD"  variation="rgm_fall2021_H"/>
 	<detector name="experiments/clas12/rich/rich"   factory="TEXT" variation="rgc_summer2022"/>
 	<detector name="experiments/clas12/rich/cad/"   factory="CAD"  variation="rgc_summer2022"/>
-
 
 	<!-- you can scale the fields here. Remember torus -1 means e- INBENDING  -->
 	<option name="SCALE_FIELD" value="binary_torus, 1"/>
