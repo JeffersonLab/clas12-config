@@ -1,8 +1,5 @@
 <gcard>	
 
-
-
-
 	<!-- RG-D Nuclear-target Assembly; variation can be for the flag assembly: lD2CuSn, lD2CxC -->
 	<detector name="experiments/clas12/targets/target"    factory="TEXT" variation="rgd_fall2023_CxC"/>
 	<detector name="experiments/clas12/targets/cad/"      factory="CAD" variation="rgd_fall2023_CxC"/>
@@ -39,7 +36,6 @@
 	<detector name="experiments/clas12/rich/rich"   factory="TEXT" variation="rgc_summer2022"/>
 	<detector name="experiments/clas12/rich/cad/"   factory="CAD"  variation="rgc_summer2022"/>
 
-
 	<!-- you can scale the fields here. Remember torus -1 means e- INBENDING  -->
 	<option name="SCALE_FIELD" value="binary_torus, 1"/>
 	<option name="SCALE_FIELD" value="binary_solenoid, -1"/>
@@ -57,9 +53,6 @@
  	<option name="SKIPREJECTEDHITS"        value="1" />
 	<option name="PHYSICS"                 value="FTFP_BERT + STD + Optical"/>
 	<option name="OUTPUT"                  value="hipo, out.hipo"/>
-
- 	<!-- Uncomment this line to save the true information (necessary for Truth Matching) -->
- 	<option name="INTEGRATEDRAW"    value="*" />
 
 	<!--  Will print message every 1000 events -->
 	<option name="PRINT_EVENT"    value="1000" />
