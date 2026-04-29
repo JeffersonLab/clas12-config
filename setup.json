@@ -184,7 +184,7 @@
 	  "8nA_10547MeV"
 	],
 	"raster": [
-	  "0.7*cm, 0.7*cm"
+	  "0.9*cm, 0.9*cm"
 	],
 	"beam_spot": [
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
