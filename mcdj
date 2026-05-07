@@ -105,7 +105,7 @@ def run(cfg, cwd, cmd):
     hush = False
     for line in iter(p.stdout.readline, ''):
         if len(line.strip())>0:
-            if cfg.quiet:
+            if cfg and cfg.quiet:
                 if line.find('*********************************************************************') >= 0:
                     continue
                 if line.find('-------- WWWW ------- G4Exception-START -------- WWWW -------') >= 0:
@@ -118,6 +118,15 @@ def run(cfg, cwd, cmd):
                 print(line.rstrip())
     p.wait()
     return p.returncode
+
+def get_numa_cpus(node):
+    import subprocess
+    cmd = ['numactl','-H']
+    logging.getLogger(__name__).info(' '.join(cmd))
+    p = subprocess.Popen(cmd,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,universal_newlines=True,encoding='latin-1')
+    for line in iter(p.stdout.readline, ''):
+        if line.startswith(f'node {node} cpus:'):
+            return line.strip().split()[3:]
 
 # a list of all the output files we've made:
 _outputs = []
@@ -276,8 +285,7 @@ def launch_pipelines(cfg):
     ijob,ojob = 0,0
     futures = []
     results = cfg.jobs * cfg.Jobs * [SimpleNamespace(stat=1, out=None, cwd=None)]
-    # thread pool:
-    with concurrent.futures.ThreadPoolExecutor(max_workers=cfg.jobs) as exe:
+    with cf.ProcessPoolExecutor(max_workers=cfg.jobs) as exe:
         while True:
             # collect finished tasks:
             for i,f in enumerate(futures):
@@ -319,9 +327,11 @@ def configure(cfg):
     # check existence of executables in $PATH:
     import os
     import shutil
-    executables = ['gemc','bg-merger','denoise2.exe','recon-util','dst-maker']
+    executables = ['gemc','bg-merger','recon-util','dst-maker']
     for exe in filter(lambda x: not shutil.which(x), executables):
         logging.getLogger(__name__).critical('executable not found in $PATH: '+exe)
+    if cfg.denoise and not shutil.which('denoise2.exe'):
+        logging.getLogger(__name__).critical('executable not found in $PATH: denoise2.exe')
 
     # check event generation options:
     if cfg.mode == 'gemc':

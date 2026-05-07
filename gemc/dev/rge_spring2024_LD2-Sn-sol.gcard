@@ -4,8 +4,8 @@
 
 
 	<!-- targets -->
-	<detector name="experiments/clas12/targets/target"    factory="TEXT" variation="rge_spring2024_LD2_C"/>
-	<detector name="experiments/clas12/targets/cad_rge/"  factory="CAD"  variation="rge_spring2024_LD2_C"/>
+	<detector name="experiments/clas12/targets/target"    factory="TEXT" variation="rge_spring2024_LD2_Sn"/>
+	<detector name="experiments/clas12/targets/cad_rge/"  factory="CAD"  variation="rge_spring2024_LD2_Sn"/>
 
 	<!-- central detectors 	-->
 	<detector name="experiments/clas12/bst/bst"               factory="TEXT" variation="rge_spring2024"/>
@@ -57,8 +57,6 @@
 	<option name="RECORD_OPTICALPHOTONS"   value="1"/>
  	<option name="SKIPREJECTEDHITS"    value="1" />
 
- 	<!-- Uncomment this line to save the true information (necessary for Truth Matching -->
- 	<!--  <option name="INTEGRATEDRAW"    value="*" /> -->
 
 
 	<option name="PHYSICS" value="FTFP_BERT + STD + Optical"/>
