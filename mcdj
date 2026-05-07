@@ -276,7 +276,7 @@ def launch_pipelines(cfg):
     import os
     import time
     import random
-    import concurrent.futures
+    import concurrent.futures as cf
     from types import SimpleNamespace
     # generate static random sequence of background files: 
     cfg.iback = random.sample(range(len(cfg.back)), len(cfg.back))
