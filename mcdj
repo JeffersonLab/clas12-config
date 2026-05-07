@@ -2,7 +2,8 @@
 
 import logging
 
-def cli():
+def get_cli():
+
     import argparse
     p = argparse.ArgumentParser(
         description='mcdj runs the full CLAS12 simulation pipeline, '
@@ -17,22 +18,45 @@ def cli():
         '`mcdj -- gemc -BEAM_P="e-, 6*GeV, 15*deg, 20*deg"` '
         'Or, to run 100 jobs, 10 at a time: '
         '`mcdj -j 10 -J 10 ...`')
-    p.add_argument('-n','--nevents',default=10,type=int,help='number of events per job (default=10)',metavar='#')
-    p.add_argument('-j','--jobs',default=1,type=int,help='number of parallel jobs (default=1)',metavar='#')
-    p.add_argument('-J','--Jobs',default=1,type=int,help='number of serial jobs (default=1)',metavar='#')
-    p.add_argument('-g','--gcard',required=True,type=str,help='GEMC gcard configuration file',metavar='PATH')
-    p.add_argument('-y','--yaml',required=True,type=str,help='COATJAVA yaml configuration file',metavar='PATH')
-    p.add_argument('-r','--run',default=11,type=int,help='run number (default=11)')
-    p.add_argument('-m','--match',default=False,action='store_true',help='enable truth matching')
-    p.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)')
-    p.add_argument('-d','--dst',default=False,action='store_true',help='run standalone dst-maker')
-    p.add_argument('-R','--recon',default=True,action='store_false',help='disable reconstruction')
-    p.add_argument('-q','--quiet',default=False,action='store_true',help='silence GEANT4 exceptions')
-    p.add_argument('-v','--verbose',default=0,action='count',help='increase verbosity (repeatable)')
-    p.add_argument('-c','--cleanup',default=False,action='store_true',help='delete intermediate outputs')
-    p.add_argument('-b','--back',default=[],nargs='+',help='background files for merging',metavar='PATH')
-    p.add_argument('--denoise',default=False,action='store_true',help='enable old denoising (use YAML for new)')
-    p.add_argument('gen',nargs='+',help='generator command line or LUND file(s)')
+
+    # initialize modes:
+    sp = p.add_subparsers(dest='mode', required=True)
+    sp_gen = sp.add_parser('gen',help='run a clas12-mcgen-compliant generator') 
+    sp_gemc = sp.add_parser('gemc',help='use a gemc particle-gun event generator')
+    sp_lund = sp.add_parser('lund',help='process LUND files')
+    sp_import = sp.add_parser('import',help='import an mcdj configuration file')
+
+    # required options:
+    sp_gemc.add_argument('-g','--gcard',required=True,help='GEMC gcard configuration file',metavar='PATH')
+    sp_gemc.add_argument('-y','--yaml',required=True,help='COATJAVA yaml configuration file',metavar='PATH')
+    sp_gen.add_argument('-g','--gcard',required=True,help='GEMC gcard configuration file',metavar='PATH')
+    sp_gen.add_argument('-y','--yaml',required=True,help='COATJAVA yaml configuration file',metavar='PATH')
+    sp_lund.add_argument('-g','--gcard',required=True,help='GEMC gcard configuration file',metavar='PATH')
+    sp_lund.add_argument('-y','--yaml',required=True,help='COATJAVA yaml configuration file',metavar='PATH')
+
+    # optional options common to most modes:
+    for pp in [sp_gen, sp_gemc, sp_lund]:
+        pp.add_argument('-r','--run',default=11,type=int,help='run number',metavar='#')
+        pp.add_argument('-n','--nevents',default=10,type=int,help='number of events per job (default=10)',metavar='#')
+        pp.add_argument('-j','--jobs',default=1,type=int,help='number of parallel jobs (default=1)',metavar='#')
+        pp.add_argument('-J','--Jobs',default=1,type=int,help='number of serial jobs (default=1)',metavar='#')
+        pp.add_argument('-m','--match',default=False,action='store_true',help='enable truth matching')
+        pp.add_argument('-s','--seed',default=0,type=int,help='random number seed (default=clock)')
+        pp.add_argument('-d','--dst',default=False,action='store_true',help='run standalone dst-maker')
+        pp.add_argument('-R','--recon',default=True,action='store_false',help='disable reconstruction')
+        pp.add_argument('-b','--back',default=[],nargs='+',help='background files for merging',metavar='PATH')
+        pp.add_argument('-q','--quiet',default=False,action='store_true',help='silence GEANT4 exceptions')
+        pp.add_argument('-v','--verbose',default=0,action='count',help='increase verbosity (repeatable)')
+        pp.add_argument('-c','--cleanup',default=False,action='store_true',help='delete intermediate outputs')
+        pp.add_argument('-e','--export',default=False,action='store_true',help='print resulting mcdj configuration file')
+        pp.add_argument('--denoise',default=False,action='store_true',help='enable old denoising (use YAML for new)')
+
+    # positional, trailing options:
+    sp_gemc.add_argument('gemc',default=[],nargs='+',help='gemc particle gun command line')
+    sp_gen.add_argument('gen',default=[],nargs='+',help='clas12-mcgen event generator command line')
+    sp_lund.add_argument('lund',default=[],nargs='+',help='LUND files',metavar='PATH')
+    sp_import.add_argument('config',help='configuration file to read',metavar='PATH')
+
     return p
 
 class ColoredFormatter(logging.Formatter):
@@ -52,14 +76,6 @@ class ColoredFormatter(logging.Formatter):
             record.levelname = ('%%-%ds'%l) % record.levelname
         return logging.Formatter.format(self, record)
 
-class ColoredLogger(logging.Logger):
-    def __init__(self, name):
-        logging.Logger.__init__(self, name, logging.INFO)
-        console = ExitingStreamHandler()
-        console.setFormatter(ColoredFormatter('[%(levelname)s] %(message)s'))
-        self.addHandler(console)
-        return
-
 class ExitingStreamHandler(logging.StreamHandler):
     def emit(self, record):
         self.setFormatter(ColoredFormatter('[%(levelname)s] %(message)s'))
@@ -67,6 +83,14 @@ class ExitingStreamHandler(logging.StreamHandler):
         if record.levelno >= logging.CRITICAL:
             import sys
             sys.exit(record.levelno)
+
+class ColoredLogger(logging.Logger):
+    def __init__(self, name):
+        logging.Logger.__init__(self, name, logging.INFO)
+        console = ExitingStreamHandler()
+        console.setFormatter(ColoredFormatter('[%(levelname)s] %(message)s'))
+        self.addHandler(console)
+        return
 
 # get a 32-bit RNG seed from the system clock:
 def get_rng_clock_seed():
@@ -142,7 +166,7 @@ def run_gemc(cfg, cwd, lund=None):
         cmd.append(f'-INPUT_GEN_FILE=LUND,{lund}')
     else:
         o = cwd+'/gemc.hipo'
-        cmd.extend(cfg.gen[1:])
+        cmd.extend(cfg.gemc[1:])
     cmd.append(f'-OUTPUT=hipo,{o}')
     return run(cfg,cwd,cmd), o
 
@@ -226,7 +250,8 @@ def generator_pipeline(cfg, cwd):
 # choose job directory and make it if necessary:
 def get_job_dir(cfg, i):
     import os
-    d = '.' if cfg.jobs==1 and cfg.Jobs==1 else f'./mcdj-{cfg.gen[0]}-{i}'
+    s = cfg.mode if cfg.mode != 'gen' else cfg.gen[0]
+    d = '.' if cfg.jobs==1 and cfg.Jobs==1 else f'./mcdj-{s}-{i}'
     if not os.path.exists(d): os.makedirs(d)
     return os.path.abspath(d)
 
@@ -250,9 +275,13 @@ def cleanup(cfg, outputs):
 def launch_pipelines(cfg):
     import os
     import time
-    import itertools
+    import random
     import concurrent.futures as cf
     from types import SimpleNamespace
+    # generate static random sequence of background files: 
+    cfg.iback = random.sample(range(len(cfg.back)), len(cfg.back))
+    cfg.nback = 0
+    # bookkeeping:
     ijob,ojob = 0,0
     futures = []
     results = cfg.jobs * cfg.Jobs * [SimpleNamespace(stat=1, out=None, cwd=None)]
@@ -269,10 +298,10 @@ def launch_pipelines(cfg):
                     futures.pop(i)
             # spawn new tasks:
             while len(futures) < cfg.jobs and ijob < cfg.jobs*cfg.Jobs \
-                    and ( cfg.gen[0] != 'lund' or ijob+1 < len(cfg.gen) ):
+                    and ( cfg.mode != 'lund' or ijob < len(cfg.lund) ):
                 results[ijob].cwd = get_job_dir(cfg, ijob)
-                if cfg.gen[0] == 'lund':
-                    futures.append( exe.submit(lund_pipeline, cfg, results[ijob].cwd, cfg.gen[1:][ijob]) )
+                if cfg.mode == 'lund':
+                    futures.append( exe.submit(lund_pipeline, cfg, results[ijob].cwd, cfg.lund[ijob]) )
                 elif cfg.gen[0] == 'gemc':
                     futures.append( exe.submit(gemc_pipeline, cfg, results[ijob].cwd) )
                 else:
@@ -291,6 +320,10 @@ def configure(cfg):
 
     logging.getLogger(__name__).setLevel(20-10*cfg.verbose)
 
+    if cfg.gcard is None: cli.error('--gcard must be defined!')
+    if cfg.yaml is None: cli.error('--yaml must be defined!')
+    if len(cfg.gen)==0: cli.error('the gen argument must be defined!')
+
     # check existence of executables in $PATH:
     import os
     import shutil
@@ -300,27 +333,25 @@ def configure(cfg):
     if cfg.denoise and not shutil.which('denoise2.exe'):
         logging.getLogger(__name__).critical('executable not found in $PATH: denoise2.exe')
 
-    # determine event generator:
-    if cfg.gen[0] == 'gemc':
-        logging.getLogger(__name__).warning('using GEMC internal generator.')
-        logging.getLogger(__name__).warning('using generator options:  '+' '.join(cfg.gen[1:]))
-    elif shutil.which(cfg.gen[0]):
+    # check event generation options:
+    if cfg.mode == 'gemc':
+        logging.getLogger(__name__).warning('using GEMC internal generator:  '+' '.join(cfg.gemc))
+    elif cfg.mode == 'gen':
+        if not shutil.which(cfg.gen[0]):
+            logging.getLogger(__name__).critical(f'generator executable not found in $PATH:  '+cfg.gen[0])
         logging.getLogger(__name__).warning('using generator found in $PATH:  '+shutil.which(cfg.gen[0]))
         logging.getLogger(__name__).warning('using generator options:  '+' '.join(cfg.gen[1:]))
-    else:
-        logging.getLogger(__name__).warning('generator not found in $PATH, interpreting as LUND file(s) ...')
-        for f in filter(lambda x: not os.path.isfile(x),cfg.gen[1:]):
+    elif cfg.mode == 'lund':
+        for f in filter(lambda x: not os.path.isfile(x),cfg.lund):
             logging.getLogger(__name__).critical(f'LUND file does not exist:  {f}.')
-        cfg.gen.insert(0, 'lund')
 
     # convert all input paths to absolute paths:
     import os
     cfg.gcard = os.path.abspath(cfg.gcard)
     cfg.yaml = os.path.abspath(cfg.yaml)
     cfg.back = [ os.path.abspath(b) for b in cfg.back ]
-    if cfg.gen[0] == 'lund':
-        for i in range(1,len(cfg.gen)):
-            cfg.gen[i] = os.path.abspath(cfg.gen[i])
+    if cfg.mode == 'lund':
+        cfg.lund = [ os.path.abspath(l) for l in cfg.lund ]
 
     # check existence of input files:
     if not os.path.isfile(cfg.gcard):
@@ -329,26 +360,31 @@ def configure(cfg):
         logging.getLogger(__name__).critical(f'invalid yaml: {cfg.yaml}')
     for b in [ b for b in cfg.back if not os.path.isfile(b) ]:
         logging.getLogger(__name__).critical(f'invalid background file: {b}')
-    if cfg.gen[0] == 'lund':
-        for l in [ l for l in cfg.gen[1:] if not os.path.isfile(l) ]:
-            logging.getLogger(__name__).critical(f'invalid lund file: {l}')
 
     logging.getLogger(__name__).debug('config:  '+str(cfg))
-
-    # generate static random sequence of background files: 
-    import random
-    cfg.iback = random.sample(range(len(cfg.back)), len(cfg.back))
-    cfg.nback = 0
 
     return cfg
 
 if __name__ == '__main__':
 
-    import logging
     logging.setLoggerClass(ColoredLogger)
 
-    cfg = cli().parse_args()
-    cfg = configure(cfg)
-    import sys
+    cli = get_cli()
+    cfg = cli.parse_args()
+
+    import os,sys,json
+
+    if cfg.mode == 'import':
+        from types import SimpleNamespace
+        if not os.path.isfile(cfg.config):
+            cli.error('Invalid input configuration file:  '+cfg.inport)
+        cfg = SimpleNamespace(**json.load(open(cfg.config,'r')))
+
+    else:
+        cfg = configure(cfg)
+        if cfg.export:
+            print(json.dumps(vars(cfg), indent=4))
+            sys.exit(0)
+
     sys.exit(launch_pipelines(cfg))
 
