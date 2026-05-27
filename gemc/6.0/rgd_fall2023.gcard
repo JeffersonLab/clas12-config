@@ -1,5 +1,5 @@
-<!-- GEMC 6.0 -->
-<gcard>
+<gcard>	
+
 
 
 
@@ -93,7 +93,5 @@
 	<detector name="bstShield"> <position x="0*cm" y="0*cm" z="-1.94*cm"  />  </detector>
 
 	<option name="DISPLACE_FIELDMAP" value="binary_solenoid, 0*cm, 0*cm, -1.94*cm" />
-
-
 
 </gcard>
