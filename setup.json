@@ -264,6 +264,64 @@
 	  "gemc/5.11 coatjava/11.1.0"
 	]
   },
+  "rgk_winter2023": {
+	"tor+1.00_sol-1.00": [
+	],
+	"tor+1.00_sol+1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-3.0*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/6.0 coatjava/14.1.0"
+	],
+	"runs": {
+	  "19203": {
+		"title": "RGK Winter23",
+		"target": "LH2",
+		"beam_current": "75nA",
+		"beam_energy": "6394.63MeV",
+		"torus": "+1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00
+	  }
+	}
+  },
+  "rgk_spring2024": {
+	"tor+1.00_sol-1.00": [
+	],
+	"tor+1.00_sol+1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-3.0*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/6.0 coatjava/14.1.0"
+	],
+	"runs": {
+	  "19203": {
+		"title": "RGK Spring24",
+		"target": "LH2",
+		"beam_current": "75nA",
+		"beam_energy": "6394.63MeV",
+		"torus": "+1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00
+	  }
+	}
+  },
   "ddvcs": {
 	"tor-1.00_sol-1.00": [
 	],
