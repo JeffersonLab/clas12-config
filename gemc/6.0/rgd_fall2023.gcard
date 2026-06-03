@@ -62,7 +62,7 @@
 
 	<!--  Run Number 11, picked up by digitization routines -->
 	<option name="RUNNO"    value="11" />
-	<option name="DIGITIZATION_VARIATION"  value="rga_spring2018_mc" />
+	<option name="DIGITIZATION_VARIATION"  value="mc2026" />
 
 	<!--  Do not track staff after the downstream shielding -->
 	<option name="MAX_Z_POS" value="9000"/>
