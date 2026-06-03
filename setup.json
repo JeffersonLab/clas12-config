@@ -578,5 +578,54 @@
 	"software_versions": [
 	  "gemc/5.13 coatjava/13.0.0"
 	]
+  },
+  "rgd_fall2023": {
+	"tor1.00_sol-1.00": [
+	  "60nAAvg_10540MeV"
+	],
+	"tor-1.00_sol-1.00": [
+	  "50nAAvg_10540MeV"
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-5.5*cm, 0.0*cm"
+	],
+	"software_versions": [
+	  "gemc/6.0 coatjava/14.1.0"
+	],
+	"runs": {
+	  "18305": {
+		"title": "RGD Fall23",
+		"target": "LD2",
+		"beam_current": "35nA",
+		"beam_energy": "10547.3",
+		"torus": "-1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00
+	  },
+	  "18339": {
+		"title": "RGD Fall23",
+		"target": "CxC",
+		"beam_current": "50nA",
+		"beam_energy": "10547.3",
+		"torus": "-1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00
+	  },
+	  "18347": {
+		"title": "RGD Fall23",
+		"target": "CuSn",
+		"beam_current": "130nA",
+		"beam_energy": "10547.3",
+		"torus": "-1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00
+	  }
+	}
   }
 }
