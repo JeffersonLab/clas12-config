@@ -282,7 +282,7 @@
 	  "gemc/6.0 coatjava/14.1.0"
 	],
 	"runs": {
-	  "19203": {
+	  "19205": {
 		"title": "RGK Winter23",
 		"target": "LH2",
 		"beam_current": "75nA",
@@ -311,10 +311,10 @@
 	  "gemc/6.0 coatjava/14.1.0"
 	],
 	"runs": {
-	  "19203": {
+	  "19324": {
 		"title": "RGK Spring24",
 		"target": "LH2",
-		"beam_current": "75nA",
+		"beam_current": "65nA",
 		"beam_energy": "6394.63MeV",
 		"torus": "+1.00",
 		"solenoid": "-1.00",
