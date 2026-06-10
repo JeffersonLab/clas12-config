@@ -8,7 +8,7 @@ Standard gcard/yaml combinations for the different data sets and data-processing
 
 * _GEMC versions prior to 5.4 do not fully support binary magnetic field maps and CCDB for RF configuration._
 * _COATJAVA versions prior to 10.0.7 do not support AI- denoising or track-finding._
-
+* _mcdj has moved to [its own repository](https://code.jlab.org/hallb/clas12/mcdj)._
 
 ## Run Configurations
 
