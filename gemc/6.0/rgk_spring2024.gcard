@@ -1,9 +1,9 @@
 <!-- GEMC 6.0 -->
 <gcard>
 
+	<!-- band detector upstream of the target -->
+	<detector name="experiments/clas12/band/band" factory="TEXT" variation="main"/>
 
-
-	
 	<option name="DATABASE" value="clas12.sqlite"/>
 
 	<!-- CLAS12 Setup 	-->
@@ -61,7 +61,7 @@
 
 
 	<!--  Run Number 11, picked up by digitization routines -->
-    <option name="RUNNO" value="19200" />
+    <option name="RUNNO" value="19324" />
 	<option name="DIGITIZATION_VARIATION"  value="mc2026" />
 
 	<!--  Do not track staff after the downstream shielding -->
