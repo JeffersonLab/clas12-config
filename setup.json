@@ -458,7 +458,8 @@
 	  "-5.5*cm, 0.0*cm"
 	],
 	"software_versions": [
-	  "gemc/5.13 coatjava/13.0.0"
+	  "gemc/5.13 coatjava/13.0.0",
+	  "gemc/5.14 coatjava/13.0.0"
 	]
   },
   "rgd_fall2023_CxC": {
@@ -478,7 +479,8 @@
 	  "-5.5*cm, 2.5*cm"
 	],
 	"software_versions": [
-	  "gemc/5.13 coatjava/13.0.0"
+	  "gemc/5.13 coatjava/13.0.0",
+	  "gemc/5.14 coatjava/13.0.0"
 	]
   },
   "rgd_fall2023_Cu": {
@@ -498,7 +500,8 @@
 	  "-8.0*cm, 0.0*cm"
 	],
 	"software_versions": [
-	  "gemc/5.13 coatjava/13.0.0"
+	  "gemc/5.13 coatjava/13.0.0",
+	  "gemc/5.14 coatjava/13.0.0"
 	]
   },
   "rgd_fall2023_Sn": {
@@ -518,7 +521,8 @@
 	  "-3.0*cm, 0.0*cm"
 	],
 	"software_versions": [
-	  "gemc/5.13 coatjava/13.0.0"
+	  "gemc/5.13 coatjava/13.0.0",
+	  "gemc/5.14 coatjava/13.0.0"
 	]
   }
 }
