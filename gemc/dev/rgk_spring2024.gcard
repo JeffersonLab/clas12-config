@@ -2,7 +2,7 @@
 <gcard>
 
 	<!-- band detector upstream of the target -->
-	<detector name="experiments/clas12/band/band" factory="TEXT" variation="main"/>
+	<detector name="experiments/clas12/band/band" factory="TEXT"/>
 
 	<option name="DATABASE" value="clas12.sqlite"/>
 
