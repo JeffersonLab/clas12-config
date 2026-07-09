@@ -1,15 +1,12 @@
 <!-- GEMC 6.0 -->
 <gcard>
 
-
-
-	
 	<option name="DATABASE" value="clas12.sqlite"/>
 
 	<!-- CLAS12 Setup 	-->
 	<detector name="target_cad"   factory="SQLITECAD"/>
 	<detector name="target"       factory="SQLITE"/>
-
+	<detector name="band"         factory="SQLITE"/>
 	<detector name="solenoid"     factory="SQLITE"/>
 	<detector name="magnets_cad"  factory="SQLITECAD" />
 	<detector name="bst"          factory="SQLITE"/>
