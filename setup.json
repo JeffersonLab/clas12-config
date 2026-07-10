@@ -276,7 +276,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-3.0*cm, 2.5*cm"
+	  "-5.5*cm, 2.5*cm"
 	],
 	"software_versions": [
 	  "gemc/6.1 coatjava/14.1.1"
@@ -315,7 +315,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-3.0*cm, 2.5*cm"
+	  "-5.5*cm, 2.5*cm"
 	],
 	"software_versions": [
 	  "gemc/6.1 coatjava/14.1.1"
