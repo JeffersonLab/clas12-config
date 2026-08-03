@@ -65,7 +65,7 @@
 	<option name="MAX_Z_POS" value="9000"/>
 
 	<!--  Time window defined by LUMI_EVENT -->
-	<option name="LUMI_EVENT"  value="0, 248.5*ns, 4.008*ns" />
+	<option name="LUMI_EVENT"  value="0, 248.5*ns, 2.004*ns" />
 	<!--  Uncomment this (and replace the LUMI_EVENT Above) to simulate 10^35 luminosity
 	      beam on a 5cm liquid hydrogen target, use 124K e- / event   -->
 	<!--  Scale accordingly for different target / luminosity  -->

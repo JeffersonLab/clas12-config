@@ -449,7 +449,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-6.5*cm, 1.0*cm"
+	  "-1.5*cm, 1.0*cm"
 	],
 	"software_versions": [
 	  "gemc/5.14 coatjava/11.1.0"
@@ -465,7 +465,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-6.5*cm, 1.0*cm"
+	  "-1.5*cm, 1.0*cm"
 	],
 	"software_versions": [
 	  "gemc/5.14 coatjava/11.1.0"
@@ -481,7 +481,7 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-6.5*cm, 1.0*cm"
+	  "-1.5*cm, 1.0*cm"
 	],
 	"software_versions": [
 	  "gemc/5.14 coatjava/11.1.0"
@@ -497,13 +497,56 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"z-position": [
-	  "-6.5*cm, 1.0*cm"
+	  "-1.5*cm, 1.0*cm"
 	],
 	"software_versions": [
 	  "gemc/5.14 coatjava/11.1.0"
 	]
   },
   "rge_spring2024_LD2-Pb-liq": {
+	"tor-1.00_sol-1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-1.5*cm, 1.0*cm"
+	],
+	"software_versions": [
+	  "gemc/5.14 coatjava/11.1.0"
+	]
+  },
+  "rge_spring2024_sol": {
+	"tor-1.00_sol-1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-1.5*cm, 1.0*cm"
+	],
+	"software_versions": [
+	  "gemc/5.14 coatjava/11.1.0"
+	],
+	"runs": {
+	  "20458": {
+		"title": "RGE Aluminum",
+		"target": "LD2-Al",
+		"beam_current": "35nA",
+		"beam_energy": "10547.3",
+		"torus": "-1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00
+	  }
+	}
+  },
+  "rge_spring2024_liq": {
 	"tor-1.00_sol-1.00": [
 	],
 	"raster": [

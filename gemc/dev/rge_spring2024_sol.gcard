@@ -35,9 +35,9 @@
 	<option name="HALL_FIELD"  value="Symm_solenoid_r601_phi1_z1201_13June2018:Symm_torus_r2501_phi16_z251_24Apr2018"/>
 
 
-	<!-- beam conditions -->
+	<!-- beam conditions: liquid target z pos is -6.5cm, solid is -1.5cm -->
 	<option name="BEAM_P"   value="e-, 10.6*GeV, 0.0*deg, 0*deg"/>
-	<option name="BEAM_V"    value="(0, 0, -3)cm"/>
+	<option name="BEAM_V"    value="(0, 0, -6.5)cm"/>
 	<option name="SPREAD_V"  value="(0.0, 2.5)cm"/>
 
 	<option name="SAVE_ALL_MOTHERS" value="1"/>
