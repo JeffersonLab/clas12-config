@@ -560,7 +560,18 @@
 	],
 	"software_versions": [
 	  "gemc/5.14 coatjava/11.1.0"
-	]
+	],
+	"runs": {
+	  "20458": {
+		"title": "RGE LD2",
+		"target": "LD2-Al",
+		"beam_current": "35nA",
+		"beam_energy": "10547.3",
+		"torus": "-1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00
+	  }
+	}
   },
   "rgd_fall2023_lD2": {
 	"tor+1.00_sol-1.00": [
