@@ -6,7 +6,6 @@
 	<!-- CLAS12 Setup 	-->
 	<detector name="target_cad"   factory="SQLITECAD"/>
 	<detector name="target"       factory="SQLITE"/>
-	<detector name="band"         factory="SQLITE"/>
 	<detector name="solenoid"     factory="SQLITE"/>
 	<detector name="magnets_cad"  factory="SQLITECAD" />
 	<detector name="bst"          factory="SQLITE"/>
@@ -36,9 +35,9 @@
 	<option name="HALL_FIELD"  value="Symm_solenoid_r601_phi1_z1201_13June2018:Symm_torus_r2501_phi16_z251_24Apr2018"/>
 
 
-	<!-- beam conditions -->
+	<!-- beam conditions: liquid target z pos is -6.5cm, solid is -1.5cm -->
 	<option name="BEAM_P"   value="e-, 10.6*GeV, 0.0*deg, 0*deg"/>
-	<option name="BEAM_V"    value="(0, 0, -3)cm"/>
+	<option name="BEAM_V"    value="(0, 0, -6.5)cm"/>
 	<option name="SPREAD_V"  value="(0.0, 2.5)cm"/>
 
 	<option name="SAVE_ALL_MOTHERS" value="1"/>
@@ -65,7 +64,7 @@
 	<option name="MAX_Z_POS" value="9000"/>
 
 	<!--  Time window defined by LUMI_EVENT -->
-	<option name="LUMI_EVENT"  value="0, 248.5*ns, 2.004*ns" />
+	<option name="LUMI_EVENT"  value="0, 248.5*ns, 4.008*ns" />
 	<!--  Uncomment this (and replace the LUMI_EVENT Above) to simulate 10^35 luminosity
 	      beam on a 5cm liquid hydrogen target, use 124K e- / event   -->
 	<!--  Scale accordingly for different target / luminosity  -->

@@ -264,6 +264,84 @@
 	  "gemc/5.11 coatjava/11.1.0"
 	]
   },
+  "rgk_winter2023": {
+	"tor+1.00_sol-1.00": [
+	],
+	"tor+1.00_sol+1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-5.5*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/6.1 coatjava/14.1.2"
+	],
+	"runs": {
+	  "19205": {
+		"title": "RGK Winter23",
+		"target": "LH2",
+		"beam_current": "75nA",
+		"beam_energy": "6394.63MeV",
+		"torus": "+1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00
+	  },
+	  "winter_2023": [
+		19205,
+		19210,
+		19212,
+		19213,
+		19214,
+		19217,
+		19218,
+		19219
+	  ]
+	}
+  },
+  "rgk_spring2024": {
+	"tor+1.00_sol-1.00": [
+	],
+	"tor+1.00_sol+1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-3.5*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/6.1 coatjava/14.1.2"
+	],
+	"runs": {
+	  "19324": {
+		"title": "RGK Spring24",
+		"target": "LH2",
+		"beam_current": "65nA",
+		"beam_energy": "6394.63MeV",
+		"torus": "+1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00
+	  },
+	  "spring_2024": [
+		19359,
+		19365,
+		19366,
+		19391,
+		19392,
+		19393,
+		19394,
+		19395
+	  ]
+	}
+  },
   "ddvcs": {
 	"tor-1.00_sol-1.00": [
 	],
@@ -441,8 +519,62 @@
 	  "gemc/5.14 coatjava/11.1.0"
 	]
   },
+  "rge_spring2024_sol": {
+	"tor-1.00_sol-1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-1.5*cm, 1.0*cm"
+	],
+	"software_versions": [
+	  "gemc/5.14 coatjava/11.1.0"
+	],
+	"runs": {
+	  "20458": {
+		"title": "RGE Aluminum",
+		"target": "LD2-Al",
+		"beam_current": "35nA",
+		"beam_energy": "10547.3",
+		"torus": "-1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00
+	  }
+	}
+  },
+  "rge_spring2024_liq": {
+	"tor-1.00_sol-1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-6.5*cm, 1.0*cm"
+	],
+	"software_versions": [
+	  "gemc/5.14 coatjava/11.1.0"
+	],
+	"runs": {
+	  "20458": {
+		"title": "RGE LD2",
+		"target": "LD2-Al",
+		"beam_current": "35nA",
+		"beam_energy": "10547.3",
+		"torus": "-1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00
+	  }
+	}
+  },
   "rgd_fall2023_lD2": {
-	"tor1.00_sol-1.00": [
+	"tor+1.00_sol-1.00": [
 	  "60nAAvg_10540MeV"
 	],
 	"tor-1.00_sol-1.00": [
@@ -463,7 +595,7 @@
 	]
   },
   "rgd_fall2023_CxC": {
-	"tor1.00_sol-1.00": [
+	"tor+1.00_sol-1.00": [
 	  "50nAAvg_10540MeV"
 	],
 	"tor-1.00_sol-1.00": [
@@ -484,7 +616,7 @@
 	]
   },
   "rgd_fall2023_Cu": {
-	"tor1.00_sol-1.00": [
+	"tor+1.00_sol-1.00": [
 	  "95nAAvg_10540MeV"
 	],
 	"tor-1.00_sol-1.00": [
@@ -505,7 +637,7 @@
 	]
   },
   "rgd_fall2023_Sn": {
-	"tor1.00_sol-1.00": [
+	"tor+1.00_sol-1.00": [
 	  "95nAAvg_10540MeV"
 	],
 	"tor-1.00_sol-1.00": [
@@ -524,5 +656,54 @@
 	  "gemc/5.13 coatjava/13.0.0",
 	  "gemc/5.14 coatjava/13.0.0"
 	]
+  },
+  "rgd_fall2023": {
+	"tor1.00_sol-1.00": [
+	  "60nAAvg_10540MeV"
+	],
+	"tor-1.00_sol-1.00": [
+	  "50nAAvg_10540MeV"
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-5.5*cm, 0.0*cm"
+	],
+	"software_versions": [
+	  "gemc/6.1 coatjava/14.1.2"
+	],
+	"runs": {
+	  "18305": {
+		"title": "RGD Fall23",
+		"target": "LD2",
+		"beam_current": "35nA",
+		"beam_energy": "10547.3",
+		"torus": "-1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00
+	  },
+	  "18339": {
+		"title": "RGD Fall23",
+		"target": "CxC",
+		"beam_current": "50nA",
+		"beam_energy": "10547.3",
+		"torus": "-1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00
+	  },
+	  "18347": {
+		"title": "RGD Fall23",
+		"target": "CuSn",
+		"beam_current": "130nA",
+		"beam_energy": "10547.3",
+		"torus": "-1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00
+	  }
+	}
   }
 }
