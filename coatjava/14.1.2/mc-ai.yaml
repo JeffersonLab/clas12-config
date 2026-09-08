@@ -62,6 +62,8 @@ services:
     name: VTX
   - class: org.jlab.calibration.service.CalibBanksEngine
     name: CALIB
+  - class: org.jlab.service.mc.TruthMatch
+    name: MC
 configuration:
   global:
     variation: mc2026
