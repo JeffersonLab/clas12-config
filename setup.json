@@ -529,7 +529,8 @@
 	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
 	],
 	"software_versions": [
-	  "gemc/5.14 coatjava/11.1.0"
+	  "gemc/5.14 coatjava/11.1.0",
+	  "gemc/6.1 coatjava/14.1.2"
 	],
 	"runs": {
 	  "20131": {
@@ -577,7 +578,8 @@
 	  "-6.5*cm, 1.0*cm"
 	],
 	"software_versions": [
-	  "gemc/5.14 coatjava/11.1.0"
+	  "gemc/5.14 coatjava/11.1.0",
+	  "gemc/6.1 coatjava/14.1.2"
 	],
 	"runs": {
 	  "20458": {
