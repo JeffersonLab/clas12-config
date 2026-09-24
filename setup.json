@@ -342,6 +342,38 @@
 	  ]
 	}
   },
+  "highLunm_stage1": {
+	"tor-1.00_sol-1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "-3.0*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/dev coatjava/14.1.2"
+	]
+  },
+  "highLunm_stage2": {
+	"tor-1.00_sol-1.00": [
+	],
+	"raster": [
+	  "0.0*cm, 0.0*cm"
+	],
+	"beam_spot": [
+	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
+	],
+	"z-position": [
+	  "0.0*cm, 2.5*cm"
+	],
+	"software_versions": [
+	  "gemc/dev coatjava/14.1.2"
+	]
+  },
   "ddvcs": {
 	"tor-1.00_sol-1.00": [
 	],
@@ -355,8 +387,7 @@
 	  "0.0*cm, 2.5*cm"
 	],
 	"software_versions": [
-	  "gemc/5.10 coatjava/10.1.1",
-	  "gemc/5.11 coatjava/11.1.0"
+	  "gemc/6.1 coatjava/14.1.2"
 	]
   },
   "rge_spring2024_LD2-Al-sol": {
