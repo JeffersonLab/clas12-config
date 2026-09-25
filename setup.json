@@ -342,7 +342,7 @@
 	  ]
 	}
   },
-  "highLunm_stage1": {
+  "highlumi_stage1": {
 	"tor-1.00_sol-1.00": [
 	],
 	"raster": [
@@ -358,7 +358,7 @@
 	  "gemc/dev coatjava/14.1.2"
 	]
   },
-  "highLunm_stage2": {
+  "highlumi_stage2": {
 	"tor-1.00_sol-1.00": [
 	],
 	"raster": [
