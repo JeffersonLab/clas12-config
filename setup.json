@@ -564,37 +564,77 @@
 	  "gemc/6.1 coatjava/14.1.2"
 	],
 	"runs": {
-	  "20131": {
+	  "20458": {
 		"title": "RGE Aluminum",
 		"target": "LD2-Al",
-		"beam_current": "35nA",
+		"beam_current": "70nA",
 		"beam_energy": "10547.3",
 		"torus": "-1.00",
 		"solenoid": "-1.00",
 		"lumi_weight": 1.00,
-		"z-position": "-1.5*cm, 0.6*cm"
+		"z-position": "-1.5*cm, 0.6*mm"
 	  },
-	  "20177": {
+	  "20150": {
 		"title": "RGE Carbon",
 		"target": "LD2-C",
-		"beam_current": "35nA",
+		"beam_current": "85nA",
 		"beam_energy": "10547.3",
 		"torus": "-1.00",
 		"solenoid": "-1.00",
 		"lumi_weight": 1.00,
-		"z-position": "-1.5*cm, 0.74*cm"
+		"z-position": "-1.5*cm, 0.74*mm"
 	  },
-	  "20282": {
+	  "20192": {
 		"title": "RGE Copper",
 		"target": "LD2-Cu",
-		"beam_current": "35nA",
+		"beam_current": "75nA",
 		"beam_energy": "10547.3",
 		"torus": "-1.00",
 		"solenoid": "-1.00",
 		"lumi_weight": 1.00,
-		"z-position": "-1.5*cm, 0.18*cm"
+		"z-position": "-1.5*cm, 0.18*mm"
+	  },
+	  "20384": {
+		"title": "RGE Tin",
+		"target": "LD2-Sn",
+		"beam_current": "65nA",
+		"beam_energy": "10547.3",
+		"torus": "-1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00,
+		"z-position": "-1.5*cm, 0.15*mm"
+	  },
+	  "20082": {
+		"title": "RGE Lead",
+		"target": "LD2-Pb",
+		"beam_current": "70nA",
+		"beam_energy": "10547.3",
+		"torus": "-1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00,
+		"z-position": "-1.5*cm, 0.07*mm"
+	  },
+	  "20517": {
+		"title": "RGE Carbon - Outbending",
+		"target": "LD2-C",
+		"beam_current": "70nA",
+		"beam_energy": "10547.3",
+		"torus": "+1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00,
+		"z-position": "-1.5*cm, 0.74*mm"
+	  },
+	  "20523": {
+		"title": "RGE Lead - Outbending",
+		"target": "LD2-Pb",
+		"beam_current": "70nA",
+		"beam_energy": "10547.3",
+		"torus": "+1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00,
+		"z-position": "-1.5*cm, 0.07*mm"
 	  }
-	}
+    }
   },
   "rge_spring2024_liq": {
 	"tor-1.00_sol-1.00": [
@@ -614,14 +654,74 @@
 	],
 	"runs": {
 	  "20458": {
-		"title": "RGE LD2",
+		"title": "RGE Aluminum",
 		"target": "LD2-Al",
-		"beam_current": "35nA",
+		"beam_current": "70nA",
 		"beam_energy": "10547.3",
 		"torus": "-1.00",
 		"solenoid": "-1.00",
 		"lumi_weight": 1.00,
-		"z-position": "-6.5*cm, 0.6*cm"
+		"z-position": "-6.5*cm, 1.0*cm"
+	  },
+	  "20150": {
+		"title": "RGE Carbon",
+		"target": "LD2-C",
+		"beam_current": "85nA",
+		"beam_energy": "10547.3",
+		"torus": "-1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00,
+		"z-position": "-6.5*cm, 1.0*cm"
+	  },
+	  "20192": {
+		"title": "RGE Copper",
+		"target": "LD2-Cu",
+		"beam_current": "75nA",
+		"beam_energy": "10547.3",
+		"torus": "-1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00,
+		"z-position": "-6.5*cm, 1.0*cm"
+	  },
+	  "20384": {
+		"title": "RGE Tin",
+		"target": "LD2-Sn",
+		"beam_current": "65nA",
+		"beam_energy": "10547.3",
+		"torus": "-1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00,
+		"z-position": "-6.5*cm, 1.0*cm"
+	  },
+	  "20082": {
+		"title": "RGE Lead",
+		"target": "LD2-Pb",
+		"beam_current": "70nA",
+		"beam_energy": "10547.3",
+		"torus": "-1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00,
+		"z-position": "-6.5*cm, 1.0*cm"
+	  },
+	  "20517": {
+		"title": "RGE Carbon - Outbending",
+		"target": "LD2-C",
+		"beam_current": "70nA",
+		"beam_energy": "10547.3",
+		"torus": "+1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00,
+		"z-position": "-6.5*cm, 1.0*cm"
+	  },
+	  "20523": {
+		"title": "RGE Lead - Outbending",
+		"target": "LD2-Pb",
+		"beam_current": "70nA",
+		"beam_energy": "10547.3",
+		"torus": "+1.00",
+		"solenoid": "-1.00",
+		"lumi_weight": 1.00,
+		"z-position": "-6.5*cm, 1.0*cm"
 	  }
 	}
   },
