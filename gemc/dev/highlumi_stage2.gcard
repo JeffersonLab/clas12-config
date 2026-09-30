@@ -70,7 +70,7 @@
 	<option name="OUTPUT"                  value="hipo, out.hipo"/>
 	<option name="PHYSICS"                 value="STD + FTFP_BERT"/>
 	<option name="RUNNO"                   value="11" />
-	<option name="DIGITIZATION_VARIATION"  value="rgd_fall2023_mc" />
+	<option name="DIGITIZATION_VARIATION"  value="mc2026" />
 
 
 </gcard>
