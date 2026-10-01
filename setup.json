@@ -387,7 +387,7 @@
 	  "0.0*cm, 2.5*cm"
 	],
 	"software_versions": [
-	  "gemc/6.1 coatjava/14.1.2"
+	  "gemc/dev coatjava/14.1.2"
 	]
   },
   "rge_spring2024_LD2-Al-sol": {
