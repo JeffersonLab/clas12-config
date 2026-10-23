@@ -6,7 +6,6 @@ io-services:
     class: org.jlab.jnp.grapes.io.HipoFrameWriter
     name: HipoFrameWriter
 services:
-#################################################### JPSI/TCS
   - class: org.jlab.jnp.grapes.services.GenericWagon
     name: CT
 configuration:
@@ -16,7 +15,6 @@ configuration:
     writer:
       compression: 2
   services:
-#################################################### JPSI/TCS
     CT:
       id: 2
       filter: 11:211:-211:X+:X-:Xn
