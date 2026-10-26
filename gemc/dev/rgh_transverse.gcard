@@ -81,7 +81,6 @@
 	<option name="RFSETUP"     value="clas12_ccdb" />
 	<option name="RFSTART"     value="eventVertex, 0, 0, -30.0" />
 
-	<option name="PRODUCTIONCUTFORVOLUMES"
-			value="innerShieldAndFlange, outerFlange, outerMount, DSShieldFrontLead, DSShieldBackLead, DSShieldInnerAss, DSShieldBackAss, DSShieldFrontAss, DSShieldBackCover, DSShieldFrontCover, DSShieldFlangeAttachment, DSShieldFlange,  20"/>
+        <option name="PRODUCTIONCUTFORVOLUMES" value="FTInnerShieldAndFlange, FTOuterFlange, FTOuterMount, 20" />
 
 </gcard>
