@@ -37,6 +37,7 @@
 
 	<!-- forward carriage -->
 	<detector name="experiments/clas12/dc/dc"       factory="TEXT"/>
+	<detector name="experiments/clas12/dc/cad/"     factory="CAD"/>
 	<detector name="experiments/clas12/ftof/ftof"   factory="TEXT" variation="rga_spring2018"/>
 	<detector name="experiments/clas12/ec/ec"       factory="TEXT" variation="rga_spring2018"/>
 	<detector name="experiments/clas12/pcal/pcal"   factory="TEXT" variation="rga_spring2018"/>

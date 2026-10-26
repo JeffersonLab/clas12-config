@@ -19,6 +19,7 @@
 	<detector name="beamline_cad" factory="SQLITECAD"/>
 	<detector name="beamline"     factory="SQLITE"/>
 	<detector name="dc"           factory="SQLITE"/>
+	<detector name="dc_cad"       factory="SQLITECAD"/>
 	<detector name="ftof"         factory="SQLITE"/>
 	<detector name="ec"           factory="SQLITE"/>
 	<detector name="pcal"         factory="SQLITE"/>
