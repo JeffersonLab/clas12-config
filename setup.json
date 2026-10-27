@@ -391,37 +391,6 @@
 	]
   },
   "rge_spring2024_sol": {
-	"tor-1.00_sol-1.00": {
-		"C_D2": [
-			"85nA_10547MeV"
-		],
-		"Al_D2": [
-			"70nA_10547MeV"
-		],
-		"Cu_D2": [
-			"75nA_10547MeV"
-		],
-		"Sn_D2": [
-			"65nA_10547MeV"
-		],
-		"Pb_D2": [
-			"70nA_10547MeV"
-		]
-	},
-	"tor+1.00_sol-1.00":{
-		"C_D2": [
-			"60-85nA_10547MeV"
-		],
-		"Pb_D2": [
-			"70nA_10547MeV"
-		]
-	},
-	"raster": [
-	  "0.0*cm, 0.0*cm"
-	],
-	"beam_spot": [
-	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
-	],
 	"software_versions": [
 	  "gemc/6.1 coatjava/14.1.2"
 	],
@@ -432,7 +401,9 @@
 		"beam": "70nA_10547MeV",
 		"magnets": "tor-1.00_sol-1.00",
 		"lumi_weight": 1.00,
-		"z-position": "-1.5*cm, 0.6*mm"
+		"z-position": "-1.5*cm, 0.6*mm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm"
 	  },
 	  "20150": {
 		"title": "RGE Carbon",
@@ -440,7 +411,9 @@
 		"beam": "85nA_10547MeV",
 		"magnets": "tor-1.00_sol-1.00",
 		"lumi_weight": 1.00,
-		"z-position": "-1.5*cm, 0.74*mm"
+		"z-position": "-1.5*cm, 0.74*mm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm"
 	  },
 	  "20192": {
 		"title": "RGE Copper",
@@ -448,7 +421,9 @@
 		"beam": "75nA_10547MeV",
 		"magnets": "tor-1.00_sol-1.00",
 		"lumi_weight": 1.00,
-		"z-position": "-1.5*cm, 0.18*mm"
+		"z-position": "-1.5*cm, 0.18*mm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm"
 	  },
 	  "20384": {
 		"title": "RGE Tin",
@@ -456,7 +431,9 @@
 		"beam": "65nA_10547MeV",
 		"magnets": "tor-1.00_sol-1.00",
 		"lumi_weight": 1.00,
-		"z-position": "-1.5*cm, 0.15*mm"
+		"z-position": "-1.5*cm, 0.15*mm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm"
 	  },
 	  "20082": {
 		"title": "RGE Lead",
@@ -464,7 +441,9 @@
 		"beam": "70nA_10547MeV",
 		"magnets": "tor-1.00_sol-1.00",
 		"lumi_weight": 1.00,
-		"z-position": "-1.5*cm, 0.07*mm"
+		"z-position": "-1.5*cm, 0.07*mm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm"
 	  },
 	  "20517": {
 		"title": "RGE Carbon - Outbending",
@@ -472,7 +451,9 @@
 		"beam": "70nA_10547MeV",
 		"magnets": "tor+1.00_sol-1.00",
 		"lumi_weight": 1.00,
-		"z-position": "-1.5*cm, 0.74*mm"
+		"z-position": "-1.5*cm, 0.74*mm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm"
 	  },
 	  "20523": {
 		"title": "RGE Lead - Outbending",
@@ -480,45 +461,13 @@
 		"beam": "70nA_10547MeV",
 		"magnets": "tor+1.00_sol-1.00",
 		"lumi_weight": 1.00,
-		"z-position": "-1.5*cm, 0.07*mm"
+		"z-position": "-1.5*cm, 0.07*mm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm"
 	  }
-    }
+	}
   },
   "rge_spring2024_liq": {
-	"tor-1.00_sol-1.00": {
-		"C_D2": [
-			"85nA_10547MeV"
-		],
-		"Al_D2": [
-			"70nA_10547MeV"
-		],
-		"Cu_D2": [
-			"75nA_10547MeV"
-		],
-		"Sn_D2": [
-			"65nA_10547MeV"
-		],
-		"Pb_D2": [
-			"70nA_10547MeV"
-		]
-	},
-	"tor+1.00_sol-1.00":{
-		"C_D2": [
-			"60-85nA_10547MeV"
-		],
-		"Pb_D2": [
-			"70nA_10547MeV"
-		]
-	},
-	"raster": [
-	  "0.0*cm, 0.0*cm"
-	],
-	"beam_spot": [
-	  "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg"
-	],
-	"z-position": [
-	  "-6.5*cm, 1.0*cm"
-	],
 	"software_versions": [
 	  "gemc/6.1 coatjava/14.1.2"
 	],
@@ -529,7 +478,9 @@
 		"beam": "70nA_10547MeV",
 		"magnets": "tor-1.00_sol-1.00",
 		"lumi_weight": 1.00,
-		"z-position": "-6.5*cm, 1.0*cm"
+		"z-position": "-6.5*cm, 1.0*cm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm"
 	  },
 	  "20150": {
 		"title": "RGE Carbon",
@@ -537,7 +488,9 @@
 		"beam": "85nA_10547MeV",
 		"magnets": "tor-1.00_sol-1.00",
 		"lumi_weight": 1.00,
-		"z-position": "-6.5*cm, 1.0*cm"
+		"z-position": "-6.5*cm, 1.0*cm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm"
 	  },
 	  "20192": {
 		"title": "RGE Copper",
@@ -545,7 +498,9 @@
 		"beam": "75nA_10547MeV",
 		"magnets": "tor-1.00_sol-1.00",
 		"lumi_weight": 1.00,
-		"z-position": "-6.5*cm, 1.0*cm"
+		"z-position": "-6.5*cm, 1.0*cm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm"
 	  },
 	  "20384": {
 		"title": "RGE Tin",
@@ -553,7 +508,9 @@
 		"beam": "65nA_10547MeV",
 		"magnets": "tor-1.00_sol-1.00",
 		"lumi_weight": 1.00,
-		"z-position": "-6.5*cm, 1.0*cm"
+		"z-position": "-6.5*cm, 1.0*cm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm"
 	  },
 	  "20082": {
 		"title": "RGE Lead",
@@ -561,7 +518,9 @@
 		"beam": "70nA_10547MeV",
 		"magnets": "tor-1.00_sol-1.00",
 		"lumi_weight": 1.00,
-		"z-position": "-6.5*cm, 1.0*cm"
+		"z-position": "-6.5*cm, 1.0*cm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm"
 	  },
 	  "20517": {
 		"title": "RGE Carbon - Outbending",
@@ -569,7 +528,9 @@
 		"beam": "70nA_10547MeV",
 		"magnets": "tor+1.00_sol-1.00",
 		"lumi_weight": 1.00,
-		"z-position": "-6.5*cm, 1.0*cm"
+		"z-position": "-6.5*cm, 1.0*cm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm"
 	  },
 	  "20523": {
 		"title": "RGE Lead - Outbending",
@@ -577,7 +538,9 @@
 		"beam": "70nA_10547MeV",
 		"magnets": "tor+1.00_sol-1.00",
 		"lumi_weight": 1.00,
-		"z-position": "-6.5*cm, 1.0*cm"
+		"z-position": "-6.5*cm, 1.0*cm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm"
 	  }
 	}
   },
