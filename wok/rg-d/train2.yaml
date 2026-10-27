@@ -1,0 +1,25 @@
+io-services:
+  reader:
+    class: org.jlab.jnp.grapes.io.HipoFrameReader
+    name: HipoFrameReader
+  writer:
+    class: org.jlab.jnp.grapes.io.HipoFrameWriter
+    name: HipoFrameWriter
+services:
+  - class: org.jlab.jnp.grapes.services.GenericWagon
+    name: CT
+configuration:
+  custom-names:
+    2: ct
+  io-services:
+    writer:
+      compression: 2
+  services:
+    CT:
+      id: 2
+      filter: 11:211:-211:X+:X-:Xn
+      beamEnergy: 10.54
+      targetPDF: 2212
+      electron: Q2>0.8 && W>1.7 && p>1.8 && vz<5
+mime-types:
+  - binary/data-hipo-frame
