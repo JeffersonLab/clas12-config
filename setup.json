@@ -664,10 +664,23 @@
 		"beam_energy": "10547.3",
 		"torus": "-1.00",
 		"solenoid": "-1.00",
-		"z-position": "-5.5*cm, 0.0",
+		"z-position": "-5.5*cm, 0.0*cm",
 		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
 		"raster": "0.0*cm, 0.0*cm",
 		"background_path": "50nAAvg_10540MeV",
+		"lumi_weight": 1.00
+	  },
+	  "18419": {
+		"title": "RGD Fall23",
+		"target": "lD2",
+		"beam_current": "60nA",
+		"beam_energy": "10547.3",
+		"torus": "+1.00",
+		"solenoid": "-1.00",
+		"z-position": "-5.5*cm, 0.0*cm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm",
+		"background_path": "60nAAvg_10540MeV",
 		"lumi_weight": 1.00
 	  },
 	  "18339": {
@@ -677,7 +690,7 @@
 		"beam_energy": "10547.3",
 		"torus": "-1.00",
 		"solenoid": "-1.00",
-		"z-position": "-5.5*cm, 0.0",
+		"z-position": "-8.0*cm, 0.0*cm",
 		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
 		"raster": "0.0*cm, 0.0*cm",
 		"background_path": "50nAAvg_10540MeV",
@@ -685,15 +698,100 @@
 	  },
 	  "18347": {
 		"title": "RGD Fall23",
-		"target": "CuSn",
+		"target": "Cu",
 		"beam_current": "130nA",
 		"beam_energy": "10547.3",
 		"torus": "-1.00",
 		"solenoid": "-1.00",
-		"z-position": "-5.5*cm, 0.0",
+		"z-position": "-8.0*cm, 0.0*cm",
 		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
 		"raster": "0.0*cm, 0.0*cm",
 		"background_path": "130nAAvg_10540MeV",
+		"lumi_weight": 1.00
+	  },
+	  "18440": {
+		"title": "RGD Fall23",
+		"target": "CxC",
+		"beam_current": "50nA",
+		"beam_energy": "10532.2",
+		"torus": "+1.00",
+		"solenoid": "-1.00",
+		"z-position": "-8.0*cm, 0.0*cm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm",
+		"background_path": "50nAAvg_10540MeV",
+		"lumi_weight": 1.00
+	  },
+	  "18560": {
+		"title": "RGD Fall23",
+		"target": "Cu",
+		"beam_current": "95nA",
+		"beam_energy": "10532.2",
+		"torus": "+1.00",
+		"solenoid": "-1.00",
+		"z-position": "-8.0*cm, 0.0*cm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm",
+		"background_path": "95nAAvg_10540MeV",
+		"lumi_weight": 1.00
+	  }
+	}
+  },
+  "rgd_fall2023_ds": {
+	"software_versions": [
+	  "gemc/6.1 coatjava/14.1.2"
+	],
+	"runs": {
+	  "18339": {
+		"title": "RGD Fall23",
+		"target": "CxC",
+		"beam_current": "50nA",
+		"beam_energy": "10547.3",
+		"torus": "-1.00",
+		"solenoid": "-1.00",
+		"z-position": "-3.0*cm, 0.0*cm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm",
+		"background_path": "50nAAvg_10540MeV",
+		"lumi_weight": 1.00
+	  },
+	  "18347": {
+		"title": "RGD Fall23",
+		"target": "Sn",
+		"beam_current": "130nA",
+		"beam_energy": "10547.3",
+		"torus": "-1.00",
+		"solenoid": "-1.00",
+		"z-position": "-3.0*cm, 0.0*cm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm",
+		"background_path": "130nAAvg_10540MeV",
+		"lumi_weight": 1.00
+	  },
+	  "18440": {
+		"title": "RGD Fall23",
+		"target": "CxC",
+		"beam_current": "50nA",
+		"beam_energy": "10532.2",
+		"torus": "+1.00",
+		"solenoid": "-1.00",
+		"z-position": "-3.0*cm, 0.0*cm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm",
+		"background_path": "50nAAvg_10540MeV",
+		"lumi_weight": 1.00
+	  },
+	  "18560": {
+		"title": "RGD Fall23",
+		"target": "Sn",
+		"beam_current": "95nA",
+		"beam_energy": "10532.2",
+		"torus": "+1.00",
+		"solenoid": "-1.00",
+		"z-position": "-3.0*cm, 0.0*cm",
+		"beam_spot": "0.0*mm, 0.0*mm, 0.0*mm, 0.0*mm, 0*deg",
+		"raster": "0.0*cm, 0.0*cm",
+		"background_path": "95nAAvg_10540MeV",
 		"lumi_weight": 1.00
 	  }
 	}
