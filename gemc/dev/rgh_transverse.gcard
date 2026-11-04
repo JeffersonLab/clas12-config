@@ -37,6 +37,7 @@
 
 	<!-- forward carriage -->
 	<detector name="experiments/clas12/dc/dc"       factory="TEXT"/>
+	<detector name="experiments/clas12/dc/cad/"     factory="CAD"/>
 	<detector name="experiments/clas12/ftof/ftof"   factory="TEXT" variation="rga_spring2018"/>
 	<detector name="experiments/clas12/ec/ec"       factory="TEXT" variation="rga_spring2018"/>
 	<detector name="experiments/clas12/pcal/pcal"   factory="TEXT" variation="rga_spring2018"/>
@@ -80,7 +81,6 @@
 	<option name="RFSETUP"     value="clas12_ccdb" />
 	<option name="RFSTART"     value="eventVertex, 0, 0, -30.0" />
 
-	<option name="PRODUCTIONCUTFORVOLUMES"
-			value="innerShieldAndFlange, outerFlange, outerMount, DSShieldFrontLead, DSShieldBackLead, DSShieldInnerAss, DSShieldBackAss, DSShieldFrontAss, DSShieldBackCover, DSShieldFrontCover, DSShieldFlangeAttachment, DSShieldFlange,  20"/>
+        <option name="PRODUCTIONCUTFORVOLUMES" value="FTInnerShieldAndFlange, FTOuterFlange, FTOuterMount, 20" />
 
 </gcard>
