@@ -1,0 +1,25 @@
+io-services:
+  reader:
+    class: org.jlab.jnp.grapes.io.HipoFrameReader
+    name: HipoFrameReader
+  writer:
+    class: org.jlab.jnp.grapes.io.HipoFrameWriter
+    name: HipoFrameWriter
+services:
+  - class: org.jlab.jnp.grapes.services.RGDSidisWagon
+    name: RGDSIDIS
+configuration:
+  custom-names:
+    3: sidis
+  io-services:
+    writer:
+      compression: 2
+  services:
+    RGDSIDIS:
+      id: 3
+      beamEnergy: 10.54
+      targetPDG: 2212
+ 
+mime-types:
+  - binary/data-hipo-frame
+
