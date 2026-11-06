@@ -1,5 +1,3 @@
-# LambdaFDWagon uses REC::Particle and REC::VertDoca from the current coatjava.
-# The cuts are implemented in LambdaFDWagon.java.
 io-services:
   reader:
     class: org.jlab.jnp.grapes.io.HipoFrameReader
@@ -10,12 +8,18 @@ io-services:
 services:
   - class: org.jlab.jnp.grapes.services.LambdaFDWagon
     name: LAMBDAFD
+  - class: org.jlab.jnp.grapes.services.SinglePionWagon
+    name: SINGPI
 configuration:
   io-services:
     writer:
       compression: 2
   services:
     LAMBDAFD:
-      id: 34
+      id: 11
+    SINGPI:
+      id: 12
+      beamEnergy: 8.477
+      targetPDG: 2212
 mime-types:
   - binary/data-hipo-frame
