@@ -11,15 +11,19 @@ services:
   - class: org.jlab.jnp.grapes.services.SinglePionWagon
     name: SINGPI
 configuration:
-  io-services:
-    writer:
-      compression: 2
+  global:
+    beamEnergy: 8.477
+    targetPDG: 2212
+  custom-names:
+    11: lambda
+    12: singpi
   services:
     LAMBDAFD:
       id: 11
     SINGPI:
       id: 12
-      beamEnergy: 8.477
-      targetPDG: 2212
+  io-services:
+    writer:
+      compression: 2
 mime-types:
   - binary/data-hipo-frame
