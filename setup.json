@@ -739,7 +739,6 @@
   },
   "rgd_fall2023_ds": {
 	"software_versions": [
-	  "gemc/6.1 coatjava/14.1.2"
 	],
 	"runs": {
 	  "18339": {
